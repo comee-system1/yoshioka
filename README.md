@@ -36,3 +36,40 @@ public function boot() に、下記の２つの設定をします
 が表示される
 
 各ルート設定は php artisan route:list コマンドで確認できます。
+
+### fortifyのログインURLの変更
+- FortifyServiceProviderのregisterメソッドにFortify::ignoreRoutes();を追加。
+- routesフォルダ内にfortify.phpを作成する
+    - vendor\laravel\fortify\routes\routes.phpの中身をコピーして先ほど作成したfortify.phpに貼り付ける。
+- RouteServiceProvideにルーティングとして登録する
+```
+class RouteServiceProvider extends ServiceProvider
+{
+~ 省略 ~
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->configureRateLimiting();
+
+        $this->routes(function () {
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));
+
+            // 追加
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/fortify.php'));
+        });
+    }
+```
+fortify.phpを変更する
