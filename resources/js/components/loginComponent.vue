@@ -4,7 +4,7 @@
         <input type="text" placeholder="customer id" v-model="user.userId" />
         <label>Password</label>
         <input type="password" placeholder="password" v-model="user.password" />
-        <button type="submit">Sign In</button>
+        <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
 </template>
 

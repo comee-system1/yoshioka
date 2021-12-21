@@ -28133,7 +28133,11 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      _c("button", { attrs: { type: "submit" } }, [_vm._v("Sign In")]),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Sign In")]
+      ),
     ]
   )
 }
