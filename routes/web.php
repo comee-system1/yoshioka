@@ -19,6 +19,15 @@ Route::get('/', function () {
 });
 */
 Route::group(['prefix'=>'admin'],function(){
-    Route::get('/',function(){ return view('welcome'); });
+    //ログインしないと見えないページ
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/',function(){ return view('welcome'); });
+        //Route::match(['get', 'post'],'/',function(){ return view('home')->name('home'); });
+        Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
+        Route::post('/saveData', [\App\Http\Controllers\Admin\HomeController::class, 'saveData'])->name('saveData');
+        Route::get('/join', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
+        Route::get('/join/new', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
+
+    });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });

@@ -1,8 +1,47 @@
+### FontAwesome 5.x.xを使えるようにする
+npm install @fortawesome/fontawesome-free
+
+### Vue Routerをインストール
+npm install vue-router
+
+jsファイルに下記を記載
+`import Router from 'vue-router'`
+
+
+### サーバー接続
+axiosの利用
+- REST送信ためにインストールします
+    - npm install  axios vue-axios
+    - npm view axios version
+
+```
+PS C:\xampp3\htdocs\yoshioka\yoshioka> npm view axios version
+0.24.0
+PS C:\xampp3\htdocs\yoshioka\yoshioka>
+```
+
+
+
+
 ### build方法
 npm run watch コマンドで自動ビルド
 
+### 初期
+composer update
+npm install
+php artisan migrate
 
 ## やったこと
+### bootstrap.css組込み
+
+composer require laravel/ui
+php artisan ui bootstrap
+npm install
+npm run dev
+
+
+
+
 ### 認証機能
 - fortifyインストール
 composer require laravel/fortify

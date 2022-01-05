@@ -3,7 +3,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import Router from 'vue-router'
 
 require('./bootstrap');
-require('./login');
-require('./basic');
+//require('./basic');
+require('./home');
