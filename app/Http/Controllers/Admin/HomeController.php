@@ -19,4 +19,10 @@ class HomeController extends Controller
         echo "success";
         exit();
     }
+
+    public function to_string()
+    {
+        return 'hoge';
+    }
+
 }
