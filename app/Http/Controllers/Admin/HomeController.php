@@ -14,7 +14,7 @@ class HomeController extends Controller
         return view('admin.index', ['hello' => $hello]);
     }
 
-    public function saveData__aa(){
+    public function saveData(){
 
         echo "success";
         exit();
