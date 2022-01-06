@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function to_string()
     {
-        return 'hoge';
+        return 'hoge ';
     }
 
 }
