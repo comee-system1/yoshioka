@@ -37,11 +37,16 @@
                     <td>
                         <button class="btn btn-success">更新</button>
                         <button class="btn btn-warning">演題</button>
-                        <button class="btn btn-dark">削除</button>
+                        <button class="btn btn-danger">削除</button>
                     </td>
                     <td>佐藤太郎</td>
                     <td>sample@sample.co.jp</td>
-                    <td><a href="">支払い済み</a></td>
+                    <td>
+                        <select class="form-control">
+                            <option>支払済み</option>
+                            <option>未払い</option>
+                        </select>
+                    </td>
                     <td>
                     <button class="btn btn-outline-primary">請求書</button>
                     <button class="btn btn-outline-success">領収書</button>
@@ -52,7 +57,7 @@
                     <td>
                         <button class="btn btn-success">更新</button>
                         <button class="btn btn-warning">演題</button>
-                        <button class="btn btn-dark">削除</button>
+                        <button class="btn btn-danger">削除</button>
                     </td>
                     <td>佐藤太郎</td>
                     <td>sample@sample.co.jp</td>

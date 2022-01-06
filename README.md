@@ -1,3 +1,14 @@
+### PHP_CodeSnifferを導入して、git commit時にチェックする
+- インストール
+composer require --dev squizlabs/php_codesniffer:3.*
+```
+インストールできたら、vendor/binにphpcsとphpcbfという実行ファイルが存在するはずです
+```
+
+### warning: LF will be replaced by CRLF inが出たときの対処法
+`git config --global core.autoCRLF false`
+
+
 ### FontAwesome 5.x.xを使えるようにする
 npm install @fortawesome/fontawesome-free
 

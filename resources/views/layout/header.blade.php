@@ -5,7 +5,10 @@
 
     <ul class="navbar-nav px-3 signout">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-danger" >sign out</button>
+            </form>
         </li>
     </ul>
 </nav>
