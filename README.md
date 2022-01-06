@@ -4,6 +4,35 @@ composer require --dev squizlabs/php_codesniffer:3.*
 ```
 インストールできたら、vendor/binにphpcsとphpcbfという実行ファイルが存在するはずです
 ```
+- Gitの設定
+次にGitフックを使ってgit commit時にphpcsが実行されるようにします。
+.git/hooksに以下の内容のpre-commitという名前のシェルスクリプトを作成します。
+
+.git/hooks/pre-commit
+```
+#!/bin/sh
+
+./vendor/bin/phpcs --standard=PSR12 --filter=GitStaged .
+```
+- 動作確認
+
+```
+PS C:\xampp3\htdocs\yoshioka\yoshioka> git commit -m 'test'
+
+FILE: ...\yoshioka\yoshioka\app\Http\Controllers\Admin\HomeController.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 17 | ERROR | [x] Opening brace should be on a new line
+ 23 | ERROR | [ ] Method name "HomeController::to_string" is not in
+    |       |     camel caps format
+ 28 | ERROR | [x] The closing brace for the class must go on the next
+    |       |     line after the body
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+```
 
 ### warning: LF will be replaced by CRLF inが出たときの対処法
 `git config --global core.autoCRLF false`

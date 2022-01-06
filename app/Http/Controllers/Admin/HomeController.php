@@ -14,15 +14,10 @@ class HomeController extends Controller
         return view('admin.index', ['hello' => $hello]);
     }
 
-    public function saveData(){
+    public function saveData()
+    {
 
         echo "success";
         exit();
     }
-
-    public function to_string()
-    {
-        return 'hoge ';
-    }
-
 }
