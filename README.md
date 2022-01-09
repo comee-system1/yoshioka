@@ -1,3 +1,12 @@
+### Formファザードをインストール
+- ｉｎｓｔａｌｌコマンド
+```
+composer require "laravelcollective/html"
+```
+- composer.jsonに追記されていることを確認
+   - "laravelcollective/html": "^6.2"が追記されている
+
+
 ### PHP_CodeSnifferを導入して、git commit時にチェックする
 - インストール
 composer require --dev squizlabs/php_codesniffer:3.*

@@ -13,6 +13,7 @@ window.Vue = require('vue').default;
 
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 Vue.component('main-component', require('./components/MainComponent.vue').default);
+Vue.component('endai-component', require('./components/EndaiComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -2,14 +2,14 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
         <ul class="nav nav-pills nav-stacked mt-1">
-            <li >
-                <a class="nav-link active" href="{{route('join')}}">
+            <li>
+                <a @if(Request::is('admin/join') || Request::is('admin/jojin/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('join')}}">
                 <i class="fas fa-address-card"></i>
                 参加者一覧
                 </a>
             </li>
             <li >
-                <a class="nav-link" href="#">
+                <a @if(Request::is('admin/endai') || Request::is('admin/endai/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('endai')}}">
                 <i class="fas fa-microphone-alt"></i>
                 演題一覧
                 </a>

@@ -43,9 +43,11 @@
                     <td>sample@sample.co.jp</td>
                     <td>
                         <select class="form-control">
-                            <option>支払済み</option>
-                            <option>未払い</option>
+                            <option v-for="option in options" v-bind:value="option.value" :key="option.value">
+                            {{ option.text }}
+                            </option>
                         </select>
+
                     </td>
                     <td>
                     <button class="btn btn-outline-primary">請求書</button>
@@ -76,7 +78,11 @@
 export default {
     data(){
         return {
-            name:"参加者一覧"
+            name:"参加者一覧",
+            options: [
+                { text: '未払い', value: '0' },
+                { text: '支払済み', value: '1' }
+            ]
         }
     },
   methods: {

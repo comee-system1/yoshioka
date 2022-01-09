@@ -12,22 +12,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
-    Route::group(['middleware' => ['auth']], function() {
-        Route::get('/',function(){ return view('welcome'); });
+    Route::group(['middleware' => ['auth']], function () {
         //Route::match(['get', 'post'],'/',function(){ return view('home')->name('home'); });
         Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
         Route::post('/saveData', [\App\Http\Controllers\Admin\HomeController::class, 'saveData'])->name('saveData');
         Route::get('/join', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
         Route::get('/join/new', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
-
+        Route::get('/endai', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
+        Route::get('/endai/new', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });
