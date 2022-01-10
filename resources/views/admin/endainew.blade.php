@@ -14,73 +14,73 @@
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="container p-3">
-                    <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">参加者登録</nav>
-                    {{ Form::open(['route' => ['joinnew']]) }}
+                    <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">演題登録</nav>
+                    {{ Form::open(['route' => ['endainew'] , "method" => "POST", "enctype" => "multipart/form-data" ]) }}
+                        {{ csrf_field() }}
                         <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">参加者区分</div>
+                            <div class="col-md-3 d-flex align-items-center">参加者選択</div>
                             <div class="col-md-9">
-                            <select name="class" class="form-control">
-                            @foreach(Classes::ClASS_LIST as $key=>$value)
-                                <option value="{{$key}}">{{$value}}</option>
-                            @endforeach
-                            </select>
+<select name="hoge" class="js-attachSelect2">
+    <option value=1>テスト1</option>
+    <option value=2>テスト2</option>
+    <option value=3>テスト3</option>
+</select>
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">参加者名</div>
+                            <div class="col-md-3 d-flex align-items-center">演題名</div>
+                            <div class="col-md-6">
+                                {{ Form::text('endai_name', '',['id'=>'endai_name', 'class'=>'form-control', 'placeholder'=>'演題名を入力' ])}}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3 d-flex align-items-center">演題内容</div>
+                            <div class="col-md-6">
+                                {{ Form::textarea('endai_note', '',['id'=>'endai_note', 'class'=>'form-control', 'placeholder'=>'演題内容を入力', 'rows'=>3 ])}}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3 d-flex align-items-center">発表形式</div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                @foreach(Classes::ANNOUNCE_LIST[1] as $key=>$val)
+                                    <div class="col-md-6 mb-2">
+                                        {{ Form::radio('announce_type', $key, ($key == old('announce_type_id', '' )), ['id' => 'announce_type_id'.$key, ]) }}
+                                        {{ Form::label('announce_type_id'.$key, $val, ['class' => 'form-check-label']) }}
+                                    </div>
+                                @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3 d-flex align-items-center">配布資料1</div>
                             <div class="col-md-3">
-                                {{ Form::text('first_name', '',['id'=>'first_name', 'class'=>'form-control', 'placeholder'=>'姓を入力' ])}}
+                                {{Form::file("cover_image_1")}}
                             </div>
                             <div class="col-md-3">
-                                {{ Form::text('last_name', '',['id'=>'last_name', 'class'=>'form-control', 'placeholder'=>'名を入力' ])}}
+                                {{ Form::text('file_1', '',['id'=>'file_1', 'class'=>'form-control', 'placeholder'=>'資料名を入力' ])}}
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">参加者名(かな)</div>
+                            <div class="col-md-3 d-flex align-items-center">配布資料2</div>
                             <div class="col-md-3">
-                                {{ Form::text('first_name_kana', '',['id'=>'first_name', 'class'=>'form-control', 'placeholder'=>'せいを入力' ])}}
+                                {{Form::file("cover_image_2")}}
                             </div>
                             <div class="col-md-3">
-                                {{ Form::text('last_name_kana', 'めいを入力',['id'=>'last_name', 'class'=>'form-control', 'placeholder'=>'めいを入力' ])}}
+                                {{ Form::text('file_2', '',['id'=>'file_2', 'class'=>'form-control', 'placeholder'=>'資料名を入力' ])}}
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">メールアドレス</div>
-                            <div class="col-md-6">
-                                {{ Form::text('email', '',['id'=>'email', 'class'=>'form-control', 'placeholder'=>'メールアドレスを入力' ])}}
+                            <div class="col-md-3 d-flex align-items-center">配布資料3</div>
+                            <div class="col-md-3">
+                                {{Form::file("cover_image_3")}}
+                            </div>
+                            <div class="col-md-3">
+                                {{ Form::text('file_3', '',['id'=>'file_3', 'class'=>'form-control', 'placeholder'=>'資料名を入力' ])}}
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">パスワード</div>
-                            <div class="col-md-6">
-                                {{ Form::text('password', '',['id'=>'password', 'class'=>'form-control', 'placeholder'=>'パスワードを入力' ])}}
-                            </div>
-                        </div>
-                        {{--以下テンプレートで可変--}}
-                        <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">会社名</div>
-                            <div class="col-md-6">
-                                {{ Form::text('company', '',['id'=>'company', 'class'=>'form-control', 'placeholder'=>'会社名を入力' ])}}
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">電話番号</div>
-                            <div class="col-md-6">
-                                {{ Form::text('tel', '',['id'=>'tel', 'class'=>'form-control', 'placeholder'=>'電話番号(半角数値)を入力' ])}}
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">住所</div>
-                            <div class="col-md-6">
-                                {{ Form::text('address', '',['id'=>'address', 'class'=>'form-control', 'placeholder'=>'住所を入力' ])}}
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3 d-flex align-items-center">所属</div>
-                            <div class="col-md-6">
-                                {{ Form::text('group', '',['id'=>'group', 'class'=>'form-control', 'placeholder'=>'所属を入力' ])}}
-                            </div>
-                        </div>
+
+
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 {{Form::submit('登録', ['class'=>'btn btn-primary w-100'])}}

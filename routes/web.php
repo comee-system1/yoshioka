@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/join/new', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
         Route::get('/endai', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
         Route::get('/endai/new', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
+        Route::get('/time', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });

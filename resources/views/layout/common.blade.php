@@ -8,6 +8,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ mix('css/select2.min.css') }}" rel="stylesheet" type="text/css">
 
 @yield('pageCss')
 

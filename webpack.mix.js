@@ -14,9 +14,12 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps();
+    .sourceMaps()
+    .postCss('node_modules/select2/dist/css/select2.min.css', 'public/css')
+    .autoload({ "jquery": ['$', 'window.jQuery'], });
+
 mix.webpackConfig({
-  watchOptions: {
-    ignored: /node_modules/
-  }
+    watchOptions: {
+        ignored: /node_modules/
+    }
 });

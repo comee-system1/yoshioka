@@ -7,6 +7,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Router from 'vue-router'
 
+
 require('./bootstrap');
 //require('./basic');
 require('./home');
+require('./select');

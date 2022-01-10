@@ -46,6 +46,11 @@ PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 ### warning: LF will be replaced by CRLF inが出たときの対処法
 `git config --global core.autoCRLF false`
 
+### select2の利用
+npm i select2
+
+### jqueryのインストール
+npm install jquery --save
 
 ### FontAwesome 5.x.xを使えるようにする
 npm install @fortawesome/fontawesome-free
