@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="#">
+                <a @if(Request::is('admin/pay') ) class="nav-link active" @else class="nav-link" @endif href="{{route('pay')}}">
                 <i class="fas fa-credit-card"></i>
                 決済ページ
                 </a>

@@ -20,7 +20,7 @@
                             <div class="col-md-3 d-flex align-items-center">参加者区分</div>
                             <div class="col-md-9">
                             <select name="class" class="form-control">
-                            @foreach(Classes::ClASS_LIST as $key=>$value)
+                            @foreach(Classes::CLASS_LIST as $key=>$value)
                                 <option value="{{$key}}">{{$value}}</option>
                             @endforeach
                             </select>
