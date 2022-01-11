@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link " href="#">
+                <a @if(Request::is('admin/time') ) class="nav-link active" @else class="nav-link" @endif href="{{route('time')}}">
                 <i class="far fa-clock"></i>
                 タイムテーブル
                 </a>

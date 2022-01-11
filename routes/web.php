@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
     Route::group(['middleware' => ['auth']], function () {
