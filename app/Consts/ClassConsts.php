@@ -35,4 +35,9 @@ class ClassConsts
         'I' => "I会場",
         'P' => "ポスター会場",
     ];
+
+    public const INFO_TYPE = [
+        1 => "Web掲載(Webページへの掲載)",
+        2 => "メール配信(参加者へのメール配信)",
+    ];
 }

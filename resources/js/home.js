@@ -15,6 +15,7 @@ Vue.component('home-component', require('./components/HomeComponent.vue').defaul
 Vue.component('main-component', require('./components/MainComponent.vue').default);
 Vue.component('endai-component', require('./components/EndaiComponent.vue').default);
 Vue.component('time-component', require('./components/TimeComponent.vue').default);
+Vue.component('info-component', require('./components/InfoComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

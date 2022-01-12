@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="#">
+                <a @if(Request::is('admin/info') ) class="nav-link active" @else class="nav-link" @endif href="{{route('info')}}">
                 <i class="fas fa-info-circle"></i>
                 お知らせ管理
                 </a>
