@@ -33,13 +33,13 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="#">
+                <a @if(Request::is('admin/invoice') ) class="nav-link active" @else class="nav-link" @endif href="{{route('invoice')}}">
                 <i class="fas fa-scroll"></i>
                 領収書管理
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="#">
+                <a @if( Request::is('admin/sponser') || Request::is('admin/sponser/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('sponser')}}">
                 <i class="fas fa-globe-asia"></i>
                 協賛管理
                 </a>

@@ -27,6 +27,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/pay', [\App\Http\Controllers\Admin\PayController::class, 'index'])->name('pay');
         Route::get('/info', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('info');
         Route::get('/info/new', [\App\Http\Controllers\Admin\InfoController::class, 'new'])->name('infonew');
+        Route::get('/invoice', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
+        Route::get('/sponser', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
+        Route::get('/sponser/new', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });
