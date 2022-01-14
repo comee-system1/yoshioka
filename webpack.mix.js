@@ -12,8 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/script.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/style.scss', 'public/css')
     .sourceMaps()
     .postCss('node_modules/select2/dist/css/select2.min.css', 'public/css')
     .autoload({ "jquery": ['$', 'window.jQuery'], });

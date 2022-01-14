@@ -1,3 +1,10 @@
+### 画像表示の為にシンポリックをはる
+
+PS C:\xampp3\htdocs\yoshioka\yoshioka> php artisan storage:link
+The [C:\xampp3\htdocs\yoshioka\yoshioka\public\storage] link has been connected to [C:\xampp3\htdocs\yoshioka\yoshioka\storage\app/public].
+The links have been created.
+
+
 ### Formファザードをインストール
 - ｉｎｓｔａｌｌコマンド
 ```

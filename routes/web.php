@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//ログイン無しで見れるページ
+Route::get('/open/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'index'])->name('top');
+
+
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
