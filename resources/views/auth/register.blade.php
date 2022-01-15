@@ -14,5 +14,6 @@
 	メール：<input type="text" name="email"><br>
 	パスワード：<input type="password" name="password"><br>
 	パスワード再入力：<input type="password" name="password_confirmation"><br>
+    <input type="hidden" name="is_super" value=1 />
 	<button type="submit">Register</button>
 </form>

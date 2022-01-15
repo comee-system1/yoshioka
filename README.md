@@ -50,6 +50,29 @@ PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 
 ```
 
+
+
+`https://www.ninton.co.jp/archives/6360`
+```
+コーディングルールとファイルを指定します。
+
+$ ./vendor/bin/phpcs  --standard=PSR12  foo.php
+Code language: Bash (bash)
+ディレクトリを指定することもできます。
+
+$ ./vendor/bin/phpcs  --standard=PSR12  ./web/
+Code language: Bash (bash)
+jsやcssを除外するには、
+
+$ ./vendor/bin/phpcs  --standard=PSR12  ./web/  --ignore="*.js|*.css"
+Code language: Bash (bash)
+警告の [x] つきのものは、もう一つのコマンド phpcbf で自動修正できます。
+
+$ ./vendor/bin/phpcbf  --standard=PSR12  foo.php
+
+```
+
+
 ### warning: LF will be replaced by CRLF inが出たときの対処法
 `git config --global core.autoCRLF false`
 

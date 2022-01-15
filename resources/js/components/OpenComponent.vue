@@ -3,49 +3,54 @@
         <div class="row">
             <div class="col-md-12 blog-main">
 
-                <div class="blog-post">
-                    <h2 class="blog-post-title">Sample blog post</h2>
-                    <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-
-                    <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+                <div class="blog-post mt-3">
+                    <h3>お知らせ情報</h3>
+                    <p class="blog-post-meta">2022年1月10日</p>
+                    <p class="h5">サンプルお知らせタイトル</p>
+                    <p>サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。</p>
                     <hr>
-                    <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                    <blockquote>
-                    <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </blockquote>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                    <h2>Heading</h2>
-                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <h3>Sub-heading</h3>
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    <pre><code>Example code block</code></pre>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-                    <h3>Sub-heading</h3>
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <ul>
-                    <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-                    <li>Donec id elit non mi porta gravida at eget metus.</li>
-                    <li>Nulla vitae elit libero, a pharetra augue.</li>
-                    </ul>
-                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-                    <ol>
-                    <li>Vestibulum id ligula porta felis euismod semper.</li>
-                    <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                    <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-                    </ol>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-                </div><!-- /.blog-post -->
+                    <p class="blog-post-meta">2022年1月9日</p>
+                    <p class="h5">サンプルお知らせタイトル</p>
+                    <p>サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。</p>
+                    <hr>
+                    <p class="blog-post-meta">2022年1月3日</p>
+                    <p class="h5">サンプルお知らせタイトル</p>
+                    <p>サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。サンプルお知らせ。</p>
+                    <hr>
+                </div>
+                <div class="blog-post mt-3">
+                    <h3>学会サンプルとは</h3>
+                    <p class="blog-post-meta">2022年1月10日</p>
+                    <p>
+                        ここに学会説明文が入ります。
+                        ここに学会説明文が入ります。
+                        ここに学会説明文が入ります。
+                        ここに学会説明文が入ります。
+                        ここに学会説明文が入ります。
+                        ここに学会説明文が入ります。
+                    </p>
+                </div>
+                <div class="blog-post mt-3">
+                    <h3>開催日時・場所</h3>
+                    <p>2022年1月10日 開催</p>
+                    <p class="h4">住所</p>
+                    <p>東京都</p>
+                    <p class="h4">場所</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1662981.182053535!2d138.64586055932918!3d35.50402796176805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2z5p2x5Lqs6YO9!5e0!3m2!1sja!2sjp!4v1642173757334!5m2!1sja!2sjp"  height="200" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
 
                 <div class="blog-post">
-                    <h2 class="blog-post-title">Another blog post</h2>
-                    <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-                    <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                    <blockquote>
-                    <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </blockquote>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                    <h2 class="blog-post-title">協賛企業</h2>
+                    <div class="row">
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100" /></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                        <div class="col-md-2"><a href=""><img src="https://forest.watch.impress.co.jp/img/wf/docs/1158/361/image18120702_l.png" class="w-100"/></a></div>
+                    </div>
                 </div><!-- /.blog-post -->
 
 

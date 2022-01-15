@@ -8,7 +8,7 @@
 @section('content')
 
 
-    <h1>ログイン</h1>
+    <h1>ログインAAAAAAA</h1>
 
     @if ($errors->any())
     <div class="login_error">

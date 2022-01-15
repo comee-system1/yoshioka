@@ -11354,11 +11354,13 @@ body {
   align-items: center;
   justify-content: center;
 }
-#overlay div {
+#overlay div.modalbox {
   z-index: 2;
   width: 50%;
   padding: 1em;
   background: #fff;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 /*----------------------------
@@ -11366,7 +11368,6 @@ body {
 *----------------------------*/
 .menu-btn {
   position: absolute;
-  top: -20px;
   right: 0px;
   z-index: 3;
   display: flex;
@@ -11415,7 +11416,7 @@ body {
 .menu__item {
   width: 100%;
   height: auto;
-  padding: 5px 2px;
+  padding: 15px 2px;
   text-align: center;
   color: #fff;
   box-sizing: border-box;
@@ -11479,6 +11480,14 @@ ul.signout {
 }
 ul.signout li {
   color: #fff;
+}
+
+.open1image {
+  background-image: url("/storage/open1/main.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 220px;
 }
 
 /*!
