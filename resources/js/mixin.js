@@ -5,7 +5,7 @@
  */
 
 export const Mixin =  {
-    created:function(){
+    created:function () {
     },
     data() {
 
@@ -15,14 +15,14 @@ export const Mixin =  {
         };
     },
     methods: {
-        menuclick: function() {
-           this.enhance = !this.enhance
+        menuclick: function () {
+            this.enhance = !this.enhance
         },
-        openModal: function() {
+        openModal: function () {
             this.showContent = !this.showContent
 
         },
-        closeModal: function() {
+        closeModal: function () {
             this.showContent = false
         }
     }

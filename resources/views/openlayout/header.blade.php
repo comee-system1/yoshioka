@@ -16,7 +16,7 @@
         <a class="blog-header-logo text-dark undecorate" href="#">学会サンプル</a>
       </div>
       <div class="col-3 d-flex justify-content-end align-items-center">
-        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{route('signin',['type'=>$type,'uniqcode'=>$uniqcode])}}">Sign up</a>
       </div>
     </div>
   </header>

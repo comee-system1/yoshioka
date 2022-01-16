@@ -17,6 +17,14 @@ composer require "laravelcollective/html"
 ### PHP_CodeSnifferを導入して、git commit時にチェックする
 - インストール
 composer require --dev squizlabs/php_codesniffer:3.*
+
+
+echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' >> .bash_profile
+
+● インストールの確認
+phpcs --version
+
+
 ```
 インストールできたら、vendor/binにphpcsとphpcbfという実行ファイルが存在するはずです
 ```
@@ -71,6 +79,11 @@ Code language: Bash (bash)
 $ ./vendor/bin/phpcbf  --standard=PSR12  foo.php
 
 ```
+
+- 以下のコマンドで自動補正
+   - `PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY`となっているもののみ対象
+`./vendor/bin/phpcbf --standard=phpcs.xml ./`
+
 
 
 ### warning: LF will be replaced by CRLF inが出たときの対処法
