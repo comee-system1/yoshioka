@@ -8,7 +8,6 @@
 @section('content')
 
 
-
     @if ($errors->any())
     <div class="login_error">
         <ul>

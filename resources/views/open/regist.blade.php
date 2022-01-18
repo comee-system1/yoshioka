@@ -4,30 +4,27 @@
 
 
 @include('openlayout.header',['title'=>'ログイン'])
+@include('layoutjoin.join')
 
 @section('content')
 
-    @if ($errors->any())
-    <div class="login_error">
-        <ul>
-    @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-    @endforeach
-        </ul>
-    </div>
-    @endif
-    <form method="POST" class="form-signin" action="{{route('signin.post', ['type'=>$type])}}">
-        @csrf
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <input type="text" name="email" class="form-control mt-3" placeholder="email" value="{{ old('email') }}" required autofocus>
-        <input type="password" name="password" class="form-control mt-3" placeholder="Password" required>
-        <input type="hidden" name="uniqcode" value="{{$uniqcode}}" />
-        <button type="submit" id="login-button" class="btn btn-primary mt-3 form-control" >Login</button>
-    </form>
-    <div class="text-center mt-4">
-        <a href="{{route('regist',['type'=>$type, 'uniqcode'=>$uniqcode])}}">参加登録はこちらから</a>
-    </div>
+<main role="main" class="container">
+    <div class="row">
+        @if ($errors->any())
+        <div class="alert alert-danger mt-3">
+        @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+        @endforeach
+        </div>
+        @endif
+        <form method="POST" class="mt-3" action="{{route('regist.post', ['type'=>$type, 'uniqcode'=>$uniqcode])}}">
+            @csrf
+            <h1 class="h3 mb-3 font-weight-normal">参加登録</h1>
+            @yield('join')
 
+        </form>
+    </div>
+</main>
 @endsection
 
 @include('openlayout.submenu')

@@ -17,6 +17,7 @@ Route::get('/open/{type}/{uniqcode}', [\App\Http\Controllers\OpenController::cla
 Route::get('/open/{type}/signin/{uniqcode}', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
 Route::post('/open/{type}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
 Route::get('/open/{type}/regist/{uniqcode}', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
+Route::post('/open/{type}/regist/{uniqcode}', [\App\Http\Controllers\RegistController::class, 'post'])->name('regist.post');
 
 
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');

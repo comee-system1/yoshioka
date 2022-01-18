@@ -7,9 +7,6 @@
 
 @section('content')
 
-
-    <h1>ログインAAAAAAA</h1>
-
     @if ($errors->any())
     <div class="login_error">
         <ul>
@@ -19,11 +16,12 @@
         </ul>
     </div>
     @endif
-    <form method="POST" class="form" action="{{ url()->current() }}">
+    <form method="POST" class="form-signin" action="{{ url()->current() }}">
         @csrf
-        <input type="text" name="email" placeholder="email" value="{{ old('email') }}" required autofocus>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit" id="login-button" class="btn btn-primary" >Login</button>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <input type="text" name="email"  class="form-control mt-3" placeholder="email" value="{{ old('email') }}" required autofocus>
+        <input type="password" name="password"  class="form-control mt-3" placeholder="Password" required>
+        <button type="submit" id="login-button" class="btn btn-primary mt-3" >Login</button>
     </form>
 
 

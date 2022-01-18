@@ -13,23 +13,37 @@ class SigninController extends Controller
     //
     public function index($type, $uniqcode, Request $request)
     {
-        $id = session('username');
-        var_dump($id);
+
         return view('open.login', [
             'type' => $type,
             'uniqcode' => $uniqcode
         ]);
     }
 
-    public function post(Request $request)
+    public function post($type, Request $request)
     {
-        var_dump($request->uniqcode);
+/*
+        $this->validate($request,[
+            'email' => 'email|required',
+            'password' => 'required|min:4'
+        ]);
+*/
+        var_dump(Auth::guard('accounts')->attempt( ['email'=>$request->email,
+            'password'=>$request->password] ) );
+exit();
+        /*
         session()->regenerate();
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             session(['username' => '名無し']);
             echo "success";
+          //  return redirect(route('top',['type'=>$type, 'uniqcode'=>$request->uniqcode]));
+        }else{
+            //失敗
+            echo "fail";
+            session()->flash('flash_error', 'メールアドレスかパスワードに誤りがあります。');
+          //  return redirect(route('signin',['type'=>$type, 'uniqcode'=>$request->uniqcode]));
         }
-        return redirect(url('/open1/signin/ssss'));
+        */
     }
 }
