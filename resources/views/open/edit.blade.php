@@ -17,9 +17,9 @@
         @endforeach
         </div>
         @endif
-        <form method="POST" class="mt-3" action="{{route('regist.post', ['type'=>$type, 'uniqcode'=>$uniqcode])}}">
+        <form method="POST" class="mt-3" action="{{route('account.post', ['type'=>$type, 'uniqcode'=>$uniqcode])}}">
             @csrf
-            <h1 class="h3 mb-3 font-weight-normal">参加登録</h1>
+            <h1 class="h3 mb-3 font-weight-normal">参加情報更新</h1>
             @yield('join')
 
         </form>

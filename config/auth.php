@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'accounts' => [
+        'account' => [
             'driver' => 'session',
-            'provider' => 'accounts',
+            'provider' => 'account',
         ],
     ],
 
@@ -68,7 +68,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'accounts' => [
+        'account' => [
             'driver' => 'eloquent',
             'model' => App\Models\Account::class,
         ],
@@ -99,6 +99,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'account' => [
+            'provider' => 'account',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

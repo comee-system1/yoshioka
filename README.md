@@ -1,3 +1,20 @@
+### サクラサーバーにcomposerのインストール
+curl -sS https://getcomposer.org/installer | php
+- 確認
+php composer.phar
+php composer.phar install
+
+- migrate
+php artisan migrate
+
+- キーの作成
+php artisan key:generate
+
+### laravel-dompdfパッケージ
+composer require barryvdh/laravel-dompdf
+
+
+
 ### 画像表示の為にシンポリックをはる
 
 PS C:\xampp3\htdocs\yoshioka\yoshioka> php artisan storage:link

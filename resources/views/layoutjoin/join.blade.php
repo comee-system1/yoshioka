@@ -1,5 +1,4 @@
 @section('join')
-
 <div class="row mt-2">
     <div class="col-md-3 d-flex align-items-center">参加者区分</div>
     <div class="col-md-6">
@@ -83,7 +82,7 @@
 </div>
 <div class="row mt-5">
     <div class="col-md-12 text-center">
-        {{Form::submit('登録', ['class'=>'btn btn-primary w-25', 'id'=>'registbutton'])}}
+        {{Form::submit($button, ['class'=>'btn btn-primary w-25', 'id'=>'registbutton'])}}
     </div>
 </div>
 @endsection

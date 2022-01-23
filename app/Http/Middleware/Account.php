@@ -17,14 +17,13 @@ class Account
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if(Auth::guard('account')->check())
-        {
+        if (Auth::guard('account')->check()) {
             return $next($request);
         }
         ##ここは任意のものに変更しましょう。
-        return redirect()->route('signin')->with('error', '権限がありません');
-
-        //return $next($request);
+        #return redirect()->route('signin')->with('error', '権限がありません');
+        echo "error";
+        exit();
+        # return $next($request);
     }
 }

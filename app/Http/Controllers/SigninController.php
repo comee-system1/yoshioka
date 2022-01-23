@@ -22,28 +22,16 @@ class SigninController extends Controller
 
     public function post($type, Request $request)
     {
-/*
-        $this->validate($request,[
-            'email' => 'email|required',
-            'password' => 'required|min:4'
-        ]);
-*/
-        var_dump(Auth::guard('accounts')->attempt( ['email'=>$request->email,
-            'password'=>$request->password] ) );
-exit();
-        /*
-        session()->regenerate();
-
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-            session(['username' => '名無し']);
-            echo "success";
-          //  return redirect(route('top',['type'=>$type, 'uniqcode'=>$request->uniqcode]));
-        }else{
-            //失敗
-            echo "fail";
+        if (Auth::guard('account')->attempt(['email'=> $request->email, 'password'=> $request->password], true)) {
+            return redirect(route('account', ['type'=> $type, 'uniqcode'=> $request->uniqcode]));
+        } else {
             session()->flash('flash_error', 'メールアドレスかパスワードに誤りがあります。');
-          //  return redirect(route('signin',['type'=>$type, 'uniqcode'=>$request->uniqcode]));
+            return redirect(route('signin', ['type'=> $type, 'uniqcode'=> $request->uniqcode]));
         }
-        */
+    }
+    public function signout($type, $uniqcode)
+    {
+        Auth::guard('account')->logout();
+        return redirect(route('signin', [ 'type'=> $type, 'uniqcode'=> $uniqcode ]));
     }
 }

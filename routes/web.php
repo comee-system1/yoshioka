@@ -19,6 +19,15 @@ Route::post('/open/{type}/signin/', [\App\Http\Controllers\SigninController::cla
 Route::get('/open/{type}/regist/{uniqcode}', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
 Route::post('/open/{type}/regist/{uniqcode}', [\App\Http\Controllers\RegistController::class, 'post'])->name('regist.post');
 
+Route::group(['middleware' => ['account']], function () {
+    Route::get('/open/{type}/signout/{uniqcode}', [\App\Http\Controllers\SigninController::class, 'signout'])->name('signout');
+    Route::get('/open/{type}/account/{uniqcode}', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
+    Route::get('/open/{type}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'edit'])->name('account.edit');
+    Route::post('/open/{type}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'post'])->name('account.post');
+    Route::get('/open/{type}/endai/{uniqcode}/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
+    Route::get('/open/{type}/endai/{uniqcode}/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
+    Route::get('/open/{type}/recipe/{uniqcode}', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
+});
 
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
 Route::group(['prefix' => 'admin'], function () {

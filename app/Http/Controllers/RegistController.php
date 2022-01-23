@@ -25,4 +25,13 @@ class RegistController extends Controller
         session()->flash('flash_msg', '会員登録を行いました。');
         return redirect(route('signin', ['type' => $type, 'uniqcode' => $uniqcode]));
     }
+
+    public function edit($type, $uniqcode)
+    {
+
+        return view('open.edit', [
+            'type' => $type,
+            'uniqcode' => $uniqcode
+        ]);
+    }
 }

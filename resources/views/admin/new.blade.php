@@ -5,7 +5,7 @@
 
 @include('layout.header',['title'=>'高分子学会'])
 @include('layout.nav')
-@include('layoutjoin.join')
+@include('layoutjoin.join', ['button' => '登録'])
 @section('content')
 
 <div id="home">
