@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <p>新しいセミナーを作成</p>
+        <h3 class="mt-3">新しいセミナーを作成</h3>
         <div class="row">
             <div class="col-md-4">
                 <div class="card-deck mb-3 text-center m-2 w-100 p-3">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <p>最近登録したセミナー</p>
+        <h3 class="mt-3">最近登録したセミナー</h3>
         <div class="row">
             <div class="col-md-4">
                 <div class="card-deck mb-3 text-center m-2 w-100 p-3">
@@ -67,7 +67,12 @@
         <transition>
             <div id="overlay" v-show="showContent" >
                 <div class="row modalbox">
-
+                    <div class="row">
+                        <label for="main_image">メイン画像</label>
+                        <div class="col-12">
+                            <input type="file"  />
+                        </div>
+                    </div>
                     <div class="row">
                         <label for="name">セミナー名</label>
                         <div class="col-12">

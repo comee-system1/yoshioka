@@ -27,8 +27,10 @@ Route::group(['middleware' => ['account']], function () {
     Route::get('/open/{type}/endai/{uniqcode}/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
     Route::get('/open/{type}/endai/{uniqcode}/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
     Route::get('/open/{type}/recipe/{uniqcode}', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
+    Route::get('/open/{type}/program/{uniqcode}', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
 });
 
+//配列
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ

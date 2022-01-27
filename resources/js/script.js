@@ -12,6 +12,7 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('open-component', require('./components/OpenComponent.vue').default);
+Vue.component('program-component', require('./components/ProgramComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

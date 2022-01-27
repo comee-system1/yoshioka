@@ -7,13 +7,22 @@ php composer.phar install
 - migrate
 php artisan migrate
 
+
+- 初期状態に戻す seedファイルも同時に実行
+php artisan migrate:fresh --seed
+
+
 - キーの作成
 php artisan key:generate
 
 ### laravel-dompdfパッケージ
 composer require barryvdh/laravel-dompdf
 
-
+- 日本語化
+インストールディレクトリにあるstorageディレクトリの下にfontsディレクトリを作成します。
+日本語フォントのIPAフォントのダウンロードを行います。URLは、https://moji.or.jp/ipafont/ipa00303/です。
+IPAフォントダウンロード
+zipファイルとしてダウンロードされるので、解凍後、その中にあるファイルを先ほど作成したstorage/fonts/ディレクトリの下にコピーしてください
 
 ### 画像表示の為にシンポリックをはる
 

@@ -42,7 +42,7 @@
                 <div class="col-md-3"><a href="{{route('account.edit',['type'=>$type, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit') active @endif ">参加情報更新</a></div>
                 <div class="col-md-3"><a href="{{route('account.endai.list',['type'=>$type, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit.list' || Route::currentRouteName() == 'account.endai.new') active @endif">演題情報一覧</a></div>
                 <div class="col-md-3"><a href="{{route('account.recipe',['type'=>$type, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100">領収書</a></div>
-                <div class="col-md-3"><a href="#" class="btn btn-outline-primary w-100">プログラム</a></div>
+                <div class="col-md-3"><a href="{{route('account.program',['type'=>$type, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">プログラム</a></div>
                 </div>
             </div>
         @endif
