@@ -11,12 +11,13 @@ export const Mixin =  {
 
         return {
             showContent: false,
-            enhance:false
+            loginType:0,
         };
     },
     methods: {
-        menuclick: function () {
-            this.enhance = !this.enhance
+        menuclick: function (key) {
+            this.loginType = key;
+            //this.enhance = !this.enhance
         },
         openModal: function () {
             this.showContent = !this.showContent

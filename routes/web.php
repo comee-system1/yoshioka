@@ -38,6 +38,8 @@ Route::group(['prefix' => 'admin'], function () {
         //Route::match(['get', 'post'],'/',function(){ return view('home')->name('home'); });
         Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
         Route::post('/saveData', [\App\Http\Controllers\Admin\HomeController::class, 'saveData'])->name('saveData');
+        Route::post('/editData', [\App\Http\Controllers\Admin\HomeController::class, 'editData'])->name('editData');
+        Route::get('/getDataLists', [\App\Http\Controllers\Admin\HomeController::class, 'getDataLists'])->name('getDataLists');
         Route::get('/join', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
         Route::get('/join/new', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
         Route::get('/endai', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');

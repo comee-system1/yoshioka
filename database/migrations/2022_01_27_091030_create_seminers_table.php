@@ -23,6 +23,8 @@ class CreateSeminersTable extends Migration
             $table->dateTime('end_date')->nullable();
             $table->string('main_image')->nullable();
             $table->string('open_key');
+            $table->integer('display_status')->default(1);
+            $table->integer('delete_status')->default(0);
             $table->timestamps();
         });
     }

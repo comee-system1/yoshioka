@@ -12,8 +12,7 @@ class RecipeController extends Controller
     {
 
         $pdf = \PDF::loadView('open.recipe_pdf');
-        $filename = date("YmdHis")."_recipe";
-        return $pdf->download($filename.'.pdf');
-
+        $filename = date("YmdHis") . "_recipe";
+        return $pdf->download($filename . '.pdf');
     }
 }

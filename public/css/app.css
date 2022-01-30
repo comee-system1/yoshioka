@@ -11296,6 +11296,10 @@ body {
   margin-bottom: 60px;
 }
 
+.zindex-100 {
+  z-index: 100;
+}
+
 .w100 {
   width: 100px;
 }
@@ -11390,11 +11394,10 @@ body {
   align-items: center;
   justify-content: center;
   background: #555;
-  -webkit-animation: fade-out 0.5s linear 0s;
-          animation: fade-out 0.5s linear 0s;
+  -webkit-animation: fade-in 0.5s linear 0s;
+          animation: fade-in 0.5s linear 0s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  display: none;
 }
 .menu a {
   color: #fff;
@@ -11496,6 +11499,10 @@ ul.signout li {
   padding: 15px;
   margin: auto;
   margin-top: 10%;
+}
+
+#preview-main img {
+  width: 100%;
 }
 
 /*!
