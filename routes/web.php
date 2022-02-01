@@ -38,10 +38,12 @@ Route::group(['prefix' => 'admin'], function () {
         //Route::match(['get', 'post'],'/',function(){ return view('home')->name('home'); });
         Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
         Route::post('/saveData', [\App\Http\Controllers\Admin\HomeController::class, 'saveData'])->name('saveData');
-        Route::post('/editData', [\App\Http\Controllers\Admin\HomeController::class, 'editData'])->name('editData');
+        Route::any('/getEditData/{id}', [\App\Http\Controllers\Admin\HomeController::class, 'getEditData'])->name('getEditData');
+        Route::post('/deleteData', [\App\Http\Controllers\Admin\HomeController::class, 'deleteData'])->name('deleteData');
+        Route::post('/editStatusData', [\App\Http\Controllers\Admin\HomeController::class, 'editStatusData'])->name('editStatusData');
         Route::get('/getDataLists', [\App\Http\Controllers\Admin\HomeController::class, 'getDataLists'])->name('getDataLists');
-        Route::get('/join', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
-        Route::get('/join/new', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
+        Route::get('/join/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
+        Route::get('/join/new/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
         Route::get('/endai', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
         Route::get('/endai/new', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
         Route::get('/time', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
@@ -51,6 +53,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/invoice', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
         Route::get('/sponser', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
         Route::get('/sponser/new', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');
+        Route::get('/master', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });

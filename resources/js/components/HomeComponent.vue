@@ -17,7 +17,7 @@
                                 <li class="text-start pr-2">領収書</li>
                                 <li class="text-start pr-2">協賛管理</li>
                             </ul>
-                            <button class="btn btn-primary" v-on:click="openModal">登録</button>
+                            <button class="btn btn-primary" v-on:click="openModal(0)">登録</button>
                         </div>
                     </div>
                 </div>
@@ -28,16 +28,15 @@
             <div class="col-md-4" v-for="seminer in seminers" v-bind:key="seminer.id" >
                 <div class="card-deck mb-3 text-center m-2 w-100 p-3">
                     <div class="card mb-4 shadow-sm">
-                        <div class="card-body position-relative open1image">
-
+                        <div class="card-body position-relative open1image" :style="{ 'background-image': 'url(/storage/open/' + seminer.image + ')' }">
                             <div class="position-relative">
                                 <button type="button" class="menu-btn" @click="menuclick(seminer.id)">
                                     menu
                                 </button>
                                 <div v-if="loginType === seminer.id" class="menu">
-                                    <div class="menu__item"><a href='/admin/join'>管理画面</a></div>
-                                    <div class="menu__item"><a href=''>編集</a></div>
-                                    <div class="menu__item"><a href=''>削除</a></div>
+                                    <div class="menu__item"><a v-bind:href="'/admin/join/'+seminer.id">管理画面</a></div>
+                                    <div class="menu__item"><a href='javascript:void(0);' v-on:click="openModal(seminer.id)">編集</a></div>
+                                    <div class="menu__item"><a href='javascript:void(0);' v-on:click="deleteSeminer(seminer.id)">削除</a></div>
                                 </div>
                             </div>
                         </div>
@@ -54,10 +53,10 @@
                                         <input class="form-check-input" :value="seminer.id" type="checkbox" @click="onDisplayChange" :checked="seminer.display_status" >
                                     </div>
                                 </div>
-                                <p class="text-end">登録日: 2021/01/01 </p>
+                                <p class="text-end">登録日: {{seminer.date}} </p>
                             </div>
-                            <div class="row">
-                                <p>http://www.aaaa.co.jp/open/AessE1</p>
+                            <div class="row text-start">
+                                <small>{{domain}}/open/1/{{seminer.open_key}}</small>
                             </div>
                         </div>
                     </div>
@@ -93,19 +92,19 @@
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <label for="explain">説明文</label>
+                        <label for="note">説明文</label>
                         <div class="col-12">
-                            <textarea v-model="explain" name="explain" id="explain" class="form-control"></textarea>
+                            <textarea v-model="note" name="note" id="note" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <label for="explain">住所</label>
+                        <label for="address">住所</label>
                         <div class="col-12 ">
                             <textarea name="address" v-model="address" id="address" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <label for="explain">地図表示</label>
+                        <label for="map">地図表示</label>
                         <div class="col-3">
                             <input type="radio" v-model="map_status" name="map_status" id="map-1" value="1" />
                             <label for="map-1">有効</label>
@@ -128,7 +127,10 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-2"><button v-on:click="closeModal" class="btn btn-danger">閉じる</button></div>
-                        <div class="col-md-2"><button v-on:click="post" class="btn btn-primary">登録</button></div>
+
+
+                        <div class="col-md-2" v-if="seminer_id > 0" ><button v-on:click="post" class="btn btn-primary">更新</button></div>
+                        <div class="col-md-2" v-else><button v-on:click="post" class="btn btn-primary">登録</button></div>
                     </div>
                 </div>
             </div>
@@ -147,7 +149,7 @@ export default {
             url:"",
             fileInfo:"",
             return:"",
-            explain:"",
+            note:"",
             map_status:0,
             start_date:"",
             end_date:"",
@@ -157,14 +159,34 @@ export default {
                 over: false,
             },
             showLoading:false,
+            seminer_id:0,
             seminers: [],
+            domain:""
         };
     },
     mounted(){
 
         this.setLists();
+        this.domain = window.location.protocol + '//' + window.location.host;
     },
     methods: {
+        deleteSeminer(key){
+            if(confirm("データの削除を行います。よろしいですか？")){
+                this.showLoading = true;
+                 let postData = {
+                    'id': key,
+                };
+                axios.post("/admin/deleteData", postData).then(response => {
+                    // 成功
+                    this.showLoading = false;
+                    alert("データ削除しました。");
+                    this.setLists();
+                }).catch(error => {
+                    // 失敗
+                    alert("error");
+                });
+            }
+        },
         setLists(){
             var url = '/admin/getDataLists';
             axios.get(url).then(response =>
@@ -173,16 +195,14 @@ export default {
         },
         onDisplayChange(e){
             this.showLoading = true;
-            alert(e.target.value);
-
             let postData = {
                 'id': e.target.value,
                 'display_status': e.target.checked,
             };
-            axios.post("/admin/editData", postData).then(response => {
+            axios.post("/admin/editStatusData", postData).then(response => {
                 // 成功
                 this.showLoading = false;
-                alert("データ更新成功しました。");
+                alert("データ更新しました。");
             }).catch(error => {
                 // 失敗
                 alert("error");
@@ -209,11 +229,12 @@ export default {
             const formData = new FormData();
             formData.append('file',this.fileInfo);
             formData.append('name',this.name);
-            formData.append('explain',this.explain);
+            formData.append('note',this.note);
             formData.append('map_status',this.map_status);
             formData.append('start_date',this.start_date);
             formData.append('end_date',this.end_date);
             formData.append('address',this.address);
+            formData.append('seminer_id',this.seminer_id);
             let config = {
                 headers: {
                     'content-type': 'multipart/form-data'
@@ -223,8 +244,11 @@ export default {
                 // 成功
                 this.showLoading = false;
                 this.showContent = false;
-                console.log(response)
-                alert("セミナーの追加をおこないました。");
+                if(this.seminer_id > 0){
+                    alert("セミナー情報の更新をおこないました。");
+                }else{
+                    alert("セミナーの追加をおこないました。");
+                }
                 this.setLists();
             }).catch(error => {
                 // 失敗

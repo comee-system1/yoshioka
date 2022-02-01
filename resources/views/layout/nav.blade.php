@@ -3,7 +3,7 @@
     <div class="sidebar-sticky">
         <ul class="nav nav-pills nav-stacked mt-1">
             <li>
-                <a @if(Request::is('admin/join') || Request::is('admin/jojin/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('join')}}">
+                <a @if(Request::is('admin/join/'.$id) || Request::is('admin/join/new/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('join',['id'=>$id])}}">
                 <i class="fas fa-address-card"></i>
                 参加者一覧
                 </a>
@@ -42,6 +42,12 @@
                 <a @if( Request::is('admin/sponser') || Request::is('admin/sponser/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('sponser')}}">
                 <i class="fas fa-globe-asia"></i>
                 協賛管理
+                </a>
+            </li>
+            <li>
+                <a @if( Request::is('admin/master')) class="nav-link active" @else class="nav-link" @endif href="{{route('master')}}">
+                <i class="fas fa-users-cog"></i>
+                マスター管理
                 </a>
             </li>
             <li>

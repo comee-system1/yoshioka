@@ -18,19 +18,32 @@ class HomeController extends Controller
     }
     public function getDataLists()
     {
-        return Seminer::all();
+        return Seminer::getData();
     }
 
-    public function editData(Request $request)
+    public function getEditData($id)
+    {
+        return Seminer::getData($id);
+    }
+
+    public function editStatusData(Request $request)
     {
         try {
-            Seminer::editData($request);
+            Seminer::editStatusData($request);
             return true;
         } catch (Exception $e) {
         }
         return false;
     }
-
+    public function deleteData(Request $request)
+    {
+        try {
+            Seminer::deleteData($request);
+            return true;
+        } catch (Exception $e) {
+        }
+        return false;
+    }
     public function saveData(Request $request)
     {
         try {

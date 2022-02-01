@@ -171,11 +171,12 @@ ul.signout{
 }
 
 .open1image{
-    background-image: url("/storage/open1/main.jpg");
+    // background-image: url("/storage/open1/main.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height:220px;
+    background-color:#ccc;
 }
 
 .form-signin {

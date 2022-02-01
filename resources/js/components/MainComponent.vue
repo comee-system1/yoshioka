@@ -1,10 +1,8 @@
 <template>
     <div class="container p-3">
         <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">{{name}}</nav>
-
         <div class="text-end">
-
-            <a href="./join/new" class="btn btn-primary">新規登録</a>
+            <a  v-bind:href="'/admin/join/new/'+id" class="btn btn-primary">新規登録</a>
         </div>
         <form @submit.prevent="onSubmit1">
             <div class="row">
@@ -81,6 +79,7 @@
 </template>
 <script>
 export default {
+    props:['id'],
     data(){
         return {
             name:"参加者一覧",

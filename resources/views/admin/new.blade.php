@@ -16,7 +16,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="container p-3">
                     <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">参加者登録</nav>
-                    {{ Form::open(['route' => ['joinnew']]) }}
+                    {{ Form::open(['route' => ['joinnew',$id]]) }}
                         @yield('join')
                     {{ Form::close() }}
 

@@ -8,17 +8,15 @@ use Illuminate\Http\Request;
 class JoinController extends Controller
 {
     //
-    public function index()
+    public function index($id)
     {
-        $hello = 'Hello World3';
 
-        return view('admin.main', ['hello' => $hello]);
+        return view('admin.main', ['id' => $id]);
     }
 
-    public function new()
+    public function new($id)
     {
-        $hello = 'Hello World4';
 
-        return view('admin.new', ['hello' => $hello]);
+        return view('admin.new', ['id' => $id]);
     }
 }

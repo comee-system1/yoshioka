@@ -16,12 +16,37 @@ export const Mixin =  {
     },
     methods: {
         menuclick: function (key) {
-            this.loginType = key;
-            //this.enhance = !this.enhance
+            if(this.loginType == key){
+                this.loginType = 0;
+            } else {
+                this.loginType = key;
+            }
         },
-        openModal: function () {
-            this.showContent = !this.showContent
-
+        openModal: function (key = 0) {
+            this.url = "";
+            this.name = "";
+            this.note = "";
+            this.address = "";
+            this.map_status = 0;
+            this.start_date = "";
+            this.end_date = "";
+            this.seminer_id = 0
+            if(key > 0 ){
+                this.showLoading = true;
+                var url = '/admin/getEditData/'+key;
+                axios.get(url).then(response =>{
+                    this.url = "/storage/open/"+response.data[0].image
+                    this.name = response.data[0].name
+                    this.note = response.data[0].note
+                    this.address = response.data[0].address
+                    this.map_status = response.data[0].map_status
+                    this.start_date = response.data[0].st_date_format
+                    this.end_date = response.data[0].ed_date_format
+                    this.showLoading = false
+                    this.seminer_id = key
+                })
+            }
+            this.showContent = !this.showContent;
         },
         closeModal: function () {
             this.showContent = false
