@@ -17,7 +17,7 @@
                                 <li class="text-start pr-2">領収書</li>
                                 <li class="text-start pr-2">協賛管理</li>
                             </ul>
-                            <button class="btn btn-primary" v-on:click="openModal(0)">登録</button>
+                            <button class="btn btn-primary" v-on:click="openModal(0,1)">登録</button>
                         </div>
                     </div>
                 </div>
@@ -235,6 +235,7 @@ export default {
             formData.append('end_date',this.end_date);
             formData.append('address',this.address);
             formData.append('seminer_id',this.seminer_id);
+            formData.append('template',this.template);
             let config = {
                 headers: {
                     'content-type': 'multipart/form-data'

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DefineJoinTitle;
+use App\Models\DefineSpaceList;
 use Illuminate\Http\Request;
 use App\Models\Seminer;
+use App\Models\TemplateJoinTitle;
+use App\Models\TemplateMasterSpace;
 use Exception;
 
 class HomeController extends Controller
@@ -12,7 +16,6 @@ class HomeController extends Controller
     //
     public function index()
     {
-
         $hello = 'Hello World';
         return view('admin.index', ['hello' => $hello]);
     }
@@ -52,9 +55,13 @@ class HomeController extends Controller
                 $file_name = Seminer::getMainFileName(request()->file->getClientOriginalName());
                 request()->file->storeAs('public/open/', $file_name);
             }
-            Seminer::registData($request, $file_name);
+            $seminer_id = Seminer::registData($request, $file_name);
+            DefineSpaceList::insert(TemplateMasterSpace::getData($request->template, $seminer_id));
+            DefineJoinTitle::insert(TemplateJoinTitle::getData($request->template, $seminer_id));
+
             return true;
         } catch (Exception $e) {
+            var_dump($e);
         }
         return false;
     }

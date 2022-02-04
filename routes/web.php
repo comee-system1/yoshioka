@@ -32,6 +32,8 @@ Route::group(['middleware' => ['account']], function () {
 
 //配列
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
+Route::any('/getSpaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getSpaceLists'])->name('Array.spaces');
+
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
     Route::group(['middleware' => ['auth']], function () {
@@ -53,7 +55,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/invoice', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
         Route::get('/sponser', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
         Route::get('/sponser/new', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');
-        Route::get('/master', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
+        Route::get('/master/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
+        Route::get('/master/define/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'define'])->name('master.define');
+        Route::post('/master/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'edit'])->name('master.edit');
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });

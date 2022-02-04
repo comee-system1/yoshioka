@@ -17,6 +17,7 @@ Vue.component('endai-component', require('./components/EndaiComponent.vue').defa
 Vue.component('time-component', require('./components/TimeComponent.vue').default);
 Vue.component('info-component', require('./components/InfoComponent.vue').default);
 Vue.component('sponser-component', require('./components/SponserComponent.vue').default);
+Vue.component('master-component', require('./components/MasterComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

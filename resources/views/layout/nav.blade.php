@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li>
-                <a @if( Request::is('admin/master')) class="nav-link active" @else class="nav-link" @endif href="{{route('master')}}">
+                <a @if( Request::is('admin/master/'.$id)) class="nav-link active" @else class="nav-link" @endif href="{{route('master',['id'=>$id])}}">
                 <i class="fas fa-users-cog"></i>
                 マスター管理
                 </a>

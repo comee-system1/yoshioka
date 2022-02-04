@@ -18,6 +18,7 @@ class CreateDefineSpaceListsTable extends Migration
             $table->integer('seminer_id')->default(0);
             $table->integer('master_id')->default(0);
             $table->string('text');
+            $table->integer('display_status')->default(1);
             $table->timestamps();
         });
     }

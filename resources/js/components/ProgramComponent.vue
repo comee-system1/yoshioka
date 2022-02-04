@@ -66,7 +66,6 @@ export default {
                 // 失敗
                 alert("error");
             });
-
         },
     }
 }

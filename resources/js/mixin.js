@@ -11,6 +11,7 @@ export const Mixin =  {
 
         return {
             showContent: false,
+            template:0,
             loginType:0,
         };
     },
@@ -22,7 +23,8 @@ export const Mixin =  {
                 this.loginType = key;
             }
         },
-        openModal: function (key = 0) {
+        openModal: function (key = 0,template = 0 ) {
+            this.template = template;
             this.url = "";
             this.name = "";
             this.note = "";

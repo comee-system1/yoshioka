@@ -103,6 +103,8 @@ class Seminer extends Model
         }
 
         $seminer->save();
+        $last_insert_id = $seminer->id;
+        return $last_insert_id;
     }
     public static function editStatusData($request)
     {

@@ -40,7 +40,7 @@ class Template_join_titlesTableSeeder extends Seeder
             ],
             [
             'title' => '参加者名',
-            'text' => '姓を入力,名を入力',
+            'text' => '名前を入力',
             'template_code' => '1',
             'required' => '1',
             'required_text' => '必須',
@@ -51,7 +51,7 @@ class Template_join_titlesTableSeeder extends Seeder
             ],
             [
             'title' => '参加者名(かな)',
-            'text' => '姓(かな)を入力,名(かな)を入力',
+            'text' => '名前(かな)を入力',
             'template_code' => '1',
             'required' => '1',
             'required_text' => '必須',

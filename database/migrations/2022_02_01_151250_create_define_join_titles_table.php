@@ -17,7 +17,10 @@ class CreateDefineJoinTitlesTable extends Migration
             $table->id();
             $table->integer('seminer_id')->default(0);
             $table->string('title');
-            $table->string('note')->nullable();
+            $table->string('text')->nullable();
+            $table->integer('required')->default(0);
+            $table->string('required_text')->nullable();
+            $table->integer('display_status')->default(1);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->timestamps();
         });
