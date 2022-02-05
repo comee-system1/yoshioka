@@ -35,6 +35,15 @@ class ClassConsts
         'I' => "I会場",
         'P' => "ポスター会場",
     ];
+    public const TYPE_LIST = [
+        'title'  => "タイトル",
+        'button' => "ボタン",
+        'radio'  => "一択選択",
+        'check'  => "複数選択",
+        'select' => "一覧選択",
+        'input'  => "入力",
+        'file'   => "登録資料",
+    ];
 
     public const INFO_TYPE = [
         1 => "Web掲載(Webページへの掲載)",

@@ -9,43 +9,53 @@
                 </a>
             </li>
             <li >
-                <a @if(Request::is('admin/endai') || Request::is('admin/endai/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('endai')}}">
+                <a @if(Request::is('admin/endai/'.$id) || Request::is('admin/endai/new/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('endai',['id'=>$id])}}">
                 <i class="fas fa-microphone-alt"></i>
                 演題一覧
                 </a>
             </li>
             <li>
-                <a @if(Request::is('admin/time') ) class="nav-link active" @else class="nav-link" @endif href="{{route('time')}}">
+                <a @if(Request::is('admin/time/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('time',['id'=>$id])}}">
                 <i class="far fa-clock"></i>
                 タイムテーブル
                 </a>
             </li>
             <li>
-                <a @if(Request::is('admin/pay') ) class="nav-link active" @else class="nav-link" @endif href="{{route('pay')}}">
+                <a @if(Request::is('admin/book/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('book',['id'=>$id])}}">
+                <i class="fas fa-lock"></i>
+                予稿原稿アップロード
+                </a>
+            </li>
+            <li>
+                <a @if(Request::is('admin/pay/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('pay',['id'=>$id])}}">
                 <i class="fas fa-credit-card"></i>
                 決済ページ
                 </a>
             </li>
             <li>
-                <a @if(Request::is('admin/info') ) class="nav-link active" @else class="nav-link" @endif href="{{route('info')}}">
+                <a @if(Request::is('admin/info/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('info',['id'=>$id])}}">
                 <i class="fas fa-info-circle"></i>
                 お知らせ管理
                 </a>
             </li>
             <li>
-                <a @if(Request::is('admin/invoice') ) class="nav-link active" @else class="nav-link" @endif href="{{route('invoice')}}">
+                <a @if(Request::is('admin/invoice/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('invoice',['id'=>$id])}}">
                 <i class="fas fa-scroll"></i>
                 領収書管理
                 </a>
             </li>
             <li>
-                <a @if( Request::is('admin/sponser') || Request::is('admin/sponser/new') ) class="nav-link active" @else class="nav-link" @endif href="{{route('sponser')}}">
+                <a @if( Request::is('admin/sponser/'.$id) ||
+                Request::is('admin/sponser/new/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('sponser',['id'=>$id])}}">
                 <i class="fas fa-globe-asia"></i>
                 協賛管理
                 </a>
             </li>
             <li>
-                <a @if( Request::is('admin/master/'.$id)) class="nav-link active" @else class="nav-link" @endif href="{{route('master',['id'=>$id])}}">
+                <a @if(
+                    Request::is('admin/master/'.$id) ||
+                    Request::is('admin/master/endai/'.$id) )
+                class="nav-link active" @else class="nav-link" @endif href="{{route('master',['id'=>$id])}}">
                 <i class="fas fa-users-cog"></i>
                 マスター管理
                 </a>

@@ -9,7 +9,7 @@ class DefineJoinTitle extends Model
 {
     use HasFactory;
 
-    protected $table = "define_Join_titles";
+    protected $table = "define_join_titles";
 
     protected $fillable = [
         'seminer_id',
@@ -32,8 +32,7 @@ class DefineJoinTitle extends Model
         $define = $request->$type;
         foreach ($define as $key => $value) {
             //var_dump($value);
-            $data = DefineJoinTitle::where('type', $type)
-            ->where('id', $value['id'])
+            $data = DefineJoinTitle::where('id', $value['id'])
             ->where('seminer_id', $id)
             ->first();
             $data->title = $value[ 'title' ];

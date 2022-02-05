@@ -16,7 +16,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="container p-3">
                     <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">演題登録</nav>
-                    {{ Form::open(['route' => ['endainew'] , "method" => "POST", "enctype" => "multipart/form-data" ]) }}
+                    {{ Form::open(['route' => ['endainew',$id] , "method" => "POST", "enctype" => "multipart/form-data" ]) }}
                         {{ csrf_field() }}
                         @yield('endai')
                     {{ Form::close() }}

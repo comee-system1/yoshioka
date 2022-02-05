@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DefineEndaiTitle;
 use App\Models\DefineJoinTitle;
+use App\Models\DefinePlaceList;
+use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
+use App\Models\DefineTimeTitle;
+use App\Models\TemplateMasterPresentation;
 use Illuminate\Http\Request;
 use App\Models\Seminer;
+use App\Models\TemplateEndaiTitle;
 use App\Models\TemplateJoinTitle;
+use App\Models\TemplateMasterPlace;
 use App\Models\TemplateMasterSpace;
+use App\Models\TemplateTimeTitle;
 use Exception;
 
 class HomeController extends Controller
@@ -16,6 +24,7 @@ class HomeController extends Controller
     //
     public function index()
     {
+
         $hello = 'Hello World';
         return view('admin.index', ['hello' => $hello]);
     }
@@ -58,6 +67,10 @@ class HomeController extends Controller
             $seminer_id = Seminer::registData($request, $file_name);
             DefineSpaceList::insert(TemplateMasterSpace::getData($request->template, $seminer_id));
             DefineJoinTitle::insert(TemplateJoinTitle::getData($request->template, $seminer_id));
+            DefinePresentationList::insert(TemplateMasterPresentation::getData($request->template, $seminer_id));
+            DefineEndaiTitle::insert(TemplateEndaiTitle::getData($request->template, $seminer_id));
+            DefinePlaceList::insert(TemplateMasterPlace::getData($request->template, $seminer_id));
+            DefineTimeTitle::insert(TemplateTimeTitle::getData($request->template, $seminer_id));
 
             return true;
         } catch (Exception $e) {

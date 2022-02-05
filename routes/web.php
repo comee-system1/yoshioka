@@ -32,7 +32,10 @@ Route::group(['middleware' => ['account']], function () {
 
 //配列
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
+Route::any('/getType', [\App\Http\Controllers\ArrayController::class, 'getType'])->name('Array.getType');
 Route::any('/getSpaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getSpaceLists'])->name('Array.spaces');
+Route::any('/getPlaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPlaceLists'])->name('Array.places');
+Route::any('/getPresentationLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPresentationLists'])->name('Array.presentaions');
 
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
@@ -46,18 +49,31 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/getDataLists', [\App\Http\Controllers\Admin\HomeController::class, 'getDataLists'])->name('getDataLists');
         Route::get('/join/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
         Route::get('/join/new/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
-        Route::get('/endai', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
-        Route::get('/endai/new', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
-        Route::get('/time', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
-        Route::get('/pay', [\App\Http\Controllers\Admin\PayController::class, 'index'])->name('pay');
-        Route::get('/info', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('info');
-        Route::get('/info/new', [\App\Http\Controllers\Admin\InfoController::class, 'new'])->name('infonew');
-        Route::get('/invoice', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
-        Route::get('/sponser', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
-        Route::get('/sponser/new', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');
+        Route::get('/endai/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
+        Route::get('/endai/new/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
+        Route::get('/time/{id}', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
+        Route::get('/book/{id}', [\App\Http\Controllers\Admin\BookController::class, 'index'])->name('book');
+        Route::get('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'index'])->name('pay');
+        Route::get('/info/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('info');
+        Route::get('/info/new/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'new'])->name('infonew');
+        Route::get('/invoice/{id}', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
+        Route::get('/sponser/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
+        Route::get('/sponser/new/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');
         Route::get('/master/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
+        Route::get('/master/endai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'endai'])->name('master.endai');
+        Route::get('/master/time/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time');
+
+
         Route::get('/master/define/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'define'])->name('master.define');
         Route::post('/master/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'edit'])->name('master.edit');
+
+        Route::get('/master/defineEndai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineEndai'])->name('master.define.endai');
+        Route::post('/master/editEndai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'editEndai'])->name('master.edit.endai');
+
+        Route::get('/master/defineTime/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineTime'])->name('master.define.time');
+        Route::post('/master/editTime/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'editTime'])->name('master.edit.time');
+
+
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });
 });

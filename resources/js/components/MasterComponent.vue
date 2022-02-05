@@ -7,11 +7,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-2"><a href="" class="btn btn-outline-success w-100 active">参加設定</a></div>
-            <div class="col-md-2"><a href="" class="btn btn-outline-success w-100">演題設定</a></div>
-        </div>
-
+        <shared-menu-component v-bind:id=id active="active1"></shared-menu-component>
         <div class="row mt-3">
             <div class="col-md-2">タイトル</div>
             <div class="col-md-4">
@@ -30,6 +26,7 @@
             <div class="col-md-3"><small>例文</small></div>
             <div class="col-md-1"><small>必須有無</small></div>
             <div class="col-md-2"><small>付属文言</small></div>
+            <div class="col-md-2"><small>形式</small></div>
         </div>
         <div class="row mt-3" v-for="defineData of defineDatas" :key="defineData.id">
             <div class="col-md-1">
@@ -46,6 +43,9 @@
             </div>
             <div class="col-md-2">
                 <input type="text" class="form-control w-100" v-model="defineData.required_text" />
+            </div>
+            <div class="col-md-2">
+                {{type[defineData.type]}}
             </div>
         </div>
 
@@ -81,16 +81,28 @@ export default {
     data(){
         this.spaceListsData();
         this.getDefineData();
+        this.getType();
         return {
             name:"マスター一覧",
             spaceLists: [],
             defineDatas: [],
             title:"",
             button:"",
+            type:[],
             showLoading:true,
         }
     },
     methods: {
+        getType:function(){
+            let postData = {};
+            axios.get("/getType", postData).then(response => {
+                // 成功
+                this.type = response['data'];
+            }).catch(error => {
+                // 失敗
+                alert("error");
+            });
+        },
         //区分
         spaceListsData:function(){
             let postData = {};
@@ -112,11 +124,14 @@ export default {
                 var button;
                 var title;
                 response['data'].forEach(function(element){
-                    if(element['type'] == "input"){
+
+                    if(element['type'] == "button"){
+                        button = element;
+                    }else if(element['type'] == "title"){
+                        title = element;
+                    }else{
                         define.push(element);
                     }
-                    if(element['type'] == "button") button = element;
-                    if(element['type'] == "title") title = element;
 
                 });
                 this.button = button['title'];
@@ -131,7 +146,7 @@ export default {
         },
         edit:function(key,value){
             //console.log(this.title)
-            //console.log(this.defineDatas)
+           // console.log(this.defineDatas)
             //console.log(this.spaceLists)
             this.showLoading = true;
             let postData = {

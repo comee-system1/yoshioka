@@ -4,7 +4,7 @@
 
         <div class="text-end">
 
-            <a href="./endai/new" class="btn btn-primary">演題新規登録</a>
+            <a v-bind:href="'/admin/endai/new/'+id" class="btn btn-primary">演題新規登録</a>
         </div>
         <form @submit.prevent="onSubmit1">
             <div class="row">
@@ -77,6 +77,7 @@
 </template>
 <script>
 export default {
+    props:['id'],
     data(){
         return {
             name:"演題一覧",

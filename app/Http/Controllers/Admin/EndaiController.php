@@ -8,17 +8,16 @@ use Illuminate\Http\Request;
 class EndaiController extends Controller
 {
     //
-    public function index()
+    public function index($id)
     {
         $hello = 'Hello World';
 
-        return view('admin.endai', ['hello' => $hello]);
+        return view('admin.endai', ['id' => $id]);
     }
 
-    public function new()
+    public function new($id)
     {
-        $hello = 'Hello World';
 
-        return view('admin.endainew', ['hello' => $hello]);
+        return view('admin.endainew', ['id' => $id]);
     }
 }

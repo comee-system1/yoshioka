@@ -18,6 +18,9 @@ Vue.component('time-component', require('./components/TimeComponent.vue').defaul
 Vue.component('info-component', require('./components/InfoComponent.vue').default);
 Vue.component('sponser-component', require('./components/SponserComponent.vue').default);
 Vue.component('master-component', require('./components/MasterComponent.vue').default);
+Vue.component('master-endai-component', require('./components/MasterEndaiComponent.vue').default);
+Vue.component('master-time-component', require('./components/MasterTimeComponent.vue').default);
+Vue.component('shared-menu-component', require('./components/SharedMenuComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

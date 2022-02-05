@@ -1,6 +1,6 @@
 @extends('layout.common')
 
-@section('title', 'テスト名演題ページ')
+@section('title', '演題新規登録')
 
 
 @include('layout.header',['title'=>'高分子学会'])
@@ -13,7 +13,7 @@
         <div class="row">
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <endai-component></endai-component>
+                <endai-component v-bind:id={{$id}}></endai-component>
             </main>
         </div>
     </div>

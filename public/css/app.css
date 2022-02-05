@@ -11505,6 +11505,19 @@ ul.signout li {
   width: 100%;
 }
 
+.selectpos + span span span .select2-selection__arrow {
+  position: inherit !important;
+  display: none !important;
+}
+
+div.filtertable {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 100;
+}
+
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

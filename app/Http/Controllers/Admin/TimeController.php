@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class TimeController extends Controller
 {
     //
-    public function index()
+    public function index($id)
     {
         $hello = 'Hello World';
 
-        return view('admin.time', ['hello' => $hello]);
+        return view('admin.time', ['id' => $id]);
     }
 }

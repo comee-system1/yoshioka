@@ -16,7 +16,7 @@ class CreateTemplateJoinTitlesTable extends Migration
         Schema::create('template_join_titles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('text')->nullable()->comment('姓,名 等 複数の場合はカンマ区切り');
+            $table->string('text')->nullable();
             $table->integer('template_code')->default(1);
             $table->integer('required')->default(0);
             $table->string('required_text')->nullable();
