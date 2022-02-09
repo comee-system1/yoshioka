@@ -284,6 +284,7 @@ export default {
             }).catch(error => {
                 // 失敗
                 alert("error");
+                console.log(error)
             });
         }
     }

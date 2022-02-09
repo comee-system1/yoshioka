@@ -20,6 +20,7 @@ Vue.component('sponser-component', require('./components/SponserComponent.vue').
 Vue.component('master-component', require('./components/MasterComponent.vue').default);
 Vue.component('master-endai-component', require('./components/MasterEndaiComponent.vue').default);
 Vue.component('master-time-component', require('./components/MasterTimeComponent.vue').default);
+Vue.component('master-book-component', require('./components/MasterBookComponent.vue').default);
 Vue.component('shared-menu-component', require('./components/SharedMenuComponent.vue').default);
 
 /**

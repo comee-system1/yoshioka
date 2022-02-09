@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
         Route::get('/master/endai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'endai'])->name('master.endai');
         Route::get('/master/time/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time');
+        Route::get('/master/book/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'book'])->name('master.book');
 
 
         Route::get('/master/define/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'define'])->name('master.define');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefinePlaceList;
@@ -12,6 +13,7 @@ use App\Models\DefineTimeTitle;
 use App\Models\TemplateMasterPresentation;
 use Illuminate\Http\Request;
 use App\Models\Seminer;
+use App\Models\TemplateBookTitle;
 use App\Models\TemplateEndaiTitle;
 use App\Models\TemplateJoinTitle;
 use App\Models\TemplateMasterPlace;
@@ -60,6 +62,7 @@ class HomeController extends Controller
     public function saveData(Request $request)
     {
         try {
+         //   DB::beginTransaction();
             $file_name = "";
             if (request()->file) {
                 $file_name = Seminer::getMainFileName(request()->file->getClientOriginalName());
@@ -74,11 +77,13 @@ class HomeController extends Controller
                 DefinePlaceList::insert(TemplateMasterPlace::getData($request->template, $seminer_id));
                 DefineTimeTitle::insert(TemplateTimeTitle::getData($request->template, $seminer_id));
                 Timetables::setData($seminer_id);
+                DefineBookTitle::insert(TemplateBookTitle::getData($request->template, $seminer_id));
             }
-            return true;
+        //    DB::commit();
         } catch (Exception $e) {
             var_dump($e);
+        //    DB::rollback();
         }
-        return false;
+        return true;
     }
 }

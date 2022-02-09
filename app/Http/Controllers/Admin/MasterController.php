@@ -28,6 +28,11 @@ class MasterController extends Controller
         return view('admin.masterTime', ['id' => $id]);
     }
 
+    public function book($id)
+    {
+        return view('admin.masterBook', ['id' => $id]);
+    }
+
     //------------------
     //タイムテーブル用
     //------------------
