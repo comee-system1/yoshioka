@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Template_endai_titlesTableSeeder::class);
         $this->call(Template_master_presentationTableSeeder::class);
         $this->call(Template_time_titleTableSeeder::class);
-        $this->call(template_master_placesTableSeeder::class);
+        $this->call(Template_master_placesTableSeeder::class);
     }
 }
