@@ -27,6 +27,5 @@
 <script src="{{ mix('js/open.js') }}" defer></script>
 <script src="{{ mix('js/script.js') }}" defer></script>
 <script src="{{ mix('js/create.js') }}" defer></script>
-<script src="{{ mix('js/timestamp.js') }}" defer></script>
 </body>
 </html>
