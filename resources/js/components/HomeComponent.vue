@@ -114,15 +114,27 @@
                             <label for="map-0">無効</label>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" >
                         <label >セミナー日時</label>
+                        <small class="text-primary">セミナーの期間設定は1週間以内としてください</small>
+                        <p class="text-danger" v-show="error.dateErrorMessage">期間設定に誤りがあります。</p>
                         <div class="col-6">
                             <p>開始日時</p>
-                            <input type="datetime-local" v-model="start_date" class="w-100 form-control" name="start_date">
+                            <div v-if=seminer_id>
+                            {{start_date}}
+                            </div>
+                            <div v-else>
+                                <input type="datetime-local" v-model="start_date" class="w-100 form-control" name="start_date">
+                            </div>
                         </div>
                         <div class="col-6">
                             <p>終了日時</p>
-                            <input type="datetime-local" v-model="end_date" class="w-100 form-control" name="end_date">
+                            <div v-if=seminer_id>
+                                {{end_date}}
+                            </div>
+                            <div v-else>
+                                <input type="datetime-local" v-model="end_date" class="w-100 form-control" name="end_date">
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -157,11 +169,12 @@ export default {
             error: {
                 require: false,
                 over: false,
+                dateErrorMessage:false,
             },
             showLoading:false,
             seminer_id:0,
             seminers: [],
-            domain:""
+            domain:"",
         };
     },
     mounted(){
@@ -222,9 +235,26 @@ export default {
             }
             return this.return;
         },
+        postDateConfirm:function(){
+            if(this.end_date - this.start_date >= 7){
+                this.error.dateErrorMessage = true;
+                return false;
+            }
+            if(!this.start_date || !this.end_date){
+                this.error.dateErrorMessage = true;
+                return false;
+            }
+            if(this.start_date > this.end_date){
+                this.error.dateErrorMessage = true;
+                return false;
+            }
+            return true;
+        },
         post:function(key,value){
             this.error.require = false;
+            this.error.dateErrorMessage = false;
             if(!this.postConfirm()) return false;
+            if(!this.postDateConfirm()) return false;
             this.showLoading = true;
             const formData = new FormData();
             formData.append('file',this.fileInfo);

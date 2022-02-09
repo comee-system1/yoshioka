@@ -17,14 +17,15 @@ use App\Models\TemplateJoinTitle;
 use App\Models\TemplateMasterPlace;
 use App\Models\TemplateMasterSpace;
 use App\Models\TemplateTimeTitle;
+use App\Models\Timetables;
 use Exception;
+use Facade\FlareClient\Time\Time;
 
 class HomeController extends Controller
 {
     //
     public function index()
     {
-
         $hello = 'Hello World';
         return view('admin.index', ['hello' => $hello]);
     }
@@ -65,13 +66,15 @@ class HomeController extends Controller
                 request()->file->storeAs('public/open/', $file_name);
             }
             $seminer_id = Seminer::registData($request, $file_name);
-            DefineSpaceList::insert(TemplateMasterSpace::getData($request->template, $seminer_id));
-            DefineJoinTitle::insert(TemplateJoinTitle::getData($request->template, $seminer_id));
-            DefinePresentationList::insert(TemplateMasterPresentation::getData($request->template, $seminer_id));
-            DefineEndaiTitle::insert(TemplateEndaiTitle::getData($request->template, $seminer_id));
-            DefinePlaceList::insert(TemplateMasterPlace::getData($request->template, $seminer_id));
-            DefineTimeTitle::insert(TemplateTimeTitle::getData($request->template, $seminer_id));
-
+            if(!$request->seminer_id){
+                DefineSpaceList::insert(TemplateMasterSpace::getData($request->template, $seminer_id));
+                DefineJoinTitle::insert(TemplateJoinTitle::getData($request->template, $seminer_id));
+                DefinePresentationList::insert(TemplateMasterPresentation::getData($request->template, $seminer_id));
+                DefineEndaiTitle::insert(TemplateEndaiTitle::getData($request->template, $seminer_id));
+                DefinePlaceList::insert(TemplateMasterPlace::getData($request->template, $seminer_id));
+                DefineTimeTitle::insert(TemplateTimeTitle::getData($request->template, $seminer_id));
+                Timetables::setData($seminer_id);
+            }
             return true;
         } catch (Exception $e) {
             var_dump($e);

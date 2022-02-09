@@ -30,6 +30,6 @@ class CreateTemplateMasterPresentationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('template_master_presentation');
+        Schema::dropIfExists('template_master_presentations');
     }
 }

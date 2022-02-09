@@ -36,6 +36,7 @@ Route::any('/getType', [\App\Http\Controllers\ArrayController::class, 'getType']
 Route::any('/getSpaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getSpaceLists'])->name('Array.spaces');
 Route::any('/getPlaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPlaceLists'])->name('Array.places');
 Route::any('/getPresentationLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPresentationLists'])->name('Array.presentaions');
+Route::any('/getDateLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getDateLists'])->name('Array.getDateLists');
 
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
@@ -52,6 +53,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/endai/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
         Route::get('/endai/new/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
         Route::get('/time/{id}', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
+        Route::post('/getTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'getTimeTable'])->name('time.getTimeTable');
+        Route::post('/setTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'setTimeTable'])->name('time.setTimeTable');
         Route::get('/book/{id}', [\App\Http\Controllers\Admin\BookController::class, 'index'])->name('book');
         Route::get('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'index'])->name('pay');
         Route::get('/info/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('info');
