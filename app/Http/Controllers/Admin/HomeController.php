@@ -7,6 +7,7 @@ use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
 use App\Models\DefineFee;
 use App\Models\DefineJoinTitle;
+use App\Models\DefineMail;
 use App\Models\DefinePlaceList;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
@@ -21,6 +22,7 @@ use App\Models\TemplateMasterPlace;
 use App\Models\TemplateMasterSpace;
 use App\Models\TemplateTimeTitle;
 use App\Models\Timetables;
+use App\Models\TemplateMail;
 use Exception;
 use Facade\FlareClient\Time\Time;
 
@@ -29,6 +31,7 @@ class HomeController extends Controller
     //
     public function index()
     {
+
         $hello = 'Hello World';
         return view('admin.index', ['hello' => $hello]);
     }
@@ -80,6 +83,7 @@ class HomeController extends Controller
                 Timetables::setData($seminer_id);
                 DefineBookTitle::insert(TemplateBookTitle::getData($request->template, $seminer_id));
                 DefineFee::insert(DefineFee::getDefault($seminer_id));
+                DefineMail::insert(TemplateMail::getData($request->template, $seminer_id));
             }
     //        DB::commit();
         } catch (Exception $e) {

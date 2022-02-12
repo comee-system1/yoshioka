@@ -9,7 +9,8 @@ use App\Models\DefineJoinTitle;
 use App\Models\DefineSpaceList;
 use Stripe\Stripe;
 use Stripe\Charge;
-
+use App\Mail\RegisterMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class RegistController extends ControllerOpen
@@ -38,9 +39,13 @@ class RegistController extends ControllerOpen
     {
 
         //メール配信
+        $mail = [];
+        $mail['address'] = "chiba@innovation-gate.jp";
+        $mail['body'] = "ああああ";
+        $mail['title'] = "タイトル";
+        Mail::send(new RegisterMail($mail));
 
-
-
+exit();
 
         $this->getDefine($id);
 
