@@ -15,11 +15,10 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
+            $table->integer('seminer_id');
             $table->integer('account_type');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('first_name_kana')->nullable();
-            $table->string('last_name_kana')->nullable();
+            $table->string('name')->nullable();
+            $table->string('name_kana')->nullable();
             $table->string('company')->nullable();
             $table->string('tel')->nullable();
             $table->string('address')->nullable();
@@ -27,7 +26,12 @@ class CreateAccountsTable extends Migration
             $table->string('email')->nullable();
             $table->integer('status')->default(1);
             $table->string('password');
-            $table->string('open_id')->comment("公開urlのユニークキーを所持するテーブルのID");
+            $table->integer('payment_flag')->default(0);
+            $table->integer('join_status')->default(0);
+            $table->integer('party_status')->default(0);
+            $table->integer('join_price')->default(0);
+            $table->integer('party_price')->default(0);
+           // $table->string('open_id')->comment("公開urlのユニークキーを所持するテーブルのID");
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,10 +14,8 @@ class Account extends Authenticatable
     use HasFactory;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'first_name_kana',
-        'last_name_kana',
+        'name',
+        'name_kana',
         'email',
         'password',
         'area',
@@ -25,41 +23,64 @@ class Account extends Authenticatable
         'tel',
         'address',
         'account_type',
-        'open_id',
     ];
 
-    public function setData($request)
+    public function setConf($id, $request)
     {
+        $error_message = [];
+        $validate = [];
+        $define_join_titles = DefineJoinTitle::getDataType($id, $this->fillable)->get();
         //todo::openテーブルを作成後IDを取得後登録を行う
-        $open_id = 1;
-        $validated = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'first_name_kana' => 'required',
-            'last_name_kana' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('accounts', 'email')->where('open_id', $open_id) ],
-            'password' => ['required', new AlphaNumHalf, 'min:8'],
-            'company' => 'required',
-            'tel' => 'required',
-            'address' => 'required',
-            'area' => 'required',
-            'account_type' => 'required',
+        foreach($define_join_titles as $value ){
+            $key = $value->type;
+            if( $value['required']){
+                if($key == "password"){
+                   // $validate[ $key ] = ['required', new AlphaNumHalf, 'min:8'];
+                    $validate[ $key ] = ['required'];
+                }else if($key == "email"){
+                    $validate[ $key ] = ['required', 'string', 'email', 'max:255', Rule::unique('accounts', 'email')->where('seminer_id', $id) ];
+                }else{
+                    $validate[ $key ] = 'required';
+                }
+                $code = $key.".required";
+                $error_message[$code] = $value['error_message'];
+            }
+        }
+        $error_message['email.unique'] = $error_message['email.required'];
+        $error_message['password.password'] = "ddd";
 
-        ]);
+        $validated = $request->validate(
+            $validate,
+            $error_message
+        );
+    }
 
+    public function setData($id, $request, $join_price = 0, $party_price = 0 )
+    {
+
+        $this->setConf($id, $request);
+
+        $this->seminer_id = $id;
         $this->account_type = $request->account_type;
-        $this->first_name = $request->first_name;
-        $this->last_name  = $request->last_name;
-        $this->first_name_kana  = $request->first_name_kana;
-        $this->last_name_kana  = $request->last_name_kana;
+        $this->name = $request->name;
+        $this->name_kana  = $request->name_kana;
         $this->email  = $request->email;
         $this->company  = $request->company;
         $this->tel  = $request->tel;
         $this->address  = $request->address;
         $this->area  = $request->area;
+        $this->join_status  = 1;
+        if($request->party_status){
+            $this->party_status  = 1;
+        }
+        $this->join_price = $join_price;
+        $this->party_price = $party_price;
         $this->password = Hash::make($request->password);
-        //todo::openテーブルを作成後IDを取得後登録を行う
-        $this->open_id = 1;
         $this->save();
+        return true;
+    }
+
+    public function sendMail(){
+        
     }
 }

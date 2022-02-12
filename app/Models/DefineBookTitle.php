@@ -19,4 +19,14 @@ class DefineBookTitle extends Model
         'type',
     ];
 
+    public static function editDataType($id, $request, $type){
+
+        $data = DefineBookTitle::where('type', $type)
+            ->where('seminer_id', $id)
+            ->first();
+        $data->text = $request->$type;
+        $data->save();
+
+    }
+
 }

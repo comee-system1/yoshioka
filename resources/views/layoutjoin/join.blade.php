@@ -1,84 +1,58 @@
 @section('join')
 <div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">参加者区分</div>
-    <div class="col-md-6">
-        {{ Form::select('account_type', Classes::CLASS_LIST, old('account_type'), ['class' => 'form-control', 'id' => 'account_type', 'required' => 'required']) }}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">参加者名&nbsp;<small class="text-danger">必須</small></div>
-    <div class="col-md-3">
-        {{ Form::text('first_name', '',['id'=>'first_name', 'class'=>'form-control', 'placeholder'=>'姓を入力' ])}}
-    </div>
-    <div class="col-md-3">
-        {{ Form::text('last_name', '',['id'=>'last_name', 'class'=>'form-control', 'placeholder'=>'名を入力' ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">参加者名(かな)
-    &nbsp;<small class="text-danger">必須</small>
-    </div>
-    <div class="col-md-3">
-        {{ Form::text('first_name_kana', '',['id'=>'first_name', 'class'=>'form-control', 'placeholder'=>'せいを入力' ])}}
-    </div>
-    <div class="col-md-3">
-        {{ Form::text('last_name_kana', '',['id'=>'last_name', 'class'=>'form-control', 'placeholder'=>'めいを入力' ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">
-    メールアドレス
-    &nbsp;<small class="text-danger">必須</small>
+    <div class="col-md-3 d-flex align-items-center">{{$account_type->title}}&nbsp;
+    <small class="text-danger">{{$account_type->required_text}}</small>
     </div>
     <div class="col-md-6">
-        {{ Form::text('email', '',['id'=>'email', 'class'=>'form-control', 'placeholder'=>'メールアドレスを入力' ])}}
+        {{ Form::select('account_type', $accountSelect, old('account_type'), ['class' => 'form-control', 'id' => 'account_type', 'required' => 'required']) }}
     </div>
 </div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">
-    パスワード
-    &nbsp;<small class="text-danger">必須</small>
+@foreach($account_input as $key=>$value)
+    @if($value->display_status)
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$value->title}}&nbsp;
+        @if($value->required)
+            <small class="text-danger">{{$value->required_text}}</small>
+        @endif
+        </div>
+        <div class="col-md-6">
+            {{ Form::text($value->type, '',['id'=>$value->type, 'class'=>'form-control', 'placeholder'=>$value->text ])}}
+        </div>
     </div>
-    <div class="col-md-6">
-        {{ Form::password('password',['id'=>'password', 'class'=>'form-control', 'placeholder'=>'パスワードを半角英数字8文字以上で入力' ])}}
+    @endif
+@endforeach
+
+@if($fee->join_status || $fee->party_status)
+@if($fee->party_status)
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$party_flag->title}}</div>
+        <div class="col-md-1 text-start">
+            {{Form::checkbox('party_status', '1', false, ['class'=>'h-100 w-100','id'=>'party_status'])}}
+        </div>
     </div>
-</div>
-{{--以下テンプレートで可変--}}
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">
-    会社名
-    &nbsp;<small class="text-danger">必須</small>
+@endif
+<div class="mt-5">
+    <div class="row mb-3">
+        <div class="col-2"></div>
+        @if($fee->join_status)
+            <div class="col-2 h5">{{ $join->title }}</div>
+        @endif
+        @if($fee->party_status)
+            <div class="col-2 h5">{{ $party->title }}</div>
+        @endif
     </div>
-    <div class="col-md-6">
-        {{ Form::text('company', '',['id'=>'company', 'class'=>'form-control', 'placeholder'=>'会社名を入力' ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">
-    電話番号
-    &nbsp;<small class="text-danger">必須</small>
-    </div>
-    <div class="col-md-6">
-        {{ Form::text('tel', '',['id'=>'tel', 'class'=>'form-control', 'placeholder'=>'電話番号(半角数値)を入力' ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">
-    住所
-    &nbsp;<small class="text-danger">必須</small>
-    </div>
-    <div class="col-md-6">
-        {{ Form::text('address', '',['id'=>'address', 'class'=>'form-control', 'placeholder'=>'住所を入力' ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">
-    所属
-    &nbsp;<small class="text-danger">必須</small>
-    </div>
-    <div class="col-md-6">
-        {{ Form::text('area', '',['id'=>'area', 'class'=>'form-control', 'placeholder'=>'所属を入力' ])}}
-    </div>
+    @foreach($accountSelectFee as $key=>$value)
+        <div class="row">
+            <div class="col-2">{{$value['text']}}</div>
+            @if($fee->join_status)
+                <div class="col-2">&yen;{{$value['join_fee_yen']}}</div>
+            @endif
+            @if($fee->party_status)
+                <div class="col-2">&yen;{{$value['party_fee_yen']}}</div>
+            @endif
+        </div>
+    @endforeach
+@endif
 </div>
 <div class="row mt-5">
     <div class="col-md-12 text-center">

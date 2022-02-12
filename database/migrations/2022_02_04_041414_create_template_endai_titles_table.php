@@ -20,6 +20,7 @@ class CreateTemplateEndaiTitlesTable extends Migration
             $table->integer('template_code')->default(1);
             $table->integer('required')->default(0);
             $table->string('required_text')->nullable();
+            $table->string('error_message')->nullable();
             $table->integer('sort')->default(0);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->integer('display_status')->default(1);

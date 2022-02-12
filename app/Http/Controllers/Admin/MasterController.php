@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefinePresentationList;
@@ -33,6 +34,25 @@ class MasterController extends Controller
         return view('admin.masterBook', ['id' => $id]);
     }
 
+    //---------------
+    //予稿原稿
+    //---------------
+    public function defineBook($id)
+    {
+        $data = DefineBookTitle::where("seminer_id", $id)->orderBy("id", "asc")->get();
+        return response()->json($data);
+    }
+
+    public function defineEditBook($id, Request $request)
+    {
+        //タイトルの更新
+        DefineBookTitle::editDataType($id, $request, "title");
+        DefineBookTitle::editDataType($id, $request, "explain");
+        DefineBookTitle::editDataType($id, $request, "button");
+
+        return true;
+    }
+
     //------------------
     //タイムテーブル用
     //------------------
@@ -41,6 +61,7 @@ class MasterController extends Controller
         $data = DefineTimeTitle::where("seminer_id", $id)->orderBy("id", "asc")->get();
         return response()->json($data);
     }
+
     public function editTime($id, Request $request)
     {
         //タイトルの更新
@@ -85,9 +106,16 @@ class MasterController extends Controller
         //タイトルの更新
         DefineJoinTitle::editDataType($id, $request, "title");
         DefineJoinTitle::editDataType($id, $request, "button");
+        DefineJoinTitle::editDataType($id, $request, "regist_button");
+        DefineJoinTitle::editDataType($id, $request, "back_button");
         DefineJoinTitle::editDataTypeInput($id, $request, "input");
+        DefineJoinTitle::editDataType($id, $request, "join");
+        DefineJoinTitle::editDataType($id, $request, "joinlink");
+        DefineJoinTitle::editDataType($id, $request, "party");
+        DefineJoinTitle::editDataType($id, $request, "party_flag");
         //区分設定
         DefineSpaceList::editSpaceListData($id, $request);
         return true;
     }
+
 }

@@ -23,6 +23,7 @@ class TemplateEndaiTitle extends Model
             $TemplateEndaiTitleData[$i]['type'          ] = $TemplateEndaiTitle->type;
             $TemplateEndaiTitleData[$i]['required'      ] = $TemplateEndaiTitle->required;
             $TemplateEndaiTitleData[$i]['required_text' ] = $TemplateEndaiTitle->required_text;
+            $TemplateEndaiTitleData[$i]['error_message' ] = $TemplateEndaiTitle->error_message;
             $TemplateEndaiTitleData[$i]['created_at'    ] = NOW();
             $TemplateEndaiTitleData[$i]['updated_at'    ] = NOW();
             $i++;

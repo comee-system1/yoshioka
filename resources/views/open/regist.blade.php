@@ -4,7 +4,7 @@
 
 
 @include('openlayout.header',['title'=>'ログイン'])
-@include('layoutjoin.join', ['button' => '更新'])
+@include('layoutjoin.join', ['button' => $button, 'open'=> 1 ])
 
 @section('content')
 
@@ -13,13 +13,14 @@
         @if ($errors->any())
         <div class="alert alert-danger mt-3">
         @foreach ($errors->all() as $error)
-                <div>{{ $error }}</div>
+            <div>{{ $error }}</div>
         @endforeach
         </div>
         @endif
-        <form method="POST" class="mt-3" action="{{route('regist.post', ['type'=>$type, 'uniqcode'=>$uniqcode])}}">
+        <form method="POST" class="mt-3" action="{{route('regist.conf', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
             @csrf
-            <h1 class="h3 mb-3 font-weight-normal">参加登録</h1>
+            <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
+
             @yield('join')
 
         </form>
@@ -28,6 +29,5 @@
 @endsection
 
 @include('openlayout.submenu')
-
 @include('openlayout.footer')
 

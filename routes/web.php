@@ -13,21 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //ログイン無しで見れるページ
-Route::get('/open/{type}/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'index'])->name('top');
-Route::get('/open/{type}/signin/{uniqcode}', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
-Route::post('/open/{type}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
-Route::get('/open/{type}/regist/{uniqcode}', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
-Route::post('/open/{type}/regist/{uniqcode}', [\App\Http\Controllers\RegistController::class, 'post'])->name('regist.post');
+Route::get('/open/{id}/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'index'])->name('top');
+Route::get('/open/{id}/{uniqcode}/signin', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
+Route::post('/open/{id}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
+Route::get('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
+Route::post('/open/{id}/{uniqcode}/conf', [\App\Http\Controllers\RegistController::class, 'conf'])->name('regist.conf');
+Route::post('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'post'])->name('regist.post');
 
 Route::group(['middleware' => ['account']], function () {
-    Route::get('/open/{type}/signout/{uniqcode}', [\App\Http\Controllers\SigninController::class, 'signout'])->name('signout');
-    Route::get('/open/{type}/account/{uniqcode}', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
-    Route::get('/open/{type}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'edit'])->name('account.edit');
-    Route::post('/open/{type}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'post'])->name('account.post');
-    Route::get('/open/{type}/endai/{uniqcode}/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
-    Route::get('/open/{type}/endai/{uniqcode}/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
-    Route::get('/open/{type}/recipe/{uniqcode}', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
-    Route::get('/open/{type}/program/{uniqcode}', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
+    Route::get('/open/{id}/signout/{uniqcode}', [\App\Http\Controllers\SigninController::class, 'signout'])->name('signout');
+    Route::get('/open/{id}/account/{uniqcode}', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
+    Route::get('/open/{id}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'edit'])->name('account.edit');
+    Route::post('/open/{id}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'post'])->name('account.post');
+    Route::get('/open/{id}/endai/{uniqcode}/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
+    Route::get('/open/{id}/endai/{uniqcode}/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
+    Route::get('/open/{id}/recipe/{uniqcode}', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
+    Route::get('/open/{id}/program/{uniqcode}', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
 });
 
 //配列
@@ -43,7 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => ['auth']], function () {
         //Route::match(['get', 'post'],'/',function(){ return view('home')->name('home'); });
         Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
-        Route::post('/saveData', [\App\Http\Controllers\Admin\HomeController::class, 'saveData'])->name('saveData');
+        Route::any('/saveData', [\App\Http\Controllers\Admin\HomeController::class, 'saveData'])->name('saveData');
         Route::any('/getEditData/{id}', [\App\Http\Controllers\Admin\HomeController::class, 'getEditData'])->name('getEditData');
         Route::post('/deleteData', [\App\Http\Controllers\Admin\HomeController::class, 'deleteData'])->name('deleteData');
         Route::post('/editStatusData', [\App\Http\Controllers\Admin\HomeController::class, 'editStatusData'])->name('editStatusData');
@@ -56,7 +57,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/getTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'getTimeTable'])->name('time.getTimeTable');
         Route::post('/setTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'setTimeTable'])->name('time.setTimeTable');
         Route::get('/book/{id}', [\App\Http\Controllers\Admin\BookController::class, 'index'])->name('book');
+        Route::post('/book/upload/{id}', [\App\Http\Controllers\Admin\BookController::class, 'upload'])->name('book.upload');
         Route::get('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'index'])->name('pay');
+        Route::post('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'post'])->name('pay.post');
         Route::get('/info/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('info');
         Route::get('/info/new/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'new'])->name('infonew');
         Route::get('/invoice/{id}', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
@@ -77,6 +80,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/defineTime/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineTime'])->name('master.define.time');
         Route::post('/master/editTime/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'editTime'])->name('master.edit.time');
 
+
+        Route::get('/master/defineBook/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineBook'])->name('master.define.book');
+        Route::post('/master/defineEditBook/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineEditBook'])->name('master.define.editbook');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

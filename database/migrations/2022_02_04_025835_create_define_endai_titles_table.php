@@ -20,6 +20,7 @@ class CreateDefineEndaiTitlesTable extends Migration
             $table->string('text')->nullable();
             $table->integer('required')->default(0);
             $table->string('required_text')->nullable();
+            $table->string('error_message')->nullable();
             $table->integer('display_status')->default(1);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->timestamps();

@@ -56,7 +56,7 @@
                                 <p class="text-end">登録日: {{seminer.date}} </p>
                             </div>
                             <div class="row text-start">
-                                <small>{{domain}}/open/1/{{seminer.open_key}}</small>
+                                <small>{{domain}}/open/{{seminer.id}}/{{seminer.open_key}}</small>
                             </div>
                         </div>
                     </div>
@@ -89,6 +89,12 @@
                         <div class="col-12">
                             <input type="text" class="form-control" v-model="name" name="name" placeholder="セミナー名を入力してください">
                             <p v-if="error.require" class="text-danger">セミナー名は4文字以上で入力してください</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <label for="name">サブタイトル</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="sub_title"  name="sub_title" v-model="sub_title" placeholder="セミナーのサブタイトルを入力してください">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -158,6 +164,7 @@ export default {
     data(){
         return {
             name: '',
+            sub_title: '',
             url:"",
             fileInfo:"",
             return:"",
@@ -259,6 +266,7 @@ export default {
             const formData = new FormData();
             formData.append('file',this.fileInfo);
             formData.append('name',this.name);
+            formData.append('sub_title',this.sub_title);
             formData.append('note',this.note);
             formData.append('map_status',this.map_status);
             formData.append('start_date',this.start_date);
@@ -281,10 +289,14 @@ export default {
                     alert("セミナーの追加をおこないました。");
                 }
                 this.setLists();
-            }).catch(error => {
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
                 // 失敗
                 alert("error");
-                console.log(error)
+                console.log(error.response)
             });
         }
     }

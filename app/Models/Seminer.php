@@ -52,6 +52,18 @@ class Seminer extends Model
         return $open_key;
     }
 
+    public static function checkSitekey($id, $open_key)
+    {
+        return self::where([
+            'id'=>$id,
+            'open_key'=>$open_key,
+            'display_status'=>1,
+            'delete_status'=>0,
+         ])->exists();
+
+    }
+
+
     public static function getData($id = 0)
     {
 
@@ -59,6 +71,7 @@ class Seminer extends Model
         ->selectRaw('(CASE main_image WHEN "" THEN "empty.jpg" ELSE main_image END) as image')
         ->selectRaw('id')
         ->selectRaw('name')
+        ->selectRaw('sub_title')
         ->selectRaw('note')
         ->selectRaw('address')
         ->selectRaw('map_status')
@@ -67,8 +80,10 @@ class Seminer extends Model
         ->selectRaw('display_status')
         ->selectRaw('start_date')
         ->selectRaw('DATE_FORMAT(start_date, "%Y-%m-%dT%H:%i:%s") AS st_date_format')
+        ->selectRaw('DATE_FORMAT(start_date, "%Y/%m/%d %H:%i") AS st_op_date_format')
         ->selectRaw('end_date')
         ->selectRaw('DATE_FORMAT(end_date, "%Y-%m-%dT%H:%i:%s") AS ed_date_format')
+        ->selectRaw('DATE_FORMAT(end_date, "%Y/%m/%d %H:%i") AS ed_op_date_format')
         ->where('delete_status', '0');
         if ($id) {
             $data = $data->where('id', $id);
@@ -93,6 +108,7 @@ class Seminer extends Model
         }
 
         $seminer->name = $request->name;
+        $seminer->sub_title = $request->sub_title;
         $seminer->note = $request->note;
         $seminer->address = $request->address;
         $seminer->map_status = $request->map_status;

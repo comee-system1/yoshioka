@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DefineJoinTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class SigninController extends Controller
+class SigninController extends ControllerOpen
 {
+    public function __construct(Request $rquest)
+    {
+        $this->pageCheck($rquest);
+    }
     //
-    public function index($type, $uniqcode, Request $request)
+    public function index($id, $uniqcode, Request $request)
     {
 
+        $joinlink = DefineJoinTitle::getDataType($id, 'joinlink')->first();
+
         return view('open.login', [
-            'type' => $type,
-            'uniqcode' => $uniqcode
+            'id' => $id,
+            'uniqcode' => $uniqcode,
+            'seminer' => $this->seminer[0],
+            'joinlink' => $joinlink
         ]);
     }
 

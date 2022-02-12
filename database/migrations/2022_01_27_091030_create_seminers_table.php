@@ -16,6 +16,7 @@ class CreateSeminersTable extends Migration
         Schema::create('seminers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('sub_title',512)->nullable();
             $table->text('note')->nullable();
             $table->string('address')->nullable();
             $table->integer('map_status')->default(0);

@@ -15,9 +15,27 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">ボタン</div>
+            <div class="col-md-2">確認ボタン</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">戻るボタン</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="back_button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">登録ボタン</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="regist_button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">登録リンク</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="joinlink"  />
             </div>
         </div>
         <div class="row mt-3">
@@ -28,24 +46,36 @@
             <div class="col-md-2"><small>付属文言</small></div>
             <div class="col-md-2"><small>形式</small></div>
         </div>
-        <div class="row mt-3" v-for="defineData of defineDatas" :key="defineData.id">
-            <div class="col-md-1">
-                <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+        <div class="row mt-3 pt-3" v-for="defineData of defineDatas" :key="defineData.id" style="border-top:2px dotted #ccc ;">
+            <div class="row">
+                <div class="col-md-1">
+
+                    <input v-if="defineData.type != 'password' && defineData.type != 'email' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+                    <input v-else type="hidden" v-model="defineData.display_status" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control w-100" v-model="defineData.title" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control w-100" v-model="defineData.text"  />
+                </div>
+                <div class="col-md-1">
+                    <input v-if="defineData.type != 'password' && defineData.type != 'email' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
+                    <input v-else type="hidden" v-model="defineData.required" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control w-100" v-model="defineData.required_text" />
+                </div>
+                <div class="col-md-2">
+                    {{type[defineData.type]}}
+                </div>
             </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control w-100" v-model="defineData.title" />
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control w-100" v-model="defineData.text"  />
-            </div>
-            <div class="col-md-1">
-                <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
-            </div>
-            <div class="col-md-2">
-                <input type="text" class="form-control w-100" v-model="defineData.required_text" />
-            </div>
-            <div class="col-md-2">
-                {{type[defineData.type]}}
+            <div class="row mt-2 mb-2">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <span>エラーメッセージ</span>
+                    <input type="text" class="form-control w-100" v-model="defineData.error_message" />
+                </div>
             </div>
         </div>
 
@@ -68,7 +98,30 @@
                 </div>
             </div>
         </div>
-
+        <hr />
+        <div class="row mt-3">
+            <div class="col-md-2">決済タイトル</div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-2" >参加費名</div>
+                    <div class="col-md-4 text-center" >
+                        <input type="text" class="form-control w-100" v-model="join" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-2" >懇親会費名</div>
+                    <div class="col-md-4 text-center" >
+                        <input type="text" class="form-control w-100" v-model="party" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-2" >懇親参加フラグ名</div>
+                    <div class="col-md-4 text-center" >
+                        <input type="text" class="form-control w-100" v-model="party_flag" />
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mt-3">
             <button class="btn btn-primary w-25" v-on:click="edit" >更新</button>
         </div>
@@ -88,6 +141,12 @@ export default {
             defineDatas: [],
             title:"",
             button:"",
+            back_button:"",
+            regist_button:"",
+            join:"",
+            party:"",
+            party_flag:"",
+            joinlink:"",
             type:[],
             showLoading:true,
         }
@@ -122,20 +181,45 @@ export default {
                 //this.defineDatas = response['data'];
                 var define = [];
                 var button;
+                var back_button;
+                var regist_button;
                 var title;
+                var join;
+                var joinlink;
+                var party;
+                var party_flag;
                 response['data'].forEach(function(element){
-
+                    if(element['type'] == "back_button"){
+                        back_button = element;
+                    }else
+                    if(element['type'] == "regist_button"){
+                        regist_button = element;
+                    }else
                     if(element['type'] == "button"){
                         button = element;
                     }else if(element['type'] == "title"){
                         title = element;
+                    }else if(element['type'] == "join"){
+                        join = element;
+                    }else if(element['type'] == "party"){
+                        party = element;
+                    }else if(element['type'] == "party_flag"){
+                        party_flag = element;
+                    }else if(element['type'] == "joinlink"){
+                        joinlink = element;
                     }else{
                         define.push(element);
                     }
 
                 });
                 this.button = button['title'];
+                this.back_button = back_button['title'];
+                this.regist_button = regist_button['title'];
                 this.title = title['title'];
+                this.join = join['title'];
+                this.party = party['title'];
+                this.party_flag = party_flag['title'];
+                this.joinlink = joinlink['title'];
                 this.defineDatas = define;
                 this.showLoading = false;
 
@@ -152,11 +236,19 @@ export default {
             let postData = {
                 title:this.title,
                 button:this.button,
+                regist_button:this.regist_button,
+                back_button:this.back_button,
+                party:this.party,
+                party_flag:this.party_flag,
+                join:this.join,
+                joinlink:this.joinlink,
                 input:this.defineDatas,
                 spaceLists:this.spaceLists
             };
             axios.post("/admin/master/edit/"+this.id, postData).then(response => {
                 // 成功
+                console.log(response);
+
                 alert("データの更新に成功しました。");
                 this.showLoading = false;
 

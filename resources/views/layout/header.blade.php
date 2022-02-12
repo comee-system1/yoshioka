@@ -12,5 +12,4 @@
         </li>
     </ul>
 </nav>
-
 @endsection

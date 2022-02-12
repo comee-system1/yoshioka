@@ -23,6 +23,7 @@ class TemplateJoinTitle extends Model
             $TemplateJoinTitleData[$i]['type'          ] = $TemplateJoinTitle->type;
             $TemplateJoinTitleData[$i]['required'      ] = $TemplateJoinTitle->required;
             $TemplateJoinTitleData[$i]['required_text' ] = $TemplateJoinTitle->required_text;
+            $TemplateJoinTitleData[$i]['error_message' ] = $TemplateJoinTitle->error_message;
             $TemplateJoinTitleData[$i]['created_at'    ] = NOW();
             $TemplateJoinTitleData[$i]['updated_at'    ] = NOW();
             $i++;

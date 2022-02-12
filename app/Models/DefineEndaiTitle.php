@@ -39,6 +39,7 @@ class DefineEndaiTitle extends Model
             $data->text = $value[ 'text' ];
             $data->required = $value[ 'required' ];
             $data->required_text = $value[ 'required_text' ];
+            $data->error_message = $value[ 'error_message' ];
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }

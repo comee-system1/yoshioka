@@ -14,6 +14,18 @@
                 <input type="text" class="form-control w-100" v-model="title"  />
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col-md-2">説明文</div>
+            <div class="col-md-8">
+                <textarea class="form-control w-100" v-model="explain" rows=8 ></textarea>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">リンク名</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="button"  />
+            </div>
+        </div>
 
 
         <div class="row mt-3">
@@ -26,13 +38,52 @@
 export default {
     props:['id'],
     data(){
-
+        this.getData();
         return {
             name:"マスター一覧",
+            showLoading:true,
+            title:"",
+            explain:"",
+            button:"",
         }
     },
     methods: {
+        getData:function()
+        {
+            let postData = {};
+            axios.get("/admin/master/defineBook/"+this.id, postData).then(response => {
+                // 成功
 
+                response[ 'data' ].forEach(element => {
+                    if(element['type'] == "title") this.title = element[ 'text' ];
+                    if(element['type'] == "explain") this.explain = element[ 'text' ];
+                    if(element['type'] == "button") this.button = element[ 'text' ];
+                });
+
+                this.showLoading = false;
+            }).catch(error => {
+                // 失敗
+                alert("error");
+            });
+        },
+        edit:function()
+        {
+            this.showLoading = true;
+            let postData = {
+                title:this.title,
+                explain:this.explain,
+                button:this.button,
+            };
+            axios.post("/admin/master/defineEditBook/"+this.id, postData).then(response => {
+                // 成功
+                console.log(response);
+                alert("データの更新を行いました");
+                this.showLoading = false;
+            }).catch(error => {
+                // 失敗
+                alert("error");
+            });
+        }
     }
 }
 </script>

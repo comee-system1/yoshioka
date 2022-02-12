@@ -15,8 +15,25 @@ class DefineJoinTitle extends Model
         'seminer_id',
         'title',
         'text',
+        'required',
+        'required_text',
+        'error_mssage',
+        'display_status',
         'type',
     ];
+
+    public static function getDataType($id, $type="")
+    {
+        $return = DefineJoinTitle::where('seminer_id', $id);
+        if(is_array($type))
+        {
+            $return = $return->whereIn( 'type', $type );
+        }else if($type)
+        {
+            $return = $return->where('type', $type);
+        }
+        return $return;
+    }
 
     public static function editDataType($id, $request, $type)
     {
@@ -39,8 +56,21 @@ class DefineJoinTitle extends Model
             $data->text = $value[ 'text' ];
             $data->required = $value[ 'required' ];
             $data->required_text = $value[ 'required_text' ];
+            $data->error_message = $value[ 'error_message' ];
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }
+    }
+
+    public static function getDataJoinTitleType($id){
+
+        $join_titles = DefineJoinTitle::where(['seminer_id'=>$id])
+        ->whereIn( 'type', [ 'join', 'party' ] )
+        ->get();
+        $join_title_data = [];
+        foreach($join_titles as $join_title){
+            $join_title_data[$join_title['type']] = $join_title;
+        }
+        return $join_title_data;
     }
 }

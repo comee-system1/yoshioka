@@ -17,7 +17,7 @@
     </ul>
 </div>
 @endif
-<form method="POST" class="form-signin" action="{{route('signin.post', ['type'=>$type])}}">
+<form method="POST" class="form-signin" action="{{route('signin.post', ['id'=>$id])}}">
     @csrf
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <input type="text" name="email" class="form-control mt-3" placeholder="email" value="{{ old('email') }}" required autofocus>
@@ -26,7 +26,7 @@
     <button type="submit" id="login-button" class="btn btn-primary mt-3 form-control" >Login</button>
 </form>
 <div class="text-center mt-4">
-    <a href="{{route('regist',['type'=>$type, 'uniqcode'=>$uniqcode])}}">参加登録はこちらから</a>
+    <a href="{{route('regist',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$joinlink->title}}</a>
 </div>
 
 @endsection

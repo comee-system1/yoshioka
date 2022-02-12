@@ -1,3 +1,12 @@
+### stripeの利用
+Stripe向けCashierパッケージをComposerでインストールします。
+`composer require laravel/cashier`
+
+
+
+
+
+
 ### サクラサーバーにcomposerのインストール
 curl -sS https://getcomposer.org/installer | php
 - 確認

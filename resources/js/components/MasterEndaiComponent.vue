@@ -29,23 +29,32 @@
             <div class="col-md-2"><small>形式</small></div>
         </div>
         <div class="row mt-3" v-for="defineData of defineDatas" :key="defineData.id">
-            <div class="col-md-1">
-                <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+            <div class="row">
+                <div class="col-md-1">
+                    <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control w-100" v-model="defineData.title" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control w-100" v-model="defineData.text"  />
+                </div>
+                <div class="col-md-1">
+                    <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control w-100" v-model="defineData.required_text" />
+                </div>
+                <div class="col-md-2">
+                    {{type[defineData.type]}}
+                </div>
             </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control w-100" v-model="defineData.title" />
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control w-100" v-model="defineData.text"  />
-            </div>
-            <div class="col-md-1">
-                <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
-            </div>
-            <div class="col-md-2">
-                <input type="text" class="form-control w-100" v-model="defineData.required_text" />
-            </div>
-            <div class="col-md-2">
-                {{type[defineData.type]}}
+            <div class="row mt-2">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <span>エラーメッセージ</span>
+                    <input type="text" class="form-control w-100" v-model="defineData.error_message" />
+                </div>
             </div>
         </div>
 

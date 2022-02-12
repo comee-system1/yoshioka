@@ -20,7 +20,6 @@
 <div class="contents">
     <!-- コンテンツ -->
     <div class="main">
-
         @yield('content')
     </div>
 </div>

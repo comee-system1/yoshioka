@@ -5,6 +5,11 @@ namespace App\Consts;
 // usersで使う定数
 class ClassConsts
 {
+    public const ENABLE_LIST = [
+        1 => "有効",
+        0 => "無効",
+    ];
+
     public const CLASS_LIST = [
         1 => "非会員",
         2 => "学生",
@@ -41,8 +46,19 @@ class ClassConsts
         'radio'  => "一択選択",
         'check'  => "複数選択",
         'select' => "一覧選択",
-        'input'  => "入力",
-        'file'   => "登録資料",
+        'name'  => "名前",
+        'name_kana'  => "ふりがな",
+        'email'  => "メールアドレス",
+        'password'  => "パスワード",
+        'company'  => "会社名",
+        'tel'  => "電話番号",
+        'address'  => "住所",
+        'area'  => "所属",
+        'endai'  => "演題名",
+        'endai_note'  => "演題内容",
+        'file1'   => "登録資料1",
+        'file2'   => "登録資料2",
+        'file3'   => "登録資料3",
     ];
 
     public const INFO_TYPE = [

@@ -17,6 +17,15 @@ class DefineSpaceList extends Model
         'text',
     ];
 
+    public static function getDataAccount($id)
+    {
+        return self::where([
+            "seminer_id"=>$id,
+            "display_status"=>1
+        ])
+        ->orderBy('master_id', 'asc')->get();
+    }
+
     public static function getData($id)
     {
         return self::where("seminer_id", $id)->orderBy('master_id', 'asc')->get();
@@ -34,5 +43,34 @@ class DefineSpaceList extends Model
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }
+    }
+
+    public static function editFee($id, $request)
+    {
+        foreach($request->fee as $key => $value){
+            $data = self::where(['seminer_id'=>$id, 'master_id'=>$key ])->first();
+            $data->join_fee   = $value[ 'join'  ];
+            $data->party_fee  = $value[ 'party' ];
+            $data->save();
+        }
+    }
+
+    public static function calcFee($id, $request)
+    {
+        $data = self::where(['seminer_id'=>$id, 'master_id'=>$request->account_type])->first();
+        if($request->party_flag){
+            return $data->join_fee+$data->party_fee;
+        }else{
+            return $data->join_fee;
+        }
+    }
+    public static function calcFees($id, $request, $fee)
+    {
+        $data = self::where(['seminer_id'=>$id, 'master_id'=>$request->account_type])->first();
+        $return[ 'join_fee' ] = 0;
+        $return[ 'party_fee' ] = 0;
+        if($fee->join_status) $return[ 'join_fee' ] = $data->join_fee;
+        if($fee->party_status) $return[ 'party_fee' ] = $data->party_fee;
+        return $return;
     }
 }

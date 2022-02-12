@@ -7,7 +7,7 @@
 @section('content')
 
 <div id="open">
-    <open-component></open-component>
+    <open-component v-bind:seminer="{{$seminer}}"></open-component>
 </div>
 
 @endsection
