@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Consts\ClassConsts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,39 @@ class Account extends Authenticatable
         return Account::where('id',$id)->first();
     }
 
-    public function setConf($id, $request)
+    public static function getAccounts($id, $request)
+    {
+        $max = Account::where('seminer_id',$id)->where('status',1);
+        if($request->join_name){
+            $pat = '%' . addcslashes($request->join_name, '%_\\') . '%';
+            $max = $max->where('name', 'LIKE', $pat );
+        }
+        if($request->join_email){
+            $pat = '%' . addcslashes($request->join_email, '%_\\') . '%';
+            $max = $max->where('email', 'LIKE', $pat );
+        }
+        $page = ($request->page)??1;
+        $limit = ClassConsts::PAGE_LIMIT;
+        $list = Account::select('*')
+            ->selectRaw('DATE_FORMAT(updated_at, "%Y/%m/%d %H:%m:%i") AS date')
+            ->where('seminer_id',$id)
+            ->where('status','1');
+        if($request->join_name){
+            $pat = '%' . addcslashes($request->join_name, '%_\\') . '%';
+            $list = $list->where('name', 'LIKE', $pat );
+        }
+        if($request->join_email){
+            $pat = '%' . addcslashes($request->join_email, '%_\\') . '%';
+            $list = $list->where('email', 'LIKE', $pat );
+        }
+        $list = $list->paginate($limit,['*'],'page',$page);
+
+        $data[ 'list' ] = $list;
+        $data['last' ] = ceil($max->count()/$limit);
+        return $data;
+    }
+
+    public function setConf($id, $request, $account_id = 0)
     {
         $error_message = [];
         $validate = [];
@@ -41,9 +74,15 @@ class Account extends Authenticatable
             if( $value['required']){
                 if($key == "password"){
                    // $validate[ $key ] = ['required', new AlphaNumHalf, 'min:8'];
-                    $validate[ $key ] = ['required'];
+                    if($account_id == 0 ){
+                        $validate[ $key ] = ['required'];
+                    }
                 }else if($key == "email"){
-                    $validate[ $key ] = ['required', 'string', 'email', 'max:255', Rule::unique('accounts', 'email')->where('seminer_id', $id) ];
+                    if($account_id > 0){
+                        $validate[ $key ] = ['required', 'string', 'email', 'max:255', Rule::unique('accounts', 'email')->where('seminer_id', $id)->ignore($account_id ) ];
+                    }else{
+                        $validate[ $key ] = ['required', 'string', 'email', 'max:255', Rule::unique('accounts', 'email')->where('seminer_id', $id) ];
+                    }
                 }else{
                     $validate[ $key ] = 'required';
                 }
@@ -85,7 +124,57 @@ class Account extends Authenticatable
         return $last_insert_id;
     }
 
-    public function sendMail(){
+    public function editData($id, $request, $join_price = 0, $party_price = 0, $account_id )
+    {
 
+        $this->setConf($id, $request, $account_id);
+        $data = Account::find($account_id);
+        $data->seminer_id = $id;
+        $data->account_type = $request->account_type;
+        $data->name = $request->name;
+        $data->name_kana = $request->name_kana;
+        $data->email = $request->email;
+        $data->company = $request->company;
+        $data->tel = $request->tel;
+        $data->address = $request->address;
+        $data->area = $request->area;
+        if($request->party_status){
+            $data->party_status = 1;
+        }else{
+            $data->party_status = 0;
+        }
+        $data->join_price = $join_price;
+        $data->party_price = $party_price;
+        $data->save();
+        return true;
+    }
+
+    public function setPayment($id, $payment_flag = 1){
+        $data = self::find($id);
+        $data->payment_flag = $payment_flag;
+        $data->save();
+    }
+
+    public static function setPaymentAdmin($id, $request){
+        $where['seminer_id'] = $id;
+        $where['id'] = $request->account_id;
+        $data = self::where($where)->first();
+        $data->payment_flag = $request->payment_flag;
+        $data->save();
+    }
+
+    public static function editPassword($id, $account_id, $request){
+        $where['seminer_id'] = $id;
+        $where['id'] = $account_id;
+        $data = self::where($where)->first();
+        if($request->password){
+            $data->password = Hash::make($request->password);
+            if( $data->save()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
 }

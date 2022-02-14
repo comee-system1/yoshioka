@@ -11,6 +11,7 @@ use App\Models\DefineSpaceList;
 // usersで使う定数
 class ClassConsts
 {
+    public const PAGE_LIMIT = 30;
     public const MAIL_TYPE = [
         "join" => "参加登録",
         "endai" => "演題登録",

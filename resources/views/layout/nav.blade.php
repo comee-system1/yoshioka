@@ -3,7 +3,9 @@
     <div class="sidebar-sticky">
         <ul class="nav nav-pills nav-stacked mt-1">
             <li>
-                <a @if(Request::is('admin/join/'.$id) || Request::is('admin/join/new/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('join',['id'=>$id])}}">
+                <a @if(Request::is('admin/join/'.$id)
+                || Request::is('admin/join/new/'.$id)
+                || Request::is('admin/join/edit/'.$id.'/'.$account_id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('join',['id'=>$id])}}">
                 <i class="fas fa-address-card"></i>
                 参加者一覧
                 </a>

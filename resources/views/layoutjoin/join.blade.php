@@ -4,7 +4,7 @@
     <small class="text-danger">{{$account_type->required_text}}</small>
     </div>
     <div class="col-md-6">
-        {{ Form::select('account_type', $accountSelect, old('account_type'), ['class' => 'form-control', 'id' => 'account_type', 'required' => 'required']) }}
+        {{ Form::select('account_type', $accountSelect, $accountdata->account_type??"", ['class' => 'form-control', 'id' => 'account_type', 'required' => 'required']) }}
     </div>
 </div>
 @foreach($account_input as $key=>$value)
@@ -16,7 +16,11 @@
         @endif
         </div>
         <div class="col-md-6">
-            {{ Form::text($value->type, '',['id'=>$value->type, 'class'=>'form-control', 'placeholder'=>$value->text ])}}
+            @if($value->type != 'password' || $pattern == "new")
+                {{ Form::text($value->type, $accountdata[$value->type]??"", ['id'=>$value->type, 'class'=>'form-control', 'placeholder'=>$value->text ])}}
+            @else
+                パスワードの変更は<a href="{{route('join.password',[$id, $account_id])}}">こちら</a>から
+            @endif
         </div>
     </div>
     @endif
@@ -27,7 +31,7 @@
     <div class="row mt-2">
         <div class="col-md-3 d-flex align-items-center">{{$party_flag->title}}</div>
         <div class="col-md-1 text-start">
-            {{Form::checkbox('party_status', '1', false, ['class'=>'h-100 w-100','id'=>'party_status'])}}
+            {{Form::checkbox('party_status', '1', $accountdata->party_status??"", ['class'=>'h-100 w-100','id'=>'party_status'])}}
         </div>
     </div>
 @endif

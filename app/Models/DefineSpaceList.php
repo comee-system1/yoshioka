@@ -68,7 +68,7 @@ class DefineSpaceList extends Model
     public static function calcFee($id, $request)
     {
         $data = self::where(['seminer_id'=>$id, 'master_id'=>$request->account_type])->first();
-        if($request->party_flag){
+        if($request->party_status){
             return $data->join_fee+$data->party_fee;
         }else{
             return $data->join_fee;

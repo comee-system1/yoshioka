@@ -78,7 +78,6 @@ class RegistController extends ControllerOpen
 
         $account = new Account();
         $fee = DefineFee::getData($id);
-
         $prices = DefineSpaceList::calcFees($id,$request,$fee);
         if($lastid = $account->setData($id, $request, $prices["join_fee"], $prices["party_fee"]))
         {
@@ -93,19 +92,20 @@ class RegistController extends ControllerOpen
 
             if($fee->stripe_status)
             {
-                $fee = $prices["join_fee"]+$prices["party_fee"];
+                $amount = $prices["join_fee"]+$prices["party_fee"];
                 //シークレットキー
                 Stripe::setApiKey($fee->stripekey_secret);
                 $charge = Charge::create(array(
-                    'amount' => $fee,
+                    'amount' => $amount,
                     'currency' => 'jpy',
                     'source'=> request()->stripeToken,
                 ));
+                $account->setPayment($lastid);
             }
-            session()->flash('flash_msg', '会員登録を行いました。');
+            session()->flash('flash_msg', '参加登録を行いました。');
             return redirect(route('signin', ['id' => $id, 'uniqcode' => $uniqcode]));
         }else{
-            session()->flash('flash_error', '会員登録に失敗しました。');
+            session()->flash('flash_error', '参加登録に失敗しました。');
         }
     }
 

@@ -50,17 +50,17 @@
                     <div class="col-2 h5">{{ $party->title }}</div>
                     @endif
                 </div>
-            @foreach($accountSelectFee as $key=>$value)
-                @if($request->account_type == $key)
-                <div class="row">
-                    <div class="col-2">{{$value['text']}}</div>
-                    <div class="col-2">&yen;{{$value['join_fee_yen']}}</div>
-                    @if($request->party_flag)
-                    <div class="col-2">&yen;{{$value['party_fee_yen']}}</div>
+                @foreach($accountSelectFee as $key=>$value)
+                    @if($request->account_type == $key)
+                    <div class="row">
+                        <div class="col-2">{{$value['text']}}</div>
+                        <div class="col-2">&yen;{{$value['join_fee_yen']}}</div>
+                        @if($request->party_status)
+                        <div class="col-2">&yen;{{$value['party_fee_yen']}}</div>
+                        @endif
+                    </div>
                     @endif
-                </div>
-                @endif
-            @endforeach
+                @endforeach
             @endif
             </div>
 

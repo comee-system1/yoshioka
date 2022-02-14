@@ -51,8 +51,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/editStatusData', [\App\Http\Controllers\Admin\HomeController::class, 'editStatusData'])->name('editStatusData');
         Route::get('/getDataLists', [\App\Http\Controllers\Admin\HomeController::class, 'getDataLists'])->name('getDataLists');
         Route::get('/join/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
+        Route::any('/join/list/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'list'])->name('join.list');
+        Route::any('/join/payment/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'payment'])->name('join.payment');
         Route::get('/join/new/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
         Route::post('/join/new/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'post'])->name('joinnew.post');
+        Route::get('/join/edit/{id}/{account_id}', [\App\Http\Controllers\Admin\JoinController::class, 'edit'])->name('join.edit');
+        Route::post('/join/edit/{id}/{account_id}', [\App\Http\Controllers\Admin\JoinController::class, 'editpost'])->name('join.editpost');
+        Route::get('/join/edit/password/{id}/{account_id}', [\App\Http\Controllers\Admin\JoinController::class, 'password'])->name('join.password');
+        Route::post('/join/edit/password/{id}/{account_id}', [\App\Http\Controllers\Admin\JoinController::class, 'password_edit'])->name('join.password.post');
         Route::get('/endai/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
         Route::get('/endai/new/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
         Route::get('/time/{id}', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
