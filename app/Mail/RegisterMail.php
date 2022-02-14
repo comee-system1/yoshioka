@@ -40,7 +40,7 @@ class RegisterMail extends Mailable
         //return $this->view('view.name');
         return $this->to($this->address)
         ->subject($this->title)
-        ->view('registers.register_mail')
+        ->text('registers.register_mail')
         ->with(['body' => $this->body]);
     }
 }

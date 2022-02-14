@@ -22,6 +22,11 @@ class ArrayController extends Controller
         return response()->json(ClassConsts::TYPE_LIST);
     }
 
+    public function getMailType()
+    {
+        return response()->json(ClassConsts::MAIL_TYPE);
+    }
+
     public function getSpaceLists($id)
     {
         return response()->json(DefineSpaceList::getData($id));

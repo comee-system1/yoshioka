@@ -22,6 +22,7 @@ class DefineJoinTitle extends Model
         'type',
     ];
 
+    
     public static function getDataType($id, $type="")
     {
         $return = DefineJoinTitle::where('seminer_id', $id);

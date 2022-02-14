@@ -31,6 +31,16 @@ class DefineSpaceList extends Model
         return self::where("seminer_id", $id)->orderBy('master_id', 'asc')->get();
     }
 
+    public static function getDataMaster($id)
+    {
+        $data = self::where("seminer_id", $id)->orderBy('master_id', 'asc')->get();
+        $return = [];
+        foreach($data as $value){
+            $return[$value->master_id] = $value;
+        }
+        return $return;
+    }
+
     public static function editSpaceListData($id, $request)
     {
 

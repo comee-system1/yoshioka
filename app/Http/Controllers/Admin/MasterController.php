@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
 use App\Models\DefineJoinTitle;
+use App\Models\DefineMail;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\DefineTimeTitle;
@@ -32,6 +33,55 @@ class MasterController extends Controller
     public function book($id)
     {
         return view('admin.masterBook', ['id' => $id]);
+    }
+
+    public function mail($id)
+    {
+        return view('admin.masterMail', ['id' => $id]);
+    }
+
+
+    //---------------
+    //メール設定
+    //---------------
+    public function getMailReplace($id, $type = "")
+    {
+        if($type == "endai"){
+            $wherein = [
+                'endai'
+            ];
+            $data[ 'endai' ] = DefineEndaiTitle::where("seminer_id", $id)
+                ->whereIn( 'type', $wherein )
+                ->orderBy("id", "asc")->get();
+        }
+        $wherein = [
+            'account_type',
+            'name',
+            'name_kana',
+            'email',
+            'company',
+            'tel',
+            'address',
+            'tel',
+            'area',
+        ];
+        $data[ 'join' ] = DefineJoinTitle::where("seminer_id", $id)
+            ->whereIn( 'type', $wherein )
+            ->orderBy("id", "asc")->get();
+
+
+        return response()->json($data);
+    }
+
+    public function getMail($id, $type)
+    {
+        $data = DefineMail::getData($id, $type);
+        return response()->json($data);
+    }
+
+    public function editMail($id, Request $request)
+    {
+        DefineMail::editData($id, $request);
     }
 
     //---------------

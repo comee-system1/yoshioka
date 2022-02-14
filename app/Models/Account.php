@@ -25,6 +25,11 @@ class Account extends Authenticatable
         'account_type',
     ];
 
+    public static function getAccount($id)
+    {
+        return Account::where('id',$id)->first();
+    }
+
     public function setConf($id, $request)
     {
         $error_message = [];
@@ -47,12 +52,11 @@ class Account extends Authenticatable
             }
         }
         $error_message['email.unique'] = $error_message['email.required'];
-        $error_message['password.password'] = "ddd";
-
         $validated = $request->validate(
             $validate,
             $error_message
         );
+
     }
 
     public function setData($id, $request, $join_price = 0, $party_price = 0 )
@@ -77,10 +81,11 @@ class Account extends Authenticatable
         $this->party_price = $party_price;
         $this->password = Hash::make($request->password);
         $this->save();
-        return true;
+        $last_insert_id = $this->id;
+        return $last_insert_id;
     }
 
     public function sendMail(){
-        
+
     }
 }

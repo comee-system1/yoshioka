@@ -8,11 +8,12 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Seminer;
+use App\Consts\ClassConsts;
 
 class ControllerOpen extends BaseController
 {
     public $seminer = "";
-
+    public $class;
     //
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -38,6 +39,7 @@ class ControllerOpen extends BaseController
     }
 
     public function pageCheck($request){
+        $this->class = new ClassConsts();
         $ex = explode("/",$request->path());
         if(Seminer::checkSitekey($ex[1], $ex[2])){
             $data = Seminer::getData($ex[1]);

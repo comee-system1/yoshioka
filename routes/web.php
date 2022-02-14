@@ -33,6 +33,7 @@ Route::group(['middleware' => ['account']], function () {
 
 //配列
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
+Route::any('/getMailType', [\App\Http\Controllers\ArrayController::class, 'getMailType'])->name('Array.getMailType');
 Route::any('/getType', [\App\Http\Controllers\ArrayController::class, 'getType'])->name('Array.getType');
 Route::any('/getSpaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getSpaceLists'])->name('Array.spaces');
 Route::any('/getPlaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPlaceLists'])->name('Array.places');
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/getDataLists', [\App\Http\Controllers\Admin\HomeController::class, 'getDataLists'])->name('getDataLists');
         Route::get('/join/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
         Route::get('/join/new/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'new'])->name('joinnew');
+        Route::post('/join/new/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'post'])->name('joinnew.post');
         Route::get('/endai/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'index'])->name('endai');
         Route::get('/endai/new/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
         Route::get('/time/{id}', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
@@ -69,6 +71,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/endai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'endai'])->name('master.endai');
         Route::get('/master/time/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time');
         Route::get('/master/book/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'book'])->name('master.book');
+        Route::get('/master/mail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mail'])->name('master.mail');
 
 
         Route::get('/master/define/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'define'])->name('master.define');
@@ -83,6 +86,10 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/master/defineBook/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineBook'])->name('master.define.book');
         Route::post('/master/defineEditBook/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineEditBook'])->name('master.define.editbook');
+
+        Route::get('/master/getMailReplace/{id}/{type?}', [\App\Http\Controllers\Admin\MasterController::class, 'getMailReplace'])->name('master.define.getMailReplace');
+        Route::get('/master/getMail/{id}/{type?}', [\App\Http\Controllers\Admin\MasterController::class, 'getMail'])->name('master.define.getMail');
+        Route::post('/master/editMail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'editMail'])->name('master.define.editMail');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

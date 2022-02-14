@@ -31,7 +31,9 @@
         <div class="row mt-3" v-for="defineData of defineDatas" :key="defineData.id">
             <div class="row">
                 <div class="col-md-1">
-                    <input type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+                    <input v-if="defineData.type != 'select' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+                    <input v-else type="hidden" v-model="defineData.display_status" />
+
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control w-100" v-model="defineData.title" />

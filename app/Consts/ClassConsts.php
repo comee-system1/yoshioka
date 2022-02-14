@@ -2,9 +2,20 @@
 
 namespace App\Consts;
 
+use App\Models\Account;
+use App\Models\DefineFee;
+use App\Models\DefineJoinTitle;
+use App\Models\DefineSpaceList;
+
+
 // usersで使う定数
 class ClassConsts
 {
+    public const MAIL_TYPE = [
+        "join" => "参加登録",
+        "endai" => "演題登録",
+    ];
+
     public const ENABLE_LIST = [
         1 => "有効",
         0 => "無効",
@@ -65,4 +76,40 @@ class ClassConsts
         1 => "Web掲載(Webページへの掲載)",
         2 => "メール配信(参加者へのメール配信)",
     ];
+
+
+    public static function createArray($array){
+        $return = [];
+        foreach($array as $key=>$value){
+            $return[$value->master_id] = $value->text;
+        }
+        return $return;
+    }
+
+    public static function createArrayFee($array){
+        $return = [];
+        foreach($array as $key=>$value){
+            $return[$value->master_id][ 'text'  ] = $value->text;
+            $return[$value->master_id][ 'join_fee'  ] = $value->join_fee;
+            $return[$value->master_id][ 'join_fee_yen'  ] = number_format($value->join_fee);
+            $return[$value->master_id][ 'party_fee' ] = $value->party_fee;
+            $return[$value->master_id][ 'party_fee_yen'  ] = number_format($value->party_fee);
+        }
+        return $return;
+    }
+
+    public function getDefine($id)
+    {
+        $this->accountSelect = DefineSpaceList::getDataAccount($id);
+        $this->title = DefineJoinTitle::getDataType($id, 'title')->first();
+        $this->button = DefineJoinTitle::getDataType($id, 'button')->first();
+        $this->regist_button = DefineJoinTitle::getDataType($id, 'regist_button')->first();
+        $this->back_button = DefineJoinTitle::getDataType($id, 'back_button')->first();
+        $this->account_type = DefineJoinTitle::getDataType($id, 'account_type')->first();
+        $this->join = DefineJoinTitle::getDataType($id, 'join')->first();
+        $this->party = DefineJoinTitle::getDataType($id, 'party')->first();
+        $this->party_flag = DefineJoinTitle::getDataType($id, 'party_flag')->first();
+        $this->account_input = DefineJoinTitle::getDataType($id, ['name', 'name_kana', 'email', 'password', 'company', 'tel', 'address', 'area' ])->get();
+    }
+
 }
