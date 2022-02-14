@@ -1,7 +1,7 @@
 @section('endai')
 
 <div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">参加者選択</div>
+    <div class="col-md-3 d-flex align-items-center">{{$endaititle['select']->title}}</div>
     <div class="col-md-9">
         @if(isset($user) && $user)
             {{$user->last_name}}
@@ -16,25 +16,25 @@
     </div>
 </div>
 <div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">演題名</div>
+    <div class="col-md-3 d-flex align-items-center">{{$endaititle['endai']->title}}</div>
     <div class="col-md-6">
-        {{ Form::text('endai_name', '',['id'=>'endai_name', 'class'=>'form-control', 'placeholder'=>'演題名を入力' ])}}
+        {{ Form::text('endai', '',['id'=>'endai', 'class'=>'form-control', 'placeholder'=>$endaititle['endai']->text ])}}
     </div>
 </div>
 <div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">演題内容</div>
+    <div class="col-md-3 d-flex align-items-center">{{$endaititle['endai_note']->title}}</div>
     <div class="col-md-6">
-        {{ Form::textarea('endai_note', '',['id'=>'endai_note', 'class'=>'form-control', 'placeholder'=>'演題内容を入力', 'rows'=>3 ])}}
+        {{ Form::textarea('endai_note', '',['id'=>'endai_note', 'class'=>'form-control', 'placeholder'=>$endaititle['endai_note']->text, 'rows'=>3 ])}}
     </div>
 </div>
 <div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">発表形式</div>
+    <div class="col-md-3 d-flex align-items-center">{{$endaititle['radio']->title}}</div>
     <div class="col-md-6">
         <div class="row">
-        @foreach(Classes::ANNOUNCE_LIST[1] as $key=>$val)
+        @foreach($presentationList as $value)
             <div class="col-md-6 mb-2">
-                {{ Form::radio('announce_type', $key, ($key == old('announce_type_id', '' )), ['id' => 'announce_type_id'.$key, ]) }}
-                {{ Form::label('announce_type_id'.$key, $val, ['class' => 'form-check-label']) }}
+                {{ Form::radio('announce_type', $value->master_id, ($value->master_id == old('announce_type_id', '' )), ['id' => 'announce_type_id'.$value->master_id, ]) }}
+                {{ Form::label('announce_type_id'.$value->master_id, $value->text, ['class' => 'form-check-label']) }}
             </div>
         @endforeach
         </div>

@@ -22,6 +22,13 @@ class DefinePresentationList extends Model
         return self::where("seminer_id", $id)->orderBy('master_id', 'asc')->get();
     }
 
+    public static function getDataDisplay($id)
+    {
+        $where['seminer_id'] = $id;
+        $where['display_status'] = 1;
+        return self::where($where)->orderBy('master_id', 'asc')->get();
+    }
+
     public static function editPresentationListData($id, $request)
     {
 

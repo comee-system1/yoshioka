@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DefineFee;
 use App\Models\Account;
+use App\Models\DefineJoinTitle;
 use App\Models\DefineSpaceList;
 
 class JoinController extends Controller
@@ -20,6 +21,7 @@ class JoinController extends Controller
             'id' => $id,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
+            'defineJoinTitle'=>DefineJoinTitle::getDataJoinTitleType($id),
         ]);
     }
 
@@ -70,7 +72,8 @@ class JoinController extends Controller
             'join' => $this->class->join,
             'party' => $this->class->party,
             'party_flag' => $this->class->party_flag,
-            'button' => $this->class->button->title
+            'button' => $this->class->button->title,
+            'defineJoinTitle'=>DefineJoinTitle::getDataJoinTitleType($id),
         ]);
     }
 
@@ -111,7 +114,9 @@ class JoinController extends Controller
             'join' => $this->class->join,
             'party' => $this->class->party,
             'party_flag' => $this->class->party_flag,
-            'button' => $this->class->button->title
+            'button' => $this->class->button->title,
+            'defineJoinTitle'=>DefineJoinTitle::getDataJoinTitleType($id),
+
         ]);
     }
 

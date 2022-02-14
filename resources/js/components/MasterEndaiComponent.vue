@@ -15,9 +15,21 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">ボタン</div>
+            <div class="col-md-2">確認ボタン</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">戻るボタン</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="back_button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">登録ボタン</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="regist_button"  />
             </div>
         </div>
         <div class="row mt-3">
@@ -99,6 +111,8 @@ export default {
             defineDatas: [],
             title:"",
             button:"",
+            back_button:"",
+            regist_button:"",
             type:[],
             showLoading:true,
         }
@@ -132,8 +146,16 @@ export default {
                 // 成功
                 var define = [];
                 var button;
+                var back_button;
+                var regist_button;
                 var title;
                 response['data'].forEach(function(element){
+                    if(element['type'] == "back_button"){
+                        back_button = element;
+                    }else
+                    if(element['type'] == "regist_button"){
+                        regist_button = element;
+                    }else
                     if(element['type'] == "button"){
                         button = element;
                     }else
@@ -144,6 +166,8 @@ export default {
                     }
                 });
                 this.button = button['title'];
+                this.back_button = back_button['title'];
+                this.regist_button = regist_button['title'];
                 this.title = title['title'];
                 this.defineDatas = define;
                 this.showLoading = false;
@@ -161,6 +185,8 @@ export default {
             let postData = {
                 title:this.title,
                 button:this.button,
+                regist_button:this.regist_button,
+                back_button:this.back_button,
                 input:this.defineDatas,
                 presentationLists:this.presentationLists
             };

@@ -22,7 +22,7 @@ class DefineJoinTitle extends Model
         'type',
     ];
 
-    
+
     public static function getDataType($id, $type="")
     {
         $return = DefineJoinTitle::where('seminer_id', $id);
@@ -63,10 +63,9 @@ class DefineJoinTitle extends Model
         }
     }
 
-    public static function getDataJoinTitleType($id){
-
+    public static function getDataJoinTitleType($id)
+    {
         $join_titles = DefineJoinTitle::where(['seminer_id'=>$id])
-        ->whereIn( 'type', [ 'join', 'party' ] )
         ->get();
         $join_title_data = [];
         foreach($join_titles as $join_title){
@@ -74,4 +73,5 @@ class DefineJoinTitle extends Model
         }
         return $join_title_data;
     }
+
 }

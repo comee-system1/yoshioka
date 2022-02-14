@@ -23,6 +23,7 @@ class EndaiController extends Controller
     {
 
         $user = Auth::guard('account')->user();
+        
 
         return view('open.endainew', [
             'type' => $type,

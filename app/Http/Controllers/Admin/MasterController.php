@@ -136,6 +136,8 @@ class MasterController extends Controller
         //タイトルの更新
         DefineEndaiTitle::editDataType($id, $request, "title");
         DefineEndaiTitle::editDataType($id, $request, "button");
+        DefineEndaiTitle::editDataType($id, $request, "regist_button");
+        DefineEndaiTitle::editDataType($id, $request, "back_button");
         DefineEndaiTitle::editDataTypeInput($id, $request, "input");
         //区分設定
         DefinePresentationList::editPresentationListData($id, $request);

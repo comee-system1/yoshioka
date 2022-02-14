@@ -44,4 +44,16 @@ class DefineEndaiTitle extends Model
             $data->save();
         }
     }
+
+    public static function getDataTitle($id){
+        $where = [];
+        $where[ 'seminer_id' ] = $id;
+        $where[ 'display_status' ] = 1;
+        $data = self::where($where)->get();
+        $titles = [];
+        foreach($data as $value){
+            $titles[$value->type] = $value;
+        }
+        return $titles;
+    }
 }

@@ -1,6 +1,6 @@
 @extends('layout.common')
 
-@section('title', 'テスト名ページ')
+@section('title', $seminer->name)
 
 
 @include('layout.header',['title'=>$seminer->name])
