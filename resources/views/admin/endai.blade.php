@@ -1,10 +1,11 @@
 @extends('layout.common')
 
-@section('title', '演題新規登録')
+@section('title', $seminer->name)
 
 
-@include('layout.header',['title'=>'高分子学会'])
+@include('layout.header',['title'=>$seminer->name])
 @include('layout.nav')
+@include('layout.flash')
 
 @section('content')
 
@@ -13,6 +14,7 @@
         <div class="row">
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                @yield('flash')
                 <endai-component v-bind:id={{$id}}></endai-component>
             </main>
         </div>

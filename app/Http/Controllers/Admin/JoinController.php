@@ -136,6 +136,16 @@ class JoinController extends Controller
         }
     }
 
+    public function delete($id, $account_id)
+    {
+        if(Account::deleteAccount($id, $account_id)){
+            session()->flash('flash_msg', '会員情報の削除をおこないました。');
+        }else{
+            session()->flash('flash_error', '会員情報の削除に失敗しました。');
+        }
+        return redirect(route('join', ['id' => $id ]));
+    }
+
     public function payment($id ,Request $request)
     {
         Account::setPaymentAdmin($id, $request);

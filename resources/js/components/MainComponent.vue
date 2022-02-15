@@ -45,9 +45,9 @@
             <tbody>
                 <tr v-for="list in lists" v-bind:key="list.id">
                     <td>
-                        <a v-bind:href="'/admin/join/edit/'+id+'/'+list.id" class="btn btn-success">更新</a>
-                        <a v-bind:href="'/admin/endai/edit/'+id+'/'+list.id" class="btn btn-warning">演題</a>
-                        <a v-bind:href="'/admin/join/delete/'+id+'/'+list.id" class="btn btn-danger">削除</a>
+                        <a v-bind:href="'/admin/join/edit/'+id+'/'+list.id" class="btn btn-sm btn-success">更新</a>
+                        <a v-bind:href="'/admin/endai/edit/'+id+'/'+list.id" class="btn btn-sm btn-warning">演題</a>
+                        <a class="btn btn-sm btn-danger" @click="onClickDelete(id, list.id)" >削除</a>
                     </td>
                     <td>{{list.name}}</td>
                     <td>{{list.email}}</td>
@@ -59,8 +59,8 @@
                         </select>
                     </td>
                     <td>
-                    <button class="btn btn-outline-primary">請求書</button>
-                    <button class="btn btn-outline-success">領収書</button>
+                    <button class="btn btn-outline-primary btn-sm">請求書</button>
+                    <button class="btn btn-outline-success btn-sm">領収書</button>
                     </td>
                     <td>{{list.date}}</td>
                 </tr>
@@ -90,6 +90,12 @@ export default {
         this.page = 1;
     },
     methods: {
+        onClickDelete:function(id, account_id){
+            if (confirm("データの削除をおこないます。")){
+                location.href='/admin/join/delete/'+id+'/'+account_id;
+            }
+            return false;
+        },
         payment:function(id, event){
             this.showLoading = true;
             let postData = {

@@ -1,72 +1,96 @@
 @section('endai')
 
 <div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">{{$endaititle['select']->title}}</div>
-    <div class="col-md-9">
+    <div class="col-md-3 d-flex align-items-center">{{$endaititle['account_id']->title}}
+    &nbsp;<small class="text-danger">{{$endaititle['account_id']->required_text}}</small>
+    </div>
+    <div class="col-md-6">
         @if(isset($user) && $user)
             {{$user->last_name}}
         @else
-            <select name="hoge" class="js-attachSelect2">
-                <option value=1>テスト1</option>
-                <option value=2>テスト2</option>
-                <option value=3>テスト3</option>
-            </select>
+            {{Form::select('account_id', $accountlist, '', ['class' => 'js-attachSelect2', 'placeholder'=>$endaititle['account_id']->text])}}
         @endif
 
     </div>
 </div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">{{$endaititle['endai']->title}}</div>
-    <div class="col-md-6">
-        {{ Form::text('endai', '',['id'=>'endai', 'class'=>'form-control', 'placeholder'=>$endaititle['endai']->text ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">{{$endaititle['endai_note']->title}}</div>
-    <div class="col-md-6">
-        {{ Form::textarea('endai_note', '',['id'=>'endai_note', 'class'=>'form-control', 'placeholder'=>$endaititle['endai_note']->text, 'rows'=>3 ])}}
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">{{$endaititle['radio']->title}}</div>
-    <div class="col-md-6">
-        <div class="row">
-        @foreach($presentationList as $value)
-            <div class="col-md-6 mb-2">
-                {{ Form::radio('announce_type', $value->master_id, ($value->master_id == old('announce_type_id', '' )), ['id' => 'announce_type_id'.$value->master_id, ]) }}
-                {{ Form::label('announce_type_id'.$value->master_id, $value->text, ['class' => 'form-check-label']) }}
-            </div>
-        @endforeach
+@if(!empty($endaititle[ 'name' ]))
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['name']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['name']->required_text}}</small>
+        </div>
+        <div class="col-md-6">
+            {{ Form::text('name', '',['id'=>'name', 'class'=>'form-control', 'placeholder'=>$endaititle['name']->text ])}}
         </div>
     </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">配布資料1</div>
-    <div class="col-md-3">
-        {{Form::file("cover_image_1")}}
+@endif
+@if(!empty($endaititle[ 'note' ]))
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['note']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['note']->required_text}}</small>
+
+        </div>
+        <div class="col-md-6">
+            {{ Form::textarea('note', '',['id'=>'note', 'class'=>'form-control', 'placeholder'=>$endaititle['note']->text, 'rows'=>3 ])}}
+        </div>
     </div>
-    <div class="col-md-3">
-        {{ Form::text('file_1', '',['id'=>'file_1', 'class'=>'form-control', 'placeholder'=>'資料名を入力' ])}}
+@endif
+@if(!empty($endaititle[ 'type' ]))
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['type']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['type']->required_text}}</small>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+            @foreach($presentationList as $value)
+                <div class="col-md-6 mb-2">
+                    {{ Form::radio('type', $value->master_id, ($value->master_id == old('announce_type_id'.$value->master_id, '' )), ['id' => 'announce_type_id'.$value->master_id, ]) }}
+                    {{ Form::label('announce_type_id'.$value->master_id, $value->text, ['class' => 'form-check-label']) }}
+                </div>
+            @endforeach
+            </div>
+        </div>
     </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">配布資料2</div>
-    <div class="col-md-3">
-        {{Form::file("cover_image_2")}}
+@endif
+
+@if(!empty($endaititle[ 'file1' ]))
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['file1']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['file1']->required_text}}</small>
+        </div>
+        <div class="col-md-3">
+            {{Form::file("file1")}}
+        </div>
+        <div class="col-md-3">
+            {{ Form::text('file1_name', '',['id'=>'file1_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file1' ]->text ])}}
+        </div>
     </div>
-    <div class="col-md-3">
-        {{ Form::text('file_2', '',['id'=>'file_2', 'class'=>'form-control', 'placeholder'=>'資料名を入力' ])}}
+@endif
+@if(!empty($endaititle[ 'file2' ]))
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['file2']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['file2']->required_text}}</small>
+        </div>
+        <div class="col-md-3">
+            {{Form::file("file2")}}
+        </div>
+        <div class="col-md-3">
+            {{ Form::text('file2_name', '',['id'=>'file2_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file2' ]->text ])}}
+        </div>
     </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-3 d-flex align-items-center">配布資料3</div>
-    <div class="col-md-3">
-        {{Form::file("cover_image_3")}}
+@endif
+@if(!empty($endaititle[ 'file3' ]))
+    <div class="row mt-2">
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['file3']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['file3']->required_text}}</small>
+        </div>
+        <div class="col-md-3">
+            {{Form::file("file3")}}
+        </div>
+        <div class="col-md-3">
+            {{ Form::text('file3_name', '',['id'=>'file3_name', 'class'=>'form-control', 'placeholder'=>$endaititle[ 'file3' ]->text ])}}
+        </div>
     </div>
-    <div class="col-md-3">
-        {{ Form::text('file_3', '',['id'=>'file_3', 'class'=>'form-control', 'placeholder'=>'資料名を入力' ])}}
-    </div>
-</div>
+@endif
 <div class="row mt-3">
     <div class="col-md-3">
         {{Form::submit($button, ['class'=>'btn btn-primary w-100'])}}

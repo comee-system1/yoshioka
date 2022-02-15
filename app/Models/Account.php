@@ -63,6 +63,18 @@ class Account extends Authenticatable
         return $data;
     }
 
+    public static function getAccountList($id)
+    {
+        $where[ 'seminer_id' ] = $id;
+        $where[ 'status'     ] = 1;
+        $data = self::where($where)->get();
+        $list = [];
+        foreach($data as $value){
+            $list[$value->id] = $value->name;
+        }
+        return $list;
+    }
+
     public function setConf($id, $request, $account_id = 0)
     {
         $error_message = [];
@@ -177,4 +189,17 @@ class Account extends Authenticatable
         }
         return false;
     }
+
+    public static function deleteAccount($id, $account_id){
+        $where['seminer_id'] = $id;
+        $where['id'] = $account_id;
+        $data = self::where($where)->first();
+        $data->status = 0;
+        if($data->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
