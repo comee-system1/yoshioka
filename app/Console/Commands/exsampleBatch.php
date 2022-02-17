@@ -56,7 +56,7 @@ class exsampleBatch extends Command
         $this->title = "ええええ";
         $this->body = "ええええ";
         $this->address = "chiba@innovation-gate.jp";
-        for($i=0;$i<=300;$i++){
+        for($i=0;$i<=2;$i++){
             Mail::raw("ああああああああああああああああ".$i, function($message) use ($i)
             {
 
