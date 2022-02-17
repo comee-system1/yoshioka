@@ -66,7 +66,7 @@ class exsampleBatch extends Command
                 Log::info("----------------------------------------------------------");
 
                 $message->from('from@gmail.com');
-                $message->to("chiba@se-sendai.co.jp")->subject('Hourly Update'.$i);
+                $message->to("chiba@innovation-gate.jp")->subject('Hourly Update'.$i);
             });
         }
         Log::info("一斉メール終了");
