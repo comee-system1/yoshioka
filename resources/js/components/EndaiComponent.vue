@@ -47,7 +47,7 @@
             <tbody>
                 <tr v-for="list of lists" v-bind:key="list.id" >
                     <td class="align-middle">
-                        <button class="btn btn-sm btn-success">更新</button>
+                        <a v-bind:href='"/admin/endai/edit/"+id+"/"+list.id' class="btn btn-sm btn-success">更新</a>
                         <a @click="onClickDelete(id, list.id)" class="btn btn-sm btn-danger" >削除</a>
                     </td>
                     <td class="align-middle">{{list.name}}</td>

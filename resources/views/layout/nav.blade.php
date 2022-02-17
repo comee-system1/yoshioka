@@ -11,7 +11,10 @@
                 </a>
             </li>
             <li >
-                <a @if(Request::is('admin/endai/'.$id) || Request::is('admin/endai/new/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('endai',['id'=>$id])}}">
+                <a @if(Request::is('admin/endai/'.$id)
+                || Request::is('admin/endai/new/'.$id)
+                || (isset($endai_id) && Request::is('admin/endai/edit/'.$id.'/'.$endai_id))
+                ) class="nav-link active" @else class="nav-link" @endif href="{{route('endai',['id'=>$id])}}">
                 <i class="fas fa-microphone-alt"></i>
                 演題一覧
                 </a>

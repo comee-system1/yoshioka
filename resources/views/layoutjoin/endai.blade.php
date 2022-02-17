@@ -8,7 +8,7 @@
         @if(isset($user) && $user)
             {{$user->last_name}}
         @else
-            {{Form::select('account_id', $accountlist, '', ['class' => 'js-attachSelect2', 'placeholder'=>$endaititle['account_id']->text])}}
+            {{Form::select('account_id', $accountlist, $endaiData->account_id??"", ['class' => 'js-attachSelect2', 'placeholder'=>$endaititle['account_id']->text])}}
         @endif
 
     </div>
@@ -19,7 +19,7 @@
         &nbsp;<small class="text-danger">{{$endaititle['name']->required_text}}</small>
         </div>
         <div class="col-md-6">
-            {{ Form::text('name', '',['id'=>'name', 'class'=>'form-control', 'placeholder'=>$endaititle['name']->text ])}}
+            {{ Form::text('name', $endaiData->name??"", ['id'=>'name', 'class'=>'form-control', 'placeholder'=>$endaititle['name']->text ])}}
         </div>
     </div>
 @endif
@@ -30,7 +30,7 @@
 
         </div>
         <div class="col-md-6">
-            {{ Form::textarea('note', '',['id'=>'note', 'class'=>'form-control', 'placeholder'=>$endaititle['note']->text, 'rows'=>3 ])}}
+            {{ Form::textarea('note', $endaiData->note??"", ['id'=>'note', 'class'=>'form-control', 'placeholder'=>$endaititle['note']->text, 'rows'=>3 ])}}
         </div>
     </div>
 @endif
@@ -43,7 +43,7 @@
             <div class="row">
             @foreach($presentationList as $value)
                 <div class="col-md-6 mb-2">
-                    {{ Form::radio('type', $value->master_id, ($value->master_id == old('announce_type_id'.$value->master_id, '' )), ['id' => 'announce_type_id'.$value->master_id, ]) }}
+                    {{ Form::radio('type', $value->master_id, ($value->master_id == old('announce_type_id'.$value->master_id, $endaiData->type??"" )), ['id' => 'announce_type_id'.$value->master_id, ]) }}
                     {{ Form::label('announce_type_id'.$value->master_id, $value->text, ['class' => 'form-check-label']) }}
                 </div>
             @endforeach
@@ -59,9 +59,19 @@
         </div>
         <div class="col-md-3">
             {{Form::file("file1")}}
+            @if(!empty($endaiData->file1))
+                <div class="row mt-1 ">
+                    <div class="col-2">
+                        <a href="/storage/file/{{$endaiData->file1}}" class="link-danger" target=_blank>{{$endaiData->file1_name}}</a>
+                    </div>
+                    <div class="col-2">
+                        <a href="/storage/file/{{$endaiData->file1}}" class="link-danger" target=_blank><i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+                </div>
+            @endif
         </div>
         <div class="col-md-3">
-            {{ Form::text('file1_name', '',['id'=>'file1_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file1' ]->text ])}}
+            {{ Form::text('file1_name', $endaiData->file1_name??"", ['id'=>'file1_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file1' ]->text ])}}
         </div>
     </div>
 @endif
@@ -72,9 +82,14 @@
         </div>
         <div class="col-md-3">
             {{Form::file("file2")}}
+            @if(!empty($endaiData->file2))
+                <div class="row mt-1">
+                    <a href="/storage/file/{{$endaiData->file2}}" class="link-danger" target=_blank>{{$endaiData->file2_name}}</a>
+                </div>
+            @endif
         </div>
         <div class="col-md-3">
-            {{ Form::text('file2_name', '',['id'=>'file2_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file2' ]->text ])}}
+            {{ Form::text('file2_name', $endaiData->file2_name??"", ['id'=>'file2_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file2' ]->text ])}}
         </div>
     </div>
 @endif
@@ -85,11 +100,17 @@
         </div>
         <div class="col-md-3">
             {{Form::file("file3")}}
+            @if(!empty($endaiData->file3))
+                <div class="row mt-1">
+                    <a href="/storage/file/{{$endaiData->file3}}" class="link-danger" target=_blank>{{$endaiData->file3_name}}</a>
+                </div>
+            @endif
         </div>
         <div class="col-md-3">
-            {{ Form::text('file3_name', '',['id'=>'file3_name', 'class'=>'form-control', 'placeholder'=>$endaititle[ 'file3' ]->text ])}}
+            {{ Form::text('file3_name', $endaiData->file3_name??"", ['id'=>'file3_name', 'class'=>'form-control', 'placeholder'=>$endaititle[ 'file3' ]->text ])}}
         </div>
     </div>
+
 @endif
 <div class="row mt-3">
     <div class="col-md-3">

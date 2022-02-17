@@ -11518,6 +11518,17 @@ div.filtertable {
   z-index: 100;
 }
 
+span.select2-selection__rendered {
+  width: 200px !important;
+}
+
+button.regist_button {
+  height: 100px;
+  border: 2px solid #ff0000;
+  z-index: 10;
+  color: #fff;
+}
+
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

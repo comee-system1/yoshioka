@@ -155,8 +155,8 @@ class Account extends Authenticatable
         }else{
             $data->party_status = 0;
         }
-        $data->join_price = $join_price;
-        $data->party_price = $party_price;
+        // $data->join_price = $join_price;
+        // $data->party_price = $party_price;
         $data->save();
         return true;
     }

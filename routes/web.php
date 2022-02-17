@@ -39,6 +39,7 @@ Route::any('/getSpaceLists/{id}', [\App\Http\Controllers\ArrayController::class,
 Route::any('/getPlaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPlaceLists'])->name('Array.places');
 Route::any('/getPresentationLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPresentationLists'])->name('Array.presentaions');
 Route::any('/getDateLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getDateLists'])->name('Array.getDateLists');
+Route::any('/getEndai/{id}/{endai_id}', [\App\Http\Controllers\ArrayController::class, 'getEndai'])->name('Array.getEndai');
 
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
@@ -65,8 +66,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any('/endai/list/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'list'])->name('endai.list');
         Route::get('/endai/new/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'new'])->name('endainew');
         Route::post('/endai/new/{id}', [\App\Http\Controllers\Admin\EndaiController::class, 'post'])->name('endainew.post');
+        Route::get('/endai/edit/{id}/{endai_id}', [\App\Http\Controllers\Admin\EndaiController::class, 'edit'])->name('endai.edit');
+        Route::post('/endai/edit/{id}/{endai_id}', [\App\Http\Controllers\Admin\EndaiController::class, 'editpost'])->name('endai.edit.post');
         Route::get('/endai/delete/{id}/{endai_id}', [\App\Http\Controllers\Admin\EndaiController::class, 'delete'])->name('endai.delete');
         Route::get('/time/{id}', [\App\Http\Controllers\Admin\TimeController::class, 'index'])->name('time');
+        Route::post('/time/{id}', [\App\Http\Controllers\Admin\TimeController::class, 'post'])->name('time.post');
+        Route::get('/time/endai/{id}/{endai_id}', [\App\Http\Controllers\Admin\TimeController::class, 'endai'])->name('time.endai');
         Route::post('/getTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'getTimeTable'])->name('time.getTimeTable');
         Route::post('/setTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'setTimeTable'])->name('time.setTimeTable');
         Route::get('/book/{id}', [\App\Http\Controllers\Admin\BookController::class, 'index'])->name('book');

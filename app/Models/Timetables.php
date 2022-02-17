@@ -26,10 +26,28 @@ class Timetables extends Model
 
     public static function getData($where){
         $time = Timetables::with('programs')
-            ->where('seminer_id',$where['seminer_id'])
-            ->where('place_master_id',$where['place_master_id'])
-            ->where('date',$where['date'])->get();
+            ->where('timetables.seminer_id',$where['seminer_id'])
+            ->where('timetables.place_master_id',$where['place_master_id'])
+            ->where('timetables.date',$where['date'])->first();
+        $endais = self::keyType(Endai::where("seminer_id",$where[ 'seminer_id' ])->get());
+        foreach($time->programs as $k => $value){
+            if($value->endai_id) $time->programs[$k][ 'file1' ] = $endais[$value->endai_id][ 'file1' ];
+            if($value->endai_id) $time->programs[$k][ 'file1_name' ] = $endais[$value->endai_id][ 'file1_name' ];
+            if($value->endai_id) $time->programs[$k][ 'file2' ] = $endais[$value->endai_id][ 'file2' ];
+            if($value->endai_id) $time->programs[$k][ 'file2_name' ] = $endais[$value->endai_id][ 'file2_name' ];
+            if($value->endai_id) $time->programs[$k][ 'file3' ] = $endais[$value->endai_id][ 'file3' ];
+            if($value->endai_id) $time->programs[$k][ 'file3_name' ] = $endais[$value->endai_id][ 'file3_name' ];
+        }
         return $time;
+    }
+
+    public static function keyType($data)
+    {
+        $endai = [];
+        foreach($data as $value){
+            $endai[$value->id] = $value;
+        }
+        return $endai;
     }
 
     public static function setData($seminer_id){

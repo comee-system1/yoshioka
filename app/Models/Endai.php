@@ -43,10 +43,39 @@ class Endai extends Model
         $this->file3_name = $request->file3_name??$filename3;
         $this->save();
         if($filename1) $request->file('file1')->storeAs('public/file',$filename1);
-        if($filename2) $request->file('file2')->storeAs('public/file',$filename1);
-        if($filename3) $request->file('file3')->storeAs('public/file',$filename1);
+        if($filename2) $request->file('file2')->storeAs('public/file',$filename2);
+        if($filename3) $request->file('file3')->storeAs('public/file',$filename3);
         return true;
     }
+
+    public function editData($id, $endai_id, $request)
+    {
+        $this->setConf($id, $request);
+        $filename1 = $this->createFileName($request,"file1");
+        $filename2 = $this->createFileName($request,"file2");
+        $filename3 = $this->createFileName($request,"file3");
+
+        $where = [];
+        $where[ 'seminer_id' ] = $id;
+        $where[ 'id' ] = $endai_id;
+        $data = self::where($where)->first();
+        $data->account_id = $request->account_id;
+        $data->name = $request->name;
+        $data->note = $request->note;
+        $data->type = $request->type;
+        if($filename1) $data->file1 = $filename1;
+        if($filename2) $data->file2 = $filename2;
+        if($filename3) $data->file3 = $filename3;
+        $data->file1_name = $request->file1_name??$data->file1_name;
+        $data->file2_name = $request->file2_name??$data->file2_name;
+        $data->file3_name = $request->file3_name??$data->file3_name;
+        $data->save();
+        if($filename1) $request->file('file1')->storeAs('public/file',$filename1);
+        if($filename2) $request->file('file2')->storeAs('public/file',$filename2);
+        if($filename3) $request->file('file3')->storeAs('public/file',$filename3);
+        return true;
+    }
+
 
     public static function getEndais($id, $request)
     {
@@ -133,5 +162,26 @@ class Endai extends Model
         }else{
             return false;
         }
+    }
+
+    public static function getData($id, $endai_id)
+    {
+        $where['seminer_id'] = $id;
+        $where['id'] = $endai_id;
+        $data = self::where($where)->first();
+        return $data;
+    }
+
+    public static function getEndaiAccount($id)
+    {
+        $data = Endai::selectRaw("accounts.name as account_name")
+            ->selectRaw("accounts.id as accounts_id")
+            ->selectRaw("endais.name")
+            ->selectRaw("endais.id")
+            ->where(['endais.seminer_id'=>$id])
+            ->where(['endais.status'=>1])
+            ->leftJoin('accounts', 'endais.account_id', '=', 'accounts.id')
+            ->get();
+        return $data;
     }
 }

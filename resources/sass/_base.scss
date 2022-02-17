@@ -210,3 +210,18 @@ div.filtertable{
     background-color: rgba(0,0,0,0.75);
     z-index:100;
 }
+
+span.select2-selection__rendered{
+    width:200px !important;
+}
+
+button{
+    &.regist_button{
+        height:100px;
+        border:2px solid #ff0000;
+        z-index:10;
+        color:#fff;
+    }
+
+}
+

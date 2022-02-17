@@ -26,6 +26,39 @@ class EndaiController extends Controller
         ]);
     }
 
+    public function edit($id, $endai_id)
+    {
+
+        $endaititle = DefineEndaiTitle::getDataTitle($id);
+        $presentationList = DefinePresentationList::getDataDisplay($id);
+        $accountlist = Account::getAccountList($id);
+        $endaiData = Endai::getData($id, $endai_id);
+
+        return view('admin.endaiEdit', [
+            'id' => $id,
+            'endai_id' => $endai_id,
+            'seminer' => $this->seminer,
+            'open_url' => $this->seminer->open_url,
+            'endaititle' => $endaititle,
+            'presentationList' => $presentationList,
+            'accountlist' => $accountlist,
+            'endaiData' => $endaiData,
+        ]);
+
+    }
+
+    public function editpost($id, $endai_id, Request $request)
+    {
+        $this->Define();
+        if($lastid = $this->endai->editData($id, $endai_id, $request))
+        {
+            session()->flash('flash_msg', '演題更新を行いました。');
+        }else{
+            session()->flash('flash_error', '演題更新に失敗しました。');
+        }
+        return redirect(route('endai.edit', ['id' => $id, 'endai_id' => $endai_id ]));
+    }
+
     public function new($id)
     {
         $endaititle = DefineEndaiTitle::getDataTitle($id);

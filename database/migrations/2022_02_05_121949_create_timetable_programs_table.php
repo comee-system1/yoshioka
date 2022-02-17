@@ -19,9 +19,9 @@ class CreateTimetableProgramsTable extends Migration
             $table->integer('seminer_id')->default(0);
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            $table->time('account_id')->nullable()->comment('講演者 / 参加者ID');
+            $table->integer('account_id')->nullable()->comment('講演者 / 参加者ID');
             $table->string('account_name')->nullable()->comment('講演者表示名');
-            $table->time('endai_id')->nullable()->comment('演題ID');
+            $table->integer('endai_id')->nullable()->comment('演題ID');
             $table->string('endai_name')->nullable()->comment('演題表示名');
             $table->integer('enabled')->default(0);
             $table->timestamps();

@@ -8,6 +8,7 @@ use App\Models\DefinePlaceList;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\Seminer;
+use App\Models\Endai;
 
 class ArrayController extends Controller
 {
@@ -40,6 +41,13 @@ class ArrayController extends Controller
     public function getPresentationLists($id)
     {
         return response()->json(DefinePresentationList::getData($id));
+    }
+
+    public function getEndai($id,$endai_id)
+    {
+        return response()->json(Endai::getData($id,$endai_id));
+exit();
+
     }
     public function getDateLists($id)
     {
