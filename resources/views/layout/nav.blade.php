@@ -38,7 +38,11 @@
                 </a>
             </li>
             <li>
-                <a @if(Request::is('admin/info/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('info',['id'=>$id])}}">
+                <a @if(
+                    Request::is('admin/info/'.$id) ||
+                    Request::is('admin/info/new/'.$id) ||
+                    (!empty($information_id) && Request::is('admin/info/edit/'.$id.'/'.$information_id))
+                ) class="nav-link active" @else class="nav-link" @endif href="{{route('info',['id'=>$id])}}">
                 <i class="fas fa-info-circle"></i>
                 お知らせ管理
                 </a>

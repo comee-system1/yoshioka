@@ -19,7 +19,12 @@ class BookController extends Controller
         }else{
             $data[ 'filename' ] = '';
         }
-        return view('admin.book', ['id' => $id, 'data' => $data]);
+        return view('admin.book', [
+            'id' => $id,
+            'data' => $data,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
     public function upload($id, Request $request)

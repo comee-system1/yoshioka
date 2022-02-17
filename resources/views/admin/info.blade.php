@@ -1,9 +1,9 @@
 @extends('layout.common')
 
-@section('title', 'テスト名ページ')
+@section('title', $seminer->name)
 
 
-@include('layout.header',['title'=>'高分子学会'])
+@include('layout.header',['title'=>$seminer->name])
 @include('layout.nav')
 
 @section('content')
@@ -13,7 +13,7 @@
         <div class="row">
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <info-component></info-component>
+                <info-component v-bind:id={{$id}}></info-component>
             </main>
         </div>
     </div>

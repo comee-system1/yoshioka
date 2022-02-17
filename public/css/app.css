@@ -11301,7 +11301,7 @@ body {
 }
 
 .w100 {
-  width: 100px;
+  width: 100px !important;
 }
 
 .footer {
@@ -11527,6 +11527,13 @@ button.regist_button {
   border: 2px solid #ff0000;
   z-index: 10;
   color: #fff;
+}
+
+table th.w160 {
+  width: 160px !important;
+}
+table th.w300 {
+  width: 300px !important;
 }
 
 /*!

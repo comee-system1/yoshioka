@@ -34,11 +34,11 @@
                 <a class="page-link" v-on:click="move(i)" >{{i}}</a>
             </li>
         </ul>
-        <table class="table table-hover  mt-3">
+        <table class="table table-hover mt-3">
             <thead>
                 <tr>
-                    <th scope="col">機能</th>
-                    <th scope="col">演題名</th>
+                    <th scope="col" class="w160">機能</th>
+                    <th scope="col" class="w300">演題名</th>
                     <th scope="col">発表者名<br />メールアドレス</th>
                     <th scope="col">配布資料</th>
                     <th scope="col">更新日</th>

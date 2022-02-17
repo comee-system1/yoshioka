@@ -22,6 +22,11 @@ class ClassConsts
         0 => "無効",
     ];
 
+    public const SEND_FLAG = [
+        1 => "配信済",
+        0 => "未配信",
+    ];
+
     public const CLASS_LIST = [
         1 => "非会員",
         2 => "学生",
@@ -75,7 +80,11 @@ class ClassConsts
 
     public const INFO_TYPE = [
         1 => "Web掲載(Webページへの掲載)",
-        2 => "メール配信(参加者へのメール配信)",
+        2 => "メール配信",
+    ];
+    public const INFO_TYPE_DISP = [
+        1 => "Web掲載",
+        2 => "メール配信",
     ];
 
 

@@ -20,7 +20,12 @@ class PayController extends Controller
         $data[ 'space' ] = $space;
         $data[ 'fee'   ] = DefineFee::where(['seminer_id'=>$id])->first();
         $data[ 'join_title' ] = DefineJoinTitle::getDataJoinTitleType($id);
-        return view('admin.pay', ['id' => $id, 'data'=>$data]);
+        return view('admin.pay', [
+            'id' => $id,
+            'data'=>$data,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
     public function post($id, Request $request)

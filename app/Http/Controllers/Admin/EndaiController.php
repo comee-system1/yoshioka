@@ -101,8 +101,6 @@ class EndaiController extends Controller
         }
     }
 
-
-
     public function list($id, Request $request)
     {
         $data = Endai::getEndais($id, $request);

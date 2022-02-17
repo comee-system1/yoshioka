@@ -35,6 +35,7 @@ Route::group(['middleware' => ['account']], function () {
 Route::any('/getSpaceList', [\App\Http\Controllers\ArrayController::class, 'getSpaceList'])->name('Array.space');
 Route::any('/getMailType', [\App\Http\Controllers\ArrayController::class, 'getMailType'])->name('Array.getMailType');
 Route::any('/getType', [\App\Http\Controllers\ArrayController::class, 'getType'])->name('Array.getType');
+Route::any('/getSendFlag', [\App\Http\Controllers\ArrayController::class, 'getSendFlag'])->name('Array.getSendFlag');
 Route::any('/getSpaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getSpaceLists'])->name('Array.spaces');
 Route::any('/getPlaceLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPlaceLists'])->name('Array.places');
 Route::any('/getPresentationLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPresentationLists'])->name('Array.presentaions');
@@ -80,6 +81,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'post'])->name('pay.post');
         Route::get('/info/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('info');
         Route::get('/info/new/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'new'])->name('infonew');
+        Route::post('/info/new/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'post'])->name('infonew.post');
+        Route::any('/info/list/{id}', [\App\Http\Controllers\Admin\InfoController::class, 'list'])->name('info.list');
+        Route::any('/info/delete/{id}/{information_id}', [\App\Http\Controllers\Admin\InfoController::class, 'delete'])->name('info.delete');
+        Route::get('/info/edit/{id}/{information_id}', [\App\Http\Controllers\Admin\InfoController::class, 'edit'])->name('info.edit');
+        Route::post('/info/edit/{id}/{information_id}', [\App\Http\Controllers\Admin\InfoController::class, 'editpost'])->name('info.edit.post');
         Route::get('/invoice/{id}', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
         Route::get('/sponser/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
         Route::get('/sponser/new/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');

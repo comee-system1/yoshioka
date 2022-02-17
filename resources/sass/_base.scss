@@ -7,10 +7,13 @@ body {
     margin-bottom: 60px;
 }
 
-.zindex-100{
+.zindex-100 {
     z-index:100;
 }
-.w100{width:100px;}
+
+.w100 {
+    width:100px !important;
+}
 
 .footer {
     position: absolute;
@@ -225,3 +228,13 @@ button{
 
 }
 
+table {
+    th {
+        &.w160 {
+            width:160px !important;
+        }
+        &.w300 {
+            width:300px !important;
+        }
+    }
+}

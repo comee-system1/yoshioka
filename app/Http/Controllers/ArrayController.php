@@ -28,6 +28,11 @@ class ArrayController extends Controller
         return response()->json(ClassConsts::MAIL_TYPE);
     }
 
+    public function getSendFlag()
+    {
+        return response()->json(ClassConsts::SEND_FLAG);
+    }
+
     public function getSpaceLists($id)
     {
         return response()->json(DefineSpaceList::getData($id));
@@ -46,9 +51,8 @@ class ArrayController extends Controller
     public function getEndai($id,$endai_id)
     {
         return response()->json(Endai::getData($id,$endai_id));
-exit();
-
     }
+
     public function getDateLists($id)
     {
         $seminer = Seminer::find($id);
