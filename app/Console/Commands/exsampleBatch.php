@@ -56,7 +56,7 @@ class exsampleBatch extends Command
         $this->title = "ええええ";
         $this->body = "ええええ";
         $this->address = "chiba@innovation-gate.jp";
-        for($i=0;$i<=2;$i++){
+        for($i=0;$i<=1;$i++){
             Mail::raw("ああああああああああああああああ".$i, function($message) use ($i)
             {
 
@@ -65,8 +65,21 @@ class exsampleBatch extends Command
                 Log::info(date('Y-m-d H:i:s').'メールアドレス::'.$this->address);
                 Log::info("----------------------------------------------------------");
 
-                $message->from('from@gmail.com');
+                $message->from('info@blueracoon85.sakura.ne.jp');
                 $message->to("chiba@innovation-gate.jp")->subject('Hourly Update'.$i);
+            });
+        }
+        for($i=0;$i<=1;$i++){
+            Mail::raw("ああああああああああああああああ".$i, function($message) use ($i)
+            {
+
+                Log::info(date('Y-m-d H:i:s').'タイトル::'.$this->title);
+                Log::info(date('Y-m-d H:i:s').'本文::'.$this->body);
+                Log::info(date('Y-m-d H:i:s').'メールアドレス::'.$this->address);
+                Log::info("----------------------------------------------------------");
+
+                $message->from('info@blueracoon85.sakura.ne.jp');
+                $message->to("chiba@se-sendai.co.jp")->subject('Hourly Update SE-sendai'.$i);
             });
         }
         Log::info("一斉メール終了");
