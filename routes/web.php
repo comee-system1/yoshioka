@@ -41,6 +41,7 @@ Route::any('/getPlaceLists/{id}', [\App\Http\Controllers\ArrayController::class,
 Route::any('/getPresentationLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getPresentationLists'])->name('Array.presentaions');
 Route::any('/getDateLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getDateLists'])->name('Array.getDateLists');
 Route::any('/getEndai/{id}/{endai_id}', [\App\Http\Controllers\ArrayController::class, 'getEndai'])->name('Array.getEndai');
+Route::any('/getSponser/{id}', [\App\Http\Controllers\ArrayController::class, 'getSponser'])->name('Array.getSponser');
 
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
@@ -87,8 +88,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/info/edit/{id}/{information_id}', [\App\Http\Controllers\Admin\InfoController::class, 'edit'])->name('info.edit');
         Route::post('/info/edit/{id}/{information_id}', [\App\Http\Controllers\Admin\InfoController::class, 'editpost'])->name('info.edit.post');
         Route::get('/invoice/{id}', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('invoice');
+        Route::post('/invoice/{id}', [\App\Http\Controllers\Admin\InvoiceController::class, 'post'])->name('invoice.post');
         Route::get('/sponser/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'index'])->name('sponser');
         Route::get('/sponser/new/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'new'])->name('sponsernew');
+        Route::get('/sponser/edit/{id}/{sponser_id}', [\App\Http\Controllers\Admin\SponserController::class, 'edit'])->name('sponser.edit');
+        Route::post('/sponser/edit/{id}/{sponser_id}', [\App\Http\Controllers\Admin\SponserController::class, 'editpost'])->name('sponser.edit.post');
+        Route::post('/sponser/new/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'post'])->name('sponser.post');
+        Route::get('/sponser/delete/{id}/{sponser_id}', [\App\Http\Controllers\Admin\SponserController::class, 'delete'])->name('sponser.delete');
         Route::get('/master/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
         Route::get('/master/endai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'endai'])->name('master.endai');
         Route::get('/master/time/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time');
@@ -112,6 +118,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/getMailReplace/{id}/{type?}', [\App\Http\Controllers\Admin\MasterController::class, 'getMailReplace'])->name('master.define.getMailReplace');
         Route::get('/master/getMail/{id}/{type?}', [\App\Http\Controllers\Admin\MasterController::class, 'getMail'])->name('master.define.getMail');
         Route::post('/master/editMail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'editMail'])->name('master.define.editMail');
+
+        Route::get('/master/invoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'invoice'])->name('master.invoice');
+        Route::get('/master/defineInvoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineInvoice'])->name('master.defineInvoice');
+        Route::any('/master/defineEditInvoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineEditInvoice'])->name('master.defineEditInvoice');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

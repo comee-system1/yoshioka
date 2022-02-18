@@ -11,6 +11,8 @@ use App\Models\DefineSpaceList;
 // usersで使う定数
 class ClassConsts
 {
+    public const SPONSER_PATH = "/public/sponser/";
+
     public const PAGE_LIMIT = 30;
     public const MAIL_TYPE = [
         "join" => "参加登録",

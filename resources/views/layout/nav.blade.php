@@ -50,7 +50,7 @@
             <li>
                 <a @if(Request::is('admin/invoice/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('invoice',['id'=>$id])}}">
                 <i class="fas fa-scroll"></i>
-                領収書管理
+                請求書/領収書管理
                 </a>
             </li>
             <li>

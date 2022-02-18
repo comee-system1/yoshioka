@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
 use App\Models\DefineFee;
+use App\Models\DefineInvoice;
+use App\Models\DefineInvoiceTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefineMail;
 use App\Models\DefinePlaceList;
@@ -17,6 +19,8 @@ use Illuminate\Http\Request;
 use App\Models\Seminer;
 use App\Models\TemplateBookTitle;
 use App\Models\TemplateEndaiTitle;
+use App\Models\TemplateInvoice;
+use App\Models\TemplateInvoiceTitle;
 use App\Models\TemplateJoinTitle;
 use App\Models\TemplateMasterPlace;
 use App\Models\TemplateMasterSpace;
@@ -84,6 +88,9 @@ class HomeController extends Controller
                 DefineBookTitle::insert(TemplateBookTitle::getData($request->template, $seminer_id));
                 DefineFee::insert(DefineFee::getDefault($seminer_id));
                 DefineMail::insert(TemplateMail::getData($request->template, $seminer_id));
+                DefineInvoice::insert(TemplateInvoice::getData($request->template, $seminer_id));
+                DefineInvoiceTitle::insert(TemplateInvoiceTitle::getData($request->template, $seminer_id));
+
             }
     //        DB::commit();
         } catch (Exception $e) {

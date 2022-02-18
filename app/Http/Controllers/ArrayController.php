@@ -9,6 +9,7 @@ use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\Seminer;
 use App\Models\Endai;
+use App\Models\Sponser;
 
 class ArrayController extends Controller
 {
@@ -51,6 +52,16 @@ class ArrayController extends Controller
     public function getEndai($id,$endai_id)
     {
         return response()->json(Endai::getData($id,$endai_id));
+    }
+
+    public function getSponser($id)
+    {
+        $data = Sponser::select('*')
+            ->selectRaw('DATE_FORMAT(updated_at, "%Y/%m/%d %H:%m:%i") AS date')
+            ->where('seminer_id',$id)
+            ->where('status',1)
+            ->get();
+        return response()->json($data);
     }
 
     public function getDateLists($id)

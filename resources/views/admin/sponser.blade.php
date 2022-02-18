@@ -1,10 +1,11 @@
 @extends('layout.common')
 
-@section('title', 'テスト名ページ')
+@section('title',  $seminer->name)
 
 
-@include('layout.header',['title'=>'高分子学会'])
+@include('layout.header',['title'=>$seminer->name])
 @include('layout.nav')
+@include('layout.flash')
 
 @section('content')
 
@@ -13,7 +14,8 @@
         <div class="row">
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <sponser-component></sponser-component>
+                @yield('flash')
+                <sponser-component v-bind:id={{$id}}></sponser-component>
             </main>
         </div>
     </div>

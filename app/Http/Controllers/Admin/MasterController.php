@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
+use App\Models\DefineInvoiceTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefineMail;
 use App\Models\DefinePresentationList;
@@ -17,27 +18,56 @@ class MasterController extends Controller
     //
     public function index($id)
     {
-        return view('admin.master', ['id' => $id]);
+        return view('admin.master', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
     public function endai($id)
     {
-        return view('admin.masterEndai', ['id' => $id]);
+        return view('admin.masterEndai', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
     public function time($id)
     {
-        return view('admin.masterTime', ['id' => $id]);
+        return view('admin.masterTime', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
     public function book($id)
     {
-        return view('admin.masterBook', ['id' => $id]);
+        return view('admin.masterBook', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
     public function mail($id)
     {
-        return view('admin.masterMail', ['id' => $id]);
+        return view('admin.masterMail', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
+    }
+
+    public function invoice($id)
+    {
+        return view('admin.masterInvoice', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
     }
 
 
@@ -170,4 +200,23 @@ class MasterController extends Controller
         return true;
     }
 
+    //-----------
+    //請求書・領収書
+    //-----------
+    public function defineInvoice($id)
+    {
+        $data = DefineInvoiceTitle::where("seminer_id", $id)->get();
+        return response()->json($data);
+    }
+
+    public function defineEditInvoice($id, Request $request)
+    {
+        //タイトルの更新
+        DefineInvoiceTitle::editDataType($id, $request, "invoice");
+        DefineInvoiceTitle::editDataType($id, $request, "receipt");
+        DefineInvoiceTitle::editDataType($id, $request, "payee");
+        DefineInvoiceTitle::editDataType($id, $request, "bill");
+
+        return true;
+    }
 }

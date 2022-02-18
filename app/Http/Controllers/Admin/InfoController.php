@@ -76,6 +76,6 @@ class InfoController extends Controller
 
     public function delete($id, $information)
     {
-        Information::setDelete($id, $information);
+        return Information::setDelete($id, $information);
     }
 }

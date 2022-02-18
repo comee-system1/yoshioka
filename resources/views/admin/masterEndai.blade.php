@@ -1,9 +1,9 @@
 @extends('layout.common')
 
-@section('title', 'マスター管理')
+@section('title', $seminer->name)
 
 
-@include('layout.header',['title'=>'高分子学会'])
+@include('layout.header',['title'=>$seminer->name])
 @include('layout.nav')
 
 @section('content')

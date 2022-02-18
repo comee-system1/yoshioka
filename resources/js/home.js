@@ -22,6 +22,7 @@ Vue.component('master-endai-component', require('./components/MasterEndaiCompone
 Vue.component('master-time-component', require('./components/MasterTimeComponent.vue').default);
 Vue.component('master-book-component', require('./components/MasterBookComponent.vue').default);
 Vue.component('master-mail-component', require('./components/MasterMailComponent.vue').default);
+Vue.component('master-invoice-component', require('./components/MasterInvoiceComponent.vue').default);
 Vue.component('shared-menu-component', require('./components/SharedMenuComponent.vue').default);
 
 /**
