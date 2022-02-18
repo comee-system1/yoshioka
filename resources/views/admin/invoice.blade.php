@@ -1,9 +1,8 @@
 @extends('layout.common')
 
-@section('title', 'テスト名ページ')
+@section('title', $seminer->name)
 
-
-@include('layout.header',['title'=>'高分子学会'])
+@include('layout.header',['title'=>$seminer->name])
 @include('layout.nav')
 
 @section('content')
@@ -16,7 +15,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="container p-3">
                 <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">領収書管理</nav>
-                {{ Form::open(['route' => ['joinnew']]) }}
+                {{ Form::open(['route' => ['invoice', $id ]]) }}
                     <div class="row mt-4">
                         <p class="h4">領収書反映</p>
                         <div class="col-md-2">日付</div>
