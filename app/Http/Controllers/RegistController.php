@@ -12,14 +12,16 @@ use Stripe\Stripe;
 use Stripe\Charge;
 use App\Mail\RegisterMail;
 use App\Models\DefineMail;
+use App\Models\DefineMyPage;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Auth;
 
 class RegistController extends ControllerOpen
 {
-    public function __construct(Request $rquest)
+    public function __construct(Request $request)
     {
-        $this->pageCheck($rquest);
+        $this->pageCheck($request);
+        $this->defineMypage = DefineMyPage::getDataOpen($request->id);
     }
 
     public function index($id, $uniqcode)
@@ -48,13 +50,17 @@ class RegistController extends ControllerOpen
 
     public function conf($id, $uniqcode, Request $request)
     {
+        $accountdata = Auth::guard('account')->user();
         $this->class->getDefine($id);
         $account = new Account();
-        $account->setconf($id, $request);
+        $account->setconf($id, $request, $accountdata->id??'');
+
         return view('open.conf', [
             'id' => $id,
             'uniqcode' => $uniqcode,
             'seminer' => $this->seminer[0],
+            'accountdata' => $accountdata,
+            'defineMypage' => $this->defineMypage,
             'fee' => DefineFee::getData($id),
             'accountSelect' => ClassConsts::createArray($this->class->accountSelect),
             'accountSelectFee' => ClassConsts::createArrayFee($this->class->accountSelect),
@@ -76,10 +82,21 @@ class RegistController extends ControllerOpen
     public function post($id, $uniqcode, Request $request)
     {
 
+        $accountdata = Auth::guard('account')->user();
+        $join_success = DefineJoinTitle::getDataType($id, 'join_success')->first();
+        $join_miss = DefineJoinTitle::getDataType($id, 'join_success')->first();
         $account = new Account();
         $fee = DefineFee::getData($id);
         $prices = DefineSpaceList::calcFees($id,$request,$fee);
-        if($lastid = $account->setData($id, $request, $prices["join_fee"], $prices["party_fee"]))
+
+        if($accountdata) {
+            $account->editData($id, $request, $prices["join_fee"], $prices["party_fee"], $accountdata->id);
+            $lastid = $accountdata->id;
+        }else{
+            $lastid = $account->setData($id, $request, $prices["join_fee"], $prices["party_fee"]);
+        }
+
+        if($lastid)
         {
             //メール配信
             $mailData = DefineMail::getData($id,'join');
@@ -102,19 +119,44 @@ class RegistController extends ControllerOpen
                 ));
                 $account->setPayment($lastid);
             }
-            session()->flash('flash_msg', '参加登録を行いました。');
-            return redirect(route('signin', ['id' => $id, 'uniqcode' => $uniqcode]));
+
+            session()->flash('flash_msg', $join_success->title);
+            if($accountdata){
+                return redirect(route('account.edit', ['id' => $id, 'uniqcode' => $uniqcode]));
+            }else{
+                return redirect(route('signin', ['id' => $id, 'uniqcode' => $uniqcode]));
+            }
+
         }else{
-            session()->flash('flash_error', '参加登録に失敗しました。');
+            session()->flash('flash_error', $join_miss->title);
         }
     }
 
-    public function edit($type, $uniqcode)
+    public function edit($id, $uniqcode)
     {
-
+        $this->class->getDefine($id);
+        $accountdata = Auth::guard('account')->user();
         return view('open.edit', [
-            'type' => $type,
-            'uniqcode' => $uniqcode
+            'id' => $id,
+            'account_id' => $accountdata->id,
+            'accountdata' => $accountdata,
+            'defineMypage' => $this->defineMypage,
+            'uniqcode' => $uniqcode,
+            'seminer' => $this->seminer[0],
+            'fee' => DefineFee::getData($id),
+            'accountSelect' => ClassConsts::createArray($this->class->accountSelect),
+            'accountSelectFee' => ClassConsts::createArrayFee($this->class->accountSelect),
+            'title' => $this->class->title,
+            'account_type' => $this->class->account_type,
+            'account_input' => $this->class->account_input,
+            'join' => $this->class->join,
+            'party' => $this->class->party,
+            'party_flag' => $this->class->party_flag,
+            'button' => $this->class->button->title,
+            'back_button' => $this->class->back_button->title,
+            'password_edit' => $this->class->password_edit,
+            'regist_button' => $this->class->regist_button->title,
+
         ]);
     }
 }

@@ -46,7 +46,7 @@ class ControllerOpen extends BaseController
             $this->seminer = $data;
             return true;
         }else{
-            echo "error";
+            echo "error(1)";
             exit();
         }
 

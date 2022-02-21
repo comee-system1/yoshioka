@@ -15,8 +15,8 @@ class ClassConsts
 
     public const PAGE_LIMIT = 30;
     public const MAIL_TYPE = [
-        "join" => "参加登録",
-        "endai" => "演題登録",
+        "join" => "参加登録・更新メール",
+        "endai" => "演題登録・更新メール",
     ];
 
     public const ENABLE_LIST = [
@@ -121,6 +121,7 @@ class ClassConsts
         $this->join = DefineJoinTitle::getDataType($id, 'join')->first();
         $this->party = DefineJoinTitle::getDataType($id, 'party')->first();
         $this->party_flag = DefineJoinTitle::getDataType($id, 'party_flag')->first();
+        $this->password_edit = DefineJoinTitle::getDataType($id, 'password_edit')->first();
         $this->account_input = DefineJoinTitle::getDataType($id, ['name', 'name_kana', 'email', 'password', 'company', 'tel', 'address', 'area' ])->get();
     }
 

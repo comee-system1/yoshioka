@@ -19,7 +19,11 @@
             @if($value->type != 'password' || $pattern == "new")
                 {{ Form::text($value->type, $accountdata[$value->type]??"", ['id'=>$value->type, 'class'=>'form-control', 'placeholder'=>$value->text ])}}
             @else
-                パスワードの変更は<a href="{{route('join.password',[$id, $account_id])}}">こちら</a>から
+                @isset($open)
+                    {{ Form::text($value->type, "", ['id'=>$value->type, 'class'=>'form-control', 'placeholder'=>$value->text ])}}
+                @else
+                    <a href="{{route('join.password',[$id, $account_id])}}">{{$password_edit->title}}</a>
+                @endif
             @endif
         </div>
     </div>

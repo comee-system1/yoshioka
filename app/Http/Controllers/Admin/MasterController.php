@@ -8,9 +8,11 @@ use App\Models\DefineEndaiTitle;
 use App\Models\DefineInvoiceTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefineMail;
+use App\Models\DefineMyPage;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\DefineTimeTitle;
+use App\Models\DefineTitle;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
@@ -70,12 +72,31 @@ class MasterController extends Controller
         ]);
     }
 
+    public function title($id)
+    {
+        return view('admin.masterTitle', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
+    }
+
+    public function mypage($id)
+    {
+        return view('admin.masterMypage', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
+    }
+
 
     //---------------
     //メール設定
     //---------------
     public function getMailReplace($id, $type = "")
     {
+        $data = [];
         if($type == "endai"){
             $wherein = [
                 'endai'
@@ -187,6 +208,9 @@ class MasterController extends Controller
     {
         //タイトルの更新
         DefineJoinTitle::editDataType($id, $request, "title");
+        DefineJoinTitle::editDataType($id, $request, "join_success");
+        DefineJoinTitle::editDataType($id, $request, "join_miss");
+        DefineJoinTitle::editDataType($id, $request, "password_edit");
         DefineJoinTitle::editDataType($id, $request, "button");
         DefineJoinTitle::editDataType($id, $request, "regist_button");
         DefineJoinTitle::editDataType($id, $request, "back_button");
@@ -218,5 +242,31 @@ class MasterController extends Controller
         DefineInvoiceTitle::editDataType($id, $request, "bill");
 
         return true;
+    }
+
+    //---------
+    //タイトル
+    //---------
+    public function titleEdit($id, Request $request)
+    {
+        DefineTitle::editTitle($id, $request, 'information');
+        DefineTitle::editTitle($id, $request, 'date');
+        DefineTitle::editTitle($id, $request, 'address');
+        DefineTitle::editTitle($id, $request, 'place');
+        DefineTitle::editTitle($id, $request, 'sponser');
+    }
+
+    //------------------
+    //マイページ
+    //-----------------
+    public function mypageEdit($id, Request $request)
+    {
+        DefineMyPage::editMypage($id, $request, 'mypage');
+        DefineMyPage::editMypage($id, $request, 'join');
+        DefineMyPage::editMypage($id, $request, 'endai');
+        DefineMyPage::editMypage($id, $request, 'invoice');
+        DefineMyPage::editMypage($id, $request, 'recipe');
+        DefineMyPage::editMypage($id, $request, 'program');
+        DefineMyPage::editMypage($id, $request, 'download');
     }
 }

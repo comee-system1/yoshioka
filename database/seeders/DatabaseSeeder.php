@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Template_mailsSeeder::class);
         $this->call(Template_invoicesSeeder::class);
         $this->call(Template_invoice_titlesSeeder::class);
+        $this->call(Template_titlesSeeder::class);
+        $this->call(Template_mypagesSeeder::class);
     }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Consts\ClassConsts;
+use App\Models\DefineMyPage;
 use App\Models\DefinePlaceList;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
+use App\Models\DefineTitle;
 use App\Models\Seminer;
 use App\Models\Endai;
 use App\Models\Sponser;
@@ -52,6 +54,16 @@ class ArrayController extends Controller
     public function getEndai($id,$endai_id)
     {
         return response()->json(Endai::getData($id,$endai_id));
+    }
+
+    public function getTitle($id)
+    {
+        return response()->json(DefineTitle::getData($id));
+    }
+
+    public function getMypage($id)
+    {
+        return response()->json(DefineMyPage::getData($id));
     }
 
     public function getSponser($id)

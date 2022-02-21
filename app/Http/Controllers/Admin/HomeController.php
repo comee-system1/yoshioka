@@ -10,10 +10,12 @@ use App\Models\DefineInvoice;
 use App\Models\DefineInvoiceTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefineMail;
+use App\Models\DefineMyPage;
 use App\Models\DefinePlaceList;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\DefineTimeTitle;
+use App\Models\DefineTitle;
 use App\Models\TemplateMasterPresentation;
 use Illuminate\Http\Request;
 use App\Models\Seminer;
@@ -27,6 +29,8 @@ use App\Models\TemplateMasterSpace;
 use App\Models\TemplateTimeTitle;
 use App\Models\Timetables;
 use App\Models\TemplateMail;
+use App\Models\TemplateMyPage;
+use App\Models\TemplateTitle;
 use Exception;
 use Facade\FlareClient\Time\Time;
 
@@ -90,6 +94,8 @@ class HomeController extends Controller
                 DefineMail::insert(TemplateMail::getData($request->template, $seminer_id));
                 DefineInvoice::insert(TemplateInvoice::getData($request->template, $seminer_id));
                 DefineInvoiceTitle::insert(TemplateInvoiceTitle::getData($request->template, $seminer_id));
+                DefineTitle::insert(TemplateTitle::getData($request->template, $seminer_id));
+                DefineMyPage::insert(TemplateMyPage::getData($request->template, $seminer_id));
 
             }
     //        DB::commit();

@@ -30,7 +30,11 @@
                         <button class="btn btn-danger" @click="onClickDelete(id, list.id)">削除</button>
                     </td>
                     <td><img v-if="list.file" v-bind:src="'/storage/sponser/'+list.file" height=60 /></td>
-                    <td>{{list.link}}</td>
+                    <td>
+                        <div v-show="list.link_type == 1">{{list.link}}</div>
+                        <a v-show="list.link_type == 2" v-bind:href="'/storage/sponser/'+list.link_file">アップロードファイル</a>
+
+                    </td>
                     <td>{{list.date}}</td>
                 </tr>
             </tbody>

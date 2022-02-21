@@ -15,20 +15,21 @@ use Illuminate\Support\Facades\Route;
 //ログイン無しで見れるページ
 Route::get('/open/{id}/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'index'])->name('top');
 Route::get('/open/{id}/{uniqcode}/signin', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
-Route::post('/open/{id}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
+Route::post('/open/{id}/{uniqcode}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
 Route::get('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
 Route::post('/open/{id}/{uniqcode}/conf', [\App\Http\Controllers\RegistController::class, 'conf'])->name('regist.conf');
 Route::post('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'post'])->name('regist.post');
 
 Route::group(['middleware' => ['account']], function () {
-    Route::get('/open/{id}/signout/{uniqcode}', [\App\Http\Controllers\SigninController::class, 'signout'])->name('signout');
-    Route::get('/open/{id}/account/{uniqcode}', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
-    Route::get('/open/{id}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'edit'])->name('account.edit');
-    Route::post('/open/{id}/regist/{uniqcode}/edit/', [\App\Http\Controllers\RegistController::class, 'post'])->name('account.post');
-    Route::get('/open/{id}/endai/{uniqcode}/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
-    Route::get('/open/{id}/endai/{uniqcode}/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
-    Route::get('/open/{id}/recipe/{uniqcode}', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
-    Route::get('/open/{id}/program/{uniqcode}', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
+    Route::get('/open/{id}/{uniqcode}/signout', [\App\Http\Controllers\SigninController::class, 'signout'])->name('signout');
+    Route::get('/open/{id}/{uniqcode}/account', [\App\Http\Controllers\AccountController::class, 'index'])->name('account');
+    Route::get('/open/{id}/{uniqcode}/account/edit/', [\App\Http\Controllers\RegistController::class, 'edit'])->name('account.edit');
+    Route::post('/open/{id}/{uniqcode}/account/conf/', [\App\Http\Controllers\RegistController::class, 'conf'])->name('account.conf');
+    Route::post('/open/{id}/{uniqcode}/account/', [\App\Http\Controllers\RegistController::class, 'post'])->name('account.post');
+    Route::get('/open/{id}/{uniqcode}/endai/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
+    Route::get('/open/{id}/{uniqcode}/endai/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
+    Route::get('/open/{id}/{uniqcode}/recipe', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
+    Route::get('/open/{id}/{uniqcode}/program', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
 });
 
 //配列
@@ -42,6 +43,8 @@ Route::any('/getPresentationLists/{id}', [\App\Http\Controllers\ArrayController:
 Route::any('/getDateLists/{id}', [\App\Http\Controllers\ArrayController::class, 'getDateLists'])->name('Array.getDateLists');
 Route::any('/getEndai/{id}/{endai_id}', [\App\Http\Controllers\ArrayController::class, 'getEndai'])->name('Array.getEndai');
 Route::any('/getSponser/{id}', [\App\Http\Controllers\ArrayController::class, 'getSponser'])->name('Array.getSponser');
+Route::any('/getTitle/{id}', [\App\Http\Controllers\ArrayController::class, 'getTitle'])->name('Array.getTitle');
+Route::any('/getMypage/{id}', [\App\Http\Controllers\ArrayController::class, 'getMypage'])->name('Array.getMypage');
 
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
@@ -122,6 +125,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/invoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'invoice'])->name('master.invoice');
         Route::get('/master/defineInvoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineInvoice'])->name('master.defineInvoice');
         Route::any('/master/defineEditInvoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineEditInvoice'])->name('master.defineEditInvoice');
+
+        Route::get('/master/title/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'title'])->name('master.title');
+        Route::any('/master/title/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'titleEdit'])->name('master.edit');
+
+        Route::get('/master/mypage/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mypage'])->name('master.mypage');
+        Route::any('/master/mypage/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mypageEdit'])->name('master.mypageEdit');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

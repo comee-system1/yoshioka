@@ -38,11 +38,12 @@
         @if ( Auth::guard('account')->check()  )
             <div class="row mt-3">
 
-                <div class="col-md-3"><a href="{{route('account.edit',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit') active @endif ">参加情報更新</a></div>
-                <div class="col-md-3"><a href="{{route('account.endai.list',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit.list' || Route::currentRouteName() == 'account.endai.new') active @endif">演題情報一覧</a></div>
-                <div class="col-md-3"><a href="{{route('account.recipe',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100">領収書</a></div>
-                <div class="col-md-3"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">プログラム</a></div>
-                </div>
+                <div class="col-md-2"><a href="{{route('account.edit',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit') active @endif ">参加情報更新</a></div>
+                <div class="col-md-2"><a href="{{route('account.endai.list',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit.list' || Route::currentRouteName() == 'account.endai.new') active @endif">演題情報一覧</a></div>
+                <div class="col-md-2"><a href="{{route('account.recipe',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100">領収書</a></div>
+                <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">プログラム</a></div>
+                <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">資料一括DL</a></div>
+
             </div>
         @endif
     @endif

@@ -39,6 +39,24 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-2">登録成功メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="join_success"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">登録失敗メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="join_miss"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">パスワード変更リンク</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="password_edit"  />
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-md-1"><small>利用有無</small></div>
             <div class="col-md-3"><small>表示名</small></div>
             <div class="col-md-3"><small>例文</small></div>
@@ -141,12 +159,15 @@ export default {
             defineDatas: [],
             title:"",
             button:"",
+            password_edit:"",
             back_button:"",
             regist_button:"",
             join:"",
             party:"",
             party_flag:"",
             joinlink:"",
+            join_success:"",
+            join_miss:"",
             type:[],
             showLoading:true,
         }
@@ -185,10 +206,22 @@ export default {
                 var regist_button;
                 var title;
                 var join;
+                var password_edit;
                 var joinlink;
                 var party;
                 var party_flag;
+                var join_success;
+                var join_miss;
                 response['data'].forEach(function(element){
+                    if(element['type'] == "password_edit"){
+                        password_edit = element;
+                    }else
+                    if(element['type'] == "join_success"){
+                        join_success = element;
+                    }else
+                    if(element['type'] == "join_miss"){
+                        join_miss = element;
+                    }else
                     if(element['type'] == "back_button"){
                         back_button = element;
                     }else
@@ -212,6 +245,10 @@ export default {
                     }
 
                 });
+
+                this.password_edit = password_edit['title'];
+                this.join_success = join_success['title'];
+                this.join_miss = join_miss['title'];
                 this.button = button['title'];
                 this.back_button = back_button['title'];
                 this.regist_button = regist_button['title'];
@@ -242,8 +279,11 @@ export default {
                 party_flag:this.party_flag,
                 join:this.join,
                 joinlink:this.joinlink,
+                password_edit:this.password_edit,
                 input:this.defineDatas,
-                spaceLists:this.spaceLists
+                spaceLists:this.spaceLists,
+                join_success:this.join_success,
+                join_miss:this.join_miss
             };
             axios.post("/admin/master/edit/"+this.id, postData).then(response => {
                 // 成功

@@ -17,7 +17,7 @@
     </ul>
 </div>
 @endif
-<form method="POST" class="form-signin" action="{{route('signin.post', ['id'=>$id])}}">
+<form method="POST" class="form-signin" action="{{route('signin.post', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
     @csrf
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <input type="text" name="email" class="form-control mt-3" placeholder="email" value="{{ old('email') }}" required autofocus>

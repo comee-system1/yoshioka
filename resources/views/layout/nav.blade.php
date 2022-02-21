@@ -54,7 +54,9 @@
                 </a>
             </li>
             <li>
-                <a @if( Request::is('admin/sponser/'.$id) ||
+                <a @if(
+                    Request::is('admin/sponser/'.$id) ||
+                    (!empty($sponser_id) && Request::is('admin/sponser/edit/'.$id."/".$sponser_id)) ||
                 Request::is('admin/sponser/new/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('sponser',['id'=>$id])}}">
                 <i class="fas fa-globe-asia"></i>
                 協賛管理

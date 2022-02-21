@@ -29,18 +29,18 @@ class SigninController extends ControllerOpen
         ]);
     }
 
-    public function post($type, Request $request)
+    public function post($id, Request $request)
     {
         if (Auth::guard('account')->attempt(['email'=> $request->email, 'password'=> $request->password], true)) {
-            return redirect(route('account', ['type'=> $type, 'uniqcode'=> $request->uniqcode]));
+            return redirect(route('account', ['id'=> $id, 'uniqcode'=> $request->uniqcode]));
         } else {
             session()->flash('flash_error', 'メールアドレスかパスワードに誤りがあります。');
-            return redirect(route('signin', ['type'=> $type, 'uniqcode'=> $request->uniqcode]));
+            return redirect(route('signin', ['id'=> $id, 'uniqcode'=> $request->uniqcode]));
         }
     }
-    public function signout($type, $uniqcode)
+    public function signout($id, $uniqcode)
     {
         Auth::guard('account')->logout();
-        return redirect(route('signin', [ 'type'=> $type, 'uniqcode'=> $uniqcode ]));
+        return redirect(route('signin', [ 'id'=> $id, 'uniqcode'=> $uniqcode ]));
     }
 }

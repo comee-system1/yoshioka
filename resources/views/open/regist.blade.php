@@ -4,7 +4,11 @@
 
 
 @include('openlayout.header',['title'=>'ログイン'])
-@include('layoutjoin.join', ['button' => $button, 'open'=> 1 ])
+@include('layoutjoin.join', [
+    'button' => $button,
+    'open'=> 1,
+    'pattern'=> 'new',
+    ])
 
 @section('content')
 

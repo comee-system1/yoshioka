@@ -39,7 +39,7 @@
                             <div class="col-md-3 d-flex align-items-center">内容</div>
                             <div class="col-md-6">
                                 {{ Form::radio('display_type', 'note', ('note' == (!empty($information->display_type)?$information->display_type:'note') ), ['id' => 'display_type1' ]) }} お知らせ内容の表示
-                                {{ Form::textarea('note', $information->note??"", ['id'=>'note', 'class'=>'form-control', 'placeholder'=>'内容を入力', 'rows'=>3 ])}}
+                                {{ Form::textarea('note', $information->note??"", ['id'=>'note', 'class'=>'form-control', 'placeholder'=>'内容を入力', 'rows'=>8 ])}}
                             </div>
                         </div>
                         <div class="row mt-2">

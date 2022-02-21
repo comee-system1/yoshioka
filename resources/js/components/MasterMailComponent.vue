@@ -90,6 +90,7 @@ export default {
             axios.get("/admin/master/getMailReplace/"+this.id+"/"+this.type, postData).then(response => {
                 // 成功
                 this.replaces = response['data'];
+                console.log(response['data']);
                 this.showLoading = false;
                 this.getMail();
             }).catch(error => {
@@ -103,7 +104,6 @@ export default {
             this.showLoading = true;
             axios.get("/admin/master/getMail/"+this.id+"/"+this.type, postData).then(response => {
                 // 成功
-                console.log(response[ 'data' ]);
                 this.subject = response['data'][ 'subject' ];
                 this.body = response['data'][ 'body' ];
                 this.showLoading = false;

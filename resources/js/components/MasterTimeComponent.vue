@@ -123,7 +123,7 @@ export default {
 
             }).catch(error => {
                 // 失敗
-                alert("error2");
+                alert("error");
             });
         },
         edit:function(key,value){

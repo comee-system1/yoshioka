@@ -1,6 +1,6 @@
 @extends('openlayout.common')
 
-@section('title', 'トップページ')
+@section('title', $seminer->name)
 
 @include('openlayout.header',['title'=>'toppage'])
 

@@ -115,6 +115,7 @@ class JoinController extends Controller
             'party' => $this->class->party,
             'party_flag' => $this->class->party_flag,
             'button' => $this->class->button->title,
+            'password_edit' => $this->class->password_edit,
             'defineJoinTitle'=>DefineJoinTitle::getDataJoinTitleType($id),
 
         ]);

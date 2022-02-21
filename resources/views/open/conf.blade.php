@@ -1,10 +1,14 @@
 @extends('openlayout.common')
 
-@section('title', 'ログインページ')
+@section('title', $seminer->name)
 
 
-@include('openlayout.header',['title'=>'ログイン'])
-@include('layoutjoin.join', ['button' => $button, 'open'=> 1 ])
+@include('openlayout.header')
+@include('layoutjoin.join', [
+    'button' => $button,
+    'open'=> 1,
+    'pattern'=> 'new',
+    ])
 
 @section('content')
 
@@ -17,9 +21,20 @@
         @endforeach
         </div>
         @endif
-        <form method="POST" class="mt-3" action="{{route('regist.post', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
+        @if($accountdata)
+            <form method="POST" class="mt-3" action="{{route('account.post', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
+        @else
+            <form method="POST" class="mt-3" action="{{route('regist.post', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
+        @endif
             @csrf
-            <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
+
+            @isset($accountdata)
+                @isset($defineMypage['join']->title) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title}}</div>@endif
+                @isset($defineMypage['join']->text) <div class="h6 mb-3 font-weight-normal">{{$defineMypage['join']->text}}</div>@endif
+            @else
+                <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
+            @endif
+
             <div class="row mt-2">
                 <div class="col-md-3 d-flex align-items-center">{{$account_type->title}}&nbsp;
                 </div>

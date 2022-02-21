@@ -79,6 +79,7 @@ class Account extends Authenticatable
     {
         $error_message = [];
         $validate = [];
+
         $define_join_titles = DefineJoinTitle::getDataType($id, $this->fillable)->get();
         //todo::openテーブルを作成後IDを取得後登録を行う
         foreach($define_join_titles as $value ){
@@ -130,7 +131,9 @@ class Account extends Authenticatable
         }
         $this->join_price = $join_price;
         $this->party_price = $party_price;
-        $this->password = Hash::make($request->password);
+        if($request->password){
+            $this->password = Hash::make($request->password);
+        }
         $this->save();
         $last_insert_id = $this->id;
         return $last_insert_id;

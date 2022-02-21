@@ -1,10 +1,14 @@
 @extends('openlayout.common')
 
-@section('title', 'ログインページ')
+@section('title', $seminer->name)
 
 
-@include('openlayout.header',['title'=>'ログイン'])
-@include('layoutjoin.join', ['button' => '更新'])
+@include('openlayout.header')
+@include('layoutjoin.join', [
+    'button' => $button,
+    'pattern'=>'edit',
+    'open'=>true
+    ])
 
 @section('content')
 
@@ -17,9 +21,14 @@
         @endforeach
         </div>
         @endif
-        <form method="POST" class="mt-3" action="{{route('account.post', ['type'=>$type, 'uniqcode'=>$uniqcode])}}">
+        <form method="POST" class="mt-3" action="{{route('account.conf', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
             @csrf
-            <h1 class="h3 mb-3 font-weight-normal">参加情報更新</h1>
+            @isset($accountdata)
+                @isset($defineMypage['join']->title) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title}}</div>@endif
+                @isset($defineMypage['join']->text) <div class="h6 mb-3 font-weight-normal">{{$defineMypage['join']->text}}</div>@endif
+            @else
+                <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
+            @endif
             @yield('join')
 
         </form>

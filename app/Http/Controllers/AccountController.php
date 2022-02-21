@@ -5,18 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Account;
+use App\Models\DefineMyPage;
 
-class AccountController extends Controller
+class AccountController extends ControllerOpen
 {
+    public function __construct(Request $rquest)
+    {
+        $this->pageCheck($rquest);
+    }
     //
-    public function index($type, $uniqcode)
+    public function index($id, $uniqcode)
     {
         $user = Auth::guard('account')->user();
+        $mypage = DefineMyPage::getDataOpen($id);
 
         return view('open.account', [
-            'type' => $type,
+            'id' => $id,
             'uniqcode' => $uniqcode,
-            'user' => $user
+            'seminer' => $this->seminer[0],
+            'user' => $user,
+            'mypage' => $mypage,
         ]);
     }
 }

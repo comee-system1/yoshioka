@@ -81,4 +81,12 @@ class Sponser extends Model
         return $data->save();
     }
 
+    public static function getSponser($id)
+    {
+        $data = self::where([
+            'seminer_id'=>$id,
+            'status'=>1,
+        ])->get();
+        return $data;
+    }
 }

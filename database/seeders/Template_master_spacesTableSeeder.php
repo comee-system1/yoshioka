@@ -98,7 +98,7 @@ class Template_master_spacesTableSeeder extends Seeder
             ],
             [
             'master_id' => '5',
-            'text' => 'Sponsors',
+            'text' => 'Sponsers',
             'template_code' => '2',
             'sort' => '5',
             'created_at' => date('Y-m-d H:i:s'),
