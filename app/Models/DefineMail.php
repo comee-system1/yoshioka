@@ -52,4 +52,20 @@ class DefineMail extends Model
 
         return $text;
     }
+
+    public static function textReplaceEndai($text, $account, $endai, $id)
+    {
+        $account_type = DefineSpaceList::getDataMaster($id);
+        $text = preg_replace("/##account_type##/", $account_type[$account->account_type]->text, $text);
+        $text = preg_replace("/##name##/", $account->name, $text);
+        $text = preg_replace("/##name_kana##/", $account->name_kana, $text);
+        $text = preg_replace("/##company##/", $account->company, $text);
+        $text = preg_replace("/##tel##/", $account->tel, $text);
+        $text = preg_replace("/##address##/", $account->address, $text);
+        $text = preg_replace("/##area##/", $account->area, $text);
+        $text = preg_replace("/##email##/", $account->email, $text);
+        $text = preg_replace("/##endai##/", $endai->name, $text);
+
+        return $text;
+    }
 }

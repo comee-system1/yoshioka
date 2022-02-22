@@ -18,7 +18,6 @@ class EndaiController extends Controller
     //
     public function index($id)
     {
-
         return view('admin.endai', [
             'id' => $id,
             'seminer'=>$this->seminer,

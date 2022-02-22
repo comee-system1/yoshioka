@@ -37,10 +37,16 @@
     @else
         @if ( Auth::guard('account')->check()  )
             <div class="row mt-3">
+                @isset($defineMypage[ 'join' ])
+                <div class="col-md-2"><a href="{{route('account.edit',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit') active @endif ">{{$defineMypage['join']->title}}</a></div>
+                @endif
 
-                <div class="col-md-2"><a href="{{route('account.edit',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit') active @endif ">参加情報更新</a></div>
-                <div class="col-md-2"><a href="{{route('account.endai.list',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.edit.list' || Route::currentRouteName() == 'account.endai.new') active @endif">演題情報一覧</a></div>
+                @isset($defineMypage[ 'endai' ])
+                <div class="col-md-2"><a href="{{route('account.endai.list',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.endai.list' || Route::currentRouteName() == 'account.endai.new' ) active @endif">{{$defineMypage['endai']->title}}</a></div>
+                @endif
+
                 <div class="col-md-2"><a href="{{route('account.recipe',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100">領収書</a></div>
+
                 <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">プログラム</a></div>
                 <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">資料一括DL</a></div>
 

@@ -33,6 +33,30 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-2">更新ボタン</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="edit_button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">削除ボタン</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="delete_button"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">登録成功メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="endai_success"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">登録失敗メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="endai_fail"  />
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-md-1"><small>利用有無</small></div>
             <div class="col-md-3"><small>表示名</small></div>
             <div class="col-md-3"><small>例文</small></div>
@@ -114,6 +138,10 @@ export default {
             button:"",
             back_button:"",
             regist_button:"",
+            edit_button:"",
+            delete_button:"",
+            endai_success:"",
+            endai_fail:"",
             type:[],
             showLoading:true,
         }
@@ -149,10 +177,26 @@ export default {
                 var button;
                 var back_button;
                 var regist_button;
+                var edit_button;
+                var delete_button;
+                var endai_success;
+                var endai_fail;
                 var title;
                 response['data'].forEach(function(element){
+                    if(element['type'] == "endai_fail"){
+                        endai_fail = element;
+                    }else
+                    if(element['type'] == "endai_success"){
+                        endai_success = element;
+                    }else
                     if(element['type'] == "back_button"){
                         back_button = element;
+                    }else
+                    if(element['type'] == "edit_button"){
+                        edit_button = element;
+                    }else
+                    if(element['type'] == "delete_button"){
+                        delete_button = element;
                     }else
                     if(element['type'] == "regist_button"){
                         regist_button = element;
@@ -168,7 +212,11 @@ export default {
                 });
                 this.button = button['title'];
                 this.back_button = back_button['title'];
+                this.endai_success = endai_success['title'];
+                this.endai_fail = endai_fail['title'];
                 this.regist_button = regist_button['title'];
+                this.edit_button = edit_button['title'];
+                this.delete_button = delete_button['title'];
                 this.title = title['title'];
                 this.defineDatas = define;
                 this.showLoading = false;
@@ -187,7 +235,11 @@ export default {
                 title:this.title,
                 button:this.button,
                 regist_button:this.regist_button,
+                edit_button:this.edit_button,
+                delete_button:this.delete_button,
                 back_button:this.back_button,
+                endai_success:this.endai_success,
+                endai_fail:this.endai_fail,
                 input:this.defineDatas,
                 presentationLists:this.presentationLists
             };

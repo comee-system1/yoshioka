@@ -12,7 +12,7 @@ class Endai extends Model
 
     protected $fillable = [
         'account_id',
-        'name',
+        'endai',
         'note',
         'type',
         'file1',
@@ -32,7 +32,7 @@ class Endai extends Model
 
         $this->seminer_id = $id;
         $this->account_id = $request->account_id;
-        $this->name = $request->name;
+        $this->name = $request->endai;
         $this->note = $request->note;
         $this->type = $request->type;
         $this->file1 = $filename1;
@@ -48,6 +48,26 @@ class Endai extends Model
         return true;
     }
 
+    public function setDataOpen($id, $request)
+    {
+        $this->setConf($id, $request);
+
+        $this->seminer_id = $id;
+        $this->account_id = $request->account_id;
+        $this->name = $request->endai;
+        $this->note = $request->note;
+        $this->type = $request->type;
+        $this->file1 = $request->filename1;
+        $this->file2 = $request->filename2;
+        $this->file3 = $request->filename3;
+        $this->file1_name = $request->file1_name??$request->filename1;
+        $this->file2_name = $request->file2_name??$request->filename2;
+        $this->file3_name = $request->file3_name??$request->filename3;
+        $this->save();
+        $last_insert_id = $this->id;
+        return $last_insert_id;
+    }
+
     public function editData($id, $endai_id, $request)
     {
         $this->setConf($id, $request);
@@ -60,7 +80,7 @@ class Endai extends Model
         $where[ 'id' ] = $endai_id;
         $data = self::where($where)->first();
         $data->account_id = $request->account_id;
-        $data->name = $request->name;
+        $data->name = $request->endai;
         $data->note = $request->note;
         $data->type = $request->type;
         if($filename1) $data->file1 = $filename1;
@@ -183,5 +203,20 @@ class Endai extends Model
             ->leftJoin('accounts', 'endais.account_id', '=', 'accounts.id')
             ->get();
         return $data;
+    }
+
+    public static function getFileuploadName($type)
+    {
+        if(!request()->file($type)) return null;
+        $uploadfilename = request()->file($type)->getClientOriginalName();
+        $ext = pathinfo($uploadfilename, PATHINFO_EXTENSION);
+        $filename = uniqid().".".$ext;
+        request()->file($type)->storeAs('public/file',$filename);
+        return $filename;
+    }
+
+    public static function getEndaiData($id)
+    {
+        return self::find($id)->first();
     }
 }

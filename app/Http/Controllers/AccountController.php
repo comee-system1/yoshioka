@@ -17,14 +17,14 @@ class AccountController extends ControllerOpen
     public function index($id, $uniqcode)
     {
         $user = Auth::guard('account')->user();
-        $mypage = DefineMyPage::getDataOpen($id);
+        $defineMypage = DefineMyPage::getDataOpen($id);
 
         return view('open.account', [
             'id' => $id,
             'uniqcode' => $uniqcode,
             'seminer' => $this->seminer[0],
             'user' => $user,
-            'mypage' => $mypage,
+            'defineMypage' => $defineMypage,
         ]);
     }
 }

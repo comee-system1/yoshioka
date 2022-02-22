@@ -20,12 +20,15 @@ class SigninController extends ControllerOpen
     {
 
         $joinlink = DefineJoinTitle::getDataType($id, 'joinlink')->first();
-
+        $account = Auth::guard('account')->user();
+        if($account){
+            return redirect(route('account', ['id' => $id, 'uniqcode' => $uniqcode ]));
+        }
         return view('open.login', [
             'id' => $id,
             'uniqcode' => $uniqcode,
             'seminer' => $this->seminer[0],
-            'joinlink' => $joinlink
+            'joinlink' => $joinlink,
         ]);
     }
 

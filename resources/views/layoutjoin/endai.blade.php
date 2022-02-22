@@ -5,21 +5,22 @@
     &nbsp;<small class="text-danger">{{$endaititle['account_id']->required_text}}</small>
     </div>
     <div class="col-md-6">
-        @if(isset($user) && $user)
-            {{$user->last_name}}
+        @if(isset($account) && $account)
+            {{$account->name}}
+            {{Form::hidden('account_id',$account->id)}}
         @else
             {{Form::select('account_id', $accountlist, $endaiData->account_id??"", ['class' => 'js-attachSelect2', 'placeholder'=>$endaititle['account_id']->text])}}
         @endif
 
     </div>
 </div>
-@if(!empty($endaititle[ 'name' ]))
+@if(!empty($endaititle[ 'endai' ]))
     <div class="row mt-2">
-        <div class="col-md-3 d-flex align-items-center">{{$endaititle['name']->title}}
-        &nbsp;<small class="text-danger">{{$endaititle['name']->required_text}}</small>
+        <div class="col-md-3 d-flex align-items-center">{{$endaititle['endai']->title}}
+        &nbsp;<small class="text-danger">{{$endaititle['endai']->required_text}}</small>
         </div>
         <div class="col-md-6">
-            {{ Form::text('name', $endaiData->name??"", ['id'=>'name', 'class'=>'form-control', 'placeholder'=>$endaititle['name']->text ])}}
+            {{ Form::text('endai', $endaiData->name??"", ['id'=>'endai', 'class'=>'form-control', 'placeholder'=>$endaititle['endai']->text ])}}
         </div>
     </div>
 @endif

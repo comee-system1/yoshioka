@@ -1,26 +1,27 @@
 @extends('openlayout.common')
 
-@section('title', 'ログインページ')
+@section('title', $seminer->name)
 
 
-@include('openlayout.header',['title'=>'ログイン'])
+@include('openlayout.header')
 
 @section('content')
 
 <main role="main" class="container">
-    <h1 class="h3 mb-3 font-weight-normal mt-3">演題情報一覧</h1>
+    <h1 class="h3 mb-3 font-weight-normal mt-3">{{$defineMypage['endai']->title}}</h1>
+    <div class="h6 mb-3 font-weight-normal mt-3">{{$defineMypage['endai']->text}}</div>
 
     <div class="row">
         <div class="text-end col-md-12">
-            <a href="{{route('account.endai.new',['type'=>$type, 'uniqcode'=>$uniqcode])}}" class="btn btn-primary" >演題追加</a>
+            <a href="{{route('account.endai.new', ['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-primary" >{{$endaititle['title']->title}}</a>
         </div>
     </div>
     <div class="row mt-3">
         <table class="table table-bordered">
             <tr>
-                <th class="bg-primary text-white">機能</th>
-                <th class="bg-primary text-white">演題</th>
-                <th class="bg-primary text-white">配布資料</th>
+                <th class="bg-primary text-white">&nbsp;</th>
+                <th class="bg-primary text-white">{{$endaititle['endai']->title}}</th>
+                <th class="bg-primary text-white">&nbsp;</th>
             </tr>
             <tr>
                 <td class="w-25">
