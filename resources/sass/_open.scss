@@ -139,7 +139,10 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto;
 }
 
-pre{
+div{
+    &.space_text{
+        white-space: break-spaces;
+    }
     &.info_text{
         max-height: 40px;
         overflow: hidden;

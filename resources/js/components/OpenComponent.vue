@@ -8,7 +8,7 @@
                     <p class="blog-post-meta">{{info.date}}</p>
                     <p class="h5">{{info.title}}</p>
                     <!-- <pre v-bind:class="{ info_text: isActive }" >{{info.note}}</pre> -->
-                    <pre v-bind:class="[ isActive === true && infokey !== info.id ? 'info_text' : '' ]" >{{info.note}}</pre>
+                    <div v-bind:class="[ isActive === true && infokey !== info.id ? 'info_text' : '' , 'space_text' ]" >{{info.note}}</div>
                     【<a v-on:click="addInfo(info.id)">＋</a>】
                     <hr>
                     </div>

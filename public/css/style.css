@@ -11434,7 +11434,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin: auto;
 }
 
-pre.info_text {
+div.space_text {
+  white-space: break-spaces;
+}
+div.info_text {
   max-height: 40px;
   overflow: hidden;
 }
