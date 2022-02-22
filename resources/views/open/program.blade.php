@@ -1,13 +1,13 @@
 @extends('openlayout.common')
 
-@section('title', 'トップページ')
+@section('title', $seminer->name)
 
-@include('openlayout.header',['title'=>'toppage'])
+@include('openlayout.header')
 
 @section('content')
 
 <div id="open">
-    <program-component ></program-component>
+    <program-component v-bind:data="{{$data}}" ></program-component>
 </div>
 
 @endsection

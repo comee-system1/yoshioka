@@ -68,6 +68,25 @@ class Endai extends Model
         return $last_insert_id;
     }
 
+    public function editDataOpen($id, $endai_id, $request)
+    {
+        $this->setConf($id, $request);
+
+        $data = self::find($endai_id);
+
+        $data->name = $request->endai;
+        $data->note = $request->note;
+        $data->type = $request->type;
+        if($request->filename1) $data->file1 = $request->filename1;
+        if($request->filename2) $data->file2 = $request->filename2;
+        if($request->filename3) $data->file3 = $request->filename3;
+        $data->file1_name = $request->file1_name??$data->file1;
+        $data->file2_name = $request->file2_name??$data->file2;
+        $data->file3_name = $request->file3_name??$data->file3;
+        $data->save();
+        return true;
+    }
+
     public function editData($id, $endai_id, $request)
     {
         $this->setConf($id, $request);
@@ -217,6 +236,14 @@ class Endai extends Model
 
     public static function getEndaiData($id)
     {
-        return self::find($id)->first();
+        return self::find($id);
+    }
+
+    public static function getEndaiLists($id)
+    {
+        $where[ 'status' ] = 1;
+        $where[ 'seminer_id' ] = $id;
+        $data = self::where($where)->get();
+        return $data;
     }
 }

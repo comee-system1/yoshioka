@@ -221,7 +221,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-            'title' => '参加登録に成功しました',
+            'title' => '処理に成功しました',
             'text' => '',
             'template_code' => '1',
             'required' => '0',
@@ -233,7 +233,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-            'title' => '参加登録に失敗しました',
+            'title' => '処理に失敗しました',
             'text' => '',
             'template_code' => '1',
             'required' => '0',
@@ -461,7 +461,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-            'title' => 'Successful registration',
+            'title' => 'Successful ',
             'text' => '',
             'template_code' => '2',
             'required' => '0',
@@ -473,7 +473,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-            'title' => 'Registration failed',
+            'title' => 'failed',
             'text' => '',
             'template_code' => '2',
             'required' => '0',

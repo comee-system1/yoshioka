@@ -58,4 +58,15 @@ class DefineTimeTitle extends Model
         }
 
     }
+
+    public static function getOpenData($id)
+    {
+        $data = self::where('seminer_id', $id)->get();
+        $list = [];
+        foreach( $data as $key=>$value){
+            $list[$value->type] = $value;
+        }
+        return  $list;
+    }
+
 }

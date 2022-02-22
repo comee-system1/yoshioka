@@ -23,4 +23,22 @@ class TimetableProgrames extends Model
         'enabled'
     ];
 
+    public static function getOpenData($id, $timetable_id)
+    {
+        $data = self::select('timetable_programes.*')
+                ->selectRaw('endais.file1')
+                ->selectRaw('endais.file2')
+                ->selectRaw('endais.file3')
+                ->selectRaw('endais.file1_name')
+                ->selectRaw('endais.file2_name')
+                ->selectRaw('endais.file3_name')
+                ->selectRaw('accounts.name as accountName')
+                ->leftJoin('endais', 'endais.id', '=', 'timetable_programes.endai_id')
+                ->leftJoin('accounts', 'endais.account_id', '=', 'accounts.id')
+                ->where('timetable_programes.seminer_id', $id)
+                ->where('timetable_programes.timetable_id', $timetable_id)
+                ->where('timetable_programes.enabled',1)
+                ->get();
+        return $data;
+    }
 }

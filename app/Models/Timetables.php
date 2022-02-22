@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DefinePlaceList;
 use App\Models\TimetableProgrames;
+use Facade\FlareClient\Time\Time;
 
 class Timetables extends Model
 {
@@ -23,6 +24,15 @@ class Timetables extends Model
         'weburl',
         'enabled',
     ];
+
+    public static function getOpenData($id, $master_id, $date){
+        $where = [];
+        $where[ 'seminer_id' ] = $id;
+        $where[ 'place_master_id' ] = $master_id;
+        $where[ 'date' ] = $date;
+        $data = Timetables::where($where)->first();
+        return $data;
+    }
 
     public static function getData($where){
         $time = Timetables::with('programs')

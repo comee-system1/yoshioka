@@ -9,3 +9,13 @@ import Router from 'vue-router'
 
 
 require('./bootstrap');
+
+$(function(){
+    $(".delete").on("click",function(){
+        if(confirm($("#delete_check").val())){
+            return true;
+        }else{
+            return false;
+        }
+    });
+});

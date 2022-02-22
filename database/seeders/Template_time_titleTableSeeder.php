@@ -35,7 +35,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => '時刻',
             'template_code' => '1',
-            'type' => 'td',
+            'type' => 'td1',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -43,7 +43,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => '講演者',
             'template_code' => '1',
-            'type' => 'td',
+            'type' => 'td2',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -51,7 +51,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => '演題名',
             'template_code' => '1',
-            'type' => 'td',
+            'type' => 'td3',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -59,7 +59,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => 'ダウンロード資料',
             'template_code' => '1',
-            'type' => 'td',
+            'type' => 'td4',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -83,7 +83,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => 'TIME',
             'template_code' => '2',
-            'type' => 'td',
+            'type' => 'td1',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -91,7 +91,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => 'Speaker',
             'template_code' => '2',
-            'type' => 'td',
+            'type' => 'td2',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -99,7 +99,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => 'Title of the presentation',
             'template_code' => '2',
-            'type' => 'td',
+            'type' => 'td3',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -107,7 +107,7 @@ class Template_time_titleTableSeeder extends Seeder
             [
             'title' => 'Download document',
             'template_code' => '2',
-            'type' => 'td',
+            'type' => 'td4',
             'display_status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

@@ -2,7 +2,7 @@
 @include('layoutjoin.endai', [
     'button'=>$endaititle['button']->title,
     'account'=>$account])
-@section('title', $seminer->title)
+@section('title', $seminer->name)
 @include('openlayout.header')
 @include('layout.flash')
 
@@ -19,7 +19,7 @@
         @endforeach
         </div>
         @endif
-        {{ Form::open(['route' => ['account.endai.conf','id'=>$id, 'uniqcode'=>$uniqcode] , "method" => "POST", "enctype" => "multipart/form-data" ]) }}
+        {{ Form::open(['route' => ['account.endai.conf','id'=>$id, 'uniqcode'=>$uniqcode, 'endai_id'=>$endai_id??""] , "method" => "POST", "enctype" => "multipart/form-data" ]) }}
             {{ csrf_field() }}
             @yield('endai')
         {{ Form::close() }}

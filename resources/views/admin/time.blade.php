@@ -54,26 +54,24 @@
 
                     </div>
 
-
-
+                    <hr />
                     @if($programlist)
                         <button class="btn btn-info position-fixed end-0 bottom-0 m-3 regist_button" id="setting_save" >プログラム保存</button>
-                        <div class="row mt-2"  >
-                            <div class="col-md-8">
-                                <p class="m-0">Web用URL</p>
-                                {{ Form::text("weburl", $programlist->weburl, ['id'=>"weburl", 'class'=>'form-control', 'placeholder'=>"動画配信用URLを入力してください" ])}}
-
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <p class="m-0">表示・非表示設定</p>
-                            <div class="col-md-6">
+                        <div class="row mt-4">
+                            <div class="col-md-3">
+                                <p class="m-0">表示・非表示設定</p>
                                 <div class="btn-group mr-2">
                                     <button class="@if($programlist->enabled == 1) active @endif btn btn-sm btn-outline-danger w100 timetable_enable" id="timetable_enable-1" >表示</button>
                                     <button class="@if($programlist->enabled == 0) active @endif btn btn-sm btn-outline-danger w100 timetable_enable" id="timetable_enable-0" >非表示</button>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <p class="m-0">Web用URL</p>
+                                {{ Form::text("weburl", $programlist->weburl, ['id'=>"weburl", 'class'=>'form-control', 'placeholder'=>"動画配信用URLを入力してください" ])}}
+
+                            </div>
                         </div>
+
                         <div class="row mt-5 position-relative" >
                             <table class="table table-bordered">
                                 <tr class="bg-primary text-white">

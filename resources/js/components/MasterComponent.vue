@@ -39,13 +39,13 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">登録成功メッセージ</div>
+            <div class="col-md-2">成功メッセージ</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="join_success"  />
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">登録失敗メッセージ</div>
+            <div class="col-md-2">失敗メッセージ</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="join_miss"  />
             </div>

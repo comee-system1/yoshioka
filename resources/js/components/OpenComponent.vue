@@ -21,7 +21,7 @@
                     </div>
                     <div v-show="seminer.title.address.status == 1">
                         <p class="h4">{{seminer.title.address.title}}</p>
-                        <p>{{seminer.address}}</p>
+                        <pre>{{ seminer.address }}</pre>
                     </div>
                     <div v-show="seminer.title.place.status == 1">
                         <p class="h4">{{seminer.title.place.title}}</p>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="blog-post">
-                    <h2 class="blog-post-title">{{seminer.title.sponser.title}}</h2>
+                    <div class="h4">{{seminer.title.sponser.title}}</div>
                     <div class="row">
                         <div class="col-md-2" v-for="sponser in seminer.sponser" v-bind:key="sponser.id" >
                             <a v-bind:href="[sponser.link_type == 1 ?sponser.link:'/storage/sponser/'+sponser.link_file]" target=_blank><img v-bind:src="'/storage/sponser/'+sponser.file" class="w-100" /></a>

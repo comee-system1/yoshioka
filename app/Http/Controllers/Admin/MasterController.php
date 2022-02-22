@@ -193,6 +193,7 @@ class MasterController extends Controller
         DefineEndaiTitle::editDataType($id, $request, "back_button");
         DefineEndaiTitle::editDataType($id, $request, "endai_success");
         DefineEndaiTitle::editDataType($id, $request, "endai_fail");
+        DefineEndaiTitle::editDataType($id, $request, "delete_check");
         DefineEndaiTitle::editDataTypeInput($id, $request, "input");
         //区分設定
         DefinePresentationList::editPresentationListData($id, $request);

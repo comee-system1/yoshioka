@@ -45,15 +45,21 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">登録成功メッセージ</div>
+            <div class="col-md-2">成功メッセージ</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="endai_success"  />
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">登録失敗メッセージ</div>
+            <div class="col-md-2">失敗メッセージ</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="endai_fail"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">削除確認メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="delete_check"  />
             </div>
         </div>
         <div class="row mt-3">
@@ -142,6 +148,7 @@ export default {
             delete_button:"",
             endai_success:"",
             endai_fail:"",
+            delete_check:"",
             type:[],
             showLoading:true,
         }
@@ -181,8 +188,12 @@ export default {
                 var delete_button;
                 var endai_success;
                 var endai_fail;
+                var delete_check;
                 var title;
                 response['data'].forEach(function(element){
+                    if(element['type'] == "delete_check"){
+                        delete_check = element;
+                    }else
                     if(element['type'] == "endai_fail"){
                         endai_fail = element;
                     }else
@@ -218,6 +229,7 @@ export default {
                 this.edit_button = edit_button['title'];
                 this.delete_button = delete_button['title'];
                 this.title = title['title'];
+                this.delete_check = delete_check['title'];
                 this.defineDatas = define;
                 this.showLoading = false;
 
@@ -240,6 +252,7 @@ export default {
                 back_button:this.back_button,
                 endai_success:this.endai_success,
                 endai_fail:this.endai_fail,
+                delete_check:this.delete_check,
                 input:this.defineDatas,
                 presentationLists:this.presentationLists
             };

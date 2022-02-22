@@ -28,10 +28,15 @@ Route::group(['middleware' => ['account']], function () {
     Route::post('/open/{id}/{uniqcode}/account/', [\App\Http\Controllers\RegistController::class, 'post'])->name('account.post');
     Route::get('/open/{id}/{uniqcode}/endai/list', [\App\Http\Controllers\EndaiController::class, 'list'])->name('account.endai.list');
     Route::get('/open/{id}/{uniqcode}/endai/new', [\App\Http\Controllers\EndaiController::class, 'new'])->name('account.endai.new');
-    Route::post('/open/{id}/{uniqcode}/endai/conf', [\App\Http\Controllers\EndaiController::class, 'conf'])->name('account.endai.conf');
+    Route::post('/open/{id}/{uniqcode}/endai/conf/{endai_id?}', [\App\Http\Controllers\EndaiController::class, 'conf'])->name('account.endai.conf');
     Route::post('/open/{id}/{uniqcode}/endai/post', [\App\Http\Controllers\EndaiController::class, 'post'])->name('account.endai.post');
+    Route::get('/open/{id}/{uniqcode}/endai/edit/{endai_id}', [\App\Http\Controllers\EndaiController::class, 'edit'])->name('account.endai.edit');
+    Route::post('/open/{id}/{uniqcode}/endai/edit/{endai_id}', [\App\Http\Controllers\EndaiController::class, 'editpost'])->name('account.endai.editpost');
+
+    Route::get('/open/{id}/{uniqcode}/endai/delete/{endai_id}', [\App\Http\Controllers\EndaiController::class, 'delete'])->name('account.endai.delete');
+
     Route::get('/open/{id}/{uniqcode}/recipe', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
-    Route::get('/open/{id}/{uniqcode}/program', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
+    Route::get('/open/{id}/{uniqcode}/program/{place_master_id?}', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
 });
 
 //配列

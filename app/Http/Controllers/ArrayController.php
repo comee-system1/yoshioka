@@ -76,7 +76,7 @@ class ArrayController extends Controller
         return response()->json($data);
     }
 
-    public function getDateLists($id)
+    public function getDateLists($id, $return = 0)
     {
         $seminer = Seminer::find($id);
         $start = substr($seminer->start_date,0,10);
@@ -88,7 +88,11 @@ class ArrayController extends Controller
             $list[$no][ 'date' ] = $i;
             $no++;
         }
-        return response()->json($list);
+        if($return){
+            return $list;
+        }else{
+            return response()->json($list);
+        }
     }
 
     public static function getDateData($id)

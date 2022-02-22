@@ -21,7 +21,7 @@
         @endforeach
         </div>
         @endif
-        <form method="POST" class="mt-3" action="{{route('account.conf', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
+        <form method="POST" class="mt-3" action="{{route('account.conf', ['id'=>$id, 'uniqcode'=>$uniqcode, 'endai_id'=>$endai_id??''])}}">
             @csrf
             @isset($accountdata)
                 @isset($defineMypage['join']->title) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title}}</div>@endif

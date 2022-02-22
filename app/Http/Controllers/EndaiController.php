@@ -28,13 +28,16 @@ class EndaiController extends ControllerOpen
 
         $endaititle = DefineEndaiTitle::getDataTitle($id);
         $user = Auth::guard('account')->user();
+        $endailists = Endai::getEndaiLists($id);
+
         return view('open.endai', [
             'id' => $id,
             'uniqcode' => $uniqcode,
             'user' => $user,
             'seminer' => $this->seminer[0],
             'defineMypage' => $this->defineMypage,
-            'endaititle' => $endaititle
+            'endaititle' => $endaititle,
+            'endailists' => $endailists,
         ]);
     }
 
@@ -60,7 +63,7 @@ class EndaiController extends ControllerOpen
         ]);
     }
 
-    public function conf($id, $uniqcode, Request $request)
+    public function conf($id, $uniqcode, Request $request, $endai_id=0)
     {
 
         $this->endai->setConf($id, $request);
@@ -79,6 +82,7 @@ class EndaiController extends ControllerOpen
         return view('open.endaiconf', [
             'id' => $id,
             'uniqcode' => $uniqcode,
+            'endai_id' => $endai_id,
             'account' => $account,
             'seminer' => $this->seminer[0],
             'endaititle' => $endaititle,
@@ -92,13 +96,7 @@ class EndaiController extends ControllerOpen
 
     }
 
-    public function post($id, $uniqcode, Request $request)
-    {
-        $this->endai = new Endai();
-        $endaiTitle = DefineEndaiTitle::getDataTitle($id);
-        if($lastid = $this->endai->setDataOpen($id, $request))
-        {
-
+    public function sendMail($id, $lastid){
             //メール配信
             $mailData = DefineMail::getData($id,'endai');
             $endaiData = Endai::getEndaiData($lastid);
@@ -108,7 +106,15 @@ class EndaiController extends ControllerOpen
             $mail['body'] = DefineMail::textReplaceEndai($mailData->body, $account, $endaiData, $id);
             $mail['title'] = DefineMail::textReplaceEndai($mailData->subject, $account, $endaiData, $id);
             Mail::send(new RegisterMail($mail));
+    }
 
+    public function post($id, $uniqcode, Request $request)
+    {
+        $this->endai = new Endai();
+        $endaiTitle = DefineEndaiTitle::getDataTitle($id);
+        if($lastid = $this->endai->setDataOpen($id, $request))
+        {
+            $this->sendMail($id, $lastid);
             session()->flash('flash_msg', $endaiTitle[ 'endai_success' ]->title);
             return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
         }else{
@@ -117,5 +123,54 @@ class EndaiController extends ControllerOpen
         }
     }
 
+    public function editpost($id, $uniqcode, $endai_id, Request $request)
+    {
+        $this->endai = new Endai();
+        $endaiTitle = DefineEndaiTitle::getDataTitle($id);
+        if($lastid = $this->endai->editDataOpen($id, $endai_id, $request))
+        {
+            $this->sendMail($id, $lastid);
+            session()->flash('flash_msg', $endaiTitle[ 'endai_success' ]->title);
+            return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
+        }else{
+            session()->flash('flash_error', $endaiTitle[ 'endai_fail' ]->title);
+            return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
+        }
+    }
+
+    public function edit($id, $uniqcode, $endai_id)
+    {
+        $endaititle = DefineEndaiTitle::getDataTitle($id);
+        $presentationList = DefinePresentationList::getDataDisplay($id);
+        $accountlist = Account::getAccountList($id);
+
+        $account = Auth::guard('account')->user();
+        $endaiData = Endai::getEndaiData($endai_id);
+        return view('open.endainew', [
+            'id' => $id,
+            'uniqcode' => $uniqcode,
+            'endai_id' => $endai_id,
+            'account' => $account,
+            'seminer' => $this->seminer[0],
+            'endaititle' => $endaititle,
+            'presentationList' => $presentationList,
+            'accountlist' => $accountlist,
+            'defineMypage' => $this->defineMypage,
+            'endaiData' => $endaiData,
+        ]);
+    }
+
+    public function delete($id, $uniqcode, $endai_id)
+    {
+        $endaiTitle = DefineEndaiTitle::getDataTitle($id);
+
+        if(Endai::deleteData($id, $endai_id)){
+            session()->flash('flash_msg', $endaiTitle[ 'endai_success' ]->title);
+            return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
+        }else{
+            session()->flash('flash_error', $endaiTitle[ 'endai_fail' ]->title);
+            return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
+        }
+    }
 
 }

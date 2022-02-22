@@ -62,11 +62,8 @@
             {{Form::file("file1")}}
             @if(!empty($endaiData->file1))
                 <div class="row mt-1 ">
-                    <div class="col-2">
+                    <div class="col-6">
                         <a href="/storage/file/{{$endaiData->file1}}" class="link-danger" target=_blank>{{$endaiData->file1_name}}</a>
-                    </div>
-                    <div class="col-2">
-                        <a href="/storage/file/{{$endaiData->file1}}" class="link-danger" target=_blank><i class="glyphicon glyphicon-trash"></i></a>
                     </div>
                 </div>
             @endif
@@ -85,7 +82,9 @@
             {{Form::file("file2")}}
             @if(!empty($endaiData->file2))
                 <div class="row mt-1">
-                    <a href="/storage/file/{{$endaiData->file2}}" class="link-danger" target=_blank>{{$endaiData->file2_name}}</a>
+                    <div class="col-6">
+                        <a href="/storage/file/{{$endaiData->file2}}" class="link-danger" target=_blank>{{$endaiData->file2_name}}</a>
+                    </div>
                 </div>
             @endif
         </div>
@@ -103,7 +102,9 @@
             {{Form::file("file3")}}
             @if(!empty($endaiData->file3))
                 <div class="row mt-1">
-                    <a href="/storage/file/{{$endaiData->file3}}" class="link-danger" target=_blank>{{$endaiData->file3_name}}</a>
+                    <div class="col-6">
+                        <a href="/storage/file/{{$endaiData->file3}}" class="link-danger" target=_blank>{{$endaiData->file3_name}}</a>
+                    </div>
                 </div>
             @endif
         </div>

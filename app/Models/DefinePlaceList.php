@@ -24,6 +24,11 @@ class DefinePlaceList extends Model
         return self::where("seminer_id", $id)->orderBy('sort', 'asc')->get();
     }
 
+    public static function getOpenPlaceLists($id)
+    {
+        return self::where("seminer_id", $id)->where("display_status", 1)->orderBy('sort', 'asc')->get();
+    }
+
     public static function editDataType($id, $request, $type)
     {
         $data = DefinePlaceList::where('type', $type)
@@ -52,5 +57,10 @@ class DefinePlaceList extends Model
             $data->save();
         }
         */
+    }
+
+    public static function getFirst($id)
+    {
+        return self::where("seminer_id", $id)->where("display_status", 1)->orderBy('sort', 'asc')->first();
     }
 }
