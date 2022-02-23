@@ -73,7 +73,7 @@
         <div class="row mt-3" v-for="defineData of defineDatas" :key="defineData.id">
             <div class="row">
                 <div class="col-md-1">
-                    <input v-if="defineData.type != 'account_id' && defineData.type != 'name' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+                    <input v-if="defineData.type != 'account_id' && defineData.type != 'endai' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
                     <input v-else type="hidden" v-model="defineData.display_status" />
 
                 </div>
@@ -84,7 +84,7 @@
                     <input type="text" class="form-control w-100" v-model="defineData.text"  />
                 </div>
                 <div class="col-md-1">
-                    <input v-if="defineData.type != 'account_id' && defineData.type != 'name' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
+                    <input v-if="defineData.type != 'account_id' && defineData.type != 'endai' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
                     <input v-else type="hidden" v-model="defineData.type" />
                 </div>
                 <div class="col-md-2">

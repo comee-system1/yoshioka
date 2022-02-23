@@ -46,7 +46,7 @@
                 <tr v-for="list in lists" v-bind:key="list.id">
                     <td>
                         <a v-bind:href="'/admin/join/edit/'+id+'/'+list.id" class="btn btn-sm btn-success">更新</a>
-                        <a v-bind:href="'/admin/endai/edit/'+id+'/'+list.id" class="btn btn-sm btn-warning">演題</a>
+                        <!-- <a v-bind:href="'/admin/endai/edit/'+id+'/'+list.id" class="btn btn-sm btn-warning">演題</a> -->
                         <a class="btn btn-sm btn-danger" @click="onClickDelete(id, list.id)" >削除</a>
                     </td>
                     <td>{{list.name}}</td>
@@ -59,8 +59,8 @@
                         </select>
                     </td>
                     <td>
-                    <button class="btn btn-outline-primary btn-sm">請求書</button>
-                    <button class="btn btn-outline-success btn-sm">領収書</button>
+                    <a class="btn btn-outline-primary btn-sm" v-bind:href="'/admin/recipe/'+id+'/'+list.id+'/invoice'">請求書</a>
+                    <a class="btn btn-outline-success btn-sm" v-bind:href="'/admin/recipe/'+id+'/'+list.id+'/recipe'">領収書</a>
                     </td>
                     <td>{{list.date}}</td>
                 </tr>

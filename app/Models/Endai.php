@@ -34,7 +34,7 @@ class Endai extends Model
         $this->account_id = $request->account_id;
         $this->name = $request->endai;
         $this->note = $request->note;
-        $this->type = $request->type;
+        $this->type = sprintf("%d",$request->type);
         $this->file1 = $filename1;
         $this->file2 = $filename2;
         $this->file3 = $filename3;
@@ -56,7 +56,7 @@ class Endai extends Model
         $this->account_id = $request->account_id;
         $this->name = $request->endai;
         $this->note = $request->note;
-        $this->type = $request->type;
+        $this->type = sprintf("%d",$request->type);
         $this->file1 = $request->filename1;
         $this->file2 = $request->filename2;
         $this->file3 = $request->filename3;
@@ -76,7 +76,7 @@ class Endai extends Model
 
         $data->name = $request->endai;
         $data->note = $request->note;
-        $data->type = $request->type;
+        $data->type = sprintf("%d",$request->type);
         if($request->filename1) $data->file1 = $request->filename1;
         if($request->filename2) $data->file2 = $request->filename2;
         if($request->filename3) $data->file3 = $request->filename3;
@@ -101,7 +101,7 @@ class Endai extends Model
         $data->account_id = $request->account_id;
         $data->name = $request->endai;
         $data->note = $request->note;
-        $data->type = $request->type;
+        $data->type = sprintf("%d",$request->type);
         if($filename1) $data->file1 = $filename1;
         if($filename2) $data->file2 = $filename2;
         if($filename3) $data->file3 = $filename3;
@@ -239,10 +239,11 @@ class Endai extends Model
         return self::find($id);
     }
 
-    public static function getEndaiLists($id)
+    public static function getEndaiLists($id, $account)
     {
         $where[ 'status' ] = 1;
         $where[ 'seminer_id' ] = $id;
+        $where[ 'account_id' ] = $account->id;
         $data = self::where($where)->get();
         return $data;
     }

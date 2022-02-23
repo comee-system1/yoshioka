@@ -35,8 +35,11 @@ Route::group(['middleware' => ['account']], function () {
 
     Route::get('/open/{id}/{uniqcode}/endai/delete/{endai_id}', [\App\Http\Controllers\EndaiController::class, 'delete'])->name('account.endai.delete');
 
-    Route::get('/open/{id}/{uniqcode}/recipe', [\App\Http\Controllers\RecipeController::class, 'index'])->name('account.recipe');
+    Route::get('/open/{id}/{account_id}/recipe', [\App\Http\Controllers\RecipeController::class, 'recipe'])->name('account.recipe');
+    Route::get('/open/{id}/{account_id}/invoice', [\App\Http\Controllers\RecipeController::class, 'invoice'])->name('account.invoice');
     Route::get('/open/{id}/{uniqcode}/program/{place_master_id?}', [\App\Http\Controllers\ProgramController::class, 'index'])->name('account.program');
+    Route::get('/open/{id}/{uniqcode}/book/download/', [\App\Http\Controllers\BookController::class, 'download'])->name('book.download');
+
 });
 
 //配列
@@ -138,6 +141,9 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/master/mypage/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mypage'])->name('master.mypage');
         Route::any('/master/mypage/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mypageEdit'])->name('master.mypageEdit');
+
+        Route::get('/recipe/{id}/{account_id}/recipe', [\App\Http\Controllers\RecipeController::class, 'recipe'])->name('pdf.recipe');
+        Route::get('/recipe/{id}/{account_id}/invoice', [\App\Http\Controllers\RecipeController::class, 'invoice'])->name('pdf.invoice');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

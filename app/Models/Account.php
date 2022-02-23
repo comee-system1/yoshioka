@@ -117,7 +117,7 @@ class Account extends Authenticatable
         $this->setConf($id, $request);
 
         $this->seminer_id = $id;
-        $this->account_type = $request->account_type;
+        $this->account_type = sprintf("%d",$request->account_type);
         $this->name = $request->name;
         $this->name_kana  = $request->name_kana;
         $this->email  = $request->email;
@@ -145,7 +145,7 @@ class Account extends Authenticatable
         $this->setConf($id, $request, $account_id);
         $data = Account::find($account_id);
         $data->seminer_id = $id;
-        $data->account_type = $request->account_type;
+        $data->account_type = sprintf("%d",$request->account_type);
         $data->name = $request->name;
         $data->name_kana = $request->name_kana;
         $data->email = $request->email;

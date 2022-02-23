@@ -34,7 +34,8 @@ class SigninController extends ControllerOpen
 
     public function post($id, Request $request)
     {
-        if (Auth::guard('account')->attempt(['email'=> $request->email, 'password'=> $request->password], true)) {
+
+        if (Auth::guard('account')->attempt(['seminer_id'=>$id, 'email'=> $request->email, 'password'=> $request->password], true)) {
             return redirect(route('account', ['id'=> $id, 'uniqcode'=> $request->uniqcode]));
         } else {
             session()->flash('flash_error', 'メールアドレスかパスワードに誤りがあります。');

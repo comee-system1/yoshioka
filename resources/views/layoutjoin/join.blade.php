@@ -1,4 +1,5 @@
 @section('join')
+@if($account_type->display_status)
 <div class="row mt-2">
     <div class="col-md-3 d-flex align-items-center">{{$account_type->title}}&nbsp;
     <small class="text-danger">{{$account_type->required_text}}</small>
@@ -7,6 +8,7 @@
         {{ Form::select('account_type', $accountSelect, $accountdata->account_type??"", ['class' => 'form-control', 'id' => 'account_type', 'required' => 'required']) }}
     </div>
 </div>
+@endif
 @foreach($account_input as $key=>$value)
     @if($value->display_status)
     <div class="row mt-2">

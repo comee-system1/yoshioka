@@ -312,7 +312,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'required_text' => 'Required',
             'error_message' => 'email address is false',
             'sort' => '4',
-            'type' => 'address',
+            'type' => 'email',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],

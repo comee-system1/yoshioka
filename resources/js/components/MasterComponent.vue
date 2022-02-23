@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-1">
 
-                    <input v-if="defineData.type != 'password' && defineData.type != 'email' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
+                    <input v-if="defineData.type != 'account_type' && defineData.type != 'password' && defineData.type != 'email' && defineData.type != 'name' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
                     <input v-else type="hidden" v-model="defineData.display_status" />
                 </div>
                 <div class="col-md-3">
@@ -78,7 +78,7 @@
                     <input type="text" class="form-control w-100" v-model="defineData.text"  />
                 </div>
                 <div class="col-md-1">
-                    <input v-if="defineData.type != 'password' && defineData.type != 'email' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
+                    <input v-if="defineData.type != 'account_type' && defineData.type != 'password' && defineData.type != 'email' && defineData.type != 'name' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
                     <input v-else type="hidden" v-model="defineData.required" />
                 </div>
                 <div class="col-md-2">

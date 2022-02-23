@@ -62,6 +62,13 @@ class Template_invoicesSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+            'text' => '但し〇〇セミナー■■代として',
+            'template_code' => '1',
+            'type' => 'memo',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
             'text' => '2022-01-01',
             'template_code' => '2',
             'type' => 'date',
@@ -104,7 +111,13 @@ Account 0000000 〇〇Ltd',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
-
+            [
+            'text' => 'However, 〇〇 Seminar ■■ As a substitute',
+            'template_code' => '2',
+            'type' => 'memo',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }

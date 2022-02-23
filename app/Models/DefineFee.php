@@ -35,6 +35,12 @@ class DefineFee extends Model
         return $data;
     }
 
+    public static function getDataSeminer($id)
+    {
+        $data = self::where("seminer_id", $id)->first();
+        return $data;
+    }
+
     public static function editStatus($id,$request)
     {
 

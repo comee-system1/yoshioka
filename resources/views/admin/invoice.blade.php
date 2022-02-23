@@ -63,7 +63,12 @@
                             {{ Form::textarea('payee', $invoice['payee']->text, ['id'=>'payee', 'class'=>'form-control', 'rows'=>4 ])}}
                         </div>
                     </div>
-
+                    <div class="row mt-4">
+                        <div class="col-md-2">但し</div>
+                        <div class="col-md-8">
+                            {{ Form::text('memo', $invoice['memo']->text, ['id'=>'memo', 'class'=>'form-control' ])}}
+                        </div>
+                    </div>
                     <div class="row mt-3">
                         <div class="col-md-3">
                             {{Form::submit('更新', ['class'=>'btn btn-primary w-100'])}}

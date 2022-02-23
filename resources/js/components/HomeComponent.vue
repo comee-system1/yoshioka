@@ -22,6 +22,26 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card-deck mb-3 text-center m-2 w-100 p-3">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">学会Template</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mt-3 mb-4">
+                                <li class="text-start pr-2">参加者・演題登録</li>
+                                <li class="text-start pr-2">タイムテーブル</li>
+                                <li class="text-start pr-2">決済</li>
+                                <li class="text-start pr-2">お知らせ</li>
+                                <li class="text-start pr-2">領収書</li>
+                                <li class="text-start pr-2">協賛管理</li>
+                            </ul>
+                            <button class="btn btn-primary" v-on:click="openModal(0,2)">登録</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <h3 class="mt-3">最近登録したセミナー</h3>
         <div class="row">

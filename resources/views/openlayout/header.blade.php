@@ -35,6 +35,7 @@
             </div>
         </div>
     @else
+
         @if ( Auth::guard('account')->check()  )
             <div class="row mt-3">
                 @isset($defineMypage[ 'join' ])
@@ -45,11 +46,21 @@
                 <div class="col-md-2"><a href="{{route('account.endai.list',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.endai.list' || Route::currentRouteName() == 'account.endai.new' ) active @endif">{{$defineMypage['endai']->title}}</a></div>
                 @endif
 
-                <div class="col-md-2"><a href="{{route('account.recipe',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100">領収書</a></div>
+                @if(Auth::guard('account')->user()->payment_flag == 1)
+                    <div class="col-md-2"><a href="{{route('account.recipe',['id'=>$id, 'account_id'=>Auth::guard('account')->user()->id])}}" class="btn btn-outline-primary w-100">{{$defineMypage['recipe']->title}}</a></div>
+                @else
+                    <div class="col-md-2"><a href="{{route('account.invoice',['id'=>$id, 'account_id'=>Auth::guard('account')->user()->id])}}" class="btn btn-outline-primary w-100">{{$defineMypage['invoice']->title}}</a></div>
+                @endif
 
-                <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">プログラム</a></div>
-                <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100" >資料一括DL</a></div>
+                @isset($defineMypage[ 'program' ])
+                <div class="col-md-2"><a href="{{route('account.program',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.program') active @endif">{{$defineMypage['program']->title}}</a></div>
+                @endif
 
+                @isset($defineMypage[ 'download' ])
+                    @if(Auth::guard('account')->user()->payment_flag == 1)
+                    <div class="col-md-2"><a href="{{route('book.download',['id'=>$id, 'uniqcode'=>$uniqcode] )}}" class="btn btn-outline-primary w-100" >{{$defineMypage['download']->title}}</a></div>
+                    @endif
+                @endif
             </div>
         @endif
     @endif

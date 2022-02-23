@@ -33,6 +33,24 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-2">敬称</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="honor"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">領収書メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="recipe_message"  />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">請求書メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="invoice_message"  />
+            </div>
+        </div>
+        <div class="row mt-3">
             <button class="btn btn-primary w-25" v-on:click="edit" >更新</button>
         </div>
 
@@ -50,6 +68,9 @@ export default {
             receipt:"",
             payee:"",
             bill:"",
+            honor:"",
+            recipe_message:"",
+            invoice_message:"",
         }
     },
     methods: {
@@ -64,6 +85,9 @@ export default {
                     if(element['type'] == "receipt") this.receipt = element[ 'title' ];
                     if(element['type'] == "payee") this.payee = element[ 'title' ];
                     if(element['type'] == "bill") this.bill = element[ 'title' ];
+                    if(element['type'] == "honor") this.honor = element[ 'title' ];
+                    if(element['type'] == "recipe_message") this.recipe_message = element[ 'title' ];
+                    if(element['type'] == "invoice_message") this.invoice_message = element[ 'title' ];
                 });
                 this.showLoading = false;
             }).catch(error => {
@@ -79,6 +103,9 @@ export default {
                 receipt:this.receipt,
                 payee:this.payee,
                 bill:this.bill,
+                honor:this.honor,
+                recipe_message:this.recipe_message,
+                invoice_message:this.invoice_message,
             };
             axios.post("/admin/master/defineEditInvoice/"+this.id, postData).then(response => {
                 // 成功

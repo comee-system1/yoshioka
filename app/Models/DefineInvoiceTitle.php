@@ -26,4 +26,14 @@ class DefineInvoiceTitle extends Model
         $data->save();
     }
 
+    public static function getData($id)
+    {
+        $data = self::where('seminer_id', $id)
+            ->get();
+        $list = [];
+        foreach($data as $value){
+            $list[$value['type']] = $value;
+        }
+        return $list;
+    }
 }

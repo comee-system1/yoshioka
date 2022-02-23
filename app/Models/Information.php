@@ -128,19 +128,17 @@ class Information extends Model
 
         $data = self::select('*')
             ->selectRaw('date_format(start, "%Y/%m.%d") as date')
-            // ->where('start', '<=', $date)
-            // ->where('end', '>=', $date)
             ->where(function($query){
                 $date = date('Y-m-d H:i:s');
                 $query->where('start', '<', $date)
                 ->where('end', '>', $date)
                 ;
             })
-            ->orWhere(function($query){
-                $query->whereNull('start')
-                ->whereNull('end')
-                ;
-            })
+            // ->orWhere(function($query){
+            //     $query->whereNull('start')
+            //     ->whereNull('end')
+            //     ;
+            // })
             ->where('status',1)
             ->where('type',1)
             ->where('seminer_id',$seminer_id)

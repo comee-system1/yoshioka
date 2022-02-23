@@ -245,6 +245,9 @@ class MasterController extends Controller
         DefineInvoiceTitle::editDataType($id, $request, "receipt");
         DefineInvoiceTitle::editDataType($id, $request, "payee");
         DefineInvoiceTitle::editDataType($id, $request, "bill");
+        DefineInvoiceTitle::editDataType($id, $request, "honor");
+        DefineInvoiceTitle::editDataType($id, $request, "recipe_message");
+        DefineInvoiceTitle::editDataType($id, $request, "invoice_message");
 
         return true;
     }
