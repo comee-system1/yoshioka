@@ -28,7 +28,10 @@ class RecipeController extends Controller
         $account = Account::getAccount($account_id);
         $fee = $account->join_price+$account->party_price;
         $define_invoices = DefineInvoice::getData($id);
-        $file = url('')."/storage/invoice/".$define_invoices[ 'file' ]->text;
+        $file = "";
+        if($define_invoices[ 'file' ]->text){
+            $file = url('')."/storage/invoice/".$define_invoices[ 'file' ]->text;
+        }
         $pdf = \PDF::loadView('open.recipe_pdf', [
             'title' => $define_invoice_titles['receipt']->title,
             'name'  => $account->name,
@@ -68,8 +71,10 @@ class RecipeController extends Controller
             $party_titles = DefineJoinTitle::getDataType($id,'party')->first()->title;
             $party_price = $account->party_price;
         }
-
-        $file = url('')."/storage/invoice/".$define_invoices[ 'file' ]->text;
+        $file = "";
+        if($define_invoices[ 'file' ]->text){
+            $file = url('')."/storage/invoice/".$define_invoices[ 'file' ]->text;
+        }
         $pdf = \PDF::loadView('open.invoice_pdf', [
             'title' => $define_invoice_titles['invoice']->title,
             'name'  => $account->name,
@@ -83,9 +88,9 @@ class RecipeController extends Controller
             'file' => $file,
             'date' => $define_invoices[ 'date' ]->text,
             'join_titles' => $join_titles,
-            'join_price' => number_format($join_price),
+            'join_price' => number_format((int)$join_price),
             'party_titles' => $party_titles,
-            'party_price' => number_format($party_price),
+            'party_price' => number_format((int)$party_price),
         ]);
         $filename = date("YmdHis") . "_invoice";
         return $pdf->download($filename . '.pdf');

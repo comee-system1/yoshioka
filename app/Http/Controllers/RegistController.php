@@ -107,7 +107,7 @@ class RegistController extends ControllerOpen
             $mail['title'] = DefineMail::textReplace($mailData->subject, $accountData, $id);
             Mail::send(new RegisterMail($mail));
 
-            if($fee->stripe_status)
+            if($fee->stripe_status && $accountData->payment_flag == 0 )
             {
                 $amount = $prices["join_fee"]+$prices["party_fee"];
                 //シークレットキー

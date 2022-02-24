@@ -55,13 +55,13 @@
                 </div>
                 @endif
             @endforeach
-
+            {{ Form::hidden("party_status", $request->party_status) }}
             @if($fee->join_status)
             <div class="mt-5">
                 <div class="row mb-3">
                     <div class="col-2"></div>
                     <div class="col-2 h5">{{ $join->title }}</div>
-                    @if($request->party_flag)
+                    @if($request->party_status)
                     <div class="col-2 h5">{{ $party->title }}</div>
                     @endif
                 </div>
@@ -82,7 +82,7 @@
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
                     <a href="javascript:void(0);" class="btn btn-danger" id="back_button">{{$back_button}}</a>
-                    @if($fee->stripe_status == 0)
+                    @if($fee->stripe_status == 0 || (!empty($accountdata->payment_flag) && $accountdata->payment_flag == 1) )
                         {{Form::submit($regist_button, ['class'=>'btn btn-primary w-25', 'id'=>'registbutton'])}}
                     @else
                         <script

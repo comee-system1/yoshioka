@@ -37,7 +37,12 @@
         <div class="row mt-2">
             <div class="col-md-3 d-flex align-items-center">{{$party_flag->title}}</div>
             <div class="col-md-1 text-start">
-                {{Form::checkbox('party_status', '1', $accountdata->party_status??"", ['class'=>'h-100 w-100','id'=>'party_status'])}}
+                @if(isset($accountdata->payment_flag) && $accountdata->payment_flag == 1)
+                    {{Form::hidden('party_status',$accountdata->party_status)}}
+                    {{Form::checkbox('party_status', '1', $accountdata->party_status??"", ['class'=>'h-100 w-100','id'=>'party_status', 'disabled' ])}}
+                @else
+                    {{Form::checkbox('party_status', '1', $accountdata->party_status??"", ['class'=>'h-100 w-100','id'=>'party_status' ])}}
+                @endif
             </div>
         </div>
     @endif

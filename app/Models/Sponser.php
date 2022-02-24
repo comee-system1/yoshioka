@@ -54,7 +54,7 @@ class Sponser extends Model
         if($request->file_delete) $data->file = "";
         $data->link_type = $request->link_type;
         $data->link = $request->link;
-        if($request->file) $data->link_file = self::setFile($request, "link_file");
+        if($request->link_file) $data->link_file = self::setFile($request, "link_file");
         if($request->file_delete) $data->link_file = "";
         return $data->save();
     }
@@ -67,7 +67,7 @@ class Sponser extends Model
             $filepath = pathinfo($request->$type->getClientOriginalName());
             $ext = $filepath['extension'];
             $file_name = uniqid() .".". $ext;
-            $request->file->storeAs(self::$path, $file_name);
+            $request->$type->storeAs('public/sponser/', $file_name);
         }
         return $file_name;
     }

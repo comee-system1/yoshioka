@@ -48,11 +48,14 @@ class TimeController extends Controller
     {
         $where['place_master_id'] = $request->place;
         $where['date'] = $request->date;
+        $where['seminer_id'] = $id;
         $timetable = Timetables::where($where)->first();
         $timetable->weburl = $request->weburl;
         $timetable->enabled = $request->enabled;
         $timetable->save();
-        $programs = TimetableProgrames::where("timetable_id",$timetable->id)->orderBy("id","asc")->get();
+        $programs = TimetableProgrames::where("timetable_id",$timetable->id)
+        ->where("seminer_id", $id)
+        ->orderBy("id","asc")->get();
         $no = 0;
         foreach($programs as $program){
             $TimetableProgrames = TimetableProgrames::find($program->id);

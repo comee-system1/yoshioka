@@ -25,7 +25,7 @@
             @csrf
             @isset($accountdata)
                 @isset($defineMypage['join']->title) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title}}</div>@endif
-                @isset($defineMypage['join']->text) <div class="h6 mb-3 font-weight-normal">{{$defineMypage['join']->text}}</div>@endif
+                @isset($defineMypage['join']->text) <div class="h6 mb-3 font-weight-normal">{!! nl2br($defineMypage['join']->text) !!}</div>@endif
             @else
                 <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
             @endif

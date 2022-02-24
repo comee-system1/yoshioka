@@ -38,21 +38,21 @@
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">内容</div>
                             <div class="col-md-6">
-                                {{ Form::radio('display_type', 'note', ('note' == (!empty($information->display_type)?$information->display_type:'note') ), ['id' => 'display_type1' ]) }} お知らせ内容の表示
+                                {{ Form::radio('display_type', 'note', (!empty($information->display_type))?('note' == $information->display_type ):true, ['id' => 'display_type1' ]) }} お知らせ内容の表示
                                 {{ Form::textarea('note', $information->note??"", ['id'=>'note', 'class'=>'form-control', 'placeholder'=>'内容を入力', 'rows'=>8 ])}}
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">リンク先指定</div>
                             <div class="col-md-6">
-                                {{ Form::radio('display_type', 'link', ('link' == (!empty($information->display_type)??"") ), ['id' => 'display_type2' ]) }} リンク先にページ遷移
+                                {{ Form::radio('display_type', 'link', (!empty($information->display_type))?('link' == $information->display_type ):false, ['id' => 'display_type2' ]) }} リンク先にページ遷移
                                 {{ Form::text('link', $information->link??"", ['id'=>'link', 'class'=>'form-control', 'placeholder'=>'リンク先URLを指定' ])}}
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">ファイルアップロード</div>
                             <div class="col-md-6">
-                                {{ Form::radio('display_type', 'file', ('file' == (!empty($information->display_type)??"") ), ['id' => 'display_type3' ]) }} ファイルダウンロード<br />
+                                {{ Form::radio('display_type', 'file', (!empty($information->display_type))?('file' == $information->display_type ):false, ['id' => 'display_type3' ]) }} ファイルダウンロード<br />
                                 {{Form::file("file",['id'=>'file'])}}
                                 @if(!empty($information->file))
                                 <div >

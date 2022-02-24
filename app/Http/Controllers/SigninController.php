@@ -34,11 +34,11 @@ class SigninController extends ControllerOpen
 
     public function post($id, Request $request)
     {
-
+        $sign_in_miss = DefineJoinTitle::getDataType($id, 'sign_in_miss')->first();
         if (Auth::guard('account')->attempt(['seminer_id'=>$id, 'email'=> $request->email, 'password'=> $request->password], true)) {
             return redirect(route('account', ['id'=> $id, 'uniqcode'=> $request->uniqcode]));
         } else {
-            session()->flash('flash_error', 'メールアドレスかパスワードに誤りがあります。');
+            session()->flash('flash_error', $sign_in_miss->title);
             return redirect(route('signin', ['id'=> $id, 'uniqcode'=> $request->uniqcode]));
         }
     }

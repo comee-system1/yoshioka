@@ -57,6 +57,12 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-2">サインイン失敗メッセージ</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="sign_in_miss"  />
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-md-1"><small>利用有無</small></div>
             <div class="col-md-3"><small>表示名</small></div>
             <div class="col-md-3"><small>例文</small></div>
@@ -168,6 +174,7 @@ export default {
             joinlink:"",
             join_success:"",
             join_miss:"",
+            sign_in_miss:"",
             type:[],
             showLoading:true,
         }
@@ -212,7 +219,11 @@ export default {
                 var party_flag;
                 var join_success;
                 var join_miss;
+                var sign_in_miss;
                 response['data'].forEach(function(element){
+                    if(element['type'] == "sign_in_miss"){
+                        sign_in_miss = element;
+                    }else
                     if(element['type'] == "password_edit"){
                         password_edit = element;
                     }else
@@ -249,6 +260,7 @@ export default {
                 this.password_edit = password_edit['title'];
                 this.join_success = join_success['title'];
                 this.join_miss = join_miss['title'];
+                this.sign_in_miss = sign_in_miss['title'];
                 this.button = button['title'];
                 this.back_button = back_button['title'];
                 this.regist_button = regist_button['title'];
@@ -262,7 +274,7 @@ export default {
 
             }).catch(error => {
                 // 失敗
-                alert("error");
+                alert("error(1)");
             });
         },
         edit:function(key,value){
@@ -283,7 +295,8 @@ export default {
                 input:this.defineDatas,
                 spaceLists:this.spaceLists,
                 join_success:this.join_success,
-                join_miss:this.join_miss
+                join_miss:this.join_miss,
+                sign_in_miss:this.sign_in_miss
             };
             axios.post("/admin/master/edit/"+this.id, postData).then(response => {
                 // 成功

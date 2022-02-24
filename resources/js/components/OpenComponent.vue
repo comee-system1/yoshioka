@@ -6,8 +6,9 @@
                     <h3>{{seminer.title.information.title}}</h3>
                     <div v-for='info in seminer.information' v-bind:key="info.id" >
                     <p class="blog-post-meta">{{info.date}}</p>
-                    <p class="h5">{{info.title}}</p>
-                    <!-- <pre v-bind:class="{ info_text: isActive }" >{{info.note}}</pre> -->
+                    <p class="h5" v-if="info.display_type == 'note'">{{info.title}}</p>
+                    <p class="h5" v-if="info.display_type == 'link'"><a v-bind:href="info.link" target=_blank>{{info.title}}</a></p>
+                    <p class="h5" v-if="info.display_type == 'file'"><a v-bind:href="'/storage/file/'+info.file" target=_blank>{{info.title}}</a></p>
                     <div v-bind:class="[ isActive === true && infokey !== info.id ? 'info_text' : '' , 'space_text' ]" >{{info.note}}</div>
                     【<a v-on:click="addInfo(info.id)">＋</a>】
                     <hr>

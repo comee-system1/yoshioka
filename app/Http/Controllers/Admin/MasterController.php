@@ -215,6 +215,7 @@ class MasterController extends Controller
         DefineJoinTitle::editDataType($id, $request, "title");
         DefineJoinTitle::editDataType($id, $request, "join_success");
         DefineJoinTitle::editDataType($id, $request, "join_miss");
+        DefineJoinTitle::editDataType($id, $request, "sign_in_miss");
         DefineJoinTitle::editDataType($id, $request, "password_edit");
         DefineJoinTitle::editDataType($id, $request, "button");
         DefineJoinTitle::editDataType($id, $request, "regist_button");

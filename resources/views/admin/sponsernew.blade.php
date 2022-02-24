@@ -41,12 +41,12 @@
                             <div class="col-md-3 d-flex align-items-center">リンク先</div>
                             <div class="col-md-6 mt-2">
                                 <div >
-                                    {{ Form::radio('link_type', 1, (1 == old('info_type', true )), ['id' => 'info_type_id1' ]) }}
+                                    {{ Form::radio('link_type', 1, (1 == !empty($sponserdata->link_type)?$sponserdata->link_type:1), ['id' => 'info_type_id1' ]) }}
                                     {{ Form::label('info_type_id1', 'リンク先', ['class' => 'form-check-label']) }}
                                     {{ Form::text('link', $sponserdata->link??'', ['id'=>'link', 'class'=>'form-control', 'placeholder'=>'リンク先を入力' ])}}
                                 </div>
                                 <div class="mt-3">
-                                    {{ Form::radio('link_type', 2, (2 == old('info_type', '' )), ['id' => 'info_type_id2' ]) }}
+                                    {{ Form::radio('link_type', 2, (2 == !empty($sponserdata->link_type)?$sponserdata->link_type:''), ['id' => 'info_type_id2' ]) }}
                                     {{ Form::label('info_type_id2', 'リンク先ファイルアップロード', ['class' => 'form-check-label']) }}
                                     <div>
                                     {{Form::file("link_file")}}

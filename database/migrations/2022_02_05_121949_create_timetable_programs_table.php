@@ -22,7 +22,7 @@ class CreateTimetableProgramsTable extends Migration
             $table->integer('account_id')->nullable()->comment('講演者 / 参加者ID');
             $table->string('account_name')->nullable()->comment('講演者表示名');
             $table->integer('endai_id')->nullable()->comment('演題ID');
-            $table->string('endai_name')->nullable()->comment('演題表示名');
+            $table->text('endai_name')->nullable()->comment('演題表示名');
             $table->integer('enabled')->default(0);
             $table->timestamps();
         });

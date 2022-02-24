@@ -9,7 +9,7 @@
 
 <main role="main" class="container">
     <h1 class="h3 mb-3 font-weight-normal mt-3">{{$defineMypage['endai']->title}}</h1>
-    <div class="h6 mb-3 font-weight-normal mt-3">{{$defineMypage['endai']->text}}</div>
+    <div class="h6 mb-3 font-weight-normal mt-3">{!! nl2br($defineMypage['endai']->text) !!}</div>
 
     <div class="row">
         <div class="text-end col-md-12">

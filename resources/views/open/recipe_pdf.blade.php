@@ -47,7 +47,9 @@ img.hanko{
 </style>
 </head>
 <body>
+    @if($file)
     <img src="{{$file}}" class="hanko" />
+    @endif
     <p class="date">{{$date}}</p>
     <p class="h1">{{$title}}</p>
     <p class="h2">{{$name}}{{$honor}}</p>

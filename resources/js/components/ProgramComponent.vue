@@ -24,10 +24,10 @@
             <table class="table table-sm">
                 <thead>
                     <tr class="bg-primary text-white">
-                        <th scope="col" class="text-center">{{name.definetime.td1.title}}</th>
-                        <th scope="col" class="text-center">{{name.definetime.td2.title}}</th>
-                        <th scope="col" class="text-center">{{name.definetime.td3.title}}</th>
-                        <th scope="col" class="text-center w-50">{{name.definetime.td4.title}}</th>
+                        <th scope="col" class="text-center" style="width:160px;">{{name.definetime.td1.title}}</th>
+                        <th scope="col" class="text-center" style="width:160px;">{{name.definetime.td2.title}}</th>
+                        <th scope="col" class="text-center ">{{name.definetime.td3.title}}</th>
+                        <th scope="col" class="text-center w-25">{{name.definetime.td4.title}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +38,7 @@
                             {{data.accountName}}
 
                         </td>
-                        <td>{{data.endai_name}}</td>
+                        <td style="white-space: pre-line;">{{data.endai_name}}</td>
                         <td class="text-center">
                             <a v-bind:href="'/storage/file/'+data.file1" class="btn btn-outline-primary" v-show="data.file1_name" target=_blank>{{data.file1_name}}</a>
                             <a v-bind:href="'/storage/file/'+data.file2" class="btn btn-outline-primary" v-show="data.file2_name" target=_blank>{{data.file2_name}}</a>
