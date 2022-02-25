@@ -68,4 +68,12 @@ class DefineMail extends Model
 
         return $text;
     }
+
+    public static function textReplacePassword($text, $account)
+    {
+        $text = preg_replace("/##name##/", $account->name, $text);
+        $text = preg_replace("/##password_renew##/", $account[ 'password' ], $text);
+        return $text;
+    }
+
 }

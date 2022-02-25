@@ -39,6 +39,10 @@
                     <div class="col-md-6">{{replace['title']}}</div>
                     <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
                 </div>
+                <div class="row" v-for="replace of replaces[ 'password_renew' ]" :key="replace.id">
+                    <div class="col-md-6">{{replace['title']}}</div>
+                    <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
+                </div>
             </div>
         </div>
 
@@ -90,7 +94,6 @@ export default {
             axios.get("/admin/master/getMailReplace/"+this.id+"/"+this.type, postData).then(response => {
                 // 成功
                 this.replaces = response['data'];
-                console.log(response['data']);
                 this.showLoading = false;
                 this.getMail();
             }).catch(error => {

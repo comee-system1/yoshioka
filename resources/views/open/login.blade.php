@@ -28,6 +28,9 @@
 <div class="text-center mt-4">
     <a href="{{route('regist',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$joinlink->title}}</a>
 </div>
+<div class="text-center mt-1">
+    <a href="{{route('regist.renew',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$renew->title}}</a>
+</div>
 
 @endsection
 

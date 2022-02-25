@@ -31,7 +31,7 @@
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark open1Image" style="background-image: url('/storage/open/{{$seminer->main_image}}')">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 font-italic">{{$seminer->sub_title}}</h1>
-                <p class="lead my-3">{{$seminer->note}}</p>
+                <p class="lead my-3">{!! nl2br($seminer->note) !!}</p>
             </div>
         </div>
     @else

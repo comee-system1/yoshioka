@@ -25,6 +25,14 @@ class UsersSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+            'name' => 'サンプル太郎',
+            'email' => 'test1234@sample.co.jp',
+            'password' => Hash::make('test1234'),
+            'is_super' => '1',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }

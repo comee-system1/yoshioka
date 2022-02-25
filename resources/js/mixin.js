@@ -28,13 +28,17 @@ export const Mixin =  {
             var year = today.getFullYear();
             var month = ("0" + (today.getMonth()+1)).slice(-2);
             var day = ("0" + today.getDate()).slice(-2);
-            var start_date = year+"-"+month+"-"+day+"T"+today.getHours()+":"+today.getMinutes();
+            var hour = ("0" + today.getHours()).slice(-2);
+            var min = ("0" + today.getMinutes()).slice(-2);
+            var start_date = year+"-"+month+"-"+day+"T"+hour+":"+min;
 
             today.setDate(today.getDate() + 1)
             year = today.getFullYear();
             month = ("0" + (today.getMonth()+1)).slice(-2);
             day = ("0" + today.getDate()).slice(-2);
-            var end_date = year+"-"+month+"-"+day+"T"+today.getHours()+":"+today.getMinutes();
+            hour = ("0" + today.getHours()).slice(-2);
+            min = ("0" + today.getMinutes()).slice(-2);
+            var end_date = year+"-"+month+"-"+day+"T"+hour+":"+min;
 
             this.template = template;
             this.url = "";

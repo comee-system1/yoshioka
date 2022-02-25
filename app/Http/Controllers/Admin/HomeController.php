@@ -11,6 +11,7 @@ use App\Models\DefineInvoiceTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefineMail;
 use App\Models\DefineMyPage;
+use App\Models\DefinePasswordRenew;
 use App\Models\DefinePlaceList;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
@@ -29,6 +30,7 @@ use App\Models\TemplateMasterSpace;
 use App\Models\TemplateTimeTitle;
 use App\Models\Timetables;
 use App\Models\TemplateMail;
+use App\Models\TemplateMasterPasswordRenew;
 use App\Models\TemplateMyPage;
 use App\Models\TemplateTitle;
 use Exception;
@@ -96,6 +98,7 @@ class HomeController extends Controller
                 DefineInvoiceTitle::insert(TemplateInvoiceTitle::getData($request->template, $seminer_id));
                 DefineTitle::insert(TemplateTitle::getData($request->template, $seminer_id));
                 DefineMyPage::insert(TemplateMyPage::getData($request->template, $seminer_id));
+                DefinePasswordRenew::insert(TemplateMasterPasswordRenew::getData($request->template, $seminer_id));
 
             }
     //        DB::commit();

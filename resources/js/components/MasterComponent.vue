@@ -57,6 +57,12 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-2">パスワード再発行</div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" v-model="password_renew"  />
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-md-2">サインイン失敗メッセージ</div>
             <div class="col-md-4">
                 <input type="text" class="form-control w-100" v-model="sign_in_miss"  />
@@ -166,6 +172,7 @@ export default {
             title:"",
             button:"",
             password_edit:"",
+            password_renew:"",
             back_button:"",
             regist_button:"",
             join:"",
@@ -214,6 +221,7 @@ export default {
                 var title;
                 var join;
                 var password_edit;
+                var password_renew;
                 var joinlink;
                 var party;
                 var party_flag;
@@ -221,6 +229,9 @@ export default {
                 var join_miss;
                 var sign_in_miss;
                 response['data'].forEach(function(element){
+                    if(element['type'] == "password_renew"){
+                        password_renew = element;
+                    }else
                     if(element['type'] == "sign_in_miss"){
                         sign_in_miss = element;
                     }else
@@ -258,6 +269,7 @@ export default {
                 });
 
                 this.password_edit = password_edit['title'];
+                this.password_renew = password_renew['title'];
                 this.join_success = join_success['title'];
                 this.join_miss = join_miss['title'];
                 this.sign_in_miss = sign_in_miss['title'];
@@ -292,6 +304,7 @@ export default {
                 join:this.join,
                 joinlink:this.joinlink,
                 password_edit:this.password_edit,
+                password_renew:this.password_renew,
                 input:this.defineDatas,
                 spaceLists:this.spaceLists,
                 join_success:this.join_success,

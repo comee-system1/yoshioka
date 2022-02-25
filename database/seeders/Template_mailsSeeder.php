@@ -66,6 +66,27 @@ class Template_mailsSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+            'type' => 'password_renew',
+            'template_code' => '1',
+            'subject' => 'パスワード再登録を行いました。',
+            'body' => '
+※このメールはシステムからの自動返信です
+
+##name##様
+
+お世話になっております。
+パスワード再登録を行いました。
+
+以下の内容でパスワード再設定いたしました。
+
+━━━━━━□■□　再設定内容　□■□━━━━━━
+パスワード ##password_renew##
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
             'type' => 'join',
             'template_code' => '2',
             'subject' => 'Thank you for registering',
@@ -109,6 +130,27 @@ We have accepted the abstract registration with the following contents.
 
 ━━━━━━□■□　Registration details　□■□━━━━━━
 Title ##endai##
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+            'type' => 'password_renew',
+            'template_code' => '2',
+            'subject' => 'The password has been re-registered.',
+            'body' => '
+* This email is an automatic reply from the system.
+
+## name ##
+
+We become indebted to.
+I have re-registered my password.
+
+The password has been reset with the following contents.
+
+━━━━━━ □ ■ □ Reset contents □ ■ □ ━━━━━━
+Password ## password_renew ##
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             ',
             'created_at' => date('Y-m-d H:i:s'),

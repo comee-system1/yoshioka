@@ -17,6 +17,8 @@ Route::get('/open/{id}/{uniqcode}', [\App\Http\Controllers\OpenController::class
 Route::get('/open/{id}/{uniqcode}/signin', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
 Route::post('/open/{id}/{uniqcode}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
 Route::get('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
+Route::get('/open/{id}/{uniqcode}/regist/renew', [\App\Http\Controllers\RegistController::class, 'renew'])->name('regist.renew');
+Route::post('/open/{id}/{uniqcode}/regist/renew', [\App\Http\Controllers\RegistController::class, 'renewpost'])->name('regist.renew.post');
 Route::post('/open/{id}/{uniqcode}/conf', [\App\Http\Controllers\RegistController::class, 'conf'])->name('regist.conf');
 Route::post('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'post'])->name('regist.post');
 
@@ -55,6 +57,7 @@ Route::any('/getEndai/{id}/{endai_id}', [\App\Http\Controllers\ArrayController::
 Route::any('/getSponser/{id}', [\App\Http\Controllers\ArrayController::class, 'getSponser'])->name('Array.getSponser');
 Route::any('/getTitle/{id}', [\App\Http\Controllers\ArrayController::class, 'getTitle'])->name('Array.getTitle');
 Route::any('/getMypage/{id}', [\App\Http\Controllers\ArrayController::class, 'getMypage'])->name('Array.getMypage');
+Route::any('/getPassword/{id}', [\App\Http\Controllers\ArrayController::class, 'getPassword'])->name('Array.getPassword');
 
 Route::group(['prefix' => 'admin'], function () {
     //ログインしないと見えないページ
@@ -113,6 +116,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/time/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time');
         Route::get('/master/book/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'book'])->name('master.book');
         Route::get('/master/mail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mail'])->name('master.mail');
+        Route::get('/master/password/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'password'])->name('master.password');
 
 
         Route::get('/master/define/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'define'])->name('master.define');
@@ -144,6 +148,9 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/recipe/{id}/{account_id}/recipe', [\App\Http\Controllers\RecipeController::class, 'recipe'])->name('pdf.recipe');
         Route::get('/recipe/{id}/{account_id}/invoice', [\App\Http\Controllers\RecipeController::class, 'invoice'])->name('pdf.invoice');
+
+        Route::post('/master/password/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'password'])->name('master.password.post');
+        Route::post('/master/password/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'passwordEdit'])->name('master.password.edit');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

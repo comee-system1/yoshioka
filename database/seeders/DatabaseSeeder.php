@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Template_invoice_titlesSeeder::class);
         $this->call(Template_titlesSeeder::class);
         $this->call(Template_mypagesSeeder::class);
+        $this->call(Template_master_password_renew::class);
     }
 }

@@ -20,6 +20,7 @@ class SigninController extends ControllerOpen
     {
 
         $joinlink = DefineJoinTitle::getDataType($id, 'joinlink')->first();
+        $renew = DefineJoinTitle::getDataType($id, 'password_renew')->first();
         $account = Auth::guard('account')->user();
         if($account){
             return redirect(route('account', ['id' => $id, 'uniqcode' => $uniqcode ]));
@@ -29,6 +30,7 @@ class SigninController extends ControllerOpen
             'uniqcode' => $uniqcode,
             'seminer' => $this->seminer[0],
             'joinlink' => $joinlink,
+            'renew' => $renew,
         ]);
     }
 

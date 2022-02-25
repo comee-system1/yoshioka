@@ -13,8 +13,10 @@ use Stripe\Charge;
 use App\Mail\RegisterMail;
 use App\Models\DefineMail;
 use App\Models\DefineMyPage;
+use App\Models\DefinePasswordRenew;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegistController extends ControllerOpen
 {
@@ -45,8 +47,6 @@ class RegistController extends ControllerOpen
             'button' => $this->class->button->title
         ]);
     }
-
-
 
     public function conf($id, $uniqcode, Request $request)
     {
@@ -159,4 +159,54 @@ class RegistController extends ControllerOpen
 
         ]);
     }
+
+    public function renew($id, $uniqcode)
+    {
+        $definePassword = DefinePasswordRenew::getData($id);
+
+        return view('open.renew', [
+            'id' => $id,
+            'uniqcode' => $uniqcode,
+            'seminer' => $this->seminer[0],
+            'definePassword' => $definePassword
+        ]);
+    }
+
+    public function renewpost($id, $uniqcode, Request $request)
+    {
+
+        $definePassword = DefinePasswordRenew::getData($id);
+
+        $where = [];
+        $where[ 'seminer_id' ] = $id;
+        $where[ 'email' ] = $request->email;
+        $accountData = Account::getAccountData($where)->first();
+        if($accountData){
+            $password = "";
+            for($i=1;$i<=5;$i++){
+                $password .= chr(mt_rand(65,90));
+            }
+            $accountData->password = Hash::make($password);
+            $accountData->save();
+            session()->flash('flash_msg', $definePassword['renew_success']->title);
+            $this->sendMail($id, $password, $accountData);
+        }else{
+            session()->flash('flash_error', $definePassword['renew_miss']->title);
+        }
+
+        return redirect(route('regist.renew', ['id' => $id, 'uniqcode' => $uniqcode]));
+
+    }
+
+    public function sendMail($id, $password, $accountData){
+        //メール配信
+        $defineMail = DefineMail::getData($id, 'password_renew');
+        $accountData['password'] = $password;
+        $mail = [];
+        $mail['address'] = $accountData->email;
+        $mail['body'] = DefineMail::textReplacePassword($defineMail->body, $accountData);
+        $mail['title'] = DefineMail::textReplacePassword($defineMail->subject, $accountData);
+        Mail::send(new RegisterMail($mail));
+    }
+
 }

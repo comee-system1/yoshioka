@@ -9,6 +9,7 @@ use App\Models\DefineInvoiceTitle;
 use App\Models\DefineJoinTitle;
 use App\Models\DefineMail;
 use App\Models\DefineMyPage;
+use App\Models\DefinePasswordRenew;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\DefineTimeTitle;
@@ -90,6 +91,17 @@ class MasterController extends Controller
         ]);
     }
 
+    public function password($id)
+    {
+
+        return view('admin.masterPassword', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+        ]);
+
+    }
+
 
     //---------------
     //メール設定
@@ -97,29 +109,35 @@ class MasterController extends Controller
     public function getMailReplace($id, $type = "")
     {
         $data = [];
-        if($type == "endai"){
+        if($type == "password_renew"){
+            $data[ 'password_renew' ][0][ 'title' ] = "パスワード";
+            $data[ 'password_renew' ][0][ 'type' ] = "password_renew";
+            $data[ 'password_renew' ][1][ 'title' ] = "名前";
+            $data[ 'password_renew' ][1][ 'type' ] = "name";
+        }else{
+            if($type == "endai"){
+                $wherein = [
+                    'endai'
+                ];
+                $data[ 'endai' ] = DefineEndaiTitle::where("seminer_id", $id)
+                    ->whereIn( 'type', $wherein )
+                    ->orderBy("id", "asc")->get();
+            }
             $wherein = [
-                'endai'
+                'account_type',
+                'name',
+                'name_kana',
+                'email',
+                'company',
+                'tel',
+                'address',
+                'tel',
+                'area',
             ];
-            $data[ 'endai' ] = DefineEndaiTitle::where("seminer_id", $id)
+            $data[ 'join' ] = DefineJoinTitle::where("seminer_id", $id)
                 ->whereIn( 'type', $wherein )
                 ->orderBy("id", "asc")->get();
         }
-        $wherein = [
-            'account_type',
-            'name',
-            'name_kana',
-            'email',
-            'company',
-            'tel',
-            'address',
-            'tel',
-            'area',
-        ];
-        $data[ 'join' ] = DefineJoinTitle::where("seminer_id", $id)
-            ->whereIn( 'type', $wherein )
-            ->orderBy("id", "asc")->get();
-
 
         return response()->json($data);
     }
@@ -134,6 +152,8 @@ class MasterController extends Controller
     {
         DefineMail::editData($id, $request);
     }
+
+
 
     //---------------
     //予稿原稿
@@ -217,6 +237,7 @@ class MasterController extends Controller
         DefineJoinTitle::editDataType($id, $request, "join_miss");
         DefineJoinTitle::editDataType($id, $request, "sign_in_miss");
         DefineJoinTitle::editDataType($id, $request, "password_edit");
+        DefineJoinTitle::editDataType($id, $request, "password_renew");
         DefineJoinTitle::editDataType($id, $request, "button");
         DefineJoinTitle::editDataType($id, $request, "regist_button");
         DefineJoinTitle::editDataType($id, $request, "back_button");
@@ -277,5 +298,18 @@ class MasterController extends Controller
         DefineMyPage::editMypage($id, $request, 'recipe');
         DefineMyPage::editMypage($id, $request, 'program');
         DefineMyPage::editMypage($id, $request, 'download');
+    }
+
+    //------------------
+    //パスワード
+    //-----------------
+    public function passwordEdit($id, Request $request)
+    {
+        DefinePasswordRenew::editMypage($id, $request, 'renew_title');
+        DefinePasswordRenew::editMypage($id, $request, 'renew_note');
+        DefinePasswordRenew::editMypage($id, $request, 'renew_input');
+        DefinePasswordRenew::editMypage($id, $request, 'renew_button');
+        DefinePasswordRenew::editMypage($id, $request, 'renew_success');
+        DefinePasswordRenew::editMypage($id, $request, 'renew_miss');
     }
 }

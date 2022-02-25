@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Consts\ClassConsts;
 use App\Models\DefineMyPage;
+use App\Models\DefinePasswordRenew;
 use App\Models\DefinePlaceList;
 use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
@@ -66,6 +67,11 @@ class ArrayController extends Controller
         return response()->json(DefineMyPage::getData($id));
     }
 
+    public function getPassword($id)
+    {
+        return response()->json(DefinePasswordRenew::getData($id));
+    }
+
     public function getSponser($id)
     {
         $data = Sponser::select('*')
@@ -113,4 +119,6 @@ class ArrayController extends Controller
     {
         return DefinePlaceList::getData($id);
     }
+
+
 }

@@ -17,6 +17,7 @@ class ClassConsts
     public const MAIL_TYPE = [
         "join" => "参加登録・更新メール",
         "endai" => "演題登録・更新メール",
+        "password_renew" => "パスワード再設定メール",
     ];
 
     public const ENABLE_LIST = [

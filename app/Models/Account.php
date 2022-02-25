@@ -158,6 +158,9 @@ class Account extends Authenticatable
         }else{
             $data->party_status = 0;
         }
+        if(strlen($request->password) > 0 ){
+            $data->password = Hash::make($request->password);
+        }
         // $data->join_price = $join_price;
         // $data->party_price = $party_price;
         $data->save();
@@ -203,6 +206,14 @@ class Account extends Authenticatable
         }else{
             return false;
         }
+    }
+
+    public static function getAccountData($data)
+    {
+        $where = [];
+        $where[ 'seminer_id' ] = $data[ 'seminer_id' ];
+        $where[ 'email'      ] = $data[ 'email' ];
+        return Account::where($where);
     }
 
 }
