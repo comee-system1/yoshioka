@@ -150,7 +150,7 @@
                             {{start_date}}
                             </div>
                             <div v-else>
-                                <input type="datetime-local" v-model="start_date" class="w-100 form-control" name="start_date">
+                                <input type="datetime-local" v-model="start_date" class="w-100 form-control" name="start_date" value="2016-12-23T02:00" >
                             </div>
                         </div>
                         <div class="col-6">
@@ -182,6 +182,7 @@ import {Mixin} from '../mixin'
 export default {
     mixins:[Mixin],
     data(){
+
         return {
             name: '',
             sub_title: '',

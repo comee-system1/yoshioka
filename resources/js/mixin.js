@@ -24,6 +24,18 @@ export const Mixin =  {
             }
         },
         openModal: function (key = 0,template = 0 ) {
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = ("0" + (today.getMonth()+1)).slice(-2);
+            var day = ("0" + today.getDate()).slice(-2);
+            var start_date = year+"-"+month+"-"+day+"T"+today.getHours()+":"+today.getMinutes();
+
+            today.setDate(today.getDate() + 1)
+            year = today.getFullYear();
+            month = ("0" + (today.getMonth()+1)).slice(-2);
+            day = ("0" + today.getDate()).slice(-2);
+            var end_date = year+"-"+month+"-"+day+"T"+today.getHours()+":"+today.getMinutes();
+
             this.template = template;
             this.url = "";
             this.name = "";
@@ -31,14 +43,18 @@ export const Mixin =  {
             this.note = "";
             this.address = "";
             this.map_status = 0;
-            this.start_date = "";
-            this.end_date = "";
+            this.start_date = start_date;
+            this.end_date = end_date;
             this.seminer_id = 0;
             if(key > 0 ){
                 this.showLoading = true;
                 var url = '/admin/getEditData/'+key;
                 axios.get(url).then(response =>{
-                    this.url = "/storage/open/"+response.data[0].image
+                    if(response.data[0].image){
+                        this.url = "/storage/open/"+response.data[0].image;
+                    }else{
+                        this.url = "";
+                    }
                     this.name = response.data[0].name
                     this.sub_title = response.data[0].sub_title
                     this.note = response.data[0].note
