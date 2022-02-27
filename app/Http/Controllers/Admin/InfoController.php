@@ -27,12 +27,13 @@ class InfoController extends Controller
 
     public function new($id)
     {
-
+        $infomation['st'] = date('Y')."-".date('m')."-".date('d')."T".date('H').":".date('i');
+        $infomation['ed'] = date('Y-m-d', strtotime('+1 day')).'T'.date('H').":".date('i');
         return view('admin.infonew', [
             'id' => $id,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
-            'information'=>[],
+            'information'=>$infomation,
             'after'=>date("Y-m-d H:00",strtotime("1 hour"))
         ]);
     }

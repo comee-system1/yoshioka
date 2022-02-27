@@ -73,10 +73,10 @@
                                     @if ($key == 1)
                                         <div class="row">
                                             <div class="col-md-4">
-                                                {{ Form::datetimeLocal('start', $information->st??"", ['id'=>'start', 'class'=>'form-control'])}}
+                                                {{ Form::datetimeLocal('start', $information->st??$information['st'], ['id'=>'start', 'class'=>'form-control'])}}
                                             </div>
                                             <div class="col-md-4">
-                                                {{ Form::datetimeLocal('end', $information->ed??"", ['id'=>'end', 'class'=>'form-control'])}}
+                                                {{ Form::datetimeLocal('end', $information->ed??$information['ed'], ['id'=>'end', 'class'=>'form-control'])}}
                                             </div>
                                         </div>
                                     @endif

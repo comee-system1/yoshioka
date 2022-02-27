@@ -57,6 +57,6 @@ img.hanko{
     <p class="memo">{{$memo}}</p>
     <p class="h2">{{$recipe_message}}</p>
     <p class="address">{!! nl2br(e($address)) !!}</p>
-    <p class="tel">{{$tel}}</p>
+    <p class="tel">{{$tel}}<br />{{$email}}</p>
 </body>
 </html>

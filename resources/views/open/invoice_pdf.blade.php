@@ -75,7 +75,7 @@ table td.blue{
     <p class="memo">{{$memo}}</p>
     <p class="h2">{{$recipe_message}}</p>
     <p class="address">{!! nl2br(e($address)) !!}</p>
-    <p class="tel">{{$tel}}</p>
+    <p class="tel">{{$tel}}<br />{{$email}}</p>
     <table>
         <tr>
             <td class="th blue">No</td>
@@ -93,5 +93,6 @@ table td.blue{
             <td class="th">&yen;{{$party_price}}</td>
         </tr>
     </table>
+    <p class="payee">{!! nl2br(e($payee)) !!}</p>
 </body>
 </html>

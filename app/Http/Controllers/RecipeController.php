@@ -44,6 +44,7 @@ class RecipeController extends Controller
             'tel' => $define_invoices[ 'tel' ]->text,
             'file' => $file,
             'date' => $define_invoices[ 'date' ]->text,
+            'email' => $define_invoices[ 'email' ]->text,
         ]);
         $filename = date("YmdHis") . "_recipe";
         return $pdf->download($filename . '.pdf');
@@ -84,6 +85,8 @@ class RecipeController extends Controller
             'memo' => $define_invoices[ 'memo' ]->text,
             'recipe_message'  => $define_invoice_titles['invoice_message']->title,
             'address' => $define_invoices[ 'address' ]->text,
+            'payee' => $define_invoices[ 'payee' ]->text,
+            'email' => $define_invoices[ 'email' ]->text,
             'tel' => $define_invoices[ 'tel' ]->text,
             'file' => $file,
             'date' => $define_invoices[ 'date' ]->text,

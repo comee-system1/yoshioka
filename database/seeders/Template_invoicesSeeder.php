@@ -32,7 +32,9 @@ class Template_invoicesSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-            'text' => '〇〇銀行
+            'text' => '
+振込先
+〇〇銀行
 普通0000000
 〇〇株式会社',
             'template_code' => '1',
@@ -83,7 +85,9 @@ class Template_invoicesSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-            'text' => '〇〇bank
+            'text' => '
+Payee
+〇〇bank
 Account 0000000 〇〇Ltd',
             'template_code' => '2',
             'type' => 'payee',
