@@ -147,4 +147,18 @@ class Information extends Model
         return $data;
     }
 
+    public static function getSendAllData(){
+        $where = [];
+        $where[ 'informations.status' ] = 1;
+        $where[ 'informations.type' ] = 2;
+        $where[ 'informations.send_flag' ] = 0;
+        $data = Information::
+            selectRaw('Informations.title')
+            ->selectRaw('Informations.note')
+            ->selectRaw('accounts.email')
+            ->leftJoin('accounts', 'accounts.seminer_id', '=', 'informations.seminer_id')
+            ->where($where)
+            ->get();
+        return $data;
+    }
 }

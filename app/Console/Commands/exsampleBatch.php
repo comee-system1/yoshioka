@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterMail;
+use App\Models\Account;
+use App\Models\Information;
 
 class exsampleBatch extends Command
 {
@@ -41,47 +43,28 @@ class exsampleBatch extends Command
     public function handle()
     {
 
-        $to = array('chiba@innovation-gate.jp','chiba@se-sendai.co.jp');
-        // for($i=0;$i<=300;$i++){
-        //     $mail = [];
-        //     $mail['address'] = "chiba@se-sendai.co.jp";
-        //     $mail['body'] = "おおおおおお";
-        //     $mail['title'] = "えええええええええ".$i;
-        //     Mail::send(new RegisterMail($mail));
-        // }
-
         $this->info('Mail Send All User Start');
 
         Log::info("一斉メール開始");
-        $this->title = "ええええ";
-        $this->body = "ええええ";
-        $this->address = "chiba@innovation-gate.jp";
-        // for($i=0;$i<=1;$i++){
-        //     Mail::raw("ああああああああああああああああ".$i, function($message) use ($i)
-        //     {
+        $infomations = Information::getSendAllData();
+        foreach($infomations as $i => $value){
+            $this->title = $value->title;
+            $this->body = $value->note;
+            $this->address = $value->email;
 
-        //         Log::info(date('Y-m-d H:i:s').'タイトル::'.$this->title);
-        //         Log::info(date('Y-m-d H:i:s').'本文::'.$this->body);
-        //         Log::info(date('Y-m-d H:i:s').'メールアドレス::'.$this->address);
-        //         Log::info("----------------------------------------------------------");
+            Mail::raw($this->body, function($message) use ($i)
+            {
 
-        //         $message->from('info@blueracoon85.sakura.ne.jp');
-        //         $message->to("chiba@innovation-gate.jp")->subject('Hourly Update'.$i);
-        //     });
-        // }
-        // for($i=0;$i<=1;$i++){
-        //     Mail::raw("ああああああああああああああああ".$i, function($message) use ($i)
-        //     {
+                Log::info(date('Y-m-d H:i:s').'タイトル::'.$this->title);
+                Log::info(date('Y-m-d H:i:s').'本文::'.$this->body);
+                Log::info(date('Y-m-d H:i:s').'メールアドレス::'.$this->address);
+                Log::info("----------------------------------------------------------");
 
-        //         Log::info(date('Y-m-d H:i:s').'タイトル::'.$this->title);
-        //         Log::info(date('Y-m-d H:i:s').'本文::'.$this->body);
-        //         Log::info(date('Y-m-d H:i:s').'メールアドレス::'.$this->address);
-        //         Log::info("----------------------------------------------------------");
+                $message->from('info@blueracoon85.sakura.ne.jp');
+                $message->to($this->address)->subject($this->title);
+            });
+        }
 
-        //         $message->from('info@blueracoon85.sakura.ne.jp');
-        //         $message->to("chiba@se-sendai.co.jp")->subject('Hourly Update SE-sendai'.$i);
-        //     });
-        // }
         Log::info("一斉メール終了");
         $this->info('Mail Send All User End');
 
