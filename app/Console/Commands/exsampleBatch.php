@@ -67,6 +67,6 @@ class exsampleBatch extends Command
 
         Log::info("一斉メール終了");
         $this->info('Mail Send All User End');
-
+        Information::where('type', 2)->where('send_flag',0)->update(['send_flag' => 1]);
     }
 }
