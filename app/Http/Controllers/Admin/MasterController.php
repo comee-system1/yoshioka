@@ -109,6 +109,12 @@ class MasterController extends Controller
     public function getMailReplace($id, $type = "")
     {
         $data = [];
+        if($type == "information"){
+            $data[ 'information' ][0][ 'title' ] = "お知らせ内容";
+            $data[ 'information' ][0][ 'type' ] = "information";
+            $data[ 'information' ][1][ 'title' ] = "名前";
+            $data[ 'information' ][1][ 'type' ] = "name";
+        }else
         if($type == "password_renew"){
             $data[ 'password_renew' ][0][ 'title' ] = "パスワード";
             $data[ 'password_renew' ][0][ 'type' ] = "password_renew";

@@ -151,4 +151,67 @@ class JoinController extends Controller
     {
         Account::setPaymentAdmin($id, $request);
     }
+
+    public function csv($id)
+    {
+
+        $where = [
+            'account_type',
+            'name',
+            'name_kana',
+            'email',
+            'company',
+            'tel',
+            'address',
+            'area',
+        ];
+        $accountType = DefineSpaceList::getDataMaster($id);
+        $clum = DefineJoinTitle::getDataType($id, $where)->where('display_status',1)->get();
+        $head = [];
+        $useclum = [];
+        foreach($clum as $value){
+            $head[] = $value->title;
+            $useclum[] = $value->type;
+        }
+        array_push($head, "支払い" );
+        array_push($useclum, "payment_flag" );
+        $accounts = Account::getCsvData($id, $useclum);
+        $users = [];
+        $i=0;
+        foreach($accounts as $value){
+            foreach($useclum as $val){
+                if($val == "account_type"){
+                    $users[$i][$val] = $accountType[ $value->$val ]->text;
+                }else
+                if($val == "payment_flag"){
+                    $users[$i][$val] = ($value->$val == 1)?"支払済み":"未払い";
+                }else{
+                    $users[$i][$val] = "'".$value->$val;
+                }
+            }
+            $i++;
+        }
+        $filename = date("Ymdhis").".csv";
+        // 書き込み用ファイルを開く
+        $f = fopen($filename, 'w');
+        if ($f) {
+            // カラムの書き込み
+            mb_convert_variables('SJIS', 'UTF-8', $head);
+            fputcsv($f, $head);
+            // データの書き込み
+            foreach ($users as $user) {
+            mb_convert_variables('SJIS', 'UTF-8', $user);
+            fputcsv($f, $user);
+            }
+        }
+        // ファイルを閉じる
+        fclose($f);
+
+        // HTTPヘッダ
+        header("Content-Type: application/octet-stream");
+        header('Content-Length: '.filesize($filename));
+        header('Content-Disposition: attachment; filename='.$filename);
+        readfile($filename);
+
+    }
 }

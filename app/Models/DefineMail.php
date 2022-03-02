@@ -76,4 +76,11 @@ class DefineMail extends Model
         return $text;
     }
 
+    public static function textReplaceInformation($text, $account)
+    {
+        $text = preg_replace("/##name##/", $account->name, $text);
+        $text = preg_replace("/##information##/", $account->note, $text);
+        return $text;
+    }
+
 }

@@ -17,7 +17,7 @@
                                 <li class="text-start pr-2">領収書</li>
                                 <li class="text-start pr-2">協賛管理</li>
                             </ul>
-                            <button class="btn btn-primary" v-on:click="openModal(0,1)">登録</button>
+                            <button class="btn btn-primary" v-on:click="openModal(0,1)">作成</button>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                                 <li class="text-start pr-2">receipt</li>
                                 <li class="text-start pr-2">Sponsorship management</li>
                             </ul>
-                            <button class="btn btn-primary" v-on:click="openModal(0,2)">登録</button>
+                            <button class="btn btn-primary" v-on:click="openModal(0,2)">作成</button>
                         </div>
                     </div>
                 </div>

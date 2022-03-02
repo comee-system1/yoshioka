@@ -43,6 +43,10 @@
                     <div class="col-md-6">{{replace['title']}}</div>
                     <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
                 </div>
+                <div class="row" v-for="replace of replaces[ 'information' ]" :key="replace.id">
+                    <div class="col-md-6">{{replace['title']}}</div>
+                    <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
+                </div>
             </div>
         </div>
 

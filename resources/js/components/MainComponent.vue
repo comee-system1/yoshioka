@@ -10,6 +10,7 @@
         <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">{{name}}</nav>
         <div class="text-end">
             <a v-bind:href="'/admin/join/new/'+id" class="btn btn-primary">新規登録</a>
+            <a v-bind:href="'/admin/join/csv/'+id" class="btn btn-success">ダウンロード</a>
         </div>
         <form @submit.prevent="Search">
             <div class="row">

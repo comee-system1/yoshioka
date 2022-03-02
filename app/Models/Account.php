@@ -216,4 +216,16 @@ class Account extends Authenticatable
         return Account::where($where);
     }
 
+    public static function getCsvData($id, $clum)
+    {
+        $data = self::select($clum)
+            ->where("seminer_id", $id)
+            ->get();
+        $list = [];
+        foreach($data as $key=>$value){
+            $list[$key] = $value;
+
+        }
+        return $list;
+    }
 }

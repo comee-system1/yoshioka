@@ -87,6 +87,25 @@ class Template_mailsSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+            'type' => 'information',
+            'template_code' => '1',
+            'subject' => 'お知らせメール',
+            'body' => '
+##name##様
+
+お世話になっております。
+〇〇〇よりご連絡を行います。
+
+##information##
+
+引き続きよろしくお願いいたします。
+
+
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
             'type' => 'join',
             'template_code' => '2',
             'subject' => 'Thank you for registering',
@@ -152,6 +171,25 @@ The password has been reset with the following contents.
 ━━━━━━ □ ■ □ Reset contents □ ■ □ ━━━━━━
 Password ## password_renew ##
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+
+            [
+            'type' => 'information',
+            'template_code' => '2',
+            'subject' => 'information',
+            'body' => '
+## name ##
+
+We become indebted to.
+We will contact you from 〇〇〇.
+
+## information ##
+
+Thank you for your continued support
+
             ',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

@@ -11,6 +11,8 @@ use App\Models\DefineSpaceList;
 // usersで使う定数
 class ClassConsts
 {
+    public const ADMIN_MAIL = "info@blueracoon85.sakura.ne.jp";
+
     public const SPONSER_PATH = "/public/sponser/";
 
     public const PAGE_LIMIT = 30;
@@ -18,6 +20,7 @@ class ClassConsts
         "join" => "参加登録・更新メール",
         "endai" => "演題登録・更新メール",
         "password_renew" => "パスワード再設定メール",
+        "information" => "お知らせメール",
     ];
 
     public const ENABLE_LIST = [

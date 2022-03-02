@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/editStatusData', [\App\Http\Controllers\Admin\HomeController::class, 'editStatusData'])->name('editStatusData');
         Route::get('/getDataLists', [\App\Http\Controllers\Admin\HomeController::class, 'getDataLists'])->name('getDataLists');
         Route::get('/join/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'index'])->name('join');
+        Route::get('/join/csv/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'csv'])->name('join.csv');
         Route::any('/join/list/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'list'])->name('join.list');
         Route::get('/join/delete/{id}/{account_id}', [\App\Http\Controllers\Admin\JoinController::class, 'delete'])->name('join.delete');
         Route::any('/join/payment/{id}', [\App\Http\Controllers\Admin\JoinController::class, 'payment'])->name('join.payment');

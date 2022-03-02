@@ -154,8 +154,10 @@ class Information extends Model
         $where[ 'informations.send_flag' ] = 0;
         $data = Information::
             selectRaw('Informations.title')
+            ->selectRaw('Informations.seminer_id')
             ->selectRaw('Informations.note')
             ->selectRaw('accounts.email')
+            ->selectRaw('accounts.name')
             ->leftJoin('accounts', 'accounts.seminer_id', '=', 'informations.seminer_id')
             ->where($where)
             ->get();
