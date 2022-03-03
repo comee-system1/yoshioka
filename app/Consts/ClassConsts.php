@@ -144,7 +144,7 @@ class ClassConsts
     public static function defineSpaceListExplain($id){
         $text = "";
         foreach(DefineSpaceList::getDataAccount($id) as $accountSelect){
-            $text .= $accountSelect->master_id.":".$accountSelect->text."　";
+            $text .= $accountSelect->master_id.":".preg_replace("/ /","",$accountSelect->text)."　";
         }
         return $text;
     }

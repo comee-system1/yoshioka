@@ -374,9 +374,9 @@ class MasterController extends Controller
 
     public static function createCsvHead($clum)
     {
-
+        $head = [];
         foreach($clum as $value){
-            $head[$value->type] = $value->title;
+            $head[$value->type] = preg_replace("/ /","",$value->title);
         }
         $head[ 'payment_flag' ] = "支払い";
         return $head;
