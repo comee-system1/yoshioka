@@ -26,6 +26,7 @@ Vue.component('master-invoice-component', require('./components/MasterInvoiceCom
 Vue.component('master-title-component', require('./components/MasterTitleComponent.vue').default);
 Vue.component('master-mypage-component', require('./components/MasterMypageComponent.vue').default);
 Vue.component('master-password-component', require('./components/MasterPasswordComponent.vue').default);
+Vue.component('master-join-component', require('./components/MasterJoinComponent.vue').default);
 Vue.component('shared-menu-component', require('./components/SharedMenuComponent.vue').default);
 
 /**

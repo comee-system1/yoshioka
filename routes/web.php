@@ -118,6 +118,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/master/book/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'book'])->name('master.book');
         Route::get('/master/mail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mail'])->name('master.mail');
         Route::get('/master/password/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'password'])->name('master.password');
+        Route::get('/master/join/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'join'])->name('master.join');
+        Route::get('/master/join/donwload/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'joinDownload'])->name('master.join.download');
 
 
         Route::get('/master/define/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'define'])->name('master.define');
@@ -152,6 +154,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('/master/password/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'password'])->name('master.password.post');
         Route::post('/master/password/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'passwordEdit'])->name('master.password.edit');
+
+        Route::any('/master/account/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'account'])->name('master.account');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

@@ -65,7 +65,15 @@
             <li>
                 <a @if(
                     Request::is('admin/master/'.$id) ||
-                    Request::is('admin/master/endai/'.$id) )
+                    Request::is('admin/master/endai/'.$id) ||
+                    Request::is('admin/master/time/'.$id) ||
+                    Request::is('admin/master/mail/'.$id) ||
+                    Request::is('admin/master/invoice/'.$id) ||
+                    Request::is('admin/master/title/'.$id) ||
+                    Request::is('admin/master/mypage/'.$id) ||
+                    Request::is('admin/master/password/'.$id) ||
+                    Request::is('admin/master/join/'.$id)
+                    )
                 class="nav-link active" @else class="nav-link" @endif href="{{route('master',['id'=>$id])}}">
                 <i class="fas fa-users-cog"></i>
                 マスター管理

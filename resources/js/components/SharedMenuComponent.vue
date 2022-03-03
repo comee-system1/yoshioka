@@ -9,6 +9,7 @@
         <div class="col-md-3 mt-1"><a v-bind:href="'/admin/master/title/'+id" v-bind:class="[active == 'active7' ? 'btn btn-outline-success w-100 active' : 'btn btn-outline-success w-100']">ページ項目設定</a></div>
         <div class="col-md-3 mt-1"><a v-bind:href="'/admin/master/mypage/'+id" v-bind:class="[active == 'active8' ? 'btn btn-outline-success w-100 active' : 'btn btn-outline-success w-100']">マイページ設定</a></div>
         <div class="col-md-3 mt-1"><a v-bind:href="'/admin/master/password/'+id" v-bind:class="[active == 'active9' ? 'btn btn-outline-success w-100 active' : 'btn btn-outline-success w-100']">パスワード再設定</a></div>
+        <div class="col-md-3 mt-1"><a v-bind:href="'/admin/master/join/'+id" v-bind:class="[active == 'active10' ? 'btn btn-outline-success w-100 active' : 'btn btn-outline-success w-100']">参加者一括登録</a></div>
     </div>
 </template>
 <script>

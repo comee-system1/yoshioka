@@ -75,6 +75,18 @@ class Account extends Authenticatable
         return $list;
     }
 
+    public static function getAccountFormat($id)
+    {
+        $where[ 'seminer_id' ] = $id;
+        $where[ 'status'     ] = 1;
+        $data = self::where($where)->get();
+        $list = [];
+        foreach($data as $value){
+            $list[$value->id] = $value;
+        }
+        return $list;
+    }
+
     public function setConf($id, $request, $account_id = 0)
     {
         $error_message = [];
@@ -137,6 +149,26 @@ class Account extends Authenticatable
         $this->save();
         $last_insert_id = $this->id;
         return $last_insert_id;
+    }
+
+    public function setCsvData($id, $data)
+    {
+        $getDataMaster = DefineSpaceList::getDataMaster($id);
+        $this->seminer_id = $id;
+        $this->account_type = sprintf("%d",$data[0]);
+        $this->name = $data[1];
+        $this->name_kana  = $data[2];
+        $this->email  = $data[3];
+        $this->password = Hash::make($data[4]);
+        $this->company  = $data[5];
+        $this->tel  = $data[6];
+        $this->address  = $data[7];
+        $this->area  = $data[8];
+        $this->payment_flag  = $data[9];
+        // $this->join_status  = $data[9];
+        // $this->join_price = $getDataMaster[$data[0]]->join_fee;
+
+        $this->save();
     }
 
     public function editData($id, $request, $join_price = 0, $party_price = 0, $account_id )

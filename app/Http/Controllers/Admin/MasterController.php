@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Consts\ClassConsts;
 use App\Http\Controllers\Controller;
 use App\Models\DefineBookTitle;
 use App\Models\DefineEndaiTitle;
@@ -14,10 +15,23 @@ use App\Models\DefinePresentationList;
 use App\Models\DefineSpaceList;
 use App\Models\DefineTimeTitle;
 use App\Models\DefineTitle;
+use App\Models\Account;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
+    public $csvClum = [
+        'account_type',
+        'name',
+        'name_kana',
+        'email',
+        'password',
+        'company',
+        'tel',
+        'address',
+        'area',
+    ];
+
     //
     public function index($id)
     {
@@ -102,6 +116,19 @@ class MasterController extends Controller
 
     }
 
+
+    public function join($id)
+    {
+        $objects[ 'head' ] = self::createCsvHead(DefineJoinTitle::getDataType($id, $this->csvClum)->get());
+        $objects[ 'body' ] = ClassConsts::CSV_EXPLAIN;
+        $objects[ 'space' ] = ClassConsts::defineSpaceListExplain($id);
+        return view('admin.masterJoin', [
+            'id' => $id,
+            'seminer'=>$this->seminer,
+            'open_url'=>$this->seminer->open_url,
+            'objects'=>json_encode($objects),
+        ]);
+    }
 
     //---------------
     //メール設定
@@ -317,5 +344,62 @@ class MasterController extends Controller
         DefinePasswordRenew::editMypage($id, $request, 'renew_button');
         DefinePasswordRenew::editMypage($id, $request, 'renew_success');
         DefinePasswordRenew::editMypage($id, $request, 'renew_miss');
+    }
+
+    //------------------
+    //参加者一覧
+    //-----------------
+    public function joinDownload($id)
+    {
+        $clum = DefineJoinTitle::getDataType($id, $this->csvClum)->get();
+        $head = self::createCsvHead($clum);
+
+        $filename = date("Ymdhis").".csv";
+        // 書き込み用ファイルを開く
+        $f = fopen($filename, 'w');
+        if ($f) {
+            // カラムの書き込み
+            mb_convert_variables('SJIS', 'UTF-8', $head);
+            fputcsv($f, $head);
+        }
+        // ファイルを閉じる
+        fclose($f);
+
+        // HTTPヘッダ
+        header("Content-Type: application/octet-stream");
+        header('Content-Length: '.filesize($filename));
+        header('Content-Disposition: attachment; filename='.$filename);
+        readfile($filename);
+    }
+
+    public static function createCsvHead($clum)
+    {
+
+        foreach($clum as $value){
+            $head[$value->type] = $value->title;
+        }
+        $head[ 'payment_flag' ] = "支払い";
+        return $head;
+    }
+
+    public function account($id, Request $request){
+
+        // CSV ファイル保存
+        $tmpName = mt_rand().".".$request->file->guessExtension(); //TMPファイル名
+        $request->file->move(public_path()."/csv/tmp",$tmpName);
+        $tmpPath = public_path()."/csv/tmp/".$tmpName;
+        $fp = fopen($tmpPath, 'r');
+        $i = 0;
+        $insert = [];
+        while ($row = fgetcsv($fp)) {
+            if($i >= 1){
+                mb_convert_variables('UTF-8', 'SJIS-win', $row);
+                $is_registration_row = false;
+                (new Account)->setCsvData($id, $row);
+            }
+            $i++;
+        }
+
+        exit();
     }
 }

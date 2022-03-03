@@ -93,6 +93,18 @@ class ClassConsts
         2 => "メール配信",
     ];
 
+    public const CSV_EXPLAIN =[
+        'account_type'=>'1～5の数値で選択してください。',
+        'name'=>'名前を記載してください。',
+        'name_kana'=>'ふりがなを記載してください。',
+        'email'=>'メールアドレスを記載してください。',
+        'password'=>'パスワードを記載してください。',
+        'company'=>'会社名を記載してください。',
+        'tel'=>'電話番号を記載してください。',
+        'address'=>'住所を記載してください。',
+        'area'=>'所属を記載してください。',
+        'payment_flag'=>'1（支払済み）または0（未払い）を記載してください',
+    ];
 
     public static function createArray($array){
         $return = [];
@@ -127,6 +139,14 @@ class ClassConsts
         $this->party_flag = DefineJoinTitle::getDataType($id, 'party_flag')->first();
         $this->password_edit = DefineJoinTitle::getDataType($id, 'password_edit')->first();
         $this->account_input = DefineJoinTitle::getDataType($id, ['name', 'name_kana', 'email', 'password', 'company', 'tel', 'address', 'area' ])->get();
+    }
+
+    public static function defineSpaceListExplain($id){
+        $text = "";
+        foreach(DefineSpaceList::getDataAccount($id) as $accountSelect){
+            $text .= $accountSelect->master_id.":".$accountSelect->text."　";
+        }
+        return $text;
     }
 
 }
