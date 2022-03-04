@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Seminer;
 use App\Consts\ClassConsts;
+use App\Models\DefineFee;
 
 class ControllerOpen extends BaseController
 {
@@ -42,7 +43,9 @@ class ControllerOpen extends BaseController
         $this->class = new ClassConsts();
         $ex = explode("/",$request->path());
         if(Seminer::checkSitekey($ex[1], $ex[2])){
+            $fee = DefineFee::getDataSeminer($ex[1]);
             $data = Seminer::getData($ex[1]);
+            $data[0][ 'fee' ] = $fee;
             $this->seminer = $data;
             return true;
         }else{

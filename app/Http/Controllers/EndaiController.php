@@ -29,7 +29,6 @@ class EndaiController extends ControllerOpen
         $endaititle = DefineEndaiTitle::getDataTitle($id);
         $user = Auth::guard('account')->user();
         $endailists = Endai::getEndaiLists($id, $user);
-
         return view('open.endai', [
             'id' => $id,
             'uniqcode' => $uniqcode,

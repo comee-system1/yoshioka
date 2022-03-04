@@ -46,10 +46,12 @@
                 <div class="col-md-2"><a href="{{route('account.endai.list',['id'=>$id, 'uniqcode'=>$uniqcode])}}" class="btn btn-outline-primary w-100 @if(Route::currentRouteName() == 'account.endai.list' || Route::currentRouteName() == 'account.endai.new' ) active @endif">{{$defineMypage['endai']->title}}</a></div>
                 @endif
 
+                @if($seminer->fee[ 'join_status' ] == 1 || $seminer->fee[ 'party_status' ] == 1)
                 @if(Auth::guard('account')->user()->payment_flag == 1)
                     <div class="col-md-2"><a href="{{route('account.recipe',['id'=>$id, 'account_id'=>Auth::guard('account')->user()->id])}}" class="btn btn-outline-primary w-100">{{$defineMypage['recipe']->title}}</a></div>
                 @else
                     <div class="col-md-2"><a href="{{route('account.invoice',['id'=>$id, 'account_id'=>Auth::guard('account')->user()->id])}}" class="btn btn-outline-primary w-100">{{$defineMypage['invoice']->title}}</a></div>
+                @endif
                 @endif
 
                 @isset($defineMypage[ 'program' ])

@@ -17,6 +17,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div class="container p-3">
                 <nav class="navbar navbar-dark bg-primary mb-2 text-white p-2">決済内容更新</nav>
+                <p>公開ページでの請求書・領収書のダウンロードは、{{$data[ 'join_title' ][ 'join' ][ 'title' ]}}・{{$data[ 'join_title' ][ 'party' ][ 'title' ]}}のどちらかを有効にする必要があります。</p>
                 @yield('flash')
                 {{ Form::open(['route' => ['pay.post',$id]]) }}
                     <div class="row mt-4">
