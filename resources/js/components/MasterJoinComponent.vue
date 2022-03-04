@@ -10,6 +10,11 @@
         <shared-menu-component v-bind:id=id active="active10"></shared-menu-component>
 
         <div class="h4 mt-3">参加者一括登録</div>
+        <ul>
+            <li>データの不整合回避の為、<span class="text-danger">メールアドレスは重複しないよう</span>に登録してください</li>
+            <li>追加型になりますので、既に登録済みの参加者情報に影響はございません。</li>
+            <li>「参加者フォーマット」よりファイルのダウンロードを行い、登録データを記載後、アップロードを行ってください。</li>
+        </ul>
         <p>フォーマットの説明</p>
         <div class="row" v-for="object, key in objects.head" :key="key">
             <div class="col-md-3">{{object}}</div>
