@@ -104,6 +104,10 @@ class ClassConsts
         'address'=>'住所を記載してください。',
         'area'=>'所属を記載してください。',
         'payment_flag'=>'1（支払済み）または0（未払い）を記載してください',
+        'join_status'=>'1（参加）または0（不参加）を記載してください',
+        'party_status'=>'1（懇親会参加）または0（懇親会不参加）を記載してください',
+        'join_price'=>'参加費（金額）を記載してください',
+        'party_price'=>'懇親会費（金額）を記載してください',
     ];
 
     public static function createArray($array){

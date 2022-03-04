@@ -1,0 +1,2 @@
+Participantcategory,Participantname,Participantname(Kana),emailaddress,password,CompanyName,telephonenumber,Streetaddress,Belongs,支払い,参加有無,懇親会有無,参加費,懇親会費
+1,伊藤次郎,いとうじろう,itop@ito.co.jp,test1234,itocompany,09012341234,aaa,sss,1,1,1,3000,2000

@@ -379,6 +379,10 @@ class MasterController extends Controller
             $head[$value->type] = preg_replace("/ /","",$value->title);
         }
         $head[ 'payment_flag' ] = "支払い";
+        $head[ 'join_status'  ] = "参加有無";
+        $head[ 'party_status' ] = "懇親会有無";
+        $head[ 'join_price'   ] = "参加費";
+        $head[ 'party_price'  ] = "懇親会費";
         return $head;
     }
 
