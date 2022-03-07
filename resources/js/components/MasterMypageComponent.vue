@@ -46,14 +46,14 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">請求書</div>
+            <div class="col-md-2">領収書</div>
             <div class="col-md-1"><input type="checkbox" v-model="recipe_status" /></div>
             <div class="col-md-8">
                 <input type="text" class="form-control w-100" v-model="recipe"  />
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-2">請求書</div>
+            <div class="col-md-2">プログラム</div>
             <div class="col-md-1"><input type="checkbox" v-model="program_status" /></div>
             <div class="col-md-8">
                 <input type="text" class="form-control w-100" v-model="program"  />
