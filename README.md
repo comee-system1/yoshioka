@@ -10,9 +10,10 @@ cd /home/blueracoon85/www/yoshioka/; /usr/local/bin/php artisan command:exsample
 ### cronの実行コマンド
 command
 command:exsample      Send an hourly email to all the users
-command:requests      セミナーの3日前になった際に参加者にメールを送信
+command:requests      セミナーの1or3日前になった際に参加者にメールを送信
 
-`php artisan command:requests 1` 
+`php artisan command:requests 1`
+`php artisan command:requests 3` 
 - 引数をつける 1:1日前 3:3日前
 
 
