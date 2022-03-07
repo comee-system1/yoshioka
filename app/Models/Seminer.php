@@ -122,16 +122,36 @@ class Seminer extends Model
         $last_insert_id = $seminer->id;
         return $last_insert_id;
     }
+
     public static function editStatusData($request)
     {
         $seminer = Seminer::where('id', $request->id)->first();
         $seminer->display_status = $request->display_status;
         $seminer->save();
     }
+
     public static function deleteData($request)
     {
         $seminer = Seminer::where('id', $request->id)->first();
         $seminer->delete_status = 1;
         $seminer->save();
+    }
+
+    public static function getRequestMail($day)
+    {
+        $ago = date("Y-m-d",strtotime("+".$day." day"));
+        $accounts = Account::join(
+            'seminers',
+            'accounts.seminer_id',
+            '=',
+            'seminers.id'
+        )
+        ->select('seminers.name as seminer_name')
+        ->select('accounts.*')
+        ->where('display_status', '=', 1)
+        ->where('delete_status', '=', 0)
+        ->where('start_date', 'like', $ago.'%')
+        ->get();
+        return $accounts;
     }
 }

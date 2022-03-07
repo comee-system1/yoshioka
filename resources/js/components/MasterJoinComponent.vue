@@ -61,13 +61,13 @@ export default {
         },
         click:function(key)
         {
-            this.showLoading = true;
+
 
             let formData = new FormData();
-            let postData = {
-                'id': key,
-                'formData':formData
-            };
+            if(!this.uploadFile){
+                alert("ファイルに不備があります。");
+                return false;
+            }
 
             formData.append('file',this.uploadFile);
             formData.append('id',key);
@@ -76,7 +76,7 @@ export default {
                     'content-type': 'multipart/form-data'
                 }
             };
-
+            this.showLoading = true;
             axios.post("/admin/master/account/"+key, formData, config).then(response => {
                 // 成功
                 this.showLoading = false;

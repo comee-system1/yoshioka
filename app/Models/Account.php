@@ -164,11 +164,11 @@ class Account extends Authenticatable
         $this->tel  = $data[6];
         $this->address  = $data[7];
         $this->area  = $data[8];
-        $this->payment_flag  = $data[9];
-        $this->join_status  = $data[10];
-        $this->party_status  = $data[11];
-        $this->join_price  = $data[12];
-        $this->party_price  = $data[13];
+        $this->payment_flag  = sprintf("%d",$data[9]);
+        $this->join_status   = sprintf("%d",$data[10]);
+        $this->party_status  = sprintf("%d",$data[11]);
+        $this->join_price    = sprintf("%d",$data[12]);
+        $this->party_price   = sprintf("%d",$data[13]);
         // $this->join_price = $getDataMaster[$data[0]]->join_fee;
 
         $this->save();

@@ -21,6 +21,8 @@ class ClassConsts
         "endai" => "演題登録・更新メール",
         "password_renew" => "パスワード再設定メール",
         "information" => "お知らせメール",
+        "request3" => "セミナーお知らせメール(3日前)",
+        "request1" => "セミナーお知らせメール(1日前)",
     ];
 
     public const ENABLE_LIST = [

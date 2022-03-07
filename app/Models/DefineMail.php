@@ -83,4 +83,29 @@ class DefineMail extends Model
         return $text;
     }
 
+    public static function getDefineRequestMail($type)
+    {
+        $definetype = "";
+        if($type == 1){
+            $definetype = "request1";
+        }else{
+            $definetype = "request3";
+        }
+        $data = Seminer::join(
+            'define_mails',
+            'define_mails.seminer_id',
+            '=',
+            'seminers.id'
+        )
+        ->select('define_mails.*')
+        ->where('seminers.display_status', '=', 1)
+        ->where('seminers.delete_status', '=', 0)
+        ->where('define_mails.type', '=', $definetype)
+        ->get();
+        $mail = [];
+        foreach($data as $value){
+            $mail[$value->seminer_id] = $value;
+        }
+        return $mail;
+    }
 }

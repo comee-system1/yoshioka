@@ -2,9 +2,18 @@
 Stripe向けCashierパッケージをComposerでインストールします。
 `composer require laravel/cashier`
 
+### cronの設定
+cd /home/blueracoon85/www/yoshioka/; /usr/local/bin/php artisan command:exsample
+一斉メール 1時間ごと
 
 
+### cronの実行コマンド
+command
+command:exsample      Send an hourly email to all the users
+command:requests      セミナーの3日前になった際に参加者にメールを送信
 
+`php artisan command:requests 1` 
+- 引数をつける 1:1日前 3:3日前
 
 
 ### サクラサーバーにcomposerのインストール

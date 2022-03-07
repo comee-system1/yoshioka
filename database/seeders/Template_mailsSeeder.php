@@ -106,6 +106,44 @@ class Template_mailsSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
+            'type' => 'request3',
+            'template_code' => '1',
+            'subject' => 'セミナーお知らせ(3日前)',
+            'body' => '
+##name##様
+
+お世話になっております。
+〇〇〇よりご連絡を行います。
+
+〇〇〇が〇〇日に開催いたします。開催3日前となります。
+
+引き続きよろしくお願いいたします。
+
+
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+            'type' => 'request1',
+            'template_code' => '1',
+            'subject' => 'セミナーお知らせ(1日前)',
+            'body' => '
+##name##様
+
+お世話になっております。
+〇〇〇よりご連絡を行います。
+
+〇〇〇が〇〇日に開催いたします。開催1日前となります。
+
+引き続きよろしくお願いいたします。
+
+
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
             'type' => 'join',
             'template_code' => '2',
             'subject' => 'Thank you for registering',
@@ -175,7 +213,6 @@ Password ## password_renew ##
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
-
             [
             'type' => 'information',
             'template_code' => '2',
@@ -189,6 +226,42 @@ We will contact you from 〇〇〇.
 ## information ##
 
 Thank you for your continued support
+
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+            'type' => 'request3',
+            'template_code' => '2',
+            'subject' => 'Seminar information 3 days ago',
+            'body' => '
+## name ##
+
+We become indebted to.
+We will contact you from 〇〇〇.
+
+XX will be held on XX days. It will be 3 days before the event.
+
+Thank you for your continued support.
+
+            ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+            'type' => 'request1',
+            'template_code' => '2',
+            'subject' => 'Seminar information 1 days ago',
+            'body' => '
+## name ##
+
+We become indebted to.
+We will contact you from 〇〇〇.
+
+XX will be held on XX days. It will be 1 days before the event.
+
+Thank you for your continued support.
 
             ',
             'created_at' => date('Y-m-d H:i:s'),

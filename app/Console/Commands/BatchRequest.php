@@ -2,30 +2,28 @@
 
 namespace App\Console\Commands;
 
-use App\Consts\ClassConsts;
+use App\Models\DefineMail;
+use App\Models\Seminer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RegisterMail;
-use App\Models\Account;
-use App\Models\Information;
-use App\Models\DefineMail;
+use App\Consts\ClassConsts;
 
-class exsampleBatch extends Command
+class BatchRequest extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:exsample';
+    protected $signature = 'command:requests {daytype}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send an hourly email to all the users';
+    protected $description = 'セミナーの3日前と当日になった際に参加者にメールを送信';
 
     /**
      * Create a new command instance.
@@ -45,14 +43,13 @@ class exsampleBatch extends Command
     public function handle()
     {
 
-        $this->info('Mail Send All User Start');
-
-        Log::info("一斉メール開始");
-        $infomations = Information::getSendAllData();
-        foreach($infomations as $i => $value){
-            $mail = DefineMail::getData($value->seminer_id, 'information');
-            $this->title = $value->title;
-            $this->body = DefineMail::textReplaceInformation($mail->body, $value);
+        $this->info('Mail Send Request User Start');
+        $daytype = $this->argument('daytype');
+        $definemail = DefineMail::getDefineRequestMail($daytype);
+        $accounts = Seminer::getRequestMail($daytype);
+        foreach($accounts as $i => $value){
+            $this->title = $definemail[$value->seminer_id][ 'subject' ];
+            $this->body = DefineMail::textReplaceInformation($definemail[$value->seminer_id][ 'body' ],$value);
             $this->address = $value->email;
             Mail::raw($this->body, function($message) use ($i)
             {
@@ -68,7 +65,7 @@ class exsampleBatch extends Command
         }
 
         Log::info("一斉メール終了");
-        $this->info('Mail Send All User End');
-        Information::where('type', 2)->where('send_flag',0)->update(['send_flag' => 1]);
+        $this->info('Mail Send Request User End');
+        return 0;
     }
 }

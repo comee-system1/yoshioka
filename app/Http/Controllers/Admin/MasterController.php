@@ -136,6 +136,10 @@ class MasterController extends Controller
     public function getMailReplace($id, $type = "")
     {
         $data = [];
+        if($type == "request3" || $type == "request1"){
+            $data[ 'information' ][1][ 'title' ] = "名前";
+            $data[ 'information' ][1][ 'type' ] = "name";
+        }else
         if($type == "information"){
             $data[ 'information' ][0][ 'title' ] = "お知らせ内容";
             $data[ 'information' ][0][ 'type' ] = "information";
