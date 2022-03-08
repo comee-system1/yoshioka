@@ -71,6 +71,10 @@
         <div class="col-md-3">
             {{ Form::text('file1_name', $endaiData->file1_name??"", ['id'=>'file1_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file1' ]->text ])}}
         </div>
+        <div class="col-md-1">
+            {{ Form::checkbox('check_file1', 'on', false, ['id' => 'check-id-1', 'class' => 'form-check-input d-none']) }}
+            {!! Form::button('<i class="fas fa-trash"></i>', ['id' => 'check-label-1', 'class' => "btn label opacity-25", 'type' => 'button']) !!}
+        </div>
     </div>
 @endif
 @if(!empty($endaititle[ 'file2' ]))
@@ -91,6 +95,10 @@
         <div class="col-md-3">
             {{ Form::text('file2_name', $endaiData->file2_name??"", ['id'=>'file2_name', 'class'=>'form-control', 'placeholder'=> $endaititle[ 'file2' ]->text ])}}
         </div>
+        <div class="col-md-1">
+            {{ Form::checkbox('check_file2', 'on', false, ['id' => 'check-id-2', 'class' => 'form-check-input d-none']) }}
+            {!! Form::button('<i class="fas fa-trash"></i>', ['id' => 'check-label-2', 'class' => "btn label opacity-25", 'type' => 'button']) !!}
+        </div>
     </div>
 @endif
 @if(!empty($endaititle[ 'file3' ]))
@@ -110,6 +118,10 @@
         </div>
         <div class="col-md-3">
             {{ Form::text('file3_name', $endaiData->file3_name??"", ['id'=>'file3_name', 'class'=>'form-control', 'placeholder'=>$endaititle[ 'file3' ]->text ])}}
+        </div>
+        <div class="col-md-1">
+            {{ Form::checkbox('check_file3', 'on', false, ['id' => 'check-id-3', 'class' => 'form-check-input d-none']) }}
+            {!! Form::button('<i class="fas fa-trash"></i>', ['id' => 'check-label-3', 'class' => "btn label opacity-25", 'type' => 'button']) !!}
         </div>
     </div>
 

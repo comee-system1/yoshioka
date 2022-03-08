@@ -28,7 +28,7 @@
             <li>
                 <a @if(Request::is('admin/book/'.$id) ) class="nav-link active" @else class="nav-link" @endif href="{{route('book',['id'=>$id])}}">
                 <i class="fas fa-lock"></i>
-                予稿原稿アップロード
+                予稿原稿
                 </a>
             </li>
             <li>

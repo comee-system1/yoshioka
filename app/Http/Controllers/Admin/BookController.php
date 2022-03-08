@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Endai;
 
 class BookController extends Controller
 {
@@ -25,6 +26,13 @@ class BookController extends Controller
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
+    }
+
+    public function all($id, Request $request)
+    {
+        $path = public_path().'/storage/';
+        $zipfilename = Endai::getZipFile($id, $path);
+        return response()->download($path.'zip/'.$zipfilename);
     }
 
     public function upload($id, Request $request)

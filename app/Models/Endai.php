@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Consts\ClassConsts;
+use ZipArchive;
 
 class Endai extends Model
 {
@@ -63,6 +64,20 @@ class Endai extends Model
         $this->file1_name = $request->file1_name??$request->filename1;
         $this->file2_name = $request->file2_name??$request->filename2;
         $this->file3_name = $request->file3_name??$request->filename3;
+
+        if($request->check_file1){
+            $this->file1 = "";
+            $this->file1_name = "";
+        }
+        if($request->check_file2){
+            $this->file2 = "";
+            $this->file2_name = "";
+        }
+        if($request->check_file3){
+            $this->file3 = "";
+            $this->file3_name = "";
+        }
+
         $this->save();
         $last_insert_id = $this->id;
         return $last_insert_id;
@@ -83,6 +98,20 @@ class Endai extends Model
         $data->file1_name = $request->file1_name??$data->file1;
         $data->file2_name = $request->file2_name??$data->file2;
         $data->file3_name = $request->file3_name??$data->file3;
+
+        if($request->check_file1){
+            $data->file1 = "";
+            $data->file1_name = "";
+        }
+        if($request->check_file2){
+            $data->file2 = "";
+            $data->file2_name = "";
+        }
+        if($request->check_file3){
+            $data->file3 = "";
+            $data->file3_name = "";
+        }
+
         $data->save();
         return true;
     }
@@ -105,9 +134,22 @@ class Endai extends Model
         if($filename1) $data->file1 = $filename1;
         if($filename2) $data->file2 = $filename2;
         if($filename3) $data->file3 = $filename3;
-        $data->file1_name = $request->file1_name??$data->file1_name;
-        $data->file2_name = $request->file2_name??$data->file2_name;
-        $data->file3_name = $request->file3_name??$data->file3_name;
+        $data->file1_name = ($request->file1_name)?$request->file1_name:$filename1;
+        $data->file2_name = ($request->file2_name)?$request->file2_name:$filename2;
+        $data->file3_name = ($request->file3_name)?$request->file3_name:$filename3;
+        if($request->check_file1){
+            $data->file1 = "";
+            $data->file1_name = "";
+        }
+        if($request->check_file2){
+            $data->file2 = "";
+            $data->file2_name = "";
+        }
+        if($request->check_file3){
+            $data->file3 = "";
+            $data->file3_name = "";
+        }
+
         $data->save();
         if($filename1) $request->file('file1')->storeAs('public/file',$filename1);
         if($filename2) $request->file('file2')->storeAs('public/file',$filename2);
@@ -246,5 +288,35 @@ class Endai extends Model
         $where[ 'account_id' ] = $account->id;
         $data = self::where($where)->get();
         return $data;
+    }
+
+    public static function getZipFile($id, $path)
+    {
+        $endais = self::where('seminer_id', $id)
+                ->where('status', 1)
+                ->get();
+
+        $zip = new ZipArchive();
+        if(!file_exists($path.'zip/')){
+            mkdir($path.'zip/', 0777);
+        }
+        $fname = time().'-'.$id.'.zip';
+        $zip->open($path.'zip/'.$fname, ZipArchive::CREATE);
+
+        foreach($endais as $endai){
+            for($i=1;$i<=3;$i++){
+                $key = "file".$i;
+                $keyname = "file".$i."_name";
+                $file = ($endai->$key)?glob($path.'file/'.$endai->$key)[0]:"";
+
+                $file_name = $endai->$keyname;
+                if($file && $file_name){
+                    $filepath = pathinfo($file);
+                    $zip->addFile($file, $endai->id."-".$file_name.".".$filepath['extension']);
+                }
+            }
+        }
+        $zip->close();
+        return $fname;
     }
 }

@@ -94,6 +94,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/getTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'getTimeTable'])->name('time.getTimeTable');
         Route::post('/setTimeTable', [\App\Http\Controllers\Admin\TimeController::class, 'setTimeTable'])->name('time.setTimeTable');
         Route::get('/book/{id}', [\App\Http\Controllers\Admin\BookController::class, 'index'])->name('book');
+        Route::get('/book/all/{id}', [\App\Http\Controllers\Admin\BookController::class, 'all'])->name('book.all');
         Route::post('/book/upload/{id}', [\App\Http\Controllers\Admin\BookController::class, 'upload'])->name('book.upload');
         Route::get('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'index'])->name('pay');
         Route::post('/pay/{id}', [\App\Http\Controllers\Admin\PayController::class, 'post'])->name('pay.post');

@@ -79,6 +79,7 @@
                     </div>
                 </div>
             @endif
+
             @if(request()->file2 || request()->file2_name)
                 <div class="row mt-2">
                     <div class="col-md-3 d-flex align-items-center">{{$endaititle['file2']->title}}
@@ -118,6 +119,10 @@
                 </div>
 
             @endif
+            {{Form::hidden('check_file1',request()->check_file1 )}}
+            {{Form::hidden('check_file2',request()->check_file2 )}}
+            {{Form::hidden('check_file3',request()->check_file3 )}}
+
             <div class="row mt-3">
 
                 <div class="col-md-3">
