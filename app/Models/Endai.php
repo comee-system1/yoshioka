@@ -295,7 +295,9 @@ class Endai extends Model
         $endais = self::where('seminer_id', $id)
                 ->where('status', 1)
                 ->get();
-
+        if($endais->count() == 0){
+            return false;
+        }
         $zip = new ZipArchive();
         if(!file_exists($path.'zip/')){
             mkdir($path.'zip/', 0777);

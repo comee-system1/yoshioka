@@ -32,7 +32,12 @@ class BookController extends Controller
     {
         $path = public_path().'/storage/';
         $zipfilename = Endai::getZipFile($id, $path);
-        return response()->download($path.'zip/'.$zipfilename);
+        if($zipfilename){
+            return response()->download($path.'zip/'.$zipfilename);
+        }else{
+            session()->flash('flash_error', 'ダウンロード可能な演題が取得できませんでした。');
+            return redirect(route('book', ['id'=> $id]));
+        }
     }
 
     public function upload($id, Request $request)
