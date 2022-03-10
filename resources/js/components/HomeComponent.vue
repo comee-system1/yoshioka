@@ -107,7 +107,8 @@
                     <div class="row mt-2">
                         <label for="name">セミナー名[<span class="text-danger h6">必須</span>]</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" v-model="name" name="name" placeholder="セミナー名を入力してください">
+                            <div contentEditable='true' name="name" style='width:200px; height:100px; border:solid 1px #ddd'></div>
+                            <input type="text" contentEditable='true' class="form-control" v-model="name" name="name" placeholder="セミナー名を入力してください">
                             <p v-if="error.require" class="text-danger">セミナー名は4文字以上で入力してください</p>
                         </div>
                     </div>

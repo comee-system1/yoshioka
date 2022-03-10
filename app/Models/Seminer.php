@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Seminer extends Model
 {
@@ -106,7 +107,7 @@ class Seminer extends Model
             $seminer->updated_at = NOW();
             $seminer->open_key = Seminer::getOpenKey();
         }
-
+        $seminer->user_id = Auth::id();
         $seminer->name = $request->name;
         $seminer->sub_title = $request->sub_title;
         $seminer->note = $request->note;

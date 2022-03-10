@@ -23,6 +23,7 @@ class OpenController extends ControllerOpen
         return view('open.index', [
             'id' => $id,
             'uniqcode' => $uniqcode,
+            'joinlink' => DefineJoinTitle::getDataType($id, 'joinlink')->first(),
             'seminer' => $this->seminer[0],
         ]);
     }

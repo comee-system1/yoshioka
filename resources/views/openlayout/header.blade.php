@@ -21,6 +21,10 @@
                 </div>
             @else
                 <div class="col-3 d-flex justify-content-end align-items-center">
+                    @isset ($joinlink)
+                    <a class="btn btn-sm btn-outline-danger" href="{{route('regist',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$joinlink->title}}</a>
+                    &nbsp;
+                    @endif
                     <a class="btn btn-sm btn-outline-secondary" href="{{route('signin',['id'=>$id,'uniqcode'=>$uniqcode])}}">Sign up</a>
                 </div>
             @endif
