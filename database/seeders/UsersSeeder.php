@@ -33,6 +33,14 @@ class UsersSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+            'name' => 'GP-RSS',
+            'email' => 'chie.sato.c5@tohoku.ac.jp',
+            'password' => Hash::make('gp303'),
+            'is_super' => '1',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }
