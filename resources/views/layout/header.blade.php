@@ -1,7 +1,7 @@
 @section('header')
 
 <nav class="navbar navbar-expand navbar-dark bg-dark p-1">
-    <a class="navbar-brand" href="#">{{ $title }}</a>
+    <a class="navbar-brand" href="#">{!! $title !!}</a>
     @if (!empty($open_url))
     <span class="text-white">{{ $open_url }}</span>
     @endif

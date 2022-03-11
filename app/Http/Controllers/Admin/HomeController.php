@@ -33,17 +33,21 @@ use App\Models\TemplateMail;
 use App\Models\TemplateMasterPasswordRenew;
 use App\Models\TemplateMyPage;
 use App\Models\TemplateTitle;
+use App\Consts\ClassConsts;
 use Exception;
 use Facade\FlareClient\Time\Time;
 
 class HomeController extends Controller
 {
+
     //
     public function index()
     {
 
         $hello = 'Hello World';
-        return view('admin.index', ['hello' => $hello]);
+        return view('admin.index', [
+            'api_code' => ClassConsts::API
+        ]);
     }
     public function getDataLists()
     {

@@ -7,7 +7,7 @@
 @section('content')
 
 <div id="home">
-    <home-component></home-component>
+    <home-component api_code="{{ $api_code }}" ></home-component>
 </div>
 
 @endsection

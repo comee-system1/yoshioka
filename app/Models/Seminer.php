@@ -67,7 +67,7 @@ class Seminer extends Model
 
     public static function getData($id = 0)
     {
-
+        $user_id = Auth::id();
         $data = Seminer::selectRaw('DATE_FORMAT(created_at, "%Y/%m/%d") AS date')
         ->selectRaw('(CASE main_image WHEN "" THEN "empty.jpg" ELSE main_image END) as image')
         ->selectRaw('id')
@@ -85,7 +85,8 @@ class Seminer extends Model
         ->selectRaw('end_date')
         ->selectRaw('DATE_FORMAT(end_date, "%Y-%m-%dT%H:%i:%s") AS ed_date_format')
         ->selectRaw('DATE_FORMAT(end_date, "%Y/%m/%d %H:%i") AS ed_op_date_format')
-        ->where('delete_status', '0');
+        ->where('delete_status', '0')
+        ->where('user_id', $user_id);
         if ($id) {
             $data = $data->where('id', $id);
         }

@@ -13,6 +13,8 @@ class ClassConsts
 {
     public const ADMIN_MAIL = "info@blueracoon85.sakura.ne.jp";
 
+    public const API = "lk4zgr124mkuq5lip3k8l2eignti4h9otyeh0j3jm3rhhpgc";
+
     public const SPONSER_PATH = "/public/sponser/";
 
     public const PAGE_LIMIT = 30;

@@ -63,7 +63,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-12">
-                                    <h6>{{seminer.name}}</h6>
+                                    <h6 v-html=seminer.name></h6>
                                 </div>
 
                             </div>
@@ -107,21 +107,39 @@
                     <div class="row mt-2">
                         <label for="name">セミナー名[<span class="text-danger h6">必須</span>]</label>
                         <div class="col-12">
-                            <div contentEditable='true' name="name" style='width:200px; height:100px; border:solid 1px #ddd'></div>
-                            <input type="text" contentEditable='true' class="form-control" v-model="name" name="name" placeholder="セミナー名を入力してください">
+                            <editor
+                            :api-key=api_code
+                            :init=init
+                            v-model="name"
+                            name="name"
+                            placeholder="セミナー名を入力してください。"
+                            />
                             <p v-if="error.require" class="text-danger">セミナー名は4文字以上で入力してください</p>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <label for="name">サブタイトル</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="sub_title"  name="sub_title" v-model="sub_title" placeholder="セミナーのサブタイトルを入力してください">
+                            <editor
+                            :api-key=api_code
+                            :init=init
+                            v-model="sub_title"
+                            name="sub_title"
+                            id="sub_title"
+                            placeholder="セミナーのサブタイトルを入力してください"
+                            />
                         </div>
                     </div>
                     <div class="row mt-2">
                         <label for="note">説明文</label>
                         <div class="col-12">
-                            <textarea v-model="note" name="note" id="note" class="form-control"></textarea>
+                            <editor
+                            :api-key=api_code
+                            :init=init
+                            v-model="note"
+                            name="note"
+                            id="note"
+                            />
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -174,14 +192,18 @@
                 </div>
             </div>
         </transition>
+
     </div>
 </template>
 
 
 <script>
 import {Mixin} from '../mixin'
+import Editor from '@tinymce/tinymce-vue'
 export default {
     mixins:[Mixin],
+    props:['api_code'],
+
     data(){
 
         return {
@@ -204,7 +226,22 @@ export default {
             seminer_id:0,
             seminers: [],
             domain:"",
+            init:{
+                height: 120,
+                menubar: false,
+                plugins: [
+                'textcolor'
+                ],
+                force_br_newlines : true,
+                force_p_newlines : false,
+                forced_root_block : '',
+                toolbar:
+                'forecolor | bold italic backcolor'
+            }
         };
+    },
+    components: {
+        'editor': Editor
     },
     mounted(){
 

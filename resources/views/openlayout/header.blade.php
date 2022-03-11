@@ -12,7 +12,7 @@
             <div class="col-3 pt-1">
             </div>
             <div class="col-6 text-center">
-                <a class="blog-header-logo text-dark undecorate" href="{{route('top',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$seminer->name}}</a>
+                <a class="blog-header-logo text-dark undecorate" href="{{route('top',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{!! $seminer->name !!}</a>
             </div>
             @if (Auth::guard('account')->check())
                 <div class="col-3 d-flex justify-content-end align-items-center">
@@ -34,7 +34,7 @@
     @if ( Route::currentRouteName() == 'top')
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark open1Image" style="background-image: url('/storage/open/{{$seminer->main_image}}')">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">{{$seminer->sub_title}}</h1>
+                <p class="display-4 font-italic">{!! $seminer->sub_title !!}</p>
                 <p class="lead my-3">{!! nl2br($seminer->note) !!}</p>
             </div>
         </div>

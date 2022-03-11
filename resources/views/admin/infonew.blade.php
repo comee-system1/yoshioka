@@ -32,6 +32,7 @@
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">タイトル</div>
                             <div class="col-md-6">
+<textarea id="textarea"></textarea>
                                 {{ Form::text('title', $information->title??"", ['id'=>'title', 'class'=>'form-control', 'placeholder'=>'タイトルを入力' ])}}
                             </div>
                         </div>
@@ -102,6 +103,9 @@
 
 @endsection
 <script type="text/javascript">
+tinymce.init({
+  selector: '#textarea',
+});
 window.addEventListener('DOMContentLoaded', ()=>{
     var note = document.getElementById( "note" );
     note.addEventListener("click", (event) => {
