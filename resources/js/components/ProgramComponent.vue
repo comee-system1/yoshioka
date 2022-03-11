@@ -32,13 +32,13 @@
                 </thead>
                 <tbody>
                     <tr v-for="data in name.timetable_programes " :key="data.key">
-                        <td>{{data.start_time}}～<br />{{data.end_time}}</td>
+                        <td>{{data.start_time_jp}}～<br />{{data.end_time_jp}}</td>
                         <td>
                             {{data.account_name}}
                             {{data.accountName}}
 
                         </td>
-                        <td style="white-space: pre-line;">{{data.endai_name}}</td>
+                        <td style="white-space: pre-line;" v-html=data.endai_name></td>
                         <td class="text-center">
                             <a v-bind:href="'/storage/file/'+data.file1" class="btn btn-outline-primary" v-show="data.file1_name" target=_blank>{{data.file1_name}}</a>
                             <a v-bind:href="'/storage/file/'+data.file2" class="btn btn-outline-primary" v-show="data.file2_name" target=_blank>{{data.file2_name}}</a>

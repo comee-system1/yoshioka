@@ -8,6 +8,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="{{ mix('css/style.css') }}" rel="stylesheet" type="text/css">
+<script src="https://cdn.tiny.cloud/1/lk4zgr124mkuq5lip3k8l2eignti4h9otyeh0j3jm3rhhpgc/tinymce/4/tinymce.min.js"></script>
 
 </head>
 <body data-spy="scroll" data-taget="#navbar">

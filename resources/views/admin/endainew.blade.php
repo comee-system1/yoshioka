@@ -34,7 +34,17 @@
         </div>
     </div>
 </div>
-
+<script>
+tinymce.init({
+    selector: 'textarea',
+    menubar: false,
+    plugins: ['textcolor'],
+    force_br_newlines : true,
+    force_p_newlines : false,
+    forced_root_block : '',
+    toolbar : 'forecolor | bold italic backcolor | subscript superscript'
+});
+</script>
 @endsection
 
 @include('layout.submenu')

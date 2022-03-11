@@ -31,7 +31,7 @@
                             <div class="col-md-6"><a href="{{route('account.endai.delete', ['id' => $id, 'uniqcode' => $uniqcode, 'endai_id'=>$value->id ])}}" class="btn btn-danger btn-sm w-100 delete" >{{$endaititle['delete_button']->title}}</a></div>
                         </div>
                     </td>
-                    <td class="w-25">{{$value->name}}</td>
+                    <td class="w-25">{!! $value->name !!}</td>
                     <td>
                         <div class="row">
                             @if($value->file1)

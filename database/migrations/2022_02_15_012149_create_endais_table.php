@@ -17,7 +17,7 @@ class CreateEndaisTable extends Migration
             $table->id();
             $table->integer('seminer_id')->default(0);
             $table->integer('account_id')->default(0);
-            $table->string('name',512);
+            $table->text('name');
             $table->text('note')->nullable();
             $table->integer('type')->default(0);
             $table->string('file1')->nullable();

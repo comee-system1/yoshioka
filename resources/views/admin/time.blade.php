@@ -105,7 +105,7 @@
                                                     <option >&nbsp;</option>
                                                 @endif
                                                 @foreach($data['account'] as $account)
-                                                    <option value="{{$account->id}}" @if($value->endai_id == $account->id) SELECTED @endif>{{$account->account_name}}({{$account->name}})</option>
+                                                    <option value="{{$account->id}}" @if($value->endai_id == $account->id) SELECTED @endif>{{$account->account_name}}({!! $account->name !!})</option>
                                                 @endforeach
                                             </select>
                                         </td>
@@ -136,6 +136,21 @@
         </div>
     </div>
 </div>
+
+
+<script>
+tinymce.init({
+    selector: 'textarea',
+    menubar: false,
+    plugins: ['textcolor'],
+    force_br_newlines : true,
+    force_p_newlines : false,
+    forced_root_block : '',
+    toolbar : 'forecolor | bold italic backcolor | subscript superscript'
+});
+</script>
+<script src="{{ mix('js/timetable.js') }}"></script>
+
 <input type="hidden" id="seminer_id" value="{{$id}}" />
 <input type="hidden" id="date" value="{{request()->date}}" />
 <input type="hidden" name="place" id="place" value="{{request()->place}}" />
@@ -144,7 +159,6 @@
 @endsection
 
 @include('layout.submenu')
-<script src="{{ mix('js/timetable.js') }}" defer></script>
 
 @include('layout.footer')
 

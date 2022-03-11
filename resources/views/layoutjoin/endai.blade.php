@@ -20,7 +20,7 @@
         &nbsp;<small class="text-danger">{{$endaititle['endai']->required_text}}</small>
         </div>
         <div class="col-md-6">
-            {{ Form::text('endai', $endaiData->name??"", ['id'=>'endai', 'class'=>'form-control', 'placeholder'=>$endaititle['endai']->text ])}}
+            {{ Form::textarea('endai', $endaiData->name??"", ['id'=>'endai', 'class'=>'form-control', 'placeholder'=>$endaititle['endai']->text , 'rows'=>3 ])}}
         </div>
     </div>
 @endif

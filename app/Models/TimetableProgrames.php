@@ -33,6 +33,8 @@ class TimetableProgrames extends Model
                 ->selectRaw('endais.file2_name')
                 ->selectRaw('endais.file3_name')
                 ->selectRaw('accounts.name as accountName')
+                ->selectRaw('DATE_FORMAT(timetable_programes.start_time, "%H:%i" ) as start_time_jp')
+                ->selectRaw('DATE_FORMAT(timetable_programes.end_time, "%H:%i" ) as end_time_jp')
                 ->leftJoin('endais', 'endais.id', '=', 'timetable_programes.endai_id')
                 ->leftJoin('accounts', 'endais.account_id', '=', 'accounts.id')
                 ->where('timetable_programes.seminer_id', $id)

@@ -50,7 +50,7 @@
                         <a v-bind:href='"/admin/endai/edit/"+id+"/"+list.id' class="btn btn-sm btn-success">更新</a>
                         <a @click="onClickDelete(id, list.id)" class="btn btn-sm btn-danger" >削除</a>
                     </td>
-                    <td class="align-middle">{{list.name}}</td>
+                    <td class="align-middle" v-html=list.name></td>
                     <td class="align-middle">{{list.account_name}}<div>{{list.account_email}}</div></td>
                     <td class="align-middle">
                         <a v-bind:href="'/storage/file/'+list.file1" class="btn btn-sm btn-outline-dark" v-show="list.file1 ">{{list.file1_name}}</a>

@@ -56,7 +56,7 @@ $(function () {
             url: "/admin/time/endai/"+seminer_id+"/"+endai_id, //リクエストURL
         } )
         .done(function(data) {
-            $("#endai_name-"+key).val(data['note']);
+            tinymce.get('endai_name-'+key).setContent(data[ 'note' ]);
             var div = "";
             if(data[ 'file1' ]){
                 div += "<div class='mt-1'><a href='/storage/file/"+data['file1']+"' class='w-100 btn btn-sm btn-outline-primary'>"+data['file1_name']+"</a></div>";
