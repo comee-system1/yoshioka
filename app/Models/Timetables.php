@@ -60,7 +60,11 @@ class Timetables extends Model
         return $endai;
     }
 
-    public static function setData($seminer_id){
+    public static function setData($seminer_id, $type = "insert"){
+        if($type == "update"){
+            Timetables::where('seminer_id',$seminer_id)->delete();
+            TimetableProgrames::where('seminer_id',$seminer_id)->delete();
+        }
         $placelists = DefinePlaceList::where("seminer_id", $seminer_id)->get();
         $seminer = Seminer::find($seminer_id);
 

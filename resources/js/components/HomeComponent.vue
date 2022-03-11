@@ -165,21 +165,11 @@
                         <p class="text-danger" v-show="error.dateErrorMessage">期間設定に誤りがあります。</p>
                         <div class="col-6">
                             <p>開始日時</p>
-                            <div v-if=seminer_id>
-                            {{start_date}}
-                            </div>
-                            <div v-else>
-                                <input type="datetime-local" v-model="start_date" class="w-100 form-control" name="start_date" value="2016-12-23T02:00" >
-                            </div>
+                            <input type="datetime-local" v-model="start_date" class="w-100 form-control" name="start_date" value="2016-12-23T02:00" >
                         </div>
                         <div class="col-6">
                             <p>終了日時</p>
-                            <div v-if=seminer_id>
-                                {{end_date}}
-                            </div>
-                            <div v-else>
-                                <input type="datetime-local" v-model="end_date" class="w-100 form-control" name="end_date">
-                            </div>
+                            <input type="datetime-local" v-model="end_date" class="w-100 form-control" name="end_date">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -301,8 +291,24 @@ export default {
             }
             return this.return;
         },
+        slicedate: function(date){
+            let year = date.substr(0,4);
+            let month = date.substr(5,2);
+            let day = date.substr(8,2);
+            return [year, month, day];
+        },
+        difference: function(start, end){
+            let st = this.slicedate(start);
+            let ed = this.slicedate(end);
+            var distDate = new Date(st[0], st[1], st[2]);
+            var loadDate = new Date(ed[0], ed[1], ed[2]);
+            var diffMilliSec = loadDate - distDate;
+            var diffDays = parseInt(diffMilliSec / 1000 / 60 / 60 / 24);
+            return diffDays;
+        },
         postDateConfirm:function(){
-            if(this.end_date - this.start_date >= 7){
+            let diff = this.difference(this.start_date, this.end_date);
+            if(diff >= 7){
                 this.error.dateErrorMessage = true;
                 return false;
             }

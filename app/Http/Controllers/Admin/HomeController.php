@@ -88,7 +88,11 @@ class HomeController extends Controller
                 request()->file->storeAs('public/open/', $file_name);
             }
             $seminer_id = Seminer::registData($request, $file_name);
-            if(!$request->seminer_id){
+            //データ更新時
+            if($request->seminer_id) {
+                Timetables::setData($request->seminer_id,'update');
+            } else {
+                //新規登録時
                 DefineSpaceList::insert(TemplateMasterSpace::getData($request->template, $seminer_id));
                 DefineJoinTitle::insert(TemplateJoinTitle::getData($request->template, $seminer_id));
                 DefinePresentationList::insert(TemplateMasterPresentation::getData($request->template, $seminer_id));
@@ -104,7 +108,6 @@ class HomeController extends Controller
                 DefineTitle::insert(TemplateTitle::getData($request->template, $seminer_id));
                 DefineMyPage::insert(TemplateMyPage::getData($request->template, $seminer_id));
                 DefinePasswordRenew::insert(TemplateMasterPasswordRenew::getData($request->template, $seminer_id));
-
             }
     //        DB::commit();
         } catch (Exception $e) {
