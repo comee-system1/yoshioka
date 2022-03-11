@@ -127,7 +127,7 @@ class Information extends Model
     {
 
         $data = self::select('*')
-            ->selectRaw('date_format(start, "%Y/%m.%d") as date')
+            ->selectRaw('date_format(start, "%Y/%m/%d") as date')
             ->where(function($query){
                 $date = date('Y-m-d H:i:s');
                 $query->where('start', '<', $date)
@@ -144,6 +144,24 @@ class Information extends Model
             ->where('seminer_id',$seminer_id)
             ->orderBy('id', 'desc')
             ->get();
+        return $data;
+    }
+    public static function getOpenInformationDetail($seminer_id, $information_id)
+    {
+
+        $data = self::select('*')
+            ->selectRaw('date_format(start, "%Y/%m/%d") as date')
+            ->where(function($query){
+                $date = date('Y-m-d H:i:s');
+                $query->where('start', '<', $date)
+                ->where('end', '>', $date)
+                ;
+            })
+            ->where('status',1)
+            ->where('type',1)
+            ->where('seminer_id',$seminer_id)
+            ->where('id',$information_id)
+            ->first();
         return $data;
     }
 

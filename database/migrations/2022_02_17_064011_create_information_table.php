@@ -16,7 +16,7 @@ class CreateInformationTable extends Migration
         Schema::create('informations', function (Blueprint $table) {
             $table->id();
             $table->integer('seminer_id')->default(0);
-            $table->string('title',512)->nullable();
+            $table->text('title')->nullable();
             $table->text('note')->nullable();
             $table->string('link',512)->nullable();
             $table->string('file')->nullable();

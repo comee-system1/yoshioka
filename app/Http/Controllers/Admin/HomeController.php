@@ -36,6 +36,7 @@ use App\Models\TemplateTitle;
 use App\Consts\ClassConsts;
 use Exception;
 use Facade\FlareClient\Time\Time;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -51,7 +52,7 @@ class HomeController extends Controller
     }
     public function getDataLists()
     {
-        return Seminer::getData();
+        return Seminer::getData(0,Auth::id());
     }
 
     public function getEditData($id)

@@ -27,4 +27,17 @@ class OpenController extends ControllerOpen
             'seminer' => $this->seminer[0],
         ]);
     }
+
+    public function information($id, $uniqcode, $information_id)
+    {
+
+        $this->seminer[0]['information'] = Information::getOpenInformationDetail($id, $information_id);
+        return view('open.information', [
+            'id' => $id,
+            'uniqcode' => $uniqcode,
+            'joinlink' => DefineJoinTitle::getDataType($id, 'joinlink')->first(),
+            'seminer' => $this->seminer[0],
+        ]);
+
+    }
 }

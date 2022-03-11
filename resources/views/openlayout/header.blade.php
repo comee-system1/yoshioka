@@ -31,7 +31,7 @@
         </div>
     </header>
 
-    @if ( Route::currentRouteName() == 'top')
+    @if ( Route::currentRouteName() == 'top' || Route::currentRouteName() == 'top.information')
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark open1Image" style="background-image: url('/storage/open/{{$seminer->main_image}}')">
             <div class="col-md-6 px-0">
                 <p class="display-4 font-italic">{!! $seminer->sub_title !!}</p>

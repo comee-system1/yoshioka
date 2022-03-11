@@ -7,7 +7,6 @@
 @include('layout.nav')
 @include('layout.flash')
 @section('content')
-
 <div id="home">
     <div class="container-fluid">
         <div class="row">
@@ -32,15 +31,17 @@
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">タイトル</div>
                             <div class="col-md-6">
-<textarea id="textarea"></textarea>
-                                {{ Form::text('title', $information->title??"", ['id'=>'title', 'class'=>'form-control', 'placeholder'=>'タイトルを入力' ])}}
+                                {{ Form::textarea('title', $information->title??"", ['id'=>'title', 'class'=>'form-control', 'placeholder'=>'タイトルを入力', 'rows'=>2 ])}}
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">内容</div>
-                            <div class="col-md-6">
+                            <div class="col-md-9">
+                                {{ Form::radio('display_type', 'title', (!empty($information->display_type))?('title' == $information->display_type ):false, ['id' => 'display_type4' ]) }} タイトルのみ表示
+                                <br />
                                 {{ Form::radio('display_type', 'note', (!empty($information->display_type))?('note' == $information->display_type ):true, ['id' => 'display_type1' ]) }} お知らせ内容の表示
-                                {{ Form::textarea('note', $information->note??"", ['id'=>'note', 'class'=>'form-control', 'placeholder'=>'内容を入力', 'rows'=>8 ])}}
+
+                                {{ Form::textarea('note', $information->note??"", ['id'=>'note', 'class'=>'form-control', 'placeholder'=>'内容を入力', 'rows'=>12 ])}}
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -100,12 +101,20 @@
         </div>
     </div>
 </div>
-
+<script>
+tinymce.init({
+    selector: 'textarea',
+    menubar: false,
+    plugins: ['textcolor'],
+    force_br_newlines : true,
+    force_p_newlines : false,
+    forced_root_block : '',
+    toolbar : 'forecolor | bold italic backcolor | subscript superscript'
+});
+</script>
 @endsection
 <script type="text/javascript">
-tinymce.init({
-  selector: '#textarea',
-});
+
 window.addEventListener('DOMContentLoaded', ()=>{
     var note = document.getElementById( "note" );
     note.addEventListener("click", (event) => {
@@ -123,8 +132,5 @@ window.addEventListener('DOMContentLoaded', ()=>{
         display_type3.click();
     });
 });
+
 </script>
-@include('layout.submenu')
-
-@include('layout.footer')
-

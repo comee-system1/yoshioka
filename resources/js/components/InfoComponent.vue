@@ -35,7 +35,7 @@
                         <a v-bind:href="'/admin/info/edit/'+id+'/'+list.id" class="btn btn-success">更新</a>
                         <a @click="onClickDelete(id, list.id)" class="btn btn-danger">削除</a>
                     </td>
-                    <td>{{list.title}}</td>
+                    <td v-html=list.title></td>
                     <td>
                         <div v-if=" list.start && list.end">
                         {{list.start}} ～ <br />{{list.end}}
@@ -85,7 +85,6 @@ export default {
             let postData = {};
             axios.post("/getSendFlag", postData).then(response => {
                 // 成功
-                console.log(response['data']);
                 this.sendFlag = response[ 'data' ];
             }).catch(error => {
                 // 失敗

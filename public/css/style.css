@@ -11286,6 +11286,11 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+em {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  transform: skewX(-15deg);
+}
+
 /* stylelint-disable selector-list-comma-newline-after */
 .open1Image {
   min-height: 300px;

@@ -236,7 +236,7 @@ export default {
                 force_p_newlines : false,
                 forced_root_block : '',
                 toolbar:
-                'forecolor | bold italic backcolor'
+                'forecolor | bold italic backcolor | subscript superscript'
             }
         };
     },

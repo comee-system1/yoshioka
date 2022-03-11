@@ -1,3 +1,10 @@
+em {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    -webkit-transform: skewX(-15deg);
+    -moz-transform: skewX(-15deg);
+    -o-transform: skewX(-15deg);
+    transform: skewX(-15deg);
+}
 /* stylelint-disable selector-list-comma-newline-after */
 .open1Image{
     // background-image: url("/storage/open1/main.jpg");

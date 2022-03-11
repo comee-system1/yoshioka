@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //ログイン無しで見れるページ
 Route::get('/open/{id}/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'index'])->name('top');
+Route::get('/open/{id}/{uniqcode}/{information_id}/info', [\App\Http\Controllers\OpenController::class, 'information'])->name('top.information');
 Route::get('/open/{id}/{uniqcode}/signin', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
 Route::post('/open/{id}/{uniqcode}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');
 Route::get('/open/{id}/{uniqcode}/regist', [\App\Http\Controllers\RegistController::class, 'index'])->name('regist');
