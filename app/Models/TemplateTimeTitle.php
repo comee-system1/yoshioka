@@ -19,6 +19,7 @@ class TemplateTimeTitle extends Model
         foreach ($templateTimeTitles as $key => $templateTimeTitle) {
             $timeTitleData[$i]['seminer_id'] = $seminer_id;
             $timeTitleData[$i]['title'     ] = $templateTimeTitle->title;
+            $timeTitleData[$i]['title2'    ] = $templateTimeTitle->title2;
             $timeTitleData[$i]['display_status'     ] = $templateTimeTitle->display_status;
             $timeTitleData[$i]['type'     ] = $templateTimeTitle->type;
             $timeTitleData[$i]['created_at'] = NOW();

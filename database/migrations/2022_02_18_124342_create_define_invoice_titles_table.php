@@ -16,7 +16,8 @@ class CreateDefineInvoiceTitlesTable extends Migration
         Schema::create('define_invoice_titles', function (Blueprint $table) {
             $table->id();
             $table->integer('seminer_id')->default(0);
-            $table->string('title');
+            $table->string('title')->nullable();
+            $table->string('title2')->nullable();
             $table->string('type')->default(0);
             $table->timestamps();
         });

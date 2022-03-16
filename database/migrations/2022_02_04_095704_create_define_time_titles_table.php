@@ -16,7 +16,8 @@ class CreateDefineTimeTitlesTable extends Migration
         Schema::create('define_time_titles', function (Blueprint $table) {
             $table->id();
             $table->integer('seminer_id')->default(0);
-            $table->text('title');
+            $table->text('title')->nullable();
+            $table->text('title2')->nullable();
             $table->integer('display_status')->default(1);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->timestamps();

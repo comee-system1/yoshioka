@@ -17,6 +17,7 @@ class CreateTemplateMasterSpacesTable extends Migration
             $table->id();
             $table->integer('master_id')->default(0);
             $table->string('text');
+            $table->string('text2')->nullable();;
             $table->string('template_code')->default(1);
             $table->integer('sort')->default(0);
             $table->timestamps();

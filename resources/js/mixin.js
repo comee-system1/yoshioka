@@ -59,6 +59,9 @@ export const Mixin =  {
                     }else{
                         this.url = "";
                     }
+                    this.template = response.data[0].template
+                    this.language1 = response.data[0].language1
+                    this.language2 = response.data[0].language2
                     this.name = response.data[0].name
                     this.sub_title = response.data[0].sub_title
                     this.note = response.data[0].note

@@ -16,6 +16,7 @@ use App\Models\DefineSpaceList;
 use App\Models\DefineTimeTitle;
 use App\Models\DefineTitle;
 use App\Models\Account;
+use App\Models\Seminer;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
@@ -33,28 +34,31 @@ class MasterController extends Controller
     ];
 
     //
-    public function index($id)
+    public function index($id, $lang=0)
     {
         return view('admin.master', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
     }
 
-    public function endai($id)
+    public function endai($id, $lang=0)
     {
         return view('admin.masterEndai', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
     }
 
-    public function time($id)
+    public function time($id, $lang=0)
     {
         return view('admin.masterTime', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
@@ -69,47 +73,52 @@ class MasterController extends Controller
         ]);
     }
 
-    public function mail($id)
+    public function mail($id, $lang=0)
     {
         return view('admin.masterMail', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
     }
 
-    public function invoice($id)
+    public function invoice($id, $lang=0)
     {
         return view('admin.masterInvoice', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
     }
 
-    public function title($id)
+    public function title($id, $lang = 0)
     {
         return view('admin.masterTitle', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
     }
 
-    public function mypage($id)
+    public function mypage($id, $lang = 0)
     {
         return view('admin.masterMypage', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
     }
 
-    public function password($id)
+    public function password($id, $lang = 0)
     {
 
         return view('admin.masterPassword', [
             'id' => $id,
+            'lang' => $lang,
             'seminer'=>$this->seminer,
             'open_url'=>$this->seminer->open_url,
         ]);
@@ -182,6 +191,12 @@ class MasterController extends Controller
     public function getMail($id, $type)
     {
         $data = DefineMail::getData($id, $type);
+        return response()->json($data);
+    }
+
+    public function seminer($id)
+    {
+        $data = Seminer::getData($id);
         return response()->json($data);
     }
 
@@ -283,7 +298,7 @@ class MasterController extends Controller
         DefineJoinTitle::editDataType($id, $request, "joinlink");
         DefineJoinTitle::editDataType($id, $request, "party");
         DefineJoinTitle::editDataType($id, $request, "party_flag");
-        //区分設定
+        // //区分設定
         DefineSpaceList::editSpaceListData($id, $request);
         return true;
     }
@@ -390,7 +405,8 @@ class MasterController extends Controller
         return $head;
     }
 
-    public function account($id, Request $request){
+    public function account($id, Request $request)
+    {
 
         // CSV ファイル保存
         $tmpName = mt_rand().".".$request->file->guessExtension(); //TMPファイル名
@@ -410,4 +426,6 @@ class MasterController extends Controller
 
         exit();
     }
+
+
 }

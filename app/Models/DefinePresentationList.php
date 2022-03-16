@@ -37,7 +37,11 @@ class DefinePresentationList extends Model
             ->where('id', $value['id'])
             ->where('seminer_id', $id)
             ->first();
-            $data->text = $value[ 'text' ];
+            if($request->lang == 2){
+                $data->text2 = $value[ 'text2' ];
+            }else{
+                $data->text = $value[ 'text' ];
+            }
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }

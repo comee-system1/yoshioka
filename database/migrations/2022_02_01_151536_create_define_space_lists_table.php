@@ -17,7 +17,8 @@ class CreateDefineSpaceListsTable extends Migration
             $table->id();
             $table->integer('seminer_id')->default(0);
             $table->integer('master_id')->default(0);
-            $table->string('text');
+            $table->string('text')->nullable();
+            $table->string('text2')->nullable();
             $table->integer('join_fee')->default(0);
             $table->integer('party_fee')->default(0);
             $table->integer('display_status')->default(1);

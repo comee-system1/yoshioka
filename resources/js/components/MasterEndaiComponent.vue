@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active2"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active2" urlcode="/endai/"></shared-menu-component>
         <div class="row mt-3">
             <div class="col-md-2">タイトル</div>
             <div class="col-md-4">
@@ -78,17 +78,20 @@
 
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control w-100" v-model="defineData.title" />
+                    <input type="text" class="form-control w-100" v-model="defineData.title2" v-if="lang==2" />
+                    <input type="text" class="form-control w-100" v-model="defineData.title" v-else />
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control w-100" v-model="defineData.text"  />
+                    <input type="text" class="form-control w-100" v-model="defineData.text2" v-if="lang==2" />
+                    <input type="text" class="form-control w-100" v-model="defineData.text"  v-else />
                 </div>
                 <div class="col-md-1">
                     <input v-if="defineData.type != 'account_id' && defineData.type != 'endai' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
                     <input v-else type="hidden" v-model="defineData.type" />
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control w-100" v-model="defineData.required_text" />
+                    <input type="text" class="form-control w-100" v-model="defineData.required_text2" v-if="lang==2" />
+                    <input type="text" class="form-control w-100" v-model="defineData.required_text" v-else />
                 </div>
                 <div class="col-md-2">
                     {{type[defineData.type]}}
@@ -98,7 +101,8 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <span>エラーメッセージ</span>
-                    <input type="text" class="form-control w-100" v-model="defineData.error_message" />
+                    <input type="text" class="form-control w-100" v-model="defineData.error_message2" v-if="lang==2"/>
+                    <input type="text" class="form-control w-100" v-model="defineData.error_message" v-else />
                 </div>
             </div>
         </div>
@@ -114,7 +118,8 @@
                 </div>
                 <div class="row mb-2" v-for="presentationList of presentationLists" :key="presentationList.id">
                     <div class="col-md-4" >
-                        <input type="text" class="form-control w-100" v-model="presentationList.text" />
+                        <input type="text" class="form-control w-100" v-model="presentationList.text2" v-if="lang==2" />
+                        <input type="text" class="form-control w-100" v-model="presentationList.text" v-else />
                     </div>
                     <div class="col-md-2 text-center" >
                         <input type="checkbox" v-model="presentationList.display_status" class="mt-2 h-75 w-75" />
@@ -131,7 +136,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.presentationListsData();
         this.getDefineData();
@@ -178,58 +183,33 @@ export default {
         getDefineData:function(){
             this.showLoading = true;
             let postData = {};
+            var lang = this.lang;
             axios.get("/admin/master/defineEndai/"+this.id, postData).then(response => {
                 // 成功
+                var ans = [];
                 var define = [];
-                var button;
-                var back_button;
-                var regist_button;
-                var edit_button;
-                var delete_button;
-                var endai_success;
-                var endai_fail;
-                var delete_check;
-                var title;
                 response['data'].forEach(function(element){
-                    if(element['type'] == "delete_check"){
-                        delete_check = element;
-                    }else
-                    if(element['type'] == "endai_fail"){
-                        endai_fail = element;
-                    }else
-                    if(element['type'] == "endai_success"){
-                        endai_success = element;
-                    }else
-                    if(element['type'] == "back_button"){
-                        back_button = element;
-                    }else
-                    if(element['type'] == "edit_button"){
-                        edit_button = element;
-                    }else
-                    if(element['type'] == "delete_button"){
-                        delete_button = element;
-                    }else
-                    if(element['type'] == "regist_button"){
-                        regist_button = element;
-                    }else
-                    if(element['type'] == "button"){
-                        button = element;
-                    }else
-                    if(element['type'] == "title"){
-                        title = element;
-                    }else{
-                        define.push(element);
-                    }
+                    if(element[ 'type' ] == "title") ans[1] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "button") ans[2] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "back_button") ans[3] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "regist_button") ans[4] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "edit_button") ans[5] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "delete_button") ans[6] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "endai_success") ans[7] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "endai_fail") ans[8] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "delete_check") ans[9] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'sort' ] > 0 ) define.push(element);
+
                 });
-                this.button = button['title'];
-                this.back_button = back_button['title'];
-                this.endai_success = endai_success['title'];
-                this.endai_fail = endai_fail['title'];
-                this.regist_button = regist_button['title'];
-                this.edit_button = edit_button['title'];
-                this.delete_button = delete_button['title'];
-                this.title = title['title'];
-                this.delete_check = delete_check['title'];
+                this.title = ans[1];
+                this.button = ans[2];
+                this.back_button = ans[3];
+                this.regist_button = ans[4];
+                this.edit_button = ans[5];
+                this.delete_button = ans[6];
+                this.endai_success = ans[7];
+                this.endai_fail = ans[8];
+                this.delete_check = ans[9];
                 this.defineDatas = define;
                 this.showLoading = false;
 
@@ -244,6 +224,7 @@ export default {
             //console.log(this.presentationLists)
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 title:this.title,
                 button:this.button,
                 regist_button:this.regist_button,

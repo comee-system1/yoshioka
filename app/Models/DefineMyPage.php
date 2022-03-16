@@ -41,22 +41,37 @@ class DefineMyPage extends Model
         $data = self::where('type', $type)
         ->where('seminer_id', $id)
         ->first();
-
-        $data->title = $request->$type;
+        if($request->lang == 2){
+            $data->title2 = $request->$type;
+        }else{
+            $data->title = $request->$type;
+        }
         if ($type == "mypage")
         {
             $data->status = $request->mypage_status;
-            $data->text = $request->mypage_text;
+            if($request->lang == 2){
+                $data->text2 = $request->mypage_text;
+            }else{
+                $data->text = $request->mypage_text;
+            }
         }
         if ($type == "join")
         {
             $data->status = $request->join_status;
-            $data->text = $request->join_text;
+            if($request->lang == 2){
+                $data->text2 = $request->join_text;
+            }else{
+                $data->text = $request->join_text;
+            }
         }
         if ($type == "endai")
         {
             $data->status = $request->endai_status;
-            $data->text = $request->endai_text;
+            if($request->lang == 2){
+                $data->text2 = $request->endai_text;
+            }else{
+                $data->text = $request->endai_text;
+            }
         }
         if ($type == "invoice")
         {

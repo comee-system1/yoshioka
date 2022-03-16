@@ -18,7 +18,9 @@ class CreateMailsTable extends Migration
             $table->integer('seminer_id')->default(0);
             $table->string('type');
             $table->string('subject',512)->nullable();
+            $table->string('subject2',512)->nullable();
             $table->text('body')->nullable();
+            $table->text('body2')->nullable();
             $table->timestamps();
         });
     }

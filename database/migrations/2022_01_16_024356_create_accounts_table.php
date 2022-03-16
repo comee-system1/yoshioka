@@ -31,6 +31,7 @@ class CreateAccountsTable extends Migration
             $table->integer('party_status')->default(0);
             $table->integer('join_price')->default(0);
             $table->integer('party_price')->default(0);
+            $table->integer('language_status')->default(1);
            // $table->string('open_id')->comment("公開urlのユニークキーを所持するテーブルのID");
             $table->rememberToken();
             $table->timestamps();

@@ -17,7 +17,9 @@ class CreateDefinePasswordRenewsTable extends Migration
             $table->id();
             $table->integer('seminer_id')->default(0);
             $table->text('title')->nullable();
+            $table->text('title2')->nullable();
             $table->text('text')->nullable();
+            $table->text('text2')->nullable();
             $table->string('type')->default(0);
             $table->integer('display_status')->default(1);
             $table->timestamps();

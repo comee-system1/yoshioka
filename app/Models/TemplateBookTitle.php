@@ -20,6 +20,7 @@ class TemplateBookTitle extends Model
             $TemplateBookTitleData[$i]['seminer_id'    ] = $seminer_id;
             $TemplateBookTitleData[$i]['master_id'     ] = $TemplateBookTitle->master_id;
             $TemplateBookTitleData[$i]['text'          ] = $TemplateBookTitle->text;
+            $TemplateBookTitleData[$i]['text2'         ] = $TemplateBookTitle->text2;
             $TemplateBookTitleData[$i]['type'          ] = $TemplateBookTitle->type;
             $TemplateBookTitleData[$i]['created_at'    ] = NOW();
             $TemplateBookTitleData[$i]['updated_at'    ] = NOW();

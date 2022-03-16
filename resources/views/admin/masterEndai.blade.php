@@ -13,7 +13,7 @@
         <div class="row mt-3">
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <master-endai-component v-bind:id={{$id}}></master-endai-component>
+                <master-endai-component v-bind:id={{$id}} v-bind:lang={{$lang}}></master-endai-component>
             </main>
         </div>
     </div>

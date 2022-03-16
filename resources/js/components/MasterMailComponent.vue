@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active5"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active5" urlcode="/mail/"></shared-menu-component>
         <div class="row mt-3">
             <div class="col-md-2">メール配信型</div>
             <div class="col-md-4">
@@ -32,19 +32,23 @@
             <div class="col-md-4">
                 <p>置き換え記号</p>
                 <div class="row" v-for="replace of replaces[ 'endai' ]" :key="replace.id">
-                    <div class="col-md-6">{{replace['title']}}</div>
+                    <div class="col-md-6" v-if="lang==2">{{replace['title2']}}</div>
+                    <div class="col-md-6" v-else>{{replace['title']}}</div>
                     <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
                 </div>
                 <div class="row" v-for="replace of replaces[ 'join' ]" :key="replace.id">
-                    <div class="col-md-6">{{replace['title']}}</div>
+                    <div class="col-md-6" v-if="lang==2" >{{replace['title2']}}</div>
+                    <div class="col-md-6" v-else >{{replace['title']}}</div>
                     <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
                 </div>
                 <div class="row" v-for="replace of replaces[ 'password_renew' ]" :key="replace.id">
-                    <div class="col-md-6">{{replace['title']}}</div>
+                    <div class="col-md-6" v-if="lang==2">{{replace['type']}}</div>
+                    <div class="col-md-6" v-else >{{replace['title']}}</div>
                     <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
                 </div>
                 <div class="row" v-for="replace of replaces[ 'information' ]" :key="replace.id">
-                    <div class="col-md-6">{{replace['title']}}</div>
+                    <div class="col-md-6" v-if="lang==2">{{replace['type']}}</div>
+                    <div class="col-md-6" v-else >{{replace['title']}}</div>
                     <div class="col-md-6">##{{replace[ 'type' ]}}##</div>
                 </div>
             </div>
@@ -59,7 +63,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.getMailType();
         return {
@@ -111,8 +115,8 @@ export default {
             this.showLoading = true;
             axios.get("/admin/master/getMail/"+this.id+"/"+this.type, postData).then(response => {
                 // 成功
-                this.subject = response['data'][ 'subject' ];
-                this.body = response['data'][ 'body' ];
+                this.subject = (this.lang == 2)?response['data'][ 'subject2' ]:response['data'][ 'subject' ];
+                this.body = (this.lang == 2)?response['data'][ 'body2' ]:response['data'][ 'body' ];
                 this.showLoading = false;
             }).catch(error => {
                 // 失敗
@@ -122,6 +126,7 @@ export default {
         edit:function()
         {
             let postData = {
+                lang:this.lang,
                 type:this.type,
                 subject:this.subject,
                 body:this.body

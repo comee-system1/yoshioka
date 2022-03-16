@@ -20,6 +20,7 @@ class TemplateMasterPresentation extends Model
             $masterPresentationData[$i]['seminer_id'] = $seminer_id;
             $masterPresentationData[$i]['master_id' ] = $templateMasterPresentation->master_id;
             $masterPresentationData[$i]['text'      ] = $templateMasterPresentation->text;
+            $masterPresentationData[$i]['text2'     ] = $templateMasterPresentation->text2;
             $masterPresentationData[$i]['created_at'] = NOW();
             $masterPresentationData[$i]['updated_at'] = NOW();
             $i++;

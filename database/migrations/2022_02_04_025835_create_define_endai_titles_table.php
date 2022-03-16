@@ -17,11 +17,16 @@ class CreateDefineEndaiTitlesTable extends Migration
             $table->id();
             $table->integer('seminer_id')->default(0);
             $table->string('title');
+            $table->string('title2')->nullable();
             $table->string('text')->nullable();
+            $table->string('text2')->nullable();
             $table->integer('required')->default(0);
             $table->string('required_text')->nullable();
+            $table->string('required_text2')->nullable();
             $table->string('error_message')->nullable();
+            $table->string('error_message2')->nullable();
             $table->integer('display_status')->default(1);
+            $table->integer('sort')->default(0);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->timestamps();
         });

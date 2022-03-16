@@ -115,11 +115,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/sponser/new/{id}', [\App\Http\Controllers\Admin\SponserController::class, 'post'])->name('sponser.post');
         Route::get('/sponser/delete/{id}/{sponser_id}', [\App\Http\Controllers\Admin\SponserController::class, 'delete'])->name('sponser.delete');
         Route::get('/master/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master');
+        Route::get('/master/{id}/lang/{lang}', [\App\Http\Controllers\Admin\MasterController::class, 'index'])->name('master.lang');
         Route::get('/master/endai/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'endai'])->name('master.endai');
+        Route::get('/master/endai/{id}/lang/{lang}', [\App\Http\Controllers\Admin\MasterController::class, 'endai'])->name('master.endai.lang');
         Route::get('/master/time/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time');
+        Route::get('/master/time/{id}/lang/{lang}', [\App\Http\Controllers\Admin\MasterController::class, 'time'])->name('master.time.lang');
         Route::get('/master/book/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'book'])->name('master.book');
         Route::get('/master/mail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mail'])->name('master.mail');
+        Route::get('/master/mail/{id}/lang/{lang}', [\App\Http\Controllers\Admin\MasterController::class, 'mail'])->name('master.mail.lang');
         Route::get('/master/password/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'password'])->name('master.password');
+        Route::get('/master/password/{id}/lang/{lang?}', [\App\Http\Controllers\Admin\MasterController::class, 'password'])->name('master.password.post.lang');
         Route::get('/master/join/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'join'])->name('master.join');
         Route::get('/master/join/donwload/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'joinDownload'])->name('master.join.download');
 
@@ -142,13 +147,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/master/editMail/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'editMail'])->name('master.define.editMail');
 
         Route::get('/master/invoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'invoice'])->name('master.invoice');
+        Route::get('/master/invoice/{id}/lang/{lang?}', [\App\Http\Controllers\Admin\MasterController::class, 'invoice'])->name('master.invoice.lang');
         Route::get('/master/defineInvoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineInvoice'])->name('master.defineInvoice');
         Route::any('/master/defineEditInvoice/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'defineEditInvoice'])->name('master.defineEditInvoice');
 
         Route::get('/master/title/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'title'])->name('master.title');
+        Route::get('/master/title/{id}/lang/{lang?}', [\App\Http\Controllers\Admin\MasterController::class, 'title'])->name('master.title.lang');
         Route::any('/master/title/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'titleEdit'])->name('master.edit');
 
         Route::get('/master/mypage/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mypage'])->name('master.mypage');
+        Route::get('/master/mypage/{id}/lang/{lang?}', [\App\Http\Controllers\Admin\MasterController::class, 'mypage'])->name('master.mypage.lang');
         Route::any('/master/mypage/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'mypageEdit'])->name('master.mypageEdit');
 
         Route::get('/recipe/{id}/{account_id}/recipe', [\App\Http\Controllers\RecipeController::class, 'recipe'])->name('pdf.recipe');
@@ -158,6 +166,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/master/password/edit/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'passwordEdit'])->name('master.password.edit');
 
         Route::any('/master/account/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'account'])->name('master.account');
+        Route::any('/master/seminer/{id}', [\App\Http\Controllers\Admin\MasterController::class, 'seminer'])->name('master.seminer');
 
     });
    // Route::match(['get', 'post'],'/login',function(){ return view('auth.login'); });

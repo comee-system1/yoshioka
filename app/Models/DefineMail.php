@@ -33,8 +33,14 @@ class DefineMail extends Model
             'seminer_id'=>$id,
             'type'=>$request->type,
          ])->first();
-        $data->subject = $request->subject;
-        $data->body = $request->body;
+         if($request->lang == 2){
+            $data->subject2 = $request->subject;
+            $data->body2 = $request->body;
+         }else{
+            $data->subject = $request->subject;
+            $data->body = $request->body;
+         }
+
         $data->save();
     }
 

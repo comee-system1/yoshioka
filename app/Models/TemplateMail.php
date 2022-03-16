@@ -17,10 +17,12 @@ class TemplateMail extends Model
         $template_mailData = [];
         $i = 0;
         foreach ($template_mails as $key => $template_mail) {
-            $template_mailData[$i]['seminer_id'    ] = $seminer_id;
-            $template_mailData[$i]['type'    ] = $template_mail->type;
-            $template_mailData[$i]['subject'    ] = $template_mail->subject;
-            $template_mailData[$i]['body'    ] = $template_mail->body;
+            $template_mailData[$i]['seminer_id'  ] = $seminer_id;
+            $template_mailData[$i]['type'        ] = $template_mail->type;
+            $template_mailData[$i]['subject'     ] = $template_mail->subject;
+            $template_mailData[$i]['subject2'    ] = $template_mail->subject2;
+            $template_mailData[$i]['body'        ] = $template_mail->body;
+            $template_mailData[$i]['body2'       ] = $template_mail->body2;
 
             $template_mailData[$i]['created_at'    ] = NOW();
             $template_mailData[$i]['updated_at'    ] = NOW();

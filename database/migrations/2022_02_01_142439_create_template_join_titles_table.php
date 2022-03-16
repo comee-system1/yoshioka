@@ -16,11 +16,15 @@ class CreateTemplateJoinTitlesTable extends Migration
         Schema::create('template_join_titles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('title2')->nullable();
             $table->string('text')->nullable();
+            $table->string('text2')->nullable();
             $table->integer('template_code')->default(1);
             $table->integer('required')->default(0);
             $table->string('required_text')->nullable();
+            $table->string('required_text2')->nullable();
             $table->string('error_message')->nullable();
+            $table->string('error_message2')->nullable();
             $table->integer('sort')->default(0);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->integer('display_status')->default(1);

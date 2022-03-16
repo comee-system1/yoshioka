@@ -17,15 +17,20 @@ class TemplateEndaiTitle extends Model
         $TemplateEndaiTitleData = [];
         $i = 0;
         foreach ($TemplateEndaiTitles as $key => $TemplateEndaiTitle) {
-            $TemplateEndaiTitleData[$i]['seminer_id'    ] = $seminer_id;
-            $TemplateEndaiTitleData[$i]['title'         ] = $TemplateEndaiTitle->title;
-            $TemplateEndaiTitleData[$i]['text'          ] = $TemplateEndaiTitle->text;
-            $TemplateEndaiTitleData[$i]['type'          ] = $TemplateEndaiTitle->type;
-            $TemplateEndaiTitleData[$i]['required'      ] = $TemplateEndaiTitle->required;
-            $TemplateEndaiTitleData[$i]['required_text' ] = $TemplateEndaiTitle->required_text;
-            $TemplateEndaiTitleData[$i]['error_message' ] = $TemplateEndaiTitle->error_message;
-            $TemplateEndaiTitleData[$i]['created_at'    ] = NOW();
-            $TemplateEndaiTitleData[$i]['updated_at'    ] = NOW();
+            $TemplateEndaiTitleData[$i]['seminer_id'     ] = $seminer_id;
+            $TemplateEndaiTitleData[$i]['title'          ] = $TemplateEndaiTitle->title;
+            $TemplateEndaiTitleData[$i]['title2'         ] = $TemplateEndaiTitle->title2;
+            $TemplateEndaiTitleData[$i]['text'           ] = $TemplateEndaiTitle->text;
+            $TemplateEndaiTitleData[$i]['text2'          ] = $TemplateEndaiTitle->text2;
+            $TemplateEndaiTitleData[$i]['type'           ] = $TemplateEndaiTitle->type;
+            $TemplateEndaiTitleData[$i]['required'       ] = $TemplateEndaiTitle->required;
+            $TemplateEndaiTitleData[$i]['required_text'  ] = $TemplateEndaiTitle->required_text;
+            $TemplateEndaiTitleData[$i]['required_text2' ] = $TemplateEndaiTitle->required_text2;
+            $TemplateEndaiTitleData[$i]['error_message'  ] = $TemplateEndaiTitle->error_message;
+            $TemplateEndaiTitleData[$i]['error_message2' ] = $TemplateEndaiTitle->error_message2;
+            $TemplateEndaiTitleData[$i]['sort' ] = $TemplateEndaiTitle->sort;
+            $TemplateEndaiTitleData[$i]['created_at'     ] = NOW();
+            $TemplateEndaiTitleData[$i]['updated_at'     ] = NOW();
             $i++;
         }
         return $TemplateEndaiTitleData;

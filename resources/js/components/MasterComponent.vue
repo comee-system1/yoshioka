@@ -1,4 +1,5 @@
 <template>
+
     <div class="container ">
         <div class="position-fixed w-100 h-100 top-0 start-0 bg-secondary bg-opacity-75 zindex-100" v-show="showLoading">
             <div class="d-flex align-items-center justify-content-center h-100 w-100">
@@ -7,7 +8,8 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active1"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active1" urlcode="/"></shared-menu-component>
+
         <div class="row mt-3">
             <div class="col-md-2">タイトル</div>
             <div class="col-md-4">
@@ -76,25 +78,31 @@
             <div class="col-md-2"><small>付属文言</small></div>
             <div class="col-md-2"><small>形式</small></div>
         </div>
+
         <div class="row mt-3 pt-3" v-for="defineData of defineDatas" :key="defineData.id" style="border-top:2px dotted #ccc ;">
+
             <div class="row">
                 <div class="col-md-1">
-
                     <input v-if="defineData.type != 'account_type' && defineData.type != 'password' && defineData.type != 'email' && defineData.type != 'name' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.display_status" />
                     <input v-else type="hidden" v-model="defineData.display_status" />
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control w-100" v-model="defineData.title" />
+
+                    <input type="text" class="form-control w-100" v-model="defineData.title2" v-if="lang==2" />
+                    <input type="text" class="form-control w-100" v-model="defineData.title" v-else />
+
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control w-100" v-model="defineData.text"  />
+                    <input type="text" class="form-control w-100" v-model="defineData.text2" v-if="lang==2"  />
+                    <input type="text" class="form-control w-100" v-model="defineData.text" v-else />
                 </div>
                 <div class="col-md-1">
                     <input v-if="defineData.type != 'account_type' && defineData.type != 'password' && defineData.type != 'email' && defineData.type != 'name' " type="checkbox" class="h-75 w-75 mt-1" v-model="defineData.required" />
                     <input v-else type="hidden" v-model="defineData.required" />
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control w-100" v-model="defineData.required_text" />
+                    <input type="text" class="form-control w-100" v-model="defineData.required_text2" v-if="lang==2" />
+                    <input type="text" class="form-control w-100" v-model="defineData.required_text" v-else />
                 </div>
                 <div class="col-md-2">
                     {{type[defineData.type]}}
@@ -104,9 +112,11 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
                     <span>エラーメッセージ</span>
-                    <input type="text" class="form-control w-100" v-model="defineData.error_message" />
+                    <input type="text" class="form-control w-100" v-model="defineData.error_message2" v-if="lang==2" />
+                    <input type="text" class="form-control w-100" v-model="defineData.error_message" v-else />
                 </div>
             </div>
+
         </div>
 
 
@@ -120,7 +130,8 @@
                 </div>
                 <div class="row mb-2" v-for="spaceList of spaceLists" :key="spaceList.id">
                     <div class="col-md-4" >
-                        <input type="text" class="form-control w-100" v-model="spaceList.text" />
+                        <input type="text" class="form-control w-100" v-model="spaceList.text2" v-if="lang==2" />
+                        <input type="text" class="form-control w-100" v-model="spaceList.text" v-else />
                     </div>
                     <div class="col-md-2 text-center" >
                         <input type="checkbox" v-model="spaceList.display_status" class="mt-2 h-75 w-75" />
@@ -160,7 +171,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.spaceListsData();
         this.getDefineData();
@@ -194,7 +205,7 @@ export default {
                 this.type = response['data'];
             }).catch(error => {
                 // 失敗
-                alert("error");
+                alert("error1");
             });
         },
         //区分
@@ -205,7 +216,7 @@ export default {
                 this.spaceLists = response['data'];
             }).catch(error => {
                 // 失敗
-                alert("error");
+                alert("error2");
             });
         },
         getDefineData:function(){
@@ -214,74 +225,41 @@ export default {
             axios.get("/admin/master/define/"+this.id, postData).then(response => {
                 // 成功
                 //this.defineDatas = response['data'];
+                var ans = [];
+                var lang = (this.lang)?this.lang:1;
                 var define = [];
-                var button;
-                var back_button;
-                var regist_button;
-                var title;
-                var join;
-                var password_edit;
-                var password_renew;
-                var joinlink;
-                var party;
-                var party_flag;
-                var join_success;
-                var join_miss;
-                var sign_in_miss;
                 response['data'].forEach(function(element){
-                    if(element['type'] == "password_renew"){
-                        password_renew = element;
-                    }else
-                    if(element['type'] == "sign_in_miss"){
-                        sign_in_miss = element;
-                    }else
-                    if(element['type'] == "password_edit"){
-                        password_edit = element;
-                    }else
-                    if(element['type'] == "join_success"){
-                        join_success = element;
-                    }else
-                    if(element['type'] == "join_miss"){
-                        join_miss = element;
-                    }else
-                    if(element['type'] == "back_button"){
-                        back_button = element;
-                    }else
-                    if(element['type'] == "regist_button"){
-                        regist_button = element;
-                    }else
-                    if(element['type'] == "button"){
-                        button = element;
-                    }else if(element['type'] == "title"){
-                        title = element;
-                    }else if(element['type'] == "join"){
-                        join = element;
-                    }else if(element['type'] == "party"){
-                        party = element;
-                    }else if(element['type'] == "party_flag"){
-                        party_flag = element;
-                    }else if(element['type'] == "joinlink"){
-                        joinlink = element;
-                    }else{
-                        define.push(element);
-                    }
+                    if(element[ 'type' ] == "title") ans[1] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "button") ans[2] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "back_button") ans[3] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "regist_button") ans[4] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "joinlink") ans[5] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "join_success") ans[6] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "join_miss") ans[7] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "password_edit") ans[8] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "password_renew") ans[9] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "sign_in_miss") ans[10] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "join") ans[11] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "party") ans[12] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "party_flag") ans[13] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'sort' ] > 0 ) define.push(element);
+                })
 
-                });
-
-                this.password_edit = password_edit['title'];
-                this.password_renew = password_renew['title'];
-                this.join_success = join_success['title'];
-                this.join_miss = join_miss['title'];
-                this.sign_in_miss = sign_in_miss['title'];
-                this.button = button['title'];
-                this.back_button = back_button['title'];
-                this.regist_button = regist_button['title'];
-                this.title = title['title'];
-                this.join = join['title'];
-                this.party = party['title'];
-                this.party_flag = party_flag['title'];
-                this.joinlink = joinlink['title'];
+                this.title  = ans[1];
+                this.button = ans[2];
+                this.back_button = ans[3];
+                this.regist_button = ans[4];
+                this.joinlink = ans[5];
+                this.join_success = ans[6];
+                this.join_miss = ans[7];
+                this.password_edit = ans[8];
+                this.password_renew = ans[9];
+                this.sign_in_miss = ans[10];
+                this.join = ans[11];
+                this.party = ans[12];
+                this.party_flag = ans[13];
                 this.defineDatas = define;
+
                 this.showLoading = false;
 
             }).catch(error => {
@@ -295,6 +273,7 @@ export default {
             //console.log(this.spaceLists)
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 title:this.title,
                 button:this.button,
                 regist_button:this.regist_button,

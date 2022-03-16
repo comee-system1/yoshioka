@@ -38,29 +38,54 @@ class DefinePasswordRenew extends Model
         if ($type == "renew_title")
         {
             $data->display_status = $request->renew_title_status;
-            $data->title = $request->renew_title;
+            if($request->lang == 2){
+                $data->title2 = $request->renew_title;
+            }else{
+                $data->title = $request->renew_title;
+            }
         }
         if ($type == "renew_note")
         {
             $data->display_status = $request->renew_note_status;
-            $data->title = $request->renew_note;
+            if($request->lang == 2){
+                $data->title2 = $request->renew_note;
+            }else{
+                $data->title = $request->renew_note;
+            }
         }
         if ($type == "renew_input")
         {
-            $data->title = $request->renew_input;
-            $data->text = $request->renew_input_text;
+            if($request->lang == 2){
+                $data->title2 = $request->renew_input;
+                $data->text2 = $request->renew_input_text;
+            }else{
+                $data->title = $request->renew_input;
+                $data->text = $request->renew_input_text;
+            }
         }
         if ($type == "renew_button")
         {
-            $data->title = $request->renew_button;
+            if($request->lang == 2){
+                $data->title2 = $request->renew_button;
+            }else{
+                $data->title = $request->renew_button;
+            }
         }
         if ($type == "renew_success")
         {
-            $data->title = $request->renew_success;
+            if($request->lang == 2){
+                $data->title2 = $request->renew_success;
+            }else{
+                $data->title = $request->renew_success;
+            }
         }
         if ($type == "renew_miss")
         {
-            $data->title = $request->renew_miss;
+            if($request->lang == 2){
+                $data->title2 = $request->renew_miss;
+            }else{
+                $data->title = $request->renew_miss;
+            }
         }
 
         $data->save();

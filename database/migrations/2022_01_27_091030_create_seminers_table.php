@@ -27,6 +27,9 @@ class CreateSeminersTable extends Migration
             $table->string('open_key');
             $table->integer('display_status')->default(1);
             $table->integer('delete_status')->default(0);
+            $table->string('language1')->nullable()->default('JP');
+            $table->string('language2')->nullable()->default('EN');
+            $table->integer('template')->default(0);
             $table->timestamps();
         });
     }

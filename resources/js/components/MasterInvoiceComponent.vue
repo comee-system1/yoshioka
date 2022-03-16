@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active6"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active6" urlcode="/invoice/"></shared-menu-component>
         <div class="row mt-3">
             <div class="col-md-2">請求書タイトル</div>
             <div class="col-md-4">
@@ -58,7 +58,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.getData();
         return {
@@ -80,14 +80,13 @@ export default {
             axios.get("/admin/master/defineInvoice/"+this.id, postData).then(response => {
                 // 成功
                 response[ 'data' ].forEach(element => {
-                    console.log(element);
-                    if(element['type'] == "invoice") this.invoice = element[ 'title' ];
-                    if(element['type'] == "receipt") this.receipt = element[ 'title' ];
-                    if(element['type'] == "payee") this.payee = element[ 'title' ];
-                    if(element['type'] == "bill") this.bill = element[ 'title' ];
-                    if(element['type'] == "honor") this.honor = element[ 'title' ];
-                    if(element['type'] == "recipe_message") this.recipe_message = element[ 'title' ];
-                    if(element['type'] == "invoice_message") this.invoice_message = element[ 'title' ];
+                    if(element['type'] == "invoice") this.invoice = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
+                    if(element['type'] == "receipt") this.receipt = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
+                    if(element['type'] == "payee") this.payee = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
+                    if(element['type'] == "bill") this.bill = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
+                    if(element['type'] == "honor") this.honor = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
+                    if(element['type'] == "recipe_message") this.recipe_message = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
+                    if(element['type'] == "invoice_message") this.invoice_message = (this.lang == 2)? element[ 'title2' ]:element[ 'title' ];
                 });
                 this.showLoading = false;
             }).catch(error => {
@@ -99,6 +98,7 @@ export default {
         {
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 invoice:this.invoice,
                 receipt:this.receipt,
                 payee:this.payee,

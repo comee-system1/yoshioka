@@ -13,7 +13,7 @@
         <div class="row mt-3">
             @yield('nav')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <master-mypage-component v-bind:id={{$id}}></master-mypage-component>
+                <master-mypage-component v-bind:id={{$id}} v-bind:lang={{$lang}}></master-mypage-component>
             </main>
         </div>
     </div>

@@ -24,9 +24,11 @@ class TemplateMyPage extends Model
         $i = 0;
         foreach ($templateMypages as $key => $templateMypage) {
             $templateMypageData[$i]['seminer_id'] = $seminer_id;
-            $templateMypageData[$i]['title'] = $templateMypage->title;
-            $templateMypageData[$i]['text'] = $templateMypage->text;
-            $templateMypageData[$i]['type'] = $templateMypage->type;
+            $templateMypageData[$i]['title'  ] = $templateMypage->title;
+            $templateMypageData[$i]['title2' ] = $templateMypage->title2;
+            $templateMypageData[$i]['text'   ] = $templateMypage->text;
+            $templateMypageData[$i]['text2'  ] = $templateMypage->text2;
+            $templateMypageData[$i]['type'   ] = $templateMypage->type;
             $templateMypageData[$i]['created_at'] = NOW();
             $templateMypageData[$i]['updated_at'] = NOW();
             $i++;

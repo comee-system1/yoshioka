@@ -16,6 +16,7 @@ class CreateTemplateTimeTitlesTable extends Migration
         Schema::create('template_time_titles', function (Blueprint $table) {
             $table->id();
             $table->text('title')->nullable();
+            $table->text('title2')->nullable();
             $table->integer('template_code')->default(1);
             $table->string('type')->default('input')->comment('title/input/button');
             $table->integer('display_status')->default(1);

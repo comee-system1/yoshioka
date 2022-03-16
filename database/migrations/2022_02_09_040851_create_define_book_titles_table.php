@@ -18,6 +18,7 @@ class CreateDefineBookTitlesTable extends Migration
             $table->integer('master_id')->default(0);
             $table->integer('seminer_id')->default(0);
             $table->text('text');
+            $table->text('text2')->nullable();
             $table->integer('display_status')->default(1);
             $table->string('type')->default('input')->comment('title/explain');
             $table->timestamps();

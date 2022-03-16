@@ -23,7 +23,11 @@ class DefineTimeTitle extends Model
         $data = DefineTimeTitle::where('type', $type)
             ->where('seminer_id', $id)
             ->first();
-        $data->title = $request->$type;
+        if($request->lang == 2){
+            $data->title2 = $request->$type;
+        }else{
+            $data->title = $request->$type;
+        }
         $data->save();
     }
 
@@ -36,7 +40,11 @@ class DefineTimeTitle extends Model
             $data = DefineTimeTitle::where('id', $value['id'])
             ->where('seminer_id', $id)
             ->first();
-            $data->title = $value[ 'title' ];
+            if($request->lang == 2){
+                $data->title2 = $value[ 'title2' ];
+            }else{
+                $data->title = $value[ 'title' ];
+            }
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }
@@ -52,7 +60,11 @@ class DefineTimeTitle extends Model
             $data = DefinePlaceList::where('id', $value['id'])
             ->where('seminer_id', $id)
             ->first();
-            $data->text = $value[ 'text' ];
+            if($request->lang == 2){
+                $data->text2 = $value[ 'text2' ];
+            }else{
+                $data->text = $value[ 'text' ];
+            }
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }

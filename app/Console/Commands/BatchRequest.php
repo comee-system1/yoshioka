@@ -48,8 +48,10 @@ class BatchRequest extends Command
         $definemail = DefineMail::getDefineRequestMail($daytype);
         $accounts = Seminer::getRequestMail($daytype);
         foreach($accounts as $i => $value){
-            $this->title = $definemail[$value->seminer_id][ 'subject' ];
-            $this->body = DefineMail::textReplaceInformation($definemail[$value->seminer_id][ 'body' ],$value);
+
+            $this->title = ($value->language_status == 2)?$definemail[$value->seminer_id][ 'subject2' ]:$definemail[$value->seminer_id][ 'subject' ];
+            $body = ($value->language_status == 2)?$definemail[$value->seminer_id][ 'body2' ]:$definemail[$value->seminer_id][ 'body' ];
+            $this->body = DefineMail::textReplaceInformation($body,$value);
             $this->address = $value->email;
             Mail::raw($this->body, function($message) use ($i)
             {

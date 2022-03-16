@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active8"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active8" urlcode="/mypage/" ></shared-menu-component>
         <div class="h4 mt-3">マイページ</div>
         <div class="row mt-3">
             <div class="col-md-2">項目名</div>
@@ -76,7 +76,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.getData();
         return {
@@ -102,36 +102,35 @@ export default {
             axios.get("/getMypage/"+this.id, postData).then(response => {
                 // 成功
                 response[ 'data' ].forEach(element => {
-                    console.log(element);
                     if(element['type'] == "mypage"){
-                        this.mypage = element.title;
+                        this.mypage = (this.lang == 2)?element.title2:element.title;
                         this.mypage_status = Number(element.status);
-                        this.mypage_text = element.text;
+                        this.mypage_text = (this.lang == 2)?element.text2:element.text;
                     }
                     if(element['type'] == "join"){
-                        this.join = element.title;
+                        this.join = (this.lang == 2)?element.title2:element.title;
                         this.join_status = Number(element.status);
-                        this.join_text = element.text;
+                        this.join_text = (this.lang == 2)?element.text2:element.text;
                     }
                     if(element['type'] == "endai"){
-                        this.endai = element.title;
+                        this.endai = (this.lang == 2)?element.title2:element.title;
                         this.endai_status = Number(element.status);
-                        this.endai_text = element.text;
+                        this.endai_text = (this.lang == 2)?element.text2:element.text;
                     }
                     if(element['type'] == "invoice"){
-                        this.invoice = element.title;
+                        this.invoice = (this.lang == 2)?element.title2:element.title;
                         this.invoice_status = Number(element.status);
                     }
                     if(element['type'] == "recipe"){
-                        this.recipe = element.title;
+                        this.recipe = (this.lang == 2)?element.title2:element.title;
                         this.recipe_status = Number(element.status);
                     }
                     if(element['type'] == "program"){
-                        this.program = element.title;
+                        this.program = (this.lang == 2)?element.title2:element.title;
                         this.program_status = Number(element.status);
                     }
                     if(element['type'] == "download"){
-                        this.download = element.title;
+                        this.download = (this.lang == 2)?element.title2:element.title;
                         this.download_status = Number(element.status);
                     }
 
@@ -146,6 +145,7 @@ export default {
         {
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 mypage:this.mypage,
                 mypage_status:this.mypage_status,
                 mypage_text:this.mypage_text,

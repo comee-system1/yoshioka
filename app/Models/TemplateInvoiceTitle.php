@@ -18,7 +18,8 @@ class TemplateInvoiceTitle extends Model
         $i = 0;
         foreach ($TemplateInvoiceTitles as $key => $TemplateInvoiceTitle) {
             $TemplateInvoiceTitleData[$i]['seminer_id'    ] = $seminer_id;
-            $TemplateInvoiceTitleData[$i]['title'          ] = $TemplateInvoiceTitle->title;
+            $TemplateInvoiceTitleData[$i]['title'         ] = $TemplateInvoiceTitle->title;
+            $TemplateInvoiceTitleData[$i]['title2'        ] = $TemplateInvoiceTitle->title2;
             $TemplateInvoiceTitleData[$i]['type'          ] = $TemplateInvoiceTitle->type;
             $TemplateInvoiceTitleData[$i]['created_at'    ] = NOW();
             $TemplateInvoiceTitleData[$i]['updated_at'    ] = NOW();

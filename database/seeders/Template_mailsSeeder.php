@@ -159,13 +159,13 @@ Registration has been accepted with the following contents.
 
 
 ━━━━━━□■□　Registration details　□■□━━━━━━
-Name ## name ##
-Kana ## name_kana ##
-Email address ## email ##
-Company name ## company ##
-Phone number ## tel ##
-Address ## address ##
-Affiliation ## area ##
+Name ##name##
+Kana ##name_kana##
+Email address ##email##
+Company name ##company##
+Phone number ##tel##
+Address ##address##
+Affiliation ##area##
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             ',
             'created_at' => date('Y-m-d H:i:s'),
@@ -199,7 +199,7 @@ Title ##endai##
             'body' => '
 * This email is an automatic reply from the system.
 
-## name ##
+##name##
 
 We become indebted to.
 I have re-registered my password.
@@ -207,7 +207,7 @@ I have re-registered my password.
 The password has been reset with the following contents.
 
 ━━━━━━ □ ■ □ Reset contents □ ■ □ ━━━━━━
-Password ## password_renew ##
+Password ##password_renew##
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             ',
             'created_at' => date('Y-m-d H:i:s'),
@@ -218,12 +218,12 @@ Password ## password_renew ##
             'template_code' => '2',
             'subject' => 'information',
             'body' => '
-## name ##
+##name##
 
 We become indebted to.
 We will contact you from 〇〇〇.
 
-## information ##
+##information##
 
 Thank you for your continued support
 
@@ -236,7 +236,7 @@ Thank you for your continued support
             'template_code' => '2',
             'subject' => 'Seminar information 3 days ago',
             'body' => '
-## name ##
+##name##
 
 We become indebted to.
 We will contact you from 〇〇〇.
@@ -254,7 +254,7 @@ Thank you for your continued support.
             'template_code' => '2',
             'subject' => 'Seminar information 1 days ago',
             'body' => '
-## name ##
+##name##
 
 We become indebted to.
 We will contact you from 〇〇〇.

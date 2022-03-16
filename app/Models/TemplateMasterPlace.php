@@ -20,6 +20,7 @@ class TemplateMasterPlace extends Model
             $masterPlaceData[$i]['seminer_id'          ] = $seminer_id;
             $masterPlaceData[$i]['master_id'           ] = $TemplateMasterPlace->master_id;
             $masterPlaceData[$i]['text'                ] = $TemplateMasterPlace->text;
+            $masterPlaceData[$i]['text2'               ] = $TemplateMasterPlace->text2;
             $masterPlaceData[$i]['display_status'      ] = $TemplateMasterPlace->display_status;
             $masterPlaceData[$i]['sort'      ] = $TemplateMasterPlace->sort;
             $masterPlaceData[$i]['created_at'] = NOW();

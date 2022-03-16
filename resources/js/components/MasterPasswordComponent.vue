@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active9"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active9" urlcode="/password/"></shared-menu-component>
 
         <div class="h4 mt-3">パスワード再設定</div>
         <div class="row mt-3">
@@ -70,7 +70,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.getData();
         return {
@@ -94,17 +94,18 @@ export default {
             let postData = {};
             axios.get("/getPassword/"+this.id, postData).then(response => {
                 // 成功
-                this.renew_title = response[ 'data' ][ 'renew_title' ][ 'title' ];
+                this.renew_title = (this.lang == 2)?response[ 'data' ][ 'renew_title' ][ 'title2' ]:response[ 'data' ][ 'renew_title' ][ 'title' ];
                 this.renew_title_status = parseInt(response[ 'data' ][ 'renew_title' ][ 'display_status' ]);
-                this.renew_note = response[ 'data' ][ 'renew_note' ][ 'title' ];
+
+                this.renew_note = (this.lang == 2)?response[ 'data' ][ 'renew_note' ][ 'title2' ]:response[ 'data' ][ 'renew_note' ][ 'title' ];
                 this.renew_note_status = parseInt(response[ 'data' ][ 'renew_note' ][ 'display_status' ]);
 
-                this.renew_input = response[ 'data' ][ 'renew_input' ][ 'title' ];
-                this.renew_input_text = response[ 'data' ][ 'renew_input' ][ 'text' ];
+                this.renew_input = (this.lang == 2)?response[ 'data' ][ 'renew_input' ][ 'title2' ]:response[ 'data' ][ 'renew_input' ][ 'title' ];
+                this.renew_input_text = (this.lang == 2)?response[ 'data' ][ 'renew_input' ][ 'text2' ]:response[ 'data' ][ 'renew_input' ][ 'text' ];
 
-                this.renew_button = response[ 'data' ][ 'renew_button' ][ 'title' ];
-                this.renew_success = response[ 'data' ][ 'renew_success' ][ 'title' ];
-                this.renew_miss = response[ 'data' ][ 'renew_miss' ][ 'title' ];
+                this.renew_button = (this.lang == 2)?response[ 'data' ][ 'renew_button' ][ 'title2' ]:response[ 'data' ][ 'renew_button' ][ 'title' ];
+                this.renew_success = (this.lang == 2)?response[ 'data' ][ 'renew_success' ][ 'title2' ]:response[ 'data' ][ 'renew_success' ][ 'title' ];
+                this.renew_miss = (this.lang == 2)?response[ 'data' ][ 'renew_miss' ][ 'title2' ]:response[ 'data' ][ 'renew_miss' ][ 'title' ];
 
 
                 this.showLoading = false;
@@ -117,6 +118,7 @@ export default {
         {
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 renew_title_status:this.renew_title_status,
                 renew_title:this.renew_title,
                 renew_note_status:this.renew_note_status,

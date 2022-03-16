@@ -19,7 +19,8 @@ class TemplateTitle extends Model
         foreach ($template_titles as $key => $template_title) {
             $templateTitleData[$i]['seminer_id'] = $seminer_id;
             $templateTitleData[$i]['title'     ] = $template_title->title;
-            $templateTitleData[$i]['type'     ] = $template_title->type;
+            $templateTitleData[$i]['title2'    ] = $template_title->title2;
+            $templateTitleData[$i]['type'      ] = $template_title->type;
             $templateTitleData[$i]['created_at'] = NOW();
             $templateTitleData[$i]['updated_at'] = NOW();
             $i++;

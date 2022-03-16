@@ -15,8 +15,10 @@ class CreateTemplateMypagesTable extends Migration
     {
         Schema::create('template_mypages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
+            $table->string('title2')->nullable();
             $table->text('text')->nullable();
+            $table->text('text2')->nullable();
             $table->integer('template_code')->default(1);
             $table->string('type')->default(0);
             $table->timestamps();

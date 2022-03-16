@@ -20,6 +20,7 @@ class TemplateMasterSpace extends Model
             $masterSpaceData[$i]['seminer_id'] = $seminer_id;
             $masterSpaceData[$i]['master_id' ] = $templatemasterspace->master_id;
             $masterSpaceData[$i]['text'      ] = $templatemasterspace->text;
+            $masterSpaceData[$i]['text2'     ] = $templatemasterspace->text2;
             $masterSpaceData[$i]['created_at'] = NOW();
             $masterSpaceData[$i]['updated_at'] = NOW();
             $i++;

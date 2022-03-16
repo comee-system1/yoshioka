@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active7"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active7" urlcode="/title/" ></shared-menu-component>
         <div class="h4 mt-3">トップページ</div>
         <div class="row mt-3">
             <div class="col-md-2">項目名</div>
@@ -58,7 +58,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.getData();
         return {
@@ -84,25 +84,24 @@ export default {
             axios.get("/getTitle/"+this.id, postData).then(response => {
                 // 成功
                 response[ 'data' ].forEach(element => {
-                    console.log(element);
                     if(element['type'] == "information"){
-                        this.information = element.title;
+                        this.information = (this.lang==2)?element.title2:element.title;
                         this.information_status = Number(element.status);
                     }
                     if(element['type'] == "date"){
-                        this.date = element.title;
+                        this.date = (this.lang==2)?element.title2:element.title;
                         this.date_status = Number(element.status);
                     }
                     if(element['type'] == "address"){
-                        this.address = element.title;
+                        this.address = (this.lang==2)?element.title2:element.title;
                         this.address_status = Number(element.status);
                     }
                     if(element['type'] == "place"){
-                        this.place = element.title;
+                        this.place = (this.lang==2)?element.title2:element.title;
                         this.place_status = Number(element.status);
                     }
                     if(element['type'] == "sponser"){
-                        this.sponser = element.title;
+                        this.sponser = (this.lang==2)?element.title2:element.title;
                         this.sponser_status = Number(element.status);
                     }
 
@@ -117,6 +116,7 @@ export default {
         {
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 information:this.information,
                 information_status:this.information_status,
                 date:this.date,

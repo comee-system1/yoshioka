@@ -78,6 +78,9 @@ class Seminer extends Model
         ->selectRaw('open_key')
         ->selectRaw('main_image')
         ->selectRaw('display_status')
+        ->selectRaw('template')
+        ->selectRaw('language1')
+        ->selectRaw('language2')
         ->selectRaw('start_date')
         ->selectRaw('DATE_FORMAT(start_date, "%Y-%m-%dT%H:%i:%s") AS st_date_format')
         ->selectRaw('DATE_FORMAT(start_date, "%Y/%m/%d %H:%i") AS st_op_date_format')
@@ -118,6 +121,9 @@ class Seminer extends Model
         $seminer->map_status = $request->map_status;
         $seminer->start_date = $request->start_date;
         $seminer->end_date = $request->end_date;
+        $seminer->template = $request->template;
+        $seminer->language1 = $request->language1;
+        $seminer->language2 = $request->language2;
         if ($file_name) {
             $seminer->main_image = $file_name;
         }

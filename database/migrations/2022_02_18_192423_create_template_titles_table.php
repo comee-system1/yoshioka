@@ -15,7 +15,8 @@ class CreateTemplateTitlesTable extends Migration
     {
         Schema::create('template_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
+            $table->string('title2')->nullable();
             $table->integer('template_code')->default(1);
             $table->string('type')->default(0);
             $table->timestamps();

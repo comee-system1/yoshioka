@@ -17,7 +17,9 @@ class CreateTemplateMasterPasswordRenewsTable extends Migration
             $table->id();
             $table->integer('master_id')->default(1);
             $table->text('title')->nullable();
+            $table->text('title2')->nullable();
             $table->text('text')->nullable();
+            $table->text('text2')->nullable();
             $table->integer('template_code')->default(1);
             $table->string('type')->default(0);
             $table->integer('display_status')->default(1);

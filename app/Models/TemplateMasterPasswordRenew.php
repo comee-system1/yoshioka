@@ -19,7 +19,9 @@ class TemplateMasterPasswordRenew extends Model
         foreach ($TemplateMasterPasswordRenews as $key => $TemplateMasterPasswordRenew) {
             $masterPasswordData[$i]['seminer_id'      ] = $seminer_id;
             $masterPasswordData[$i]['title'           ] = $TemplateMasterPasswordRenew->title;
+            $masterPasswordData[$i]['title2'          ] = $TemplateMasterPasswordRenew->title2;
             $masterPasswordData[$i]['text'            ] = $TemplateMasterPasswordRenew->text;
+            $masterPasswordData[$i]['text2'           ] = $TemplateMasterPasswordRenew->text2;
             $masterPasswordData[$i]['display_status'  ] = $TemplateMasterPasswordRenew->display_status;
             $masterPasswordData[$i]['type'      ] = $TemplateMasterPasswordRenew->type;
             $masterPasswordData[$i]['created_at'] = NOW();

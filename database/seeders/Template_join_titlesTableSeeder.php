@@ -25,6 +25,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'title',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -37,6 +38,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '参加者区分を選択してください',
             'sort' => '1',
             'type' => 'account_type',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -49,6 +51,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '名前が未入力です',
             'sort' => '2',
             'type' => 'name',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -61,6 +64,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '名前(かな)が未入力です',
             'sort' => '3',
             'type' => 'name_kana',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -73,6 +77,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'メールアドレスに不備があります。',
             'sort' => '4',
             'type' => 'email',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -85,6 +90,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'パスワードに不備があります。',
             'sort' => '5',
             'type' => 'password',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -97,6 +103,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '会社名が未入力です',
             'sort' => '6',
             'type' => 'company',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -109,6 +116,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '電話番号が未入力です',
             'sort' => '7',
             'type' => 'tel',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -121,6 +129,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '住所が未入力です',
             'sort' => '8',
             'type' => 'address',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -133,6 +142,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '所属が未入力です',
             'sort' => '9',
             'type' => 'area',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -145,6 +155,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'button',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -157,6 +168,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'back_button',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -169,6 +181,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'regist_button',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -181,6 +194,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'join',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -193,6 +207,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'party',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -205,6 +220,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'party_flag',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -217,6 +233,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'joinlink',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -229,6 +246,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'join_success',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -241,6 +259,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'join_miss',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -253,6 +272,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'sign_in_miss',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -265,6 +285,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'password_edit',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -277,6 +298,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'password_renew',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -289,6 +311,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'title',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -301,6 +324,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'Participant category is required',
             'sort' => '1',
             'type' => 'account_type',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -313,6 +337,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'Participant name is required',
             'sort' => '2',
             'type' => 'name',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -325,6 +350,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'Participant name(kana) is required',
             'sort' => '3',
             'type' => 'name_kana',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -337,6 +363,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'email address is false',
             'sort' => '4',
             'type' => 'email',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -349,6 +376,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'password is false',
             'sort' => '5',
             'type' => 'password',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -361,6 +389,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'company Name is required',
             'sort' => '6',
             'type' => 'company',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -373,6 +402,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'telephone number is required',
             'sort' => '7',
             'type' => 'tel',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -385,6 +415,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'Street address is required',
             'sort' => '8',
             'type' => 'address',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -397,6 +428,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => 'Belongs is required',
             'sort' => '9',
             'type' => 'area',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -409,6 +441,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'button',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -421,6 +454,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'back_button',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -433,6 +467,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'regist_button',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -445,6 +480,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'join',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -457,6 +493,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'party',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -469,6 +506,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'party_flag',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -481,6 +519,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'joinlink',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -493,6 +532,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'join_success',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -505,6 +545,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'join_miss',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -517,6 +558,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'sign_in_miss',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -529,6 +571,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'password_edit',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -541,6 +584,7 @@ class Template_join_titlesTableSeeder extends Seeder
             'error_message' => '',
             'sort' => '0',
             'type' => 'password_renew',
+
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             ],

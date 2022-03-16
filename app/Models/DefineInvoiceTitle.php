@@ -22,7 +22,11 @@ class DefineInvoiceTitle extends Model
         $data = self::where('type', $type)
             ->where('seminer_id', $id)
             ->first();
-        $data->title = $request->$type;
+        if($request->lang == 2){
+            $data->title2 = $request->$type;
+        }else{
+            $data->title = $request->$type;
+        }
         $data->save();
     }
 

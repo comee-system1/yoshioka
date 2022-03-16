@@ -41,23 +41,34 @@ class DefineJoinTitle extends Model
         $data = DefineJoinTitle::where('type', $type)
             ->where('seminer_id', $id)
             ->first();
-        $data->title = $request->$type;
+        if($request->lang == 2){
+            $data->title2 = $request->$type;
+        }else{
+            $data->title = $request->$type;
+        }
         $data->save();
     }
 
     public static function editDataTypeInput($id, $request, $type)
     {
         $define = $request->$type;
-        foreach ($define as $key => $value) {
+        foreach ($define as $value) {
             //var_dump($value);
             $data = DefineJoinTitle::where('id', $value['id'])
             ->where('seminer_id', $id)
             ->first();
-            $data->title = $value[ 'title' ];
-            $data->text = $value[ 'text' ];
+            if($request->lang == 2){
+                $data->title2 = $value[ 'title2' ];
+                $data->text2 = $value[ 'text2' ];
+                $data->required_text2 = $value[ 'required_text2' ];
+                $data->error_message2 = $value[ 'error_message2' ];
+            }else{
+                $data->title = $value[ 'title' ];
+                $data->text = $value[ 'text' ];
+                $data->required_text = $value[ 'required_text' ];
+                $data->error_message = $value[ 'error_message' ];
+            }
             $data->required = $value[ 'required' ];
-            $data->required_text = $value[ 'required_text' ];
-            $data->error_message = $value[ 'error_message' ];
             $data->display_status = $value[ 'display_status' ];
             $data->save();
         }

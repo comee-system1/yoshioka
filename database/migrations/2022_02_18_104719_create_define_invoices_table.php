@@ -17,6 +17,7 @@ class CreateDefineInvoicesTable extends Migration
             $table->id();
             $table->string('seminer_id')->default(0);
             $table->text('text')->nullable();
+            $table->text('text2')->nullable();
             $table->string('type')->default(0);
             $table->timestamps();
         });

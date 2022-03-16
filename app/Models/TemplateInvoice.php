@@ -19,6 +19,7 @@ class TemplateInvoice extends Model
         foreach ($TemplateInvoices as $key => $TemplateInvoice) {
             $TemplateInvoiceData[$i]['seminer_id'    ] = $seminer_id;
             $TemplateInvoiceData[$i]['text'          ] = $TemplateInvoice->text;
+            $TemplateInvoiceData[$i]['text2'         ] = $TemplateInvoice->text2;
             $TemplateInvoiceData[$i]['type'          ] = $TemplateInvoice->type;
             $TemplateInvoiceData[$i]['created_at'    ] = NOW();
             $TemplateInvoiceData[$i]['updated_at'    ] = NOW();

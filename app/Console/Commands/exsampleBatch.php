@@ -50,21 +50,23 @@ class exsampleBatch extends Command
         Log::info("一斉メール開始");
         $infomations = Information::getSendAllData();
         foreach($infomations as $i => $value){
+
             $mail = DefineMail::getData($value->seminer_id, 'information');
             $this->title = $value->title;
-            $this->body = DefineMail::textReplaceInformation($mail->body, $value);
+            $body = ($value->language_status == 2)?$mail->body2:$mail->body;
+            $this->body = DefineMail::textReplaceInformation($body, $value);
             $this->address = $value->email;
             Mail::raw($this->body, function($message) use ($i)
             {
-
                 Log::info(date('Y-m-d H:i:s').'タイトル::'.$this->title);
                 Log::info(date('Y-m-d H:i:s').'本文::'.$this->body);
                 Log::info(date('Y-m-d H:i:s').'メールアドレス::'.$this->address);
                 Log::info("----------------------------------------------------------");
-
                 $message->from(ClassConsts::ADMIN_MAIL);
                 $message->to($this->address)->subject($this->title);
             });
+
+
         }
 
         Log::info("一斉メール終了");

@@ -42,6 +42,26 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card-deck mb-3 text-center m-2 w-100 p-3">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">セミナテンプ(切替)</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mt-3 mb-4">
+                                <li class="text-start pr-2">Participant / abstract registration</li>
+                                <li class="text-start pr-2">timetable</li>
+                                <li class="text-start pr-2">Payment</li>
+                                <li class="text-start pr-2">Information</li>
+                                <li class="text-start pr-2">receipt</li>
+                                <li class="text-start pr-2">Sponsorship management</li>
+                            </ul>
+                            <button class="btn btn-primary" v-on:click="openModal(0,3)">作成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <h3 class="mt-3">最近登録したセミナー</h3>
         <div class="row">
@@ -172,6 +192,17 @@
                             <input type="datetime-local" v-model="end_date" class="w-100 form-control" name="end_date">
                         </div>
                     </div>
+                    <div class="row mt-2" v-if="template == 3">
+                        <label >表示言語名</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" v-model="language1" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" v-model="language2" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mt-2">
                         <div class="col-md-2"><button v-on:click="closeModal" class="btn btn-danger">閉じる</button></div>
 
@@ -197,6 +228,8 @@ export default {
     data(){
 
         return {
+            language1: 'JP',
+            language2: 'EN',
             name: '',
             sub_title: '',
             url:"",
@@ -339,6 +372,8 @@ export default {
             formData.append('address',this.address);
             formData.append('seminer_id',this.seminer_id);
             formData.append('template',this.template);
+            formData.append('language1',this.language1);
+            formData.append('language2',this.language2);
             let config = {
                 headers: {
                     'content-type': 'multipart/form-data'

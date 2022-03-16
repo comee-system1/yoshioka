@@ -16,8 +16,10 @@ class CreateDefineMypagesTable extends Migration
         Schema::create('define_mypages', function (Blueprint $table) {
             $table->id();
             $table->integer('seminer_id')->default(0);
-            $table->string('title');
+            $table->string('title')->nullable();
+            $table->string('title2')->nullable();
             $table->text('text')->nullable();
+            $table->text('text2')->nullable();
             $table->string('type')->default(0);
             $table->integer('status')->default(1);
             $table->timestamps();

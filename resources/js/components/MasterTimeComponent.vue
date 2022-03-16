@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <shared-menu-component v-bind:id=id active="active3"></shared-menu-component>
+        <shared-menu-component v-bind:id=id active="active3"  urlcode="/time/" ></shared-menu-component>
         <div class="row mt-3">
             <div class="col-md-2">タイトル</div>
             <div class="col-md-4">
@@ -31,7 +31,8 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-3" v-for="tdData of tdDatas" :key="tdData.id">
-                        <input type="text" class="form-control w-100" v-model="tdData.title" />
+                        <input type="text" class="form-control w-100" v-model="tdData.title2" v-if="lang==2" />
+                        <input type="text" class="form-control w-100" v-model="tdData.title" v-else />
                     </div>
                 </div>
             </div>
@@ -47,7 +48,8 @@
                         <input type="checkbox" class="h-50 w-50 mt-2" v-model="placeList.display_status" />
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" v-model="placeList.text" />
+                        <input type="text" class="form-control" v-model="placeList.text2" v-if="lang==2" />
+                        <input type="text" class="form-control" v-model="placeList.text" v-else />
                     </div>
                 </div>
             </div>
@@ -61,7 +63,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id', 'lang'],
     data(){
         this.placeListsData();
         this.getDefineData();
@@ -101,23 +103,21 @@ export default {
         getDefineData:function(){
             this.showLoading = true;
             let postData = {};
+            var lang = this.lang;
             axios.get("/admin/master/defineTime/"+this.id, postData).then(response => {
                 // 成功
                 var td = [];
-                var button;
-                var title;
+                var ans = [];
+                var reg = /^td[0-9]/
+                // var button;
+                // var title;
                 response['data'].forEach(function(element){
-                    if(element['type'] == "button"){
-                        button = element;
-                    }else
-                    if(element['type'] == "title"){
-                        title = element;
-                    }else{
-                        td.push(element);
-                    }
+                    if(element[ 'type' ] == "title") ans[1] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(element[ 'type' ] == "button") ans[2] =  (lang == 2) ? element[ 'title2' ]:element['title'];
+                    if(reg.test(element[ 'type' ])) ans[3] =  td.push(element);
                 });
-                this.button = button['title'];
-                this.title = title['title'];
+                this.title  = ans[1];
+                this.button = ans[2];
                 this.tdDatas = td;
                 this.showLoading = false;
 
@@ -127,14 +127,9 @@ export default {
             });
         },
         edit:function(key,value){
-            //console.log(this.title)
-            //console.log(this.button)
-            //console.log(this.explain)
-            //console.log(this.tdDatas)
-            //console.log(this.defineDatas)
-            //console.log(this.placeLists)
             this.showLoading = true;
             let postData = {
+                lang:this.lang,
                 title:this.title,
                 button:this.button,
                 tdDatas:this.tdDatas,

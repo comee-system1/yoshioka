@@ -176,6 +176,7 @@ class Information extends Model
             ->selectRaw('Informations.note')
             ->selectRaw('accounts.email')
             ->selectRaw('accounts.name')
+            ->selectRaw('accounts.language_status')
             ->leftJoin('accounts', 'accounts.seminer_id', '=', 'informations.seminer_id')
             ->where($where)
             ->get();

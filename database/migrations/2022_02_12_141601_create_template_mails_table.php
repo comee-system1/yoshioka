@@ -18,7 +18,9 @@ class CreateTemplateMailsTable extends Migration
             $table->string('type');
             $table->string('template_code')->default(1);
             $table->string('subject',512)->nullable();
+            $table->string('subject2',512)->nullable();
             $table->text('body')->nullable();
+            $table->text('body2')->nullable();
             $table->timestamps();
         });
     }
