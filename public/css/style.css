@@ -11294,7 +11294,7 @@ em {
 /* stylelint-disable selector-list-comma-newline-after */
 .open1Image {
   min-height: 300px;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
