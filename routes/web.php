@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+// |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //ログイン無しで見れるページ
 Route::get('/open/{id}/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'index'])->name('top');
+Route::post('/open/{id}/{uniqcode}', [\App\Http\Controllers\OpenController::class, 'session'])->name('top.post');
 Route::get('/open/{id}/{uniqcode}/{information_id}/info', [\App\Http\Controllers\OpenController::class, 'information'])->name('top.information');
 Route::get('/open/{id}/{uniqcode}/signin', [\App\Http\Controllers\SigninController::class, 'index'])->name('signin');
 Route::post('/open/{id}/{uniqcode}/signin/', [\App\Http\Controllers\SigninController::class, 'post'])->name('signin.post');

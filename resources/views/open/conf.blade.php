@@ -29,14 +29,35 @@
             @csrf
 
             @isset($accountdata)
-                @isset($defineMypage['join']->title) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title}}</div>@endif
-                @isset($defineMypage['join']->text) <div class="h6 mb-3 font-weight-normal">{{$defineMypage['join']->text}}</div>@endif
+                @if(session()->get('language') == "EN")
+                    @isset($defineMypage['join']->title2) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title2}}</div>@endif
+                    @isset($defineMypage['join']->text2) <div class="h6 mb-3 font-weight-normal">{{$defineMypage['join']->text2}}</div>@endif
+
+                @else
+                    @isset($defineMypage['join']->title) <div class="h3 mb-3 font-weight-normal">{{$defineMypage['join']->title}}</div>@endif
+                    @isset($defineMypage['join']->text) <div class="h6 mb-3 font-weight-normal">{{$defineMypage['join']->text}}</div>@endif
+                @endif
+
+
+
             @else
-                <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
+                <h1 class="h3 mb-3 font-weight-normal">
+                @if(session()->get('language') == "EN")
+                    {{$title->title2}}
+                @else
+                    {{$title->title}}
+                @endif
+                </h1>
             @endif
 
             <div class="row mt-2">
-                <div class="col-md-3 d-flex align-items-center">{{$account_type->title}}&nbsp;
+                <div class="col-md-3 d-flex align-items-center">
+                @if(session()->get('language') == "EN")
+                    {{$account_type->title2}}
+                @else
+                    {{$account_type->title}}
+                @endif
+                &nbsp;
                 </div>
                 <div class="col-md-6">
                     {{$accountSelect[$request->account_type]}}
@@ -47,7 +68,13 @@
             @foreach($account_input as $key=>$value)
                 @if($value->display_status)
                 <div class="row mt-2">
-                    <div class="col-md-3 d-flex align-items-center">{{$value->title}}</div>
+                    <div class="col-md-3 d-flex align-items-center">
+                    @if(session()->get('language') == "EN")
+                        {{$value->title2}}
+                    @else
+                        {{$value->title}}
+                    @endif
+                    </div>
                     <div class="col-md-6">
                         {{$request[$value->type]}}
                         {{ Form::hidden($value->type, $request[$value->type]) }}
@@ -60,9 +87,17 @@
             <div class="mt-5">
                 <div class="row mb-3">
                     <div class="col-2"></div>
-                    <div class="col-2 h5">{{ $join->title }}</div>
+                    <div class="col-2 h5">
+                        @if(session()->get('language') == "EN")
+                        {{ $join->title2 }}
+                        @else {{ $join->title }} @endif
+                        </div>
                     @if($request->party_status)
-                    <div class="col-2 h5">{{ $party->title }}</div>
+                    <div class="col-2 h5">
+                        @if(session()->get('language') == "EN")
+                        {{ $party->title2 }}
+                        @else {{ $party->title }} @endif
+                    </div>
                     @endif
                 </div>
                 @foreach($accountSelectFee as $key=>$value)

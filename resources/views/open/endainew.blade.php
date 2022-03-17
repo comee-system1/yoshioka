@@ -1,6 +1,6 @@
 @extends('openlayout.common')
 @include('layoutjoin.endai', [
-    'button'=>$endaititle['button']->title,
+    'button'=> session()->get( 'language' ) == "EN"? $endaititle['button']->title2 : $endaititle['button']->title,
     'account'=>$account])
 @section('title', $seminer->name)
 @include('openlayout.header')
@@ -9,7 +9,13 @@
 @section('content')
 
 <main role="main" class="container">
-    <h1 class="h3 mb-3 font-weight-normal mt-3">{{$endaititle['title']->title}}</h1>
+    <h1 class="h3 mb-3 font-weight-normal mt-3">
+    @if (session()->get( 'language' ) == 'EN')
+    {{$endaititle['title']->title2}}
+    @else
+    {{$endaititle['title']->title}}
+    @endif
+    </h1>
     <div class="container p-3">
         @yield('flash')
         @if ($errors->any())

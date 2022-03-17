@@ -30,8 +30,8 @@ class ProgramController extends ControllerOpen
         $data[ 'id' ] = $id;
         $data[ 'uniqcode' ] = $uniqcode;
         $data[ 'place_master_id' ] = $place_master_id;
-        $data[ 'title'  ] = $definetime[ 'title' ]->title;
-        $data[ 'button' ] = $definetime[ 'button' ]->title;
+        $data[ 'title'  ] = session()->get( 'language' ) == 'EN' ? $definetime[ 'title' ]->title2 : $definetime[ 'title' ]->title;
+        $data[ 'button' ] = session()->get( 'language' ) == 'EN' ? $definetime[ 'button' ]->title2 : $definetime[ 'button' ]->title;
         $data[ 'definetime' ] = $definetime;
         $data[ 'place'  ] = DefinePlaceList::getOpenPlaceLists($id);
         $data[ 'daylist'] = $dateList;
@@ -52,6 +52,7 @@ class ProgramController extends ControllerOpen
         return view('open.program', [
             'id' => $id,
             'uniqcode' => $uniqcode,
+            'lang' => session()->get('language') ,
             'seminer' => $this->seminer[0],
             'defineMypage' => $this->defineMypage,
             'data' => json_encode($data),

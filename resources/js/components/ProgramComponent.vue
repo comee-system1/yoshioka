@@ -10,7 +10,10 @@
         </div>
         <div class="row">
             <div class="col-2" v-for="spaceList of name.place" :key="spaceList.id">
-                <a @click="onPage(spaceList.master_id)" v-bind:class="['btn btn-outline-success w-100 text-nowrap mt-1', spaceList.master_id == name.place_master_id ? 'active' : '' ]"><small>{{ spaceList.text }}</small></a>
+                <a @click="onPage(spaceList.master_id)" v-bind:class="['btn btn-outline-success w-100 text-nowrap mt-1', spaceList.master_id == name.place_master_id ? 'active' : '' ]">
+                    <small v-if="lang == 'EN' ">{{ spaceList.text2 }}</small>
+                    <small v-else>{{ spaceList.text }}</small>
+                </a>
             </div>
         </div><!-- /.row -->
 
@@ -24,10 +27,22 @@
             <table class="table table-sm">
                 <thead>
                     <tr class="bg-primary text-white">
-                        <th scope="col" class="text-center" style="width:160px;">{{name.definetime.td1.title}}</th>
-                        <th scope="col" class="text-center" style="width:160px;">{{name.definetime.td2.title}}</th>
-                        <th scope="col" class="text-center ">{{name.definetime.td3.title}}</th>
-                        <th scope="col" class="text-center w-25">{{name.definetime.td4.title}}</th>
+                        <th scope="col" class="text-center" style="width:160px;">
+                            <span v-if="lang=='EN'">{{name.definetime.td1.title2}}</span>
+                            <span v-else >{{name.definetime.td1.title}}</span>
+                        </th>
+                        <th scope="col" class="text-center" style="width:160px;">
+                            <span v-if="lang=='EN'">{{name.definetime.td2.title2}}</span>
+                            <span v-else>{{name.definetime.td2.title}}</span>
+                        </th>
+                        <th scope="col" class="text-center ">
+                            <span v-if="lang=='EN'">{{name.definetime.td3.title2}}</span>
+                            <span v-else>{{name.definetime.td3.title}}</span>
+                        </th>
+                        <th scope="col" class="text-center w-25">
+                            <span v-if="lang=='EN'">{{name.definetime.td4.title2}}</span>
+                            <span v-else>{{name.definetime.td4.title}}</span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +68,7 @@
 <script>
 export default {
     props:[
-        'data',
+        'data','lang'
     ],
     data(){
         return {

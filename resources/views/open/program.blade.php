@@ -7,7 +7,7 @@
 @section('content')
 
 <div id="open">
-    <program-component v-bind:data="{{$data}}" ></program-component>
+    <program-component v-bind:data="{{$data}}" lang="{{$lang}}" ></program-component>
 </div>
 
 @endsection

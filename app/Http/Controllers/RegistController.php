@@ -44,7 +44,7 @@ class RegistController extends ControllerOpen
             'join' => $this->class->join,
             'party' => $this->class->party,
             'party_flag' => $this->class->party_flag,
-            'button' => $this->class->button->title
+            'button' => (session()->get('language') == 'EN' )? $this->class->button->title2 : $this->class->button->title
         ]);
     }
 
@@ -71,8 +71,8 @@ class RegistController extends ControllerOpen
             'party' => $this->class->party,
             'party_flag' => $this->class->party_flag,
             'button' => $this->class->button->title,
-            'back_button' => $this->class->back_button->title,
-            'regist_button' => $this->class->regist_button->title,
+            'back_button' => session()->get('language') == 'EN' ? $this->class->back_button->title2 : $this->class->back_button->title,
+            'regist_button' => session()->get('language') == 'EN' ? $this->class->regist_button->title2 : $this->class->regist_button->title,
             'request' => $request,
             'price' => DefineSpaceList::calcFee($id,$request),
         ]);
@@ -103,8 +103,13 @@ class RegistController extends ControllerOpen
             $accountData = Account::getAccount($lastid);
             $mail = [];
             $mail['address'] = $accountData->email;
-            $mail['body'] = DefineMail::textReplace($mailData->body, $accountData, $id);
-            $mail['title'] = DefineMail::textReplace($mailData->subject, $accountData, $id);
+            if(session()->get('language') == 'EN'){
+                $mail['body'] = DefineMail::textReplace($mailData->body2, $accountData, $id);
+                $mail['title'] = DefineMail::textReplace($mailData->subject2, $accountData, $id);
+            } else {
+                $mail['body'] = DefineMail::textReplace($mailData->body, $accountData, $id);
+                $mail['title'] = DefineMail::textReplace($mailData->subject, $accountData, $id);
+            }
             Mail::send(new RegisterMail($mail));
 
             if($fee->stripe_status && $accountData->payment_flag == 0 )
@@ -119,8 +124,11 @@ class RegistController extends ControllerOpen
                 ));
                 $account->setPayment($lastid);
             }
-
-            session()->flash('flash_msg', $join_success->title);
+            if(session()->get('language') == 'EN') {
+                session()->flash('flash_msg', $join_success->title2);
+            } else {
+                session()->flash('flash_msg', $join_success->title);
+            }
             if($accountdata){
                 return redirect(route('account.edit', ['id' => $id, 'uniqcode' => $uniqcode]));
             }else{
@@ -152,10 +160,10 @@ class RegistController extends ControllerOpen
             'join' => $this->class->join,
             'party' => $this->class->party,
             'party_flag' => $this->class->party_flag,
-            'button' => $this->class->button->title,
-            'back_button' => $this->class->back_button->title,
+            'button' => session()->get('language') == 'EN' ? $this->class->button->title2 : $this->class->button->title,
+            'back_button' => session()->get('language') == 'EN' ? $this->class->back_button->title2 : $this->class->back_button->title,
             'password_edit' => $this->class->password_edit,
-            'regist_button' => $this->class->regist_button->title,
+            'regist_button' => session()->get('language') == 'EN' ? : $this->class->regist_button->title,
 
         ]);
     }
@@ -188,10 +196,10 @@ class RegistController extends ControllerOpen
             }
             $accountData->password = Hash::make($password);
             $accountData->save();
-            session()->flash('flash_msg', $definePassword['renew_success']->title);
+            session()->flash('flash_msg', session()->get('language') == 'EN' ? $definePassword['renew_success']->title2 : $definePassword['renew_success']->title);
             $this->sendMail($id, $password, $accountData);
         }else{
-            session()->flash('flash_error', $definePassword['renew_miss']->title);
+            session()->flash('flash_error', session()->get('language') == 'EN' ? $definePassword['renew_miss']->title2 : $definePassword['renew_miss']->title );
         }
 
         return redirect(route('regist.renew', ['id' => $id, 'uniqcode' => $uniqcode]));
@@ -204,8 +212,8 @@ class RegistController extends ControllerOpen
         $accountData['password'] = $password;
         $mail = [];
         $mail['address'] = $accountData->email;
-        $mail['body'] = DefineMail::textReplacePassword($defineMail->body, $accountData);
-        $mail['title'] = DefineMail::textReplacePassword($defineMail->subject, $accountData);
+        $mail['body'] = DefineMail::textReplacePassword(session()->get( 'language' ) == 'EN' ? $defineMail->body2 : $defineMail->body, $accountData);
+        $mail['title'] = DefineMail::textReplacePassword(session()->get( 'language' ) == 'EN' ?$defineMail->subject2 : $defineMail->subject, $accountData);
         Mail::send(new RegisterMail($mail));
     }
 

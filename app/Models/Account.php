@@ -112,10 +112,16 @@ class Account extends Authenticatable
                     $validate[ $key ] = 'required';
                 }
                 $code = $key.".required";
-                $error_message[$code] = $value['error_message'];
+                if(session()->get('language') == "EN"){
+                    $error_message[$code] = $value['error_message2'];
+                }else{
+                    $error_message[$code] = $value['error_message'];
+                }
             }
         }
         $error_message['email.unique'] = $error_message['email.required'];
+        $error_message['email'] = $error_message['email.required'];
+
         $validated = $request->validate(
             $validate,
             $error_message
@@ -138,6 +144,8 @@ class Account extends Authenticatable
         $this->address  = $request->address;
         $this->area  = $request->area;
         $this->join_status  = 1;
+        $this->language_status =  session()->get( 'language' ) == 'EN' ? 2:1;
+
         if($request->party_status){
             $this->party_status  = 1;
         }
@@ -188,6 +196,7 @@ class Account extends Authenticatable
         $data->tel = $request->tel;
         $data->address = $request->address;
         $data->area = $request->area;
+        $data->language_status = session()->get( 'language' ) == 'EN' ? 2:1;
         if($request->party_status){
             $data->party_status = 1;
         }else{

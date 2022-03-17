@@ -26,10 +26,21 @@
     <button type="submit" id="login-button" class="btn btn-primary mt-3 form-control" >Login</button>
 </form>
 <div class="text-center mt-4">
-    <a href="{{route('regist',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$joinlink->title}}</a>
+    <a href="{{route('regist',['id'=>$id, 'uniqcode'=>$uniqcode])}}">
+    @if (session('language') == "EN")
+        {{$joinlink->title2}}
+    @else
+        {{$joinlink->title}}
+    @endif
+    </a>
 </div>
 <div class="text-center mt-1">
-    <a href="{{route('regist.renew',['id'=>$id, 'uniqcode'=>$uniqcode])}}">{{$renew->title}}</a>
+    <a href="{{route('regist.renew',['id'=>$id, 'uniqcode'=>$uniqcode])}}">
+    @if (session('language') == "EN")
+    {{$renew->title2}}
+    @else {{$renew->title}}
+    @endif
+    </a>
 </div>
 
 @endsection

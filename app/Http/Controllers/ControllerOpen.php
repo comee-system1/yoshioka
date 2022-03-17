@@ -40,13 +40,19 @@ class ControllerOpen extends BaseController
     }
 
     public function pageCheck($request){
+
+
+        //var_dump(session()->previousUrl());
+
         $this->class = new ClassConsts();
         $ex = explode("/",$request->path());
         if(Seminer::checkSitekey($ex[1], $ex[2])){
+
             $fee = DefineFee::getDataSeminer($ex[1]);
             $data = Seminer::getData($ex[1]);
             $data[0][ 'fee' ] = $fee;
             $this->seminer = $data;
+            $this->seminer[0]['language'] = "JP";
             return true;
         }else{
             echo "error(1)";

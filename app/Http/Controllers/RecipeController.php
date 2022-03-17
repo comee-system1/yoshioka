@@ -76,18 +76,19 @@ class RecipeController extends Controller
         if($define_invoices[ 'file' ]->text){
             $file = url('')."/storage/invoice/".$define_invoices[ 'file' ]->text;
         }
+        $lang = session()->get( 'language' );
         $pdf = \PDF::loadView('open.invoice_pdf', [
-            'title' => $define_invoice_titles['invoice']->title,
+            'title' => ($lang == 'EN' )? $define_invoice_titles['invoice']->title2 : $define_invoice_titles['invoice']->title,
             'name'  => $account->name,
-            'honor' => $define_invoice_titles['honor']->title,
+            'honor' => ($lang == 'EN' )? $define_invoice_titles['honor']->title2 : $define_invoice_titles['honor']->title,
             'fee'   => number_format($fee),
-            'bill'  => $define_invoice_titles['bill']->title,
-            'memo' => $define_invoices[ 'memo' ]->text,
-            'recipe_message'  => $define_invoice_titles['invoice_message']->title,
-            'address' => $define_invoices[ 'address' ]->text,
-            'payee' => $define_invoices[ 'payee' ]->text,
-            'email' => $define_invoices[ 'email' ]->text,
-            'tel' => $define_invoices[ 'tel' ]->text,
+            'bill'  => ($lang == 'EN' )? $define_invoice_titles['bill']->title2 : $define_invoice_titles['bill']->title,
+            'memo' => ($lang == 'EN' )? $define_invoices[ 'memo' ]->text2 : $define_invoices[ 'memo' ]->text,
+            'recipe_message'  => ($lang == 'EN' )? $define_invoice_titles['invoice_message']->title2 : $define_invoice_titles['invoice_message']->title,
+            'address' => ($lang == 'EN' )? $define_invoices[ 'address' ]->text2 : $define_invoices[ 'address' ]->text,
+            'payee' => ($lang == 'EN' )? $define_invoices[ 'payee' ]->text2 : $define_invoices[ 'payee' ]->text,
+            'email' => ($lang == 'EN' )? $define_invoices[ 'email' ]->text2 : $define_invoices[ 'email' ]->text,
+            'tel' => ($lang == 'EN' )? $define_invoices[ 'tel' ]->text2 : $define_invoices[ 'tel' ]->text,
             'file' => $file,
             'date' => $define_invoices[ 'date' ]->text,
             'join_titles' => $join_titles,

@@ -36,8 +36,8 @@ export default {
     computed:{
     },
     mounted:function(){
-        let str = location.pathname.match(/\d+$/)[0];
-        if(str == 2){
+        let str = location.pathname.match(/lang\/\d+$/)[0];
+        if(str == "lang/2"){
             this.active1 = false
             this.active2 = true
         }

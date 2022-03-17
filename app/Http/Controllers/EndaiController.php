@@ -102,8 +102,8 @@ class EndaiController extends ControllerOpen
             $account = Auth::guard('account')->user();
             $mail = [];
             $mail['address'] = $account->email;
-            $mail['body'] = DefineMail::textReplaceEndai($mailData->body, $account, $endaiData, $id);
-            $mail['title'] = DefineMail::textReplaceEndai($mailData->subject, $account, $endaiData, $id);
+            $mail['body'] = DefineMail::textReplaceEndai( session()->get( 'language' ) == 'EN' ? $mailData->body2 : $mailData->body, $account, $endaiData, $id);
+            $mail['title'] = DefineMail::textReplaceEndai( session()->get( 'language' ) == 'EN' ? $mailData->subject2 : $mailData->subject, $account, $endaiData, $id);
             Mail::send(new RegisterMail($mail));
     }
 
@@ -114,10 +114,10 @@ class EndaiController extends ControllerOpen
         if($lastid = $this->endai->setDataOpen($id, $request))
         {
             $this->sendMail($id, $lastid);
-            session()->flash('flash_msg', $endaiTitle[ 'endai_success' ]->title);
+            session()->flash('flash_msg', session()->get( 'language' ) == 'EN' ? $endaiTitle[ 'endai_success' ]->title2 : $endaiTitle[ 'endai_success' ]->title);
             return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
         }else{
-            session()->flash('flash_error', $endaiTitle[ 'endai_fail' ]->title);
+            session()->flash('flash_error', session()->get( 'language' ) == 'EN' ? $endaiTitle[ 'endai_fail' ]->title2 : $endaiTitle[ 'endai_fail' ]->title);
             return redirect(route('account.endai.list', ['id' => $id, 'uniqcode' => $uniqcode]));
         }
     }

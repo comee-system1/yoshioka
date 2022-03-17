@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 <meta charset="UTF-8">
-<title>@yield('title')｜nodoame.net</title>
+<title>@yield('title')</title>
 <meta name="description" itemprop="description" content="@yield('description')">
 <meta name="keywords" itemprop="keywords" content="@yield('keywords')">
 

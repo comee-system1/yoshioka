@@ -117,7 +117,11 @@ class ClassConsts
     public static function createArray($array){
         $return = [];
         foreach($array as $key=>$value){
-            $return[$value->master_id] = $value->text;
+            if(session()->get('language') == "EN"){
+                $return[$value->master_id] = $value->text2;
+            }else{
+                $return[$value->master_id] = $value->text;
+            }
         }
         return $return;
     }
@@ -125,7 +129,11 @@ class ClassConsts
     public static function createArrayFee($array){
         $return = [];
         foreach($array as $key=>$value){
-            $return[$value->master_id][ 'text'  ] = $value->text;
+            if(session()->get('language') == "EN"){
+                $return[$value->master_id][ 'text'  ] = $value->text2;
+            }else{
+                $return[$value->master_id][ 'text'  ] = $value->text;
+            }
             $return[$value->master_id][ 'join_fee'  ] = $value->join_fee;
             $return[$value->master_id][ 'join_fee_yen'  ] = number_format($value->join_fee);
             $return[$value->master_id][ 'party_fee' ] = $value->party_fee;

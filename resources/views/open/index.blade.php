@@ -7,7 +7,7 @@
 @section('content')
 
 <div id="open">
-    <open-component v-bind:seminer="{{$seminer}}"></open-component>
+    <open-component v-bind:seminer="{{$seminer}}" lang="{{session('language')}}"></open-component>
 </div>
 
 @endsection

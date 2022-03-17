@@ -23,7 +23,11 @@
         @endif
         <form method="POST" class="mt-3" action="{{route('regist.conf', ['id'=>$id, 'uniqcode'=>$uniqcode])}}">
             @csrf
-            <h1 class="h3 mb-3 font-weight-normal">{{$title->title}}</h1>
+            <h1 class="h3 mb-3 font-weight-normal">
+            @if (session('language') == "EN") {{$title->title2}}
+            @else {{$title->title}}
+            @endif
+            </h1>
 
             @yield('join')
 

@@ -213,7 +213,11 @@ class Endai extends Model
             if(isset($defineEndaiTitle[ $value ]) &&
             $defineEndaiTitle[ $value ]->required){
                 $validate[ $value ] = 'required';
-                $error_message[ $value.'.required'] = $defineEndaiTitle[$value]->error_message;
+                if( session()->get( 'language' ) == 'EN' ){
+                    $error_message[ $value.'.required'] = $defineEndaiTitle[$value]->error_message2;
+                }else{
+                    $error_message[ $value.'.required'] = $defineEndaiTitle[$value]->error_message;
+                }
             }
         }
         $validated = $request->validate(

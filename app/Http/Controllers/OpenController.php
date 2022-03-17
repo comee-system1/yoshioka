@@ -20,12 +20,19 @@ class OpenController extends ControllerOpen
         $this->seminer[0]['information'] = Information::getOpenInformation($id);
         $this->seminer[0]['title'] = DefineTitle::getOpenTitle($id);
         $this->seminer[0]['sponser'] = Sponser::getSponser($id);
+
         return view('open.index', [
             'id' => $id,
             'uniqcode' => $uniqcode,
             'joinlink' => DefineJoinTitle::getDataType($id, 'joinlink')->first(),
             'seminer' => $this->seminer[0],
         ]);
+    }
+
+    public function session($id, $uniqcode, Request $request)
+    {
+        session(['language' => $request->language]);
+        return redirect(route('top', ['id' => $id, 'uniqcode' => $uniqcode]));
     }
 
     public function information($id, $uniqcode, $information_id)
