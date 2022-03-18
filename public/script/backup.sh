@@ -1,1 +1,1 @@
-/usr/local/bin/mysqldump --default-character-set=binary --no-tablespaces -u blueracoon85 -h mysql57.blueracoon85.sakura.ne.jp -pxFqcZRRT8 blueracoon85_gprss | gzip > /home/blueracoon85/www/yoshioka/public/db_backup/mysql_dump.sql
+/usr/local/bin/mysqldump --default-character-set=utf8 --no-tablespaces -u blueracoon85 -h mysql57.blueracoon85.sakura.ne.jp -pxFqcZRRT8 blueracoon85_gprss | gzip > /home/blueracoon85/www/yoshioka/public/db_backup/mysql_dump.sql
