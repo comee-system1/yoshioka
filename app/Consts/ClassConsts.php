@@ -32,6 +32,11 @@ class ClassConsts
         0 => "無効",
     ];
 
+    public const SPONSOR_LIST = [
+        1 => "テキスト",
+        2 => "画像",
+    ];
+
     public const SEND_FLAG = [
         1 => "配信済",
         0 => "未配信",

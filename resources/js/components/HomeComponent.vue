@@ -96,7 +96,7 @@
                                 <p class="text-end">登録日: {{seminer.date}} </p>
                             </div>
                             <div class="row text-start">
-                                <small>{{domain}}/open/{{seminer.id}}/{{seminer.open_key}}</small>
+                                <small><a v-bind:href="domain+'/open/'+seminer.id+'/'+seminer.open_key" target=_blank>{{domain}}/open/{{seminer.id}}/{{seminer.open_key}}</a></small>
                             </div>
                         </div>
                     </div>

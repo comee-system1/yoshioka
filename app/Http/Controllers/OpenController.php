@@ -12,11 +12,16 @@ class OpenController extends ControllerOpen
 {
     public function __construct(Request $rquest)
     {
+        if(!session()->get( 'language' )) {
+            session(['language' => 'JP']);
+        }
+
         $this->pageCheck($rquest);
     }
     //
     public function index($id, $uniqcode)
     {
+
         $this->seminer[0]['information'] = Information::getOpenInformation($id);
         $this->seminer[0]['title'] = DefineTitle::getOpenTitle($id);
         $this->seminer[0]['sponser'] = Sponser::getSponser($id);

@@ -26,6 +26,12 @@
                         <div class="row mt-2">
                             <div class="col-md-3 d-flex align-items-center">アップロード画像</div>
                             <div class="col-md-6">
+                                {{ Form::radio('file_type', 1, !empty($sponserdata->file_type)?(1 === $sponserdata->file_type):true, ['id' => 'file_type_id1' ]) }}
+                                {{Classes::SPONSOR_LIST[1]}}
+                                {{ Form::text('file_text', $sponserdata->file_text??'', ['id'=>'file_text', 'class'=>'form-control', 'placeholder'=>'企業名を入力' ])}}
+                                <br />
+                                {{ Form::radio('file_type', 2, !empty($sponserdata->file_type)?(2 === $sponserdata->file_type):'', ['id' => 'file_type_i2' ]) }}
+                                {{Classes::SPONSOR_LIST[2]}}
                                 {{Form::file("file")}}
                                 @if(!empty($sponserdata->file))
                                     <div class="mt-2">
@@ -41,12 +47,12 @@
                             <div class="col-md-3 d-flex align-items-center">リンク先</div>
                             <div class="col-md-6 mt-2">
                                 <div >
-                                    {{ Form::radio('link_type', 1, (1 == !empty($sponserdata->link_type)?$sponserdata->link_type:1), ['id' => 'info_type_id1' ]) }}
+                                    {{ Form::radio('link_type', 1, (1 === !empty($sponserdata->link_type)?$sponserdata->link_type:1), ['id' => 'info_type_id1' ]) }}
                                     {{ Form::label('info_type_id1', 'リンク先', ['class' => 'form-check-label']) }}
                                     {{ Form::text('link', $sponserdata->link??'', ['id'=>'link', 'class'=>'form-control', 'placeholder'=>'リンク先を入力' ])}}
                                 </div>
                                 <div class="mt-3">
-                                    {{ Form::radio('link_type', 2, (2 == !empty($sponserdata->link_type)?$sponserdata->link_type:''), ['id' => 'info_type_id2' ]) }}
+                                    {{ Form::radio('link_type', 2, (2 === !empty($sponserdata->link_type)?$sponserdata->link_type:''), ['id' => 'info_type_id2' ]) }}
                                     {{ Form::label('info_type_id2', 'リンク先ファイルアップロード', ['class' => 'form-check-label']) }}
                                     <div>
                                     {{Form::file("link_file")}}

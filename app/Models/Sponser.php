@@ -20,6 +20,8 @@ class Sponser extends Model
         'link',
         'link_file',
         'link_type',
+        'file_type',
+        'file_text',
     ];
 
 
@@ -36,6 +38,8 @@ class Sponser extends Model
         $insert = [];
         $insert[ 'seminer_id' ] = $id;
         $insert[ 'file' ] = self::setFile($request, "file");
+        $insert[ 'file_type' ] = $request->file_type;
+        $insert[ 'file_text' ] = $request->file_text;
         $insert[ 'link_type' ] = $request->link_type;
         $insert[ 'link'      ] = $request->link;
         $insert[ 'link_file' ] = self::setFile($request, "link_file");

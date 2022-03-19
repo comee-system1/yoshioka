@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th scope="col">機能</th>
-                    <th scope="col">協賛画像</th>
+                    <th scope="col">画像/テキスト</th>
                     <th scope="col">リンク先</th>
                     <th scope="col">更新日</th>
                 </tr>
@@ -29,7 +29,10 @@
                         <a v-bind:href="'/admin/sponser/edit/'+id+'/'+list.id" class="btn btn-success">更新</a>
                         <button class="btn btn-danger" @click="onClickDelete(id, list.id)">削除</button>
                     </td>
-                    <td><img v-if="list.file" v-bind:src="'/storage/sponser/'+list.file" height=60 /></td>
+                    <td>
+                        <img v-if="list.file_type == 2 " v-bind:src="'/storage/sponser/'+list.file" height=60 />
+                        <p v-if="list.file_type == 1">{{list.file_text}}</p>
+                    </td>
                     <td>
                         <div v-show="list.link_type == 1">{{list.link}}</div>
                         <a v-show="list.link_type == 2" v-bind:href="'/storage/sponser/'+list.link_file">アップロードファイル</a>

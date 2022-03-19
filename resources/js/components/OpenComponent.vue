@@ -43,8 +43,11 @@
                     <div class="h4" v-if="lang=='JP'">{{seminer.title.sponser.title}}</div>
                     <div class="h4" v-if="lang=='EN'">{{seminer.title.sponser.title2}}</div>
                     <div class="row">
-                        <div class="col-md-2" v-for="sponser in seminer.sponser" v-bind:key="sponser.id" >
-                            <a v-bind:href="[sponser.link_type == 1 ?sponser.link:'/storage/sponser/'+sponser.link_file]" target=_blank><img v-bind:src="'/storage/sponser/'+sponser.file" class="w-100" /></a>
+                        <div class="col-md-2  border border-1 border-light text-center" v-for="sponser in seminer.sponser" v-bind:key="sponser.id" >
+                            <a v-bind:href="[sponser.link_type == 1 ?sponser.link:'/storage/sponser/'+sponser.link_file]" target=_blank class="h-100">
+                            <img v-if="sponser.file_type==2" v-bind:src="'/storage/sponser/'+sponser.file" class="w-100 " />
+                            <span v-if="sponser.file_type==1">{{sponser.file_text}}</span>
+                            </a>
                         </div>
                     </div>
                 </div><!-- /.blog-post -->
