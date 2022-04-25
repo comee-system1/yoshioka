@@ -181,7 +181,7 @@
                     </div>
                     <div class="row mt-2" >
                         <label >セミナー日時</label>
-                        <small class="text-primary">セミナーの期間設定は1週間以内としてください</small>
+                        <small class="text-primary">セミナーの期間設定は100日以内としてください</small>
                         <p class="text-danger" v-show="error.dateErrorMessage">期間設定に誤りがあります。</p>
                         <div class="col-6">
                             <p>開始日時</p>
@@ -341,7 +341,7 @@ export default {
         },
         postDateConfirm:function(){
             let diff = this.difference(this.start_date, this.end_date);
-            if(diff >= 7){
+            if(diff >= 100){
                 this.error.dateErrorMessage = true;
                 return false;
             }

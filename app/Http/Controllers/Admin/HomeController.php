@@ -80,6 +80,8 @@ class HomeController extends Controller
     }
     public function saveData(Request $request)
     {
+        ini_set("max_execution_time",0); // タイムアウトしない
+        ini_set("max_input_time",0); // パース時間を設定しない
      //   DB::beginTransaction();
         try {
             $file_name = "";
